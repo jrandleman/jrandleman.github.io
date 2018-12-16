@@ -70,14 +70,14 @@ function dnldButton() {
 	var usrDAns = prompt('Download your:\n => (1) NGMA\n => (2) English\n => (3) Both', '-:- Enter Option Here -:-').toLowerCase();
 	if((usrDAns == '1' || usrDAns == '(1)') || usrDAns == "ngma") {
 		var nDText = document.getElementById("demo0").innerHTML.replace(/&amp;/g, '&');
-		var text = 'http://students.engr.scu.edu/~jrandlem/ngmaConversion.html\n\nConverted NGMA:\n'+nDText;
+		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nConverted NGMA:\n'+nDText;
 		var filename = "convertedNgma.txt";
 	} else if((usrDAns == '2' || usrDAns == '(2)') || usrDAns == "english") {
-		var text = 'http://students.engr.scu.edu/~jrandlem/ngmaConversion.html\n\nReverted English:\n'+document.getElementById("demo00").innerHTML;
+		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nReverted English:\n'+document.getElementById("demo00").innerHTML;
 		var filename = "revertedEnglish.txt";
 	} else if((usrDAns == '3' || usrDAns == '(3)') || usrDAns == "both") {
 		var nDText = document.getElementById("demo0").innerHTML.replace(/&amp;/g, '&');
-		var text = 'http://students.engr.scu.edu/~jrandlem/ngmaConversion.html\n\n'+
+		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\n'+
 			'Converted NGMA:\n'+nDText+'\n\nReverted English:\n'+document.getElementById("demo00").innerHTML;
 		var filename = "bothNgmaEnglish.txt";
 	} else if (usrDAns == null) {
@@ -111,14 +111,14 @@ function printIt() {
 		if ((printTxt == '1' || printTxt == '(1)') || printTxt == "ngma") {
 			var ntext = document.getElementById("demo0").innerHTML;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>http://students.engr.scu.edu/~jrandlem/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>NGMA Conversion:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
 		} else if ((printTxt == '2' || printTxt == '(2)') || printTxt == "english") {
 			var etext = document.getElementById("demo00").innerHTML;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>http://students.engr.scu.edu/~jrandlem/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center><h1><u><i style='font-family:arial'>English Reversion:</i></u></h1><p style='font-size:22px'><b>"+etext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
@@ -126,7 +126,7 @@ function printIt() {
 			var ntext = document.getElementById("demo0").innerHTML;
 			var etext = document.getElementById("demo00").innerHTML;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>http://students.engr.scu.edu/~jrandlem/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>Translated Text:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
 			myWindow.document.write("<center><p style='font-size:22px'><b>"+etext+"</b></p></center>");
 			myWindow.print();
