@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html style="background-color:lime;border:10px dashed black;">
+<head><title>NGMA Information</title>
+<link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+<link rel="shortcut icon" type="image/png" href="http://students.engr.scu.edu/~jrandlem/ngmaFaviconThree.png"/>
+<link rel="stylesheet" type="text/css" href="gngmaStyle.css"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
+<body class="df" style="background-color:black;border:10px dashed lime;color:yellow;" onload="ngmaInfo();">
+
+<style>
+.df {
+	cursor:default;
+}
+.infoButton {
+	border-radius: 20px;
+	color: black;
+	font-size: 18px;
+	background-color:yellow;
+	padding:5px;
+	font-family:arial;
+}
+.infoButton:hover {
+	font-style:italic;
+	font-weight:bold;
+}
+.infoTitle {
+	text-align:center;
+	font-style:italic;
+	font-size:22px;
+	color:paleturquoise;
+	font-family:Bai Jamjuree;
+}
+.bookLink {
+	color:paleturquoise;
+	text-decoration:none;
+}
+.bookLink:hover {
+	color:black;
+	background-color:paleturquoise;
+	text-decoration:underline;
+}
+.engTxt {
+	font-size:19px;
+	font-family:arial;
+}
+.returnButton {
+	border-radius: 50%;
+	border: 2px solid #F9ED4B;
+	color:#F9ED4B;
+	padding:5px;
+	text-decoration:none;
+}
+.returnButton:hover {
+	color:black;
+	background-color:#F9ED4B;
+	border: 2px solid #F9ED4B;
+}
+</style>
+
+<br><br><center><h1 style="font-family:Prosto One"><big><big>NGMA CONVERSION</big></big></h1></center><p class="infoTitle">
+	In creating NGMA, I arranged its various phonetic features into vowels,<br> consonants, vowel/consonant vowel/vowel and 
+	consonant/consonant pairs,<br> pronounciations of the letter "R", as well as shorthand versions of common words.<br><br>
+	<br>The following image is one of the original keys I had developed in<br> my sophomore year of high school for NGMA's handwritten variation.</p>
+<br><center><img src="http://students.engr.scu.edu/~jrandlem/picNgma.jpg" width="768" height="1026"></center><br>
+<div class="row"><div class="column1" style="text-align:center;margin:22px;"><h2 style="font-family:Prosto One"><big><big>ENGLISH</big></big>
+<br><i>Brothers Karamazov<br>character &#8470; - 646</i></h2>
+	<div class="engTxt">"In that sense, "all things are lawful" for him. What's more, even if this period never 
+	comes to pass, since there is anyway no God and no immortality, the new man may well become the man-god, even if he is the only one 
+	in the whole world, and promoted to his new position, he may lightheartedly overstep all the barriers of the old morality of the old 
+	slave-man, if necessary. There is no law for God. Where God stands, the place is holy. Where I stand will be at once the foremost 
+	place ... "all things are lawful" and that's the end of it! That's all very charming; but if you want to swindle why do you want a 
+	moral sanction for doing it?"</div>
+<br><h2 style="font-family:Prosto One"><i>Fountainhead<br>character &#8470; - 651</i></h2>
+	<div class="engTxt">"When you suspend your faculty of independent judgment, you suspend consciousness. 
+	To stop consciousness is to stop life. Second-handers have no sense of reality. Their reality is not within them, but somewhere 
+	in that space which divides one human body from another. Not an entity, but a relation--anchored to nothing. That's the emptiness 
+	I couldn't understand in people. Men without an ego. Opinion without a rational process. Motion without brakes or motor. Power 
+	without responsibility. The second-hander acts, but the source of his actions is scattered in every other living person. It's 
+	everywhere and nowhere and you can't reason with him."</div>
+<br><h2 style="font-family:Prosto One"><i>Odyssey<br>character &#8470; - 824</i></h2>
+	<div class="engTxt">"Hoisting high that olive stake with its stabbing point, 
+	straight into the monster's eye they rammed it hard - I drove my weight on it from above and bored it home 
+	as a shipwright bores his beam with a shipwright's drill that men below, whipping the strap back and forth, whirl 
+	and the drill keeps twisting faster, never stopping - So we seized our stake with its fiery tip 
+	and bored it round and round in the giant's eye till blood came boiling up around that smoking shaft 
+	and the hot blast singed his brow and eyelids round the core and the broiling eyeball burst - its crackling roots blazed 
+	and hissed - as a blacksmith plunges a glowing ax or adze in an ice - cold bath and the metal screeches steam 
+	and its temper hardens - that's the iron's strength - so the eye of the Cyclops sizzled round that stake!"</div></div>
+<div class="column2" style="text-align:center;margin:22px;"><h2 style="font-family:Prosto One"><big><big>NGMA</big></big>
+<br><i>Brothers Karamazov<br>character &#8470; - 442</i></h2><div id="demo0" style="font-family:arial"></div><br><br><br>
+<h2 style="font-family:Prosto One;margin:22px;"><i>Fountainhead<br>character &#8470; - 448</i></h2><div id="demo1" style="font-family:arial"></div><br><br><br><br>
+<h2 style="font-family:Prosto One;padding:7px;"><i>Odyssey<br>character &#8470; - 551</i></h2><div id="demo2" style="font-family:arial"></div>
+</div></div><p class="infoTitle">NGMA uses ~&frac14;-&frac13; less characters on average than English, as demonstrated by the <br>
+	<a class="bookLink" href="https://www.gutenberg.org/files/28054/28054-pdf.pdf" target="_blank">"Brothers Karamazov" (p.842)</a>, 
+	<a class="bookLink" href="https://www.pdfdrive.com/the-fountainhead-by-ayn-rand-e23640607.html" target="_blank">"Fountainhead" (p.539)</a>, and 
+	<a class="bookLink" href="http://www.boyle.kyschools.us/UserFiles/88/The%20Odyssey.pdf" target="_blank">"Odyssey" (p.148)</a> 
+	exerpts above by only using <br>68%, 68%, and 66% of the total amount of characters present in their English versions.</p>
+<script type="text/javascript" src="gngmaRTScript.js"></script>
+<br><br><center><a class="infoButton" href="http://students.engr.scu.edu/~jrandlem/ngmaConversion.html">Go Back to Conversion</a><br><br><br>
+<a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></center><br><br><br>
+
+</body>
+</html>
