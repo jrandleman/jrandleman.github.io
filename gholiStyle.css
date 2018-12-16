@@ -1,0 +1,302 @@
+/* Author: Jordan Randleman; */
+
+/* BIRTHDAY CSS */
+
+#wrbi {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:#CC66FF;
+	border-radius:50%;
+	border:5px solid cyan;
+}
+#wrbb {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:cyan;
+	text-decoration:underline overline;
+	text-decoration-color:#CC66FF;
+}
+#wrbp {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#CC66FF;
+	text-decoration:underline overline;
+	text-decoration-color:cyan;
+}
+#krbi {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:#66FFFF;
+}
+#krbb {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#66FFFF;
+	text-decoration:underline overline;
+	text-decoration-color:#FF99FF;
+}
+#krbp {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#FF99FF;
+	text-decoration:underline overline;
+	text-decoration-color:#66FFFF;
+}
+#rrbi {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:red;
+	border-radius:50%;
+	border:2px solid #66FFFF;
+	background-color:#66FFFF;
+}
+#rrbb {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#66FFFF;
+	text-decoration:underline overline;
+	text-decoration-color:red;
+}
+#rrbr {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:red;
+	text-decoration:underline overline;
+	text-decoration-color:#66FFFF;
+}
+#jrbi {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:red;
+	border-radius:50%;
+	border:5px solid red;
+	background-color:lime;
+}
+#jrbg {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:lime;
+	text-decoration:underline overline;
+	text-decoration-color:red;
+}
+#jrbr {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:red;
+	text-decoration:underline overline;
+	text-decoration-color:lime;
+}
+
+/* HOLIDAYS CSS */
+
+#valh {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:#FF66CC;
+}
+#valw {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:white;
+	text-decoration:underline overline;
+	text-decoration-color:#FF66CC;
+}
+#valp {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#FF66CC;
+	text-decoration:underline overline;
+	text-decoration-color:white;
+}
+#pip {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:yellow;
+	text-decoration:underline dotted;
+	text-decoration-color:#FF9900;
+}
+#pio {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#FF9900;
+	text-decoration:underline overline;
+	text-decoration-color:yellow;
+}
+#piy {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:yellow;
+	text-decoration:underline overline;
+	text-decoration-color:#FF9900;
+}
+#spl {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:#00FF00;
+}
+#spg {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#00FF00;
+	text-decoration:underline overline;
+	text-decoration-color:yellow;
+}
+#spy {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:yellow;
+	text-decoration:underline overline;
+	text-decoration-color:#00FF00;
+}
+#m4i {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:red;
+	border-radius:50%;
+	border:3px solid #33CCFF;
+}
+#m4b {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:#33CCFF;
+	text-decoration:underline overline;
+	text-decoration-color:yellow;
+}
+#m4y {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:yellow;
+	text-decoration:underline overline;
+	text-decoration-color:#33CCFF;
+}
+#cdmi {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:gold;
+}
+#cdmy {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:gold;
+	text-decoration:underline overline;
+	text-decoration-color:red;
+}
+#cdmg {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:lime;
+	text-decoration:underline overline;
+	text-decoration-color:gold;
+}
+#cdmr {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:red;
+	text-decoration:underline overline;
+	text-decoration-color:lime;
+}
+#hlwng {
+	font-family:Bungee Inline;
+	font-size:60px;
+	font-weight:bold;
+	color:#FFFF66;
+}
+#hlwno {
+	font-family:Bungee Inline;
+	font-size:50px;
+	font-style:italic;
+	color:orange;
+	text-decoration:underline overline;
+	text-decoration-color:orange;
+}
+#hlwnb {
+	font-family:Bungee Inline;
+	font-size:50px;
+	font-style:italic;
+	color:black;
+	background-color:orange;
+}
+#hlwsb {
+	font-family:Bungee Inline;
+	font-size:50px;
+	font-style:italic;
+	color:cyan;
+	text-decoration:underline overline;
+	text-decoration-color:white;
+}
+#hlwsw {
+	font-family:Bungee Inline;
+	font-size:50px;
+	font-style:italic;
+	color:white;
+	text-decoration:underline overline;
+	text-decoration-color:cyan;
+}
+#xmasw {
+	font-family:Bungee Inline;
+	font-size:65px;
+	font-weight:bold;
+	color:white;
+	text-decoration:underline;
+}
+#xmasr {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:red;
+	text-decoration:underline overline;
+	text-decoration-color:lime;
+}
+#xmasg {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:lime;
+	text-decoration:underline overline;
+	text-decoration-color:red;
+}
+#nyb {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:blue;
+	text-decoration:underline overline;
+	text-decoration-color:gold;
+}
+#nyg {
+	font-family:Bungee Inline;
+	font-size:55px;
+	font-style:italic;
+	color:gold;
+	text-decoration:underline overline;
+	text-decoration-color:blue;
+}
+
