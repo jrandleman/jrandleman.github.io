@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="background-color:#F5F;border:10px dashed black;">
+<head><title>Perspective Length</title>
+<link rel="shortcut icon" type="image/png" href="http://students.engr.scu.edu/~jrandlem/ngmaFaviconFour.png"/>
+<link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Sonsie One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+<link rel="stylesheet" type="text/css" href="gngmaStyle.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
+<body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();">
+
+<!-- *** PERSPECTIVE HEADER *** -->
+<h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
+<span style="float:left;font-size:32px;margin-top:-10px;margin-left:17px;">
+<a class="proResBtn fas fa-cog" href="http://students.engr.scu.edu/~jrandlem/webArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<span style="float:right;font-size:32px;margin-top:-10px;margin-right:17px;">
+<a class="proResBtn material-icons" href="http://students.engr.scu.edu/~jrandlem/resume.html" id="nmId"><span style="font-size:55px;">&#xe7fd;</span></a></span></h1>
+<center><a class="numbersButton" href="gperNumbers.html" id="numId"></a></center>
+
+<!-- *** PERSPECTIVE LENGTH FUNCTION *** -->
+<center><div class="column0"><div id="spinning3DText3" onclick="aboutPL()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
+<div class="pageTitle"><big>&#x27AB;<span id="subt1Id"></span>&#x27AA;<br>&#x27AA;<span id="subt2Id"></span>&#x27AB;</big></div></center>
+<center class="pageSubtitle"><b><span id="ssub1"></span>
+<input class="pageInput" style="text-align:center;" type="number" id="baseL" min="0" max="999998" value="1" onwheel="" onkeyup="entrBtn(event)"><br><span id="ssub2"></span>
+<input class="pageInput" style="text-align:center;" type="number" id="distL" min="0" max="999999" value="0" onwheel="" onkeyup="entrBtn(event)"><br><span id="ssub3"></span>&#120505;:
+<input class="pageInput" style="text-align:center;width:125px" type="text" id="thetaH" value="pi/2" onkeyup="entrBtn(event)"><br><span id="ssub4"></span>&#120505;:
+<input class="pageInput" style="text-align:center;width:125px" type="text" id="thetaV" value="0" onkeyup="entrBtn(event)"></center>
+<center><br><br><button class="pageButton" onclick="perspectiveLength()"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo22"></p>
+<script type="text/javascript" src="gperspectiveScript.js"></script><div id="line"></div><br>
+
+<center><p><a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></p></div></center><br>
+<p><center><span><a class="niconButton" href="gngmaConversion.html">&#x270E;</a></span>
+<span class="blackout df">--------------------</span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
+<span class="blackout df">--------------------</span>
+<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
+</center></p><br>
+
+</body>
+</html>
