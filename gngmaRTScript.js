@@ -341,9 +341,9 @@ demo00.addEventListener("copy", function(event) {
 const copSpeed = 1500;
 
 function copMessage1() {
-	document.getElementById("copId1").style = "background-color:paleturquoise;color:black;"+
-		"font-size:24px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
-		"margin-top:-23px;width:200px;cursor:wait;";
+	document.getElementById("copId1").style = "background-color:lime;color:black;"+
+	"font-size:34px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
+	"margin-top:-15px;margin-bottom:5px;width:280px;cursor:wait;";
 	document.getElementById("copId1").innerHTML = "NGMA COPIED";
 	document.getElementById("copId1").classList = "fadeOut";
 	document.getElementById("demo0").style = "visibility:hidden;";
@@ -361,9 +361,9 @@ function copGone1() {
 
 /************* COPIED ENGLISH MESSAGE *************/
 function copMessage2() {
-	document.getElementById("copId2").style = "background-color:paleturquoise;color:black;"+
-		"font-size:24px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
-		"margin-top:-25px;width:230px;cursor:wait;";
+	document.getElementById("copId2").style = "background-color:lime;color:black;"+
+	"font-size:34px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
+	"margin-top:-33px;margin-bottom:33px;width:330px;cursor:wait;";
 	document.getElementById("copId2").innerHTML = "ENGLISH COPIED";
 	document.getElementById("copId2").classList = "fadeOut";
 	document.getElementById("demo00").style = "visibility:hidden;";
