@@ -226,8 +226,8 @@ function typeWriter() {
 /* SPINNING STAR FUNCTION */
 /******************************************************************************/
 
-setTimeout(starIcon, 300); /* CHANGED FROM 50 TO 300 */
-setTimeout(starIcon2, 300); /* CHANGED FROM 50 TO 300 */
+setTimeout(starIcon, 50); /* CHANGED FROM 50 TO 300 */
+setTimeout(starIcon2, 50); /* CHANGED FROM 50 TO 300 */
 function starIcon() {
     document.getElementById("starIcon").classList = 'spinning3DStar5';
     document.getElementById("starIcon").innerHTML = '&#x272D;';
