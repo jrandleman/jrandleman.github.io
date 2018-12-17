@@ -6,13 +6,72 @@
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 <body style="background-color:cyan;cursor:default;" onload="buildBoard();setTimer();">
-<center><h1><u><big><big><big id="title">SUDOKU PUZZLE</big></big></big></u></h1>
-<!-- "SUDOKUS!!" W/ 1-9 RANDOM ARRAY REPLACED WITH TYPEWRITER LETTERS EFFECT ON HQ HOME RELOAD -->
-<!-- SPINNING NUMBERS 1-9 CHANGING PER SPIN AS ANIMATION ABOVE TITLE ON HOME -:-:-:- ROTATE PUZZLES FOR MORE OPTIONS ? -->
+<center><!--Proto&Resume--><h1><span style="font-size:32px;margin-top:-10px;margin-right:5px;">
+<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<span><u><big><big><big id="title">SUDOKU PUZZLE</big></big></big></u></span>
+<span style="font-size:32px;margin-top:-10px;margin-left:5px;">
+<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId">&#xe7fd;</a></span></h1>
+<center style="margin-bottom:30px;"><a class="numbersButton" href="https://jrandleman.github.io/gngmaInfo.html" id='sMN'>SHOW ME THE NUMBERS</a></center>
 <style>
 html { scroll-behavior:smooth; }
+.proResBtn {
+	border-radius: 50%;
+	border: 5px solid black;
+	color:black;
+	padding:5px;
+	background-color:cyan;
+	text-decoration:none;
+	font-size:45.8333333px; 
+}
+.proResBtn:hover { color:cyan;background-color:black;cursor:pointer; }
+.returnButton {
+	border-radius: 50%;
+	border: 2px solid black;
+	color:black;
+	padding:5px;
+	text-decoration:none;
+	background-color:cyan;
+}
+.returnButton:hover { color:cyan;background-color:black;border: 2px solid black; }
+.iconButton {
+	border-radius:20px;
+	color:black;
+	font-size:35px;
+	font-family:arial;
+	text-decoration:none;
+	background-color:cyan;
+	border: 2px solid black;
+	padding:8px;
+}
+.iconButton:hover { background-color:black;color:cyan;font-weight:bold; }
+.niconButton {
+	border-radius:20px;
+	color:black;
+	font-size:35px;
+	font-family:arial;
+	text-decoration:none;
+	background-color:cyan;
+	border: 2px solid black;
+	padding:8px;
+}
+.niconButton:hover { background-color:black;text-decoration:underline;color:cyan;font-weight:bold; }
+.blackout { color:cyan; }
+.numbersButton {
+	border-radius: 20px;
+	border:2px solid black;
+	color: black;
+	font-size: 15px;
+	font-weight:bold;
+	background-color:cyan;
+	padding:5px;
+	font-family:Prosto One;
+}
+.numbersButton:hover {
+	font-style:italic;
+}
 #title { font-family:orbitron;font-weight:bold; }
 #timeId { margin-top:10px;font-size:45px;margin-left:-17px;font-family:Gugi; }
 #cy { color:cyan; }
@@ -94,6 +153,16 @@ html { scroll-behavior:smooth; }
 <span id='printBtn2'></span>
 <br><b><div id="timeId" style="visibility:hidden;"></div></b><br><div id="numberList"></div><br>
 <b style="font-size:45px;"><span id='noice'></span><div id="puzBorder"><div id="SudokuBoard"></div></div></b>
+
+<br><center id="sudfooter"><a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/hq.html">home</a><br><br>
+<p><center><span><a class="niconButton" href="https://jrandleman.github.io/gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
+<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="https://jrandleman.github.io/gperspectiveLength.html">&#x27AB;</a></span>
+<span class="blackout">------</span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
+<span class="blackout">------</span>
+<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="https://jrandleman.github.io/gstarCalculation.html">&#x2729;</a></span>
+</center></p><br></center>
+
 <span id="A0"></span><br><span id="A1"></span><br><span id="A2"></span><br><span id="A3"></span><br><span id="A4"></span><br>
 <span id="A5"></span><br><span id="A6"></span><br><span id="A7"></span><br><span id="A8"></span><span id='lastTag'></span></center>
 
@@ -113,6 +182,39 @@ function setTimer() {
 		'.length < 2) {return "0" + valString;} else {return valString;}}function clearTime(){document.getElementById("hours").innerHTML = '+
 		'"00";document.getElementById("minutes").innerHTML = "00";document.getElementById("seconds").innerHTML = "00";clearInterval(tVar);'+
 		'totalSeconds = 0;tVar = setInterval(setTime, 1000);}';
+}
+
+/******************************************************************************/
+/* HEADER HOVER FUNCTION */
+/******************************************************************************/
+
+function cogAnim(flag) {
+    if(flag == 1) {
+        document.getElementById("lnId").classList.add("fa-spin");
+    } else {
+        document.getElementById("lnId").classList.remove("fa-spin");
+    }
+}
+
+/******************************************************************************/
+/* FOOTER FUNCTION */
+/******************************************************************************/
+
+function on(x) {
+	if(x == 1) {
+		document.getElementById("con2").innerHTML = "&#x27AA;";	
+	} else if(x == 1.5) {
+		document.getElementById("con2").innerHTML = "&#x27AB;";
+	} else if(x == 2) {
+		document.getElementById("con3").innerHTML = "&#x2751;";	
+	} else if(x == 2.5) {
+		document.getElementById("con3").innerHTML = "&#x2752;";
+	} else if(x == 3) {
+		document.getElementById("con4").innerHTML = "&#x2738;";	
+	} else if(x == 3.5) {
+		document.getElementById("con4").innerHTML = "&#x2729;";
+	}
+    
 }
 
 /******************************************************************************/
