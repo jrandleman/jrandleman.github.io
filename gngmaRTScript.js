@@ -47,6 +47,10 @@ function on(x) {
 		document.getElementById("con4").innerHTML = "&#x2738;";	
 	} else if(x == 3.5) {
 		document.getElementById("con4").innerHTML = "&#x2729;";
+	} else if(x == 4) {
+		document.getElementById("con5").innerHTML = "&#x2468;";	
+	} else if(x == 4.5) {
+		document.getElementById("con5").innerHTML = "&#x24C8;";
 	}
 
 }
