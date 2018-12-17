@@ -935,9 +935,23 @@
 	padding:5px;
 	background-color:black;
 	text-decoration:none;
-	font-size:45.8333333px;
+	font-size:55px;
 }
 .proResBtn:hover {
+	color:black;
+	background-color:orange;
+	cursor:pointer;
+}
+.proResBtn1 {
+	border-radius: 50%;
+	border: 5px solid orange;
+	color:orange;
+	padding:5px;
+	background-color:black;
+	text-decoration:none;
+	font-size:45.8333333px; 
+}
+.proResBtn1:hover {
 	color:black;
 	background-color:orange;
 	cursor:pointer;
