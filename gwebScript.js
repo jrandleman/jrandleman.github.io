@@ -56,6 +56,39 @@ function aboutWP() {
 }
 
 /******************************************************************************/
+/* SUDOKU TITLE GENERATION */
+/******************************************************************************/
+
+var sCh = 0;
+var numCh = 0;
+var sudokuSpeed = 88;
+var engSTitle = "SUDOKUS!!";
+var engSArr = engSTitle.split('');
+var numSTitle = '123456789';
+var numSArr = numSTitle.split('');
+
+function genEngSTitle() {
+    if (sCh < engSTitle.length) {
+        engSArr.splice(sCh,1,numSTitle.charAt(sCh));
+        document.getElementById("sdId").innerHTML = '';
+        document.getElementById("sdId").innerHTML += engSArr.join('');
+        sCh++;
+        setTimeout(genEngSTitle, sudokuSpeed);
+    }
+}
+
+setTimeout(genNumSTitle, 1000);
+function genNumSTitle() {
+    if (numCh < numSTitle.length) {
+        numSArr.splice(numCh,1,engSTitle.charAt(numCh));
+        document.getElementById("sdId").innerHTML = '';
+        document.getElementById("sdId").innerHTML += numSArr.join('');
+        numCh++;
+        setTimeout(genNumSTitle, sudokuSpeed);
+    }
+}
+
+/******************************************************************************/
 /* NGMA TITLE GENERATION */
 /******************************************************************************/
 
@@ -177,12 +210,9 @@ function randTitle() {
 function typeWriter() {
     if (ch < titleTxt.length) {
         var letter = titleTxt.charAt(ch);
-        /* var nletter = nText.charAt(ch); */
         var pletter = pText.charAt(ch);
         var dletter = dText.charAt(ch);
         var sletter = sText.charAt(ch);
-        /* var lnletter = lnText.charAt(ch);
-        var nmletter = nmText.charAt(ch); */
         var numletter = numText.charAt(ch);
         var prcletter = prcText.charAt(ch);
         var sculetter = scuText.charAt(ch);
@@ -190,12 +220,9 @@ function typeWriter() {
         var acmletter = acmText.charAt(ch);
 
         titleFilledArr.splice(ch,1,letter);
-        /* nFilledArr.splice(ch,1,nletter); */
         pFilledArr.splice(ch,1,pletter);
         dFilledArr.splice(ch,1,dletter);
         sFilledArr.splice(ch,1,sletter);
-        /* lnFilledArr.splice(ch,1,lnletter);
-        nmFilledArr.splice(ch,1,nmletter); */
         numFilledArr.splice(ch,1,numletter);
         prcFilledArr.splice(ch,1,prcletter);
         scuFilledArr.splice(ch,1,sculetter);
@@ -203,15 +230,13 @@ function typeWriter() {
         acmFilledArr.splice(ch,1,acmletter);
 
         document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-        /* document.getElementById("nId").innerHTML = nFilledArr.join(''); */
         document.getElementById("pId").innerHTML = pFilledArr.join('');
         document.getElementById("dId").innerHTML = dFilledArr.join('');
         document.getElementById("sId").innerHTML = sFilledArr.join('');
-        /* document.getElementById("lnId").innerHTML = lnFilledArr.join('');
-        document.getElementById("nmId").innerHTML = "&#x00A9;"+nmFilledArr.join(''); */
         document.getElementById("numId1").innerHTML = numFilledArr.join('');
         document.getElementById("numId2").innerHTML = numFilledArr.join('');
         document.getElementById("numId3").innerHTML = numFilledArr.join('');
+        document.getElementById("numIdS").innerHTML = numFilledArr.join('');
         document.getElementById("prcId").innerHTML = prcFilledArr.join('');
         document.getElementById("scuId").innerHTML = scuFilledArr.join('');
         document.getElementById("wspId").innerHTML = wspFilledArr.join('');
@@ -223,11 +248,98 @@ function typeWriter() {
 }
 
 /******************************************************************************/
+/* SPINNING SUDOKU FUNCTION */
+/******************************************************************************/
+
+setTimeout(sudIcon, 50);
+setTimeout(sudIcon2, 50);
+function sudIcon() {
+    document.getElementById("sudIcon").classList = 'spinning3DSud1';
+    document.getElementById("sudIcon").innerHTML = '1';
+}
+function sudIcon2() {
+    for(let sdkup = 0; sdkup < 9999; sdkup++) {
+        var sud2Time = 1000 + (sdkup*13500);
+        var sud3Time = 2500 + (sdkup*13500);
+        var sud4Time = 4000 + (sdkup*13500);
+        var sud5Time = 5500 + (sdkup*13500);
+        var sud6Time = 7000 + (sdkup*13500);
+        var sud7Time = 8500 + (sdkup*13500);
+        var sud8Time = 10000 + (sdkup*13500);
+        var sud9Time = 11500 + (sdkup*13500);
+        var sud1Time = 13000 + (sdkup*13500);
+        setTimeout(sud2, sud2Time);
+        setTimeout(sud3, sud3Time);
+        setTimeout(sud4, sud4Time);
+        setTimeout(sud5, sud5Time);
+        setTimeout(sud6, sud6Time);
+        setTimeout(sud7, sud7Time);
+        setTimeout(sud8, sud8Time);
+        setTimeout(sud9, sud9Time);
+        setTimeout(sud1, sud1Time);
+    }
+}
+
+function sud2() {
+    document.getElementById("sudIcon").innerHTML = "2";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud1');
+    document.getElementById("sudIcon").classList.add('spinning3DSud2');
+}
+
+function sud3() {
+    document.getElementById("sudIcon").innerHTML = "3";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud2');
+    document.getElementById("sudIcon").classList.add('spinning3DSud3');
+}
+
+function sud4() {
+    document.getElementById("sudIcon").innerHTML = "4";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud3');
+    document.getElementById("sudIcon").classList.add('spinning3DSud4');
+}
+
+function sud5() {
+    document.getElementById("sudIcon").innerHTML = "5";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud4');
+    document.getElementById("sudIcon").classList.add('spinning3DSud5');
+}
+
+function sud6() {
+    document.getElementById("sudIcon").innerHTML = "6";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud5');
+    document.getElementById("sudIcon").classList.add('spinning3DSud6');
+}
+
+function sud7() {
+    document.getElementById("sudIcon").innerHTML = "7";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud6');
+    document.getElementById("sudIcon").classList.add('spinning3DSud7');
+}
+
+function sud8() {
+    document.getElementById("sudIcon").innerHTML = "8";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud7');
+    document.getElementById("sudIcon").classList.add('spinning3DSud8');
+}
+
+function sud9() {
+    document.getElementById("sudIcon").innerHTML = "9";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud8');
+    document.getElementById("sudIcon").classList.add('spinning3DSud9');
+}
+
+function sud1() {
+    document.getElementById("sudIcon").innerHTML = "1";
+    document.getElementById("sudIcon").classList.remove('spinning3DSud9');
+    document.getElementById("sudIcon").classList.add('spinning3DSud1');
+}
+
+/******************************************************************************/
 /* SPINNING STAR FUNCTION */
 /******************************************************************************/
 
-setTimeout(starIcon, 50); /* CHANGED FROM 50 TO 300 */
-setTimeout(starIcon2, 50); /* CHANGED FROM 50 TO 300 */
+setTimeout(starIcon, 50);
+setTimeout(starIcon2, 50);
 function starIcon() {
     document.getElementById("starIcon").classList = 'spinning3DStar5';
     document.getElementById("starIcon").innerHTML = '&#x272D;';

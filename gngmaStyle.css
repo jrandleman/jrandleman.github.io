@@ -25,8 +25,9 @@
 	transform-style: preserve-3d;
 	position: relative;
 	font-weight: bold;
-	font-size: 114px;
+	font-size: 85.5px;
 	font-family:georgia;
+	margin-top:-5px;
 }
 .spinning3DStar5::before,
 .spinning3DStar5::after {
@@ -63,8 +64,9 @@
 	transform-style: preserve-3d;
 	position: relative;
 	font-weight: bold;
-	font-size: 114px;
+	font-size: 85.5px;
 	font-family:georgia;
+	margin-top:-5px;
 }
 .spinning3DStar8::before,
 .spinning3DStar8::after {
@@ -101,8 +103,9 @@
 	transform-style: preserve-3d;
 	position: relative;
 	font-weight: bold;
-	font-size: 114px;
+	font-size: 85.5px;
 	font-family:georgia;
+	margin-top:-5px;
 }
 .spinning3DStar12::before,
 .spinning3DStar12::after {
@@ -131,6 +134,261 @@
 	100% { text-shadow: 0 0 yellow; }
 }
 
+/*SPINNING SUDOKU CSS*/
+
+/* 1 */
+.spinning3DSud1 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud1::before,
+.spinning3DSud1::after {
+  content: "1";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud1::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 2 */
+.spinning3DSud2 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud2::before,
+.spinning3DSud2::after {
+  content: "2";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud2::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 3 */
+.spinning3DSud3 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud3::before,
+.spinning3DSud3::after {
+  content: "3";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud3::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 4 */
+.spinning3DSud4 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud4::before,
+.spinning3DSud4::after {
+  content: "4";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud4::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 5 */
+.spinning3DSud5 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud5::before,
+.spinning3DSud5::after {
+  content: "5";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud5::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 6 */
+.spinning3DSud6 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud6::before,
+.spinning3DSud6::after {
+  content: "6";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud6::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 7 */
+.spinning3DSud7 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud7::before,
+.spinning3DSud7::after {
+  content: "7";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud7::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 8 */
+.spinning3DSud8 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud8::before,
+.spinning3DSud8::after {
+  content: "8";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud8::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+/* 9 */
+.spinning3DSud9 {
+	animation-name: spinning3DText, depth3DText;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transform-style: preserve-3d;
+	position: relative;
+	font-weight: bold;
+	font-size: 85.5px;
+	font-family:arial;
+	margin-top:-5px;
+}
+.spinning3DSud9::before,
+.spinning3DSud9::after {
+  content: "9";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: rotateY(0.5deg);
+  transform-origin: 0 50%;
+}
+.spinning3DSud9::after {
+  transform: rotateY(-0.5deg);
+  transform-origin: 100% 50%;
+}
+
 /*SPINNING CUBE CSS*/
 
 .cube {
@@ -151,8 +409,8 @@
 }
 .cube div {
 	position: absolute;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	background: rgba(255,255,0,0.15); /* BACKGROUND */
 	box-shadow: inset 0 0 7.5px rgba(255,255,0,1); /* EDGES */
 }
@@ -161,26 +419,26 @@
 	perspective-origin: 50% 200px;
 }
 .back {
-	transform: translateZ(-40px) rotateY(180deg);
+	transform: translateZ(-30px) rotateY(180deg);
 }
 .right {
-	transform: rotateY(-270deg) translateX(40px);
+	transform: rotateY(-270deg) translateX(30px);
 	transform-origin: top right;
 }
 .left {
-	transform: rotateY(270deg) translateX(-40px);
+	transform: rotateY(270deg) translateX(-30px);
 	transform-origin: center left;
 }
 .top {
-	transform: rotateX(-90deg) translateY(-40px);
+	transform: rotateX(-90deg) translateY(-30px);
 	transform-origin: top center;
 }
 .bottom {
-	transform: rotateX(90deg) translateY(40px);
+	transform: rotateX(90deg) translateY(30px);
 	transform-origin: bottom center;
 }
 .front {
-	transform: translateZ(40px);
+	transform: translateZ(30px);
 }
 @keyframes spin {
 	from { transform: rotateY(0); }
@@ -195,12 +453,12 @@
 	animation-iteration-count: infinite;
 	animation-duration: 3s; 
 	transform-style: preserve-3d;
-	margin-top:4px; 
+	margin-top:13px;
 	margin-bottom:14px; 
 	position: relative;
 	font-weight: bold;
 	font-style:italic;
-	font-size: 97px;
+	font-size: 72.75px;
 	font-family:georgia;
 }
 .spinning3DText::before,
@@ -235,12 +493,12 @@
 	animation-iteration-count: infinite;
 	animation-duration: 3s; 
 	transform-style: preserve-3d;
-	margin-top:4px; 
+	margin-top:13px;
 	margin-bottom:14px; 
 	position: relative;
 	font-weight: bold;
 	font-style:italic;
-	font-size: 97px;
+	font-size: 72.75px;
 	font-family:georgia;
 }
 .spinning3DText02::before,
@@ -294,7 +552,7 @@
 	position: relative;
 	font-weight: bold;
 	font-style:italic;
-	font-size: 110px;
+	font-size: 82.5px;
 	font-family:georgia;
 }
 #spinning3DText2::before,
@@ -403,14 +661,14 @@
 .animated_div {
 	text-align:center;
 	font-weight:bold;
-	font-size:42px;
+	font-size:35px;
 	-webkit-transition:font-size .75s;
 	-o-transition-property:font-size;
 	-moz-transition-property:font-size;
 	transition-property:font-size;
 }
 .animated_div:hover {
-	font-size:45px;
+	font-size:37.5px;
 }
 .dCanvas {
 	width:300;
@@ -526,18 +784,27 @@
     color:yellow;
 
 }
+.columnS {
+	text-align:center;
+	float:left;
+    width: 22.5%;
+    padding: 15px;
+    color:yellow;
+    margin-left:10px;
+}
 .column1 {
     float: left;
-    width: 45%;
-    padding: 10px;
+    width: 35%;
+    padding: 15px;
     color:yellow;
 }
 .column2 {
 	text-align:center;
     float: right;
-    width: 45%;
-    padding: 10px;
+    width: 35%;
+    padding: 15px;
     color:yellow;
+    margin-top:-108.5px;
 }
 .column3 {
 	text-align:center;
@@ -638,7 +905,7 @@
 	padding:5px;
 	text-decoration:none;
 	background-color:black;
-	font-size:35px;
+	font-size:29.1666666px;
 }
 .tutIconButton:hover {
 	color:black;
@@ -652,7 +919,7 @@
 	padding:5px;
 	background-color:black;
 	text-decoration:none;
-	font-size:55px;
+	font-size:45.8333333px;
 }
 .proResBtn:hover {
 	color:black;
@@ -670,6 +937,18 @@
 .resButton:hover {
 	font-style:italic;
 	font-weight:bold;
+}
+.numbersButton1 {
+	border-radius: 20px;
+	color: black;
+	font-size: 12.5px;
+	font-weight:bold;
+	background-color:yellow;
+	padding:5px;
+	font-family:Prosto One;
+}
+.numbersButton1:hover {
+	font-style:italic;
 }
 .numbersButton {
 	border-radius: 20px;
