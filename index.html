@@ -653,6 +653,10 @@ function printPuzzle() {
 
 
 function printIt() {
+	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('lnId').style = "visibility:hidden";
+	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
 	document.getElementById('lastTag').style = "visibility:hidden";
 	document.getElementById('easy').style = "visibility:hidden";
 	document.getElementById('medium').style = "visibility:hidden";
@@ -666,6 +670,10 @@ function printIt() {
 	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
 		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Puzzle Made By Jordan Randleman</b>';
 	window.print();
+	document.getElementById('sMN').style = "visibility:visible;";
+	document.getElementById('lnId').style = "visibility:visible";
+	document.getElementById('nmId').style = "visibility:visible";
+	document.getElementById('sudfooter').style = "visibility:visible;";
 	document.getElementById('lastTag').style = "visibility:visible";
 	document.getElementById('easy').style = "visibility:visible";
 	document.getElementById('medium').style = "visibility:visible";
@@ -691,6 +699,10 @@ function printAns() {
 	var A9Ans = document.getElementById('A8').innerHTML.split('');
 	var ASAns = [A1Ans,A2Ans,A3Ans,A4Ans,A5Ans,A6Ans,A7Ans,A8Ans,A9Ans];
 	
+	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('lnId').style = "visibility:hidden";
+	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
 	document.getElementById('lastTag').style = "visibility:hidden";
 	document.getElementById('easy').style = "visibility:hidden";
 	document.getElementById('medium').style = "visibility:hidden";
@@ -714,6 +726,10 @@ function printAns() {
 			document.getElementById(String(i)+String(j)).value = AS[i][j];
 		}
 	}
+	document.getElementById('sMN').style = "visibility:visible;";
+	document.getElementById('lnId').style = "visibility:visible";
+	document.getElementById('nmId').style = "visibility:visible";
+	document.getElementById('sudfooter').style = "visibility:visible;";
 	document.getElementById('lastTag').style = "visibility:visible";
 	document.getElementById('easy').style = "visibility:visible";
 	document.getElementById('medium').style = "visibility:visible";
