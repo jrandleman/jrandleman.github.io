@@ -259,15 +259,15 @@ function sudIcon() {
 }
 function sudIcon2() {
     for(let sdkup = 0; sdkup < 9999; sdkup++) {
-        var sud2Time = 1050 + (sdkup*13500); // 1000
-        var sud3Time = 2550 + (sdkup*13500); // 2500
-        var sud4Time = 4050 + (sdkup*13500); // 4000
-        var sud5Time = 5550 + (sdkup*13500); // 5500
-        var sud6Time = 7050 + (sdkup*13500); // 7000
-        var sud7Time = 8550 + (sdkup*13500); // 8500
-        var sud8Time = 10050 + (sdkup*13500); // 10000
-        var sud9Time = 11550 + (sdkup*13500); // 11500
-        var sud1Time = 13050 + (sdkup*13500); // 13000
+        var sud2Time = 1000 + (sdkup*13500); // 1000
+        var sud3Time = 2500 + (sdkup*13500); // 2500
+        var sud4Time = 4000 + (sdkup*13500); // 4000
+        var sud5Time = 5500 + (sdkup*13500); // 5500
+        var sud6Time = 7000 + (sdkup*13500); // 7000
+        var sud7Time = 8500 + (sdkup*13500); // 8500
+        var sud8Time = 10000 + (sdkup*13500); // 10000
+        var sud9Time = 11500 + (sdkup*13500); // 11500
+        var sud1Time = 13000 + (sdkup*13500); // 13000
         setTimeout(sud2, sud2Time);
         setTimeout(sud3, sud3Time);
         setTimeout(sud4, sud4Time);
