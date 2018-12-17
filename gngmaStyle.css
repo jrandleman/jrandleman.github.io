@@ -797,11 +797,24 @@
 }
 .column1 {
     float: left;
+    width: 45%;
+    padding: 10px;
+    color:yellow;
+}
+.column2 {
+	text-align:center;
+    float: right;
+    width: 45%;
+    padding: 10px;
+    color:yellow;
+}
+.column111 {
+    float: left;
     width: 35%;
     padding: 15px;
     color:yellow;
 }
-.column2 {
+.column222 {
 	text-align:center;
     float: right;
     width: 35%;
