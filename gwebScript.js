@@ -111,7 +111,7 @@ function genEngNTitle() {
     }
 }
 
-setTimeout(genNgmaNTitle, 1000);
+setTimeout(genNgmaNTitle, 1200);
 function genNgmaNTitle() {
     if (nCh < ngmaNTitle.length) {
         ngmaNArr.splice(nCh,1,engNTitle.charAt(nCh));
