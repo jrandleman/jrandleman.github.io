@@ -658,7 +658,7 @@
     from { opacity:1; }
     to { opacity:01; }
 }
-.animated_div1, .animated_div {
+.animated_div {
 	text-align:center;
 	font-weight:bold;
 	font-size:35px;
@@ -669,6 +669,15 @@
 }
 .animated_div:hover {
 	font-size:37.5px;
+}
+.animated_div1 {
+	text-align:center;
+	font-weight:bold;
+	font-size:36.5px;
+	-webkit-transition:font-size .75s;
+	-o-transition-property:font-size;
+	-moz-transition-property:font-size;
+	transition-property:font-size;
 }
 .animated_div1:hover {
 	font-size:39px;
