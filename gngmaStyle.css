@@ -17,7 +17,7 @@
 /*SPINNING STAR CSS*/
 
 /* 5-POINTED */
-.spinning3DStar5 {
+.spinning3DStar5, .spinning3DStar8, .spinning3DStar12 {
 	animation-name: spinning3DText, depth3DText;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
@@ -40,34 +40,7 @@
   transform: rotateY(0.5deg);
   transform-origin: 0 50%;
 }
-.spinning3DStar5::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
-@keyframes spinning3DStar5 {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(-360deg); }
-}
-@keyframes depth3DTextStar5 {
-	0% { text-shadow: 0 0 yellow; }
-	25% { text-shadow: 1px 0 yellow, 2px 0 yellow, 3px 0 yellow, 4px 0 yellow, 5px 0 yellow, 6px 0 yellow, 7px 0 yellow, 8px 0 yellow, 9px 0 yellow, 10px 0 yellow, 11px 0 yellow; }
-	50% { text-shadow: 0 0 yellow; }
-	75% { text-shadow: -1px 0 yellow, -2px 0 yellow, -3px 0 yellow, -4px 0 yellow, -5px 0 yellow, -6px 0 yellow, -7px 0 yellow, -8px 0 yellow, -9px 0 yellow, -10px 0 yellow, -11px 0 yellow; }
-	100% { text-shadow: 0 0 yellow; }
-}
 /* 8-POINTED */
-.spinning3DStar8 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:georgia;
-	margin-top:-5px;
-}
 .spinning3DStar8::before,
 .spinning3DStar8::after {
   content: "\2738";
@@ -79,34 +52,7 @@
   transform: rotateY(0.5deg);
   transform-origin: 0 50%;
 }
-.spinning3DStar8::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
-@keyframes spinning3DStar8 {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(-360deg); }
-}
-@keyframes depth3DTextStar8 {
-	0% { text-shadow: 0 0 yellow; }
-	25% { text-shadow: 1px 0 yellow, 2px 0 yellow, 3px 0 yellow, 4px 0 yellow, 5px 0 yellow, 6px 0 yellow, 7px 0 yellow, 8px 0 yellow, 9px 0 yellow, 10px 0 yellow, 11px 0 yellow; }
-	50% { text-shadow: 0 0 yellow; }
-	75% { text-shadow: -1px 0 yellow, -2px 0 yellow, -3px 0 yellow, -4px 0 yellow, -5px 0 yellow, -6px 0 yellow, -7px 0 yellow, -8px 0 yellow, -9px 0 yellow, -10px 0 yellow, -11px 0 yellow; }
-	100% { text-shadow: 0 0 yellow; }
-}
 /* 12-POINTED */
-.spinning3DStar12 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:georgia;
-	margin-top:-5px;
-}
 .spinning3DStar12::before,
 .spinning3DStar12::after {
   content: "\2739";
@@ -118,26 +64,17 @@
   transform: rotateY(0.5deg);
   transform-origin: 0 50%;
 }
-.spinning3DStar12::after {
+.spinning3DStar5::after, .spinning3DStar8::after, .spinning3DStar12::after {
   transform: rotateY(-0.5deg);
   transform-origin: 100% 50%;
-}
-@keyframes spinning3DStar12 {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(-360deg); }
-}
-@keyframes depth3DTextStar12 {
-	0% { text-shadow: 0 0 yellow; }
-	25% { text-shadow: 1px 0 yellow, 2px 0 yellow, 3px 0 yellow, 4px 0 yellow, 5px 0 yellow, 6px 0 yellow, 7px 0 yellow, 8px 0 yellow, 9px 0 yellow, 10px 0 yellow, 11px 0 yellow; }
-	50% { text-shadow: 0 0 yellow; }
-	75% { text-shadow: -1px 0 yellow, -2px 0 yellow, -3px 0 yellow, -4px 0 yellow, -5px 0 yellow, -6px 0 yellow, -7px 0 yellow, -8px 0 yellow, -9px 0 yellow, -10px 0 yellow, -11px 0 yellow; }
-	100% { text-shadow: 0 0 yellow; }
 }
 
 /*SPINNING SUDOKU CSS*/
 
 /* 1 */
-.spinning3DSud1 {
+.spinning3DSud1, .spinning3DSud2, .spinning3DSud3, 
+.spinning3DSud4, .spinning3DSud5, .spinning3DSud6, 
+.spinning3DSud7, .spinning3DSud8, .spinning3DSud9 {
 	animation-name: spinning3DText, depth3DText;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
@@ -147,246 +84,120 @@
 	font-weight: bold;
 	font-size: 85.5px;
 	font-family:arial;
-	margin-top:-5px;
+	margin-top:-5px
 }
 .spinning3DSud1::before,
 .spinning3DSud1::after {
-  content: "1";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud1::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "1";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 2 */
-.spinning3DSud2 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud2::before,
 .spinning3DSud2::after {
-  content: "2";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud2::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "2";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 3 */
-.spinning3DSud3 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud3::before,
 .spinning3DSud3::after {
-  content: "3";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud3::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "3";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 4 */
-.spinning3DSud4 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud4::before,
 .spinning3DSud4::after {
-  content: "4";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud4::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "4";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 5 */
-.spinning3DSud5 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud5::before,
 .spinning3DSud5::after {
-  content: "5";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud5::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "5";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 6 */
-.spinning3DSud6 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud6::before,
 .spinning3DSud6::after {
-  content: "6";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud6::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "6";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 7 */
-.spinning3DSud7 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud7::before,
 .spinning3DSud7::after {
-  content: "7";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud7::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "7";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 8 */
-.spinning3DSud8 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud8::before,
 .spinning3DSud8::after {
-  content: "8";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
-}
-.spinning3DSud8::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+	content: "8";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 9 */
-.spinning3DSud9 {
-	animation-name: spinning3DText, depth3DText;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	position: relative;
-	font-weight: bold;
-	font-size: 85.5px;
-	font-family:arial;
-	margin-top:-5px;
-}
 .spinning3DSud9::before,
 .spinning3DSud9::after {
-  content: "9";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "9";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-.spinning3DSud9::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
+.spinning3DSud1::after, .spinning3DSud2::after, .spinning3DSud3::after, 
+.spinning3DSud4::after, .spinning3DSud5::after, .spinning3DSud6::after, 
+.spinning3DSud7::after, .spinning3DSud8::after, .spinning3DSud9::after {
+	transform: rotateY(-0.5deg);
+	transform-origin: 100% 50%;
 }
 
 /*SPINNING CUBE CSS*/
