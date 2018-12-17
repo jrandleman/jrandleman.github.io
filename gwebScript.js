@@ -77,7 +77,7 @@ function genEngSTitle() {
     }
 }
 
-setTimeout(genNumSTitle, 1000);
+setTimeout(genNumSTitle, 1100);
 function genNumSTitle() {
     if (numCh < numSTitle.length) {
         numSArr.splice(numCh,1,engSTitle.charAt(numCh));
