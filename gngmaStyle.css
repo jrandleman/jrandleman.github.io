@@ -829,7 +829,9 @@
     width: 36.25%;
     padding: 15px;
     color:yellow;
-    margin-top:-108.5px;
+    position:absolute;
+    top:141px;
+    right:18px;
 }
 .column3 {
 	text-align:center;
