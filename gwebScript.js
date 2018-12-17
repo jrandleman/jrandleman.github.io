@@ -251,8 +251,8 @@ function typeWriter() {
 /* SPINNING SUDOKU FUNCTION */
 /******************************************************************************/
 
-setTimeout(sudIcon, 50);
-setTimeout(sudIcon2, 50);
+setTimeout(sudIcon, 17);
+setTimeout(sudIcon2, 17);
 function sudIcon() {
     document.getElementById("sudIcon").classList = 'spinning3DSud1';
     document.getElementById("sudIcon").innerHTML = '1';
