@@ -393,7 +393,7 @@
 
 .cube {
 	position: relative;
-	width: 100px;
+	width: 75px;
 	
 	-webkit-transform-style: preserve-3d;
 	-webkit-animation: cube-spin 5s infinite linear;
