@@ -33,7 +33,7 @@ function aboutWP() {
                     " at jrandleman@scu.edu (right of the 'welcome' title).\n\n\n\n\n-:- ( 4 / 6 ) -:-");
                 if (guide3) {
                     var guide4 = confirm("\nThe middle of this home page is divided into"+
-                        " four sections, each running programs of various intellectual"+
+                        " five sections, each running programs of various intellectual"+
                         " curiosities I had initially developed on paper in high school."+
                         " Click their names to go their corresponding web pages, select 'show me the numbers'"+
                         " to see the math behind them, and click the question mark on each page (after"+
