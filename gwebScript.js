@@ -265,7 +265,7 @@ function sudIcon2() {
         var sud5Time = 5600 + (sdkup*13500); // 5500
         var sud6Time = 7100 + (sdkup*13500); // 7000
         var sud7Time = 8600 + (sdkup*13500); // 8500
-        var sud8Time = 11000 + (sdkup*13500); // 10000
+        var sud8Time = 11100 + (sdkup*13500); // 10000
         var sud9Time = 11600 + (sdkup*13500); // 11500
         var sud1Time = 13100 + (sdkup*13500); // 13000
         setTimeout(sud2, sud2Time);
