@@ -31,43 +31,40 @@
 }
 .spinning3DStar5::before,
 .spinning3DStar5::after {
-  content: "\272D";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "\272D";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 8-POINTED */
 .spinning3DStar8::before,
 .spinning3DStar8::after {
-  content: "\2738";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "\2738";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
 /* 12-POINTED */
 .spinning3DStar12::before,
 .spinning3DStar12::after {
-  content: "\2739";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "\2739";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-.spinning3DStar5::after, .spinning3DStar8::after, .spinning3DStar12::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
+.spinning3DStar5::after, .spinning3DStar8::after, .spinning3DStar12::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 
 /*SPINNING SUDOKU CSS*/
 
@@ -195,10 +192,7 @@
 }
 .spinning3DSud1::after, .spinning3DSud2::after, .spinning3DSud3::after, 
 .spinning3DSud4::after, .spinning3DSud5::after, .spinning3DSud6::after, 
-.spinning3DSud7::after, .spinning3DSud8::after, .spinning3DSud9::after {
-	transform: rotateY(-0.5deg);
-	transform-origin: 100% 50%;
-}
+.spinning3DSud7::after, .spinning3DSud8::after, .spinning3DSud9::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 
 /*SPINNING CUBE CSS*/
 
@@ -225,32 +219,13 @@
 	background: rgba(255,255,0,0.15); /* BACKGROUND */
 	box-shadow: inset 0 0 7.5px rgba(255,255,0,1); /* EDGES */
 }
-.wrap {
-	perspective: 800px;
-	perspective-origin: 50% 200px;
-}
-.back {
-	transform: translateZ(-30px) rotateY(180deg);
-}
-.right {
-	transform: rotateY(-270deg) translateX(30px);
-	transform-origin: top right;
-}
-.left {
-	transform: rotateY(270deg) translateX(-30px);
-	transform-origin: center left;
-}
-.top {
-	transform: rotateX(-90deg) translateY(-30px);
-	transform-origin: top center;
-}
-.bottom {
-	transform: rotateX(90deg) translateY(30px);
-	transform-origin: bottom center;
-}
-.front {
-	transform: translateZ(30px);
-}
+.wrap { perspective: 800px;perspective-origin: 50% 200px; }
+.back { transform: translateZ(-30px) rotateY(180deg); }
+.right { transform: rotateY(-270deg) translateX(30px);transform-origin: top right; }
+.left { transform: rotateY(270deg) translateX(-30px);transform-origin: center left; }
+.top { transform: rotateX(-90deg) translateY(-30px);transform-origin: top center; }
+.bottom { transform: rotateX(90deg) translateY(30px);transform-origin: bottom center; }
+.front { transform: translateZ(30px); }
 @keyframes spin {
 	from { transform: rotateY(0); }
 	to { transform: rotateY(360deg); }
@@ -274,19 +249,16 @@
 }
 .spinning3DText::before,
 .spinning3DText::after {
-  content: "Ngma";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "Ngma";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-.spinning3DText::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
+.spinning3DText::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 @keyframes spinning3DText {
 	from { transform: rotateY(0deg); }
 	to { transform: rotateY(-360deg); }
@@ -314,19 +286,16 @@
 }
 .spinning3DText02::before,
 .spinning3DText02::after {
-  content: "\03BD\0393\03BC\41";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "\03BD\0393\03BC\41";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-.spinning3DText02::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
+.spinning3DText02::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 
 /*GENERAL CSS*/
 
@@ -357,19 +326,16 @@
 }
 #spinning3DText2::before,
 #spinning3DText2::after {
-  content: "\2374\2113";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "\2374\2113";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-#spinning3DText2::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
+#spinning3DText2::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 @keyframes spinning3DText2 {
 	from { transform: rotateY(0deg); }
 	to { transform: rotateY(-360deg); }
@@ -396,19 +362,16 @@
 }
 #spinning3DText3::before,
 #spinning3DText3::after {
-  content: "?";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transform: rotateY(0.5deg);
-  transform-origin: 0 50%;
+	content: "?";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	transform: rotateY(0.5deg);
+	transform-origin: 0 50%;
 }
-#spinning3DText3::after {
-  transform: rotateY(-0.5deg);
-  transform-origin: 100% 50%;
-}
+#spinning3DText3::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 @keyframes spinning3DText3 {
 	from { transform: rotateY(0deg); }
 	to { transform: rotateY(-360deg); }
