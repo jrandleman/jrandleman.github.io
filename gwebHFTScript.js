@@ -106,7 +106,7 @@ const subt2FilledArrP = randTitle(id1LenP).split('').splice(0,subt2LenP);
 
 var ssub1TextP = "Base Length: ", ssub1LenP = ssub1TextP.length;
 const ssub1FilledArrP = randTitle(id1LenP).split('').splice(0,ssub1LenP);
-var ssub2TextP = "Distance Moved: ", ssub2LenP = ssub2Text.length;
+var ssub2TextP = "Distance Moved: ", ssub2LenP = ssub2TextP.length;
 const ssub2FilledArrP = randTitle(id1LenP).split('').splice(0,ssub2LenP);
 var ssub3TextP = "Horizontal ", ssub3LenP = ssub3TextP.length;
 const ssub3FilledArrP = randTitle(id1LenP).split('').splice(0,ssub3LenP);
