@@ -70,25 +70,7 @@ of the 6 cube sections) for each puzzle<br> difficulty of easy, medium, hard, an
 
 <br><br><br><center><a class="button" href="https://jrandleman.github.io/index.html">Go Back to Sudoku</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/hq.html">&#xe88a;</a></center><br><br><br>
-
-<script>
-function zoomUp(elem) {
-	elem.classList = 'zoomin';
-	elem.onclick = function(){zoomDown(elem)};
-}
-function zoomDown(elem) {
-	elem.classList.remove('zoomin');
-	elem.onclick = function(){zoomUp(elem)};
-}
-function zoomUp2(elem) {
-	elem.classList = 'zoomin2';
-	elem.onclick = function(){zoomDown2(elem)};
-}
-function zoomDown2(elem) {
-	elem.classList.remove('zoomin2');
-	elem.onclick = function(){zoomUp2(elem)};
-}
-</script>
+<script type="text/javascript" src="gzoomPicScript.js"></script>
 
 </body>
 </html>
