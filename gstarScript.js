@@ -15,14 +15,8 @@ function aboutStars() {
 }
 
 
-function yellowQ() {
-	document.getElementById("spinning3DText3").style = "color:yellow;";
-}
-
-
-function borderQ() {
-	document.getElementById("spinning3DText3").style = "color:#FE8F10;";
-}
+function yellowQ() { document.getElementById("spinning3DText3").style = "color:yellow;"; }
+function borderQ() { document.getElementById("spinning3DText3").style = "color:#FE8F10;"; }
 
 /******************************************************************************/
 /* HEADER/FOOTER HOVER FUNCTIONS */
@@ -57,10 +51,8 @@ function on(x) {
     
 }
 
-
-function cross() { /* CURSOR CROSSHAIR ON DRAW */
-	document.getElementById("canvas1").style = "cursor:crosshair;border-radius:50%;";
-}
+/* CURSOR CROSSHAIR ON DRAW */
+function cross() { document.getElementById("canvas1").style = "cursor:crosshair;border-radius:50%;"; }
 
 /******************************************************************************/ 
 /* TYPEWRITER */
@@ -73,10 +65,6 @@ var possible = possibleChars.split('');
 var possibleTitleInts = [];
 var titleArr = [];
 
-/*var lnText = "Website's Prototypes";
-var lnLen = lnText.length;
-const lnFilledArr = randTitle().split('').splice(0,lnLen); */
-
 var numText = "SHOW ME THE NUMBERS";
 var numLen = numText.length;
 const numFilledArr = randTitle().split('').splice(0,numLen);
@@ -84,10 +72,6 @@ const numFilledArr = randTitle().split('').splice(0,numLen);
 var titleTxt = "Star Calculation!";
 var titleLen = (titleTxt.length);
 const titleFilledArr = randTitle().split('').splice(0,titleLen);
-
-/*var nmText = " Jordan Randleman";
-var nmLen = nmText.length;
-const nmFilledArr = randTitle().split('').splice(0,nmLen); */
 
 var subt1Text = " Spawn Star ";
 var subt1Len = subt1Text.length;
@@ -109,9 +93,7 @@ const id1FilledArr = randTitle().split('').splice(0,id1Len);
 function randTitle() {
     while (possibleTitleInts.length < numLen) {
         var ranNum =  Math.floor(Math.random() * (numLen));
-        if (possibleTitleInts.indexOf(ranNum) == -1) {
-            possibleTitleInts.push(ranNum);
-        }
+        if (possibleTitleInts.indexOf(ranNum) == -1) possibleTitleInts.push(ranNum);
     }
     for (let i = 0; i < possibleTitleInts.length; i++) {
         var num = possibleTitleInts[i];
@@ -124,8 +106,6 @@ function randTitle() {
 function typeWriter() {
     if (ch < numText.length) {
         var letter = titleTxt.charAt(ch);
-        /*var lnletter = lnText.charAt(ch);
-		var nmletter = nmText.charAt(ch);*/
 		var numletter = numText.charAt(ch);
 		var subt1letter = subt1Text.charAt(ch);
 		var subt2letter = subt2Text.charAt(ch);
@@ -133,8 +113,6 @@ function typeWriter() {
 		var id1letter = id1Text.charAt(ch);
 
         titleFilledArr.splice(ch,1,letter);
-        /*lnFilledArr.splice(ch,1,lnletter);
-        nmFilledArr.splice(ch,1,nmletter);*/
         numFilledArr.splice(ch,1,numletter);
         subt1FilledArr.splice(ch,1,subt1letter);
         subt2FilledArr.splice(ch,1,subt2letter);
@@ -142,8 +120,6 @@ function typeWriter() {
         id1FilledArr.splice(ch,1,id1letter);
 
         document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-        /*document.getElementById("lnId").innerHTML = lnFilledArr.join('');
-        document.getElementById("nmId").innerHTML = "&#x00A9;"+nmFilledArr.join('');*/
         document.getElementById("numId").innerHTML = numFilledArr.join('');
         document.getElementById("subt1Id").innerHTML = subt1FilledArr.join('');
         document.getElementById("subt2Id").innerHTML = subt2FilledArr.join('');
@@ -158,16 +134,13 @@ function typeWriter() {
 /* DRAW INITIALIZATION FUNCTION */
 /******************************************************************************/
 
-var canvasWidth = 300;
-var canvasHeight = 300;
+var canvasWidth = 300, canvasHeight = 300;
 var canvas1 = null;
 var bounds = null;
 var context = null;
 var hasLoaded = false;
-var startX = 0;
-var startY = 0;
-var mouseX = 0;
-var mouseY = 0;
+var startX = 0, startY = 0;
+var mouseX = 0, mouseY = 0;
 var isDrawing = false;
 var existingLines = [];
 
@@ -231,9 +204,7 @@ function onmousemove(e) {
 	if (hasLoaded) {
 		mouseX = e.clientX - bounds.left;
 		mouseY = e.clientY - bounds.top;
-		if (isDrawing) {
-			draw();
-		}
+		if (isDrawing) draw();
 	}
 }
 
@@ -282,9 +253,7 @@ radius = radius * 0.90;
 
 function entrBtn(event) {
 	var keyClick = event.keyCode;
-	if(keyClick == '13') {
-		startStars();
-	}
+	if(keyClick == '13') startStars();
 }
 
 
@@ -364,9 +333,7 @@ function starPoints(pNum) {
 			setSequence(pointNum,orderArr,a,b);
 		} else {
 			var a = (pointNum - 2) / 4;
-			if (a % 2 == 0) {
-				a++;
-			}
+			if (a % 2 == 0) a++;
 			var b = pointNum - a;
 			setSequence(pointNum,orderArr,a,b);
 		}

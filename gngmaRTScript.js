@@ -6,21 +6,16 @@
 
 function aboutNgma() {
 	alert("\nI created the NGMA shorthand with phonetic & pictographic"+
-			" roots. \n\nOrignially developed to speed up class note-taking,"+
-			" NGMA is designed to decrease the character-to-concept ratio"+
-			" of written word relative to that of English, along with an"+
-			" additional layer of personal privacy.\n\n => Note: Click the NGMA text you translated to copy it!");
+		" roots. \n\nOrignially developed to speed up class note-taking,"+
+		" NGMA is designed to decrease the character-to-concept ratio"+
+		" of written word relative to that of English, along with an"+
+		" additional layer of personal privacy.\n\n => Note: Click"+
+		" the NGMA text you translated to copy it!");
 }
 
 
-function yellowQ() {
-		document.getElementById("spinning3DText3").style = "color:yellow;";
-}
-
-
-function borderQ() {
-		document.getElementById("spinning3DText3").style = "color:#FE8F10;";
-}
+function yellowQ() { document.getElementById("spinning3DText3").style = "color:yellow;"; }
+function borderQ() { document.getElementById("spinning3DText3").style = "color:#FE8F10;"; }
 
 /******************************************************************************/
 /* HEADER/FOOTER HOVER FUNCTIONS */
@@ -219,10 +214,6 @@ var possible = possibleChars.split('');
 var possibleTitleInts = [];
 var titleArr = [];
 
-/*var lnText = "Website's Prototypes";
-var lnLen = lnText.length;
-const lnFilledArr = randTitle().split('').splice(0,lnLen);*/
-
 var prcText = "SHOW ME THE PROCESS";
 var prcLen = prcText.length;
 const prcFilledArr = randTitle().split('').splice(0,prcLen);
@@ -230,10 +221,6 @@ const prcFilledArr = randTitle().split('').splice(0,prcLen);
 var titleTxt = "NGMA Conversion!";
 var titleLen = (titleTxt.length);
 const titleFilledArr = randTitle().split('').splice(0,titleLen);
-
-/*var nmText = " Jordan Randleman";
-var nmLen = nmText.length;
-const nmFilledArr = randTitle().split('').splice(0,nmLen);*/
 
 var subt1Text = " TRANSLATE ";
 var subt1Len = subt1Text.length;
@@ -263,9 +250,7 @@ const id4FilledArr = randTitle().split('').splice(0,id4Len);
 function randTitle() {
 	while (possibleTitleInts.length < prcLen) {
 		var ranNum =  Math.floor(Math.random() * (prcLen));
-		if (possibleTitleInts.indexOf(ranNum) == -1) {
-			possibleTitleInts.push(ranNum);
-		}
+		if (possibleTitleInts.indexOf(ranNum) == -1) possibleTitleInts.push(ranNum);
 	}
 	for (let i = 0; i < possibleTitleInts.length; i++) {
 		var num = possibleTitleInts[i];
@@ -278,8 +263,6 @@ function randTitle() {
 function typeWriter() {
 	if (ch < prcText.length) {
 		var letter = titleTxt.charAt(ch);
-		/*var lnletter = lnText.charAt(ch);
-		var nmletter = nmText.charAt(ch);*/
 		var prcletter = prcText.charAt(ch);
 		var subt1letter = subt1Text.charAt(ch);
 		var subt2letter = subt2Text.charAt(ch);
@@ -289,8 +272,6 @@ function typeWriter() {
 		var id4letter = id4Text.charAt(ch);
 
 		titleFilledArr.splice(ch,1,letter);
-		/*lnFilledArr.splice(ch,1,lnletter);
-		nmFilledArr.splice(ch,1,nmletter);*/
 		prcFilledArr.splice(ch,1,prcletter);
 		subt1FilledArr.splice(ch,1,subt1letter);
 		subt2FilledArr.splice(ch,1,subt2letter);
@@ -300,8 +281,6 @@ function typeWriter() {
 		id4FilledArr.splice(ch,1,id4letter);
 
 		document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-		/*document.getElementById("lnId").innerHTML = lnFilledArr.join('');
-		document.getElementById("nmId").innerHTML = "&#x00A9;"+nmFilledArr.join('');*/
 		document.getElementById("prcId").innerHTML = prcFilledArr.join('');
 		document.getElementById("subt1Id").innerHTML = subt1FilledArr.join('');
 		document.getElementById("subt2Id").innerHTML = subt2FilledArr.join('');
@@ -673,9 +652,7 @@ function structure() {
 function removeDuplicateLetters(oldString) {
 	var newNgmaStr = '';
 	for (let i = 0; i < oldString.length; i++) {
-		if (oldString[i] != oldString[i-1]) {
-			newNgmaStr += oldString[i];
-		}
+		if (oldString[i] != oldString[i-1]) newNgmaStr += oldString[i];
 	}
 	return newNgmaStr;
 }
@@ -1530,7 +1507,7 @@ const ER = String.fromCharCode(0x004F,0x0056,0x0045,0x0052,0x0052,0x0049,0x0044,
 function createFinalArray(userStrArg) {
 	var finalArray      = [];
 	if ((userStrArg.toLowerCase() == ' does it work ') || 
-			(userStrArg.toLowerCase() == ' does it work? ')) {
+		(userStrArg.toLowerCase() == ' does it work? ')) {
 		return doesItWork;
 	} else if (userStrArg.toLowerCase() == ' i am ') {
 		return iAm;

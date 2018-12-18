@@ -23,14 +23,8 @@ function aboutPL() {
 }
 
 
-function yellowQ() {
-	document.getElementById("spinning3DText3").style = "color:yellow;";
-}
-
-
-function borderQ() {
-	document.getElementById("spinning3DText3").style = "color:#FE8F10;";
-}
+function yellowQ() { document.getElementById("spinning3DText3").style = "color:yellow;"; }
+function borderQ() { document.getElementById("spinning3DText3").style = "color:#FE8F10;"; }
 
 /******************************************************************************/
 /* HEADER/FOOTER HOVER FUNCTIONS */
@@ -147,9 +141,7 @@ function perspectiveLength() {
 
 function entrBtn(event) {
 	var keyClick = event.keyCode;
-	if(keyClick == '13') {
-		perspectiveLength();
-	}
+	if(keyClick == '13') perspectiveLength();
 }
 
 /******************************************************************************/ 
@@ -164,24 +156,19 @@ function lineAngle() {
 	var linebLSquared = Math.pow(linebL,2);	
 	var linebLrt3 = linebL*(Math.pow(3,.5));
 
-	var tV1 = formatTheta(document.getElementById("thetaV").value);
-	var tH1 = 0;
-	var absTH1 = Math.pow(Math.abs(Math.sin(tH1)),2);
-	var absTV1 = Math.pow(Math.abs(Math.sin(tV1)),2);
+	var absTH1 = Math.pow(Math.abs(Math.sin(0)),2);
+	var absTV1 = Math.pow(Math.abs(Math.sin(formatTheta(document.getElementById("thetaV").value))),2);
 	var rt3Abs1 = Math.pow(3*(absTH1+absTV1),.5);
 	var pL1 = ((linebLSquared*rt3Abs1)/(linebLrt3+lineqL2));
 	var opposite = pL1/2;
 
-	var tV2 = 0;
-	var tH2 = formatTheta(document.getElementById("thetaH").value);
-	var absTH2 = Math.pow(Math.abs(Math.sin(tH2)),2);
-	var absTV2 = Math.pow(Math.abs(Math.sin(tV2)),2);
+	var absTH2 = Math.pow(Math.abs(Math.sin(formatTheta(document.getElementById("thetaH").value))),2);
+	var absTV2 = Math.pow(Math.abs(Math.sin(0)),2);
 	var rt3Abs2 = Math.pow(3*(absTH2+absTV2),.5);
 	var pL2 = ((linebLSquared*rt3Abs2)/(linebLrt3+lineqL2));
 	var adjacent = pL2/2;
 
-	var innerVal = opposite/adjacent;
-	var lineThetaRad = Math.atan(innerVal);
+	var lineThetaRad = Math.atan(opposite/adjacent);
 	var lineThetaDeg = ((lineThetaRad*180)/(Math.PI));
 	var linV = (document.getElementById("thetaV").value).split('');
 	var linH = (document.getElementById("thetaH").value).split('');
@@ -205,10 +192,6 @@ var possible = possibleChars.split('');
 var possibleTitleInts = [];
 var titleArr = [];
 
-/* var lnText = "Website's Prototypes";
-var lnLen = lnText.length;
-const lnFilledArr = randTitle().split('').splice(0,lnLen); */
-
 var id1Text = "-:- CLICK TO ENTER -:-";
 var id1Len = id1Text.length;
 const id1FilledArr = randTitle().split('').splice(0,id1Len);
@@ -216,10 +199,6 @@ const id1FilledArr = randTitle().split('').splice(0,id1Len);
 var titleTxt = "Perspective Length!";
 var titleLen = (titleTxt.length);
 const titleFilledArr = randTitle().split('').splice(0,titleLen);
-
-/* var nmText = " Jordan Randleman";
-var nmLen = nmText.length;
-const nmFilledArr = randTitle().split('').splice(0,nmLen); */
 
 var numText = "SHOW ME THE NUMBERS";
 var numLen = numText.length;
@@ -253,9 +232,7 @@ const ssub4FilledArr = randTitle().split('').splice(0,ssub4Len);
 function randTitle() {
     while (possibleTitleInts.length < id1Len) {
         var ranNum =  Math.floor(Math.random() * (id1Len));
-        if (possibleTitleInts.indexOf(ranNum) == -1) {
-            possibleTitleInts.push(ranNum);
-        }
+        if (possibleTitleInts.indexOf(ranNum) == -1) possibleTitleInts.push(ranNum);
     }
     for (let i = 0; i < possibleTitleInts.length; i++) {
         var num = possibleTitleInts[i];
@@ -268,8 +245,6 @@ function randTitle() {
 function typeWriter() {
     if (ch < id1Text.length) {
         var letter = titleTxt.charAt(ch);
-        /*var lnletter = lnText.charAt(ch);
-		var nmletter = nmText.charAt(ch); */
 		var numletter = numText.charAt(ch);
 		var subt1letter = subt1Text.charAt(ch);
 		var subt2letter = subt2Text.charAt(ch);
@@ -280,8 +255,6 @@ function typeWriter() {
 		var id1letter = id1Text.charAt(ch);
 
         titleFilledArr.splice(ch,1,letter);
-        /*lnFilledArr.splice(ch,1,lnletter);
-        nmFilledArr.splice(ch,1,nmletter); */
         numFilledArr.splice(ch,1,numletter);
         subt1FilledArr.splice(ch,1,subt1letter);
         subt2FilledArr.splice(ch,1,subt2letter);
@@ -292,8 +265,6 @@ function typeWriter() {
         id1FilledArr.splice(ch,1,id1letter);
 
         document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-        /*document.getElementById("lnId").innerHTML = lnFilledArr.join('');
-        document.getElementById("nmId").innerHTML = "&#x00A9;"+nmFilledArr.join(''); */
         document.getElementById("numId").innerHTML = numFilledArr.join('');
         document.getElementById("subt1Id").innerHTML = subt1FilledArr.join('');
         document.getElementById("subt2Id").innerHTML = subt2FilledArr.join('');
@@ -336,9 +307,7 @@ function formatTheta(tStr) {
 	}
 	if (part1.length != 0 && i-1 < tStr.length) {
 		part1 = Number(part1.join(''));
-		if (i < tStr.length) {
-			opp1.push(tStr[i]);
-		}
+		if (i < tStr.length) opp1.push(tStr[i]);
 	}
 	i++;
 	while ((tStr[i] != '*' && tStr[i] != '/') && (i < tStr.length)) {
@@ -347,9 +316,7 @@ function formatTheta(tStr) {
 	}
 	if (part2.length != 0 && i-1 < tStr.length) {
 		part2 = Number(part2.join(''));
-		if (i < tStr.length) {
-			opp2.push(tStr[i]);
-		}
+		if (i < tStr.length) opp2.push(tStr[i]);
 	}
 	i++;
 	while ((tStr[i] != '*' && tStr[i] != '/') && (i < tStr.length)) {
@@ -358,18 +325,14 @@ function formatTheta(tStr) {
 	} 
 	if (part3.length != 0 && i-1 < tStr.length) {
 		part3 = Number(part3.join(''));
-		if (i < tStr.length) {
-			opp3.push(tStr[i]);
-		}
+		if (i < tStr.length) opp3.push(tStr[i]);
 	}
 	i++;
 	while (i < tStr.length) {
 		part4.push(tStr[i]);
 		i++;
 	}
-	if (part4.length != 0) {
-		part4 = Number(part4.join(''));
-	}
+	if (part4.length != 0) part4 = Number(part4.join(''));
 	if (opp1[0] == '/') {
 		if (opp2[0] == '*') {
 			if (opp3[0] == '*') {

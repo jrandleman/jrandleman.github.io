@@ -13,14 +13,8 @@ function aboutDimensions() {
 }
 
 
-function yellowQ() {
-	document.getElementById("spinning3DText3").style = "color:yellow;";
-}
-
-
-function borderQ() {
-	document.getElementById("spinning3DText3").style = "color:#FE8F10;";
-}
+function yellowQ() { document.getElementById("spinning3DText3").style = "color:yellow;"; }
+function borderQ() { document.getElementById("spinning3DText3").style = "color:#FE8F10;"; }
 
 /******************************************************************************/
 /* HEADER/FOOTER HOVER FUNCTIONS */
@@ -108,9 +102,7 @@ function startDim() {
 
 function entrBtn(event) {
 	var keyClick = event.keyCode;
-	if(keyClick == '13') {
-		startDim();
-	}
+	if(keyClick == '13') startDim();
 }
 
 /******************************************************************************/ 
@@ -156,9 +148,7 @@ const ssub2FilledArr = randTitle().split('').splice(0,ssub2Len);
 function randTitle() {
     while (possibleTitleInts.length < id1Len) {
         var ranNum =  Math.floor(Math.random() * (id1Len));
-        if (possibleTitleInts.indexOf(ranNum) == -1) {
-            possibleTitleInts.push(ranNum);
-        }
+        if (possibleTitleInts.indexOf(ranNum) == -1) possibleTitleInts.push(ranNum);
     }
     for (let i = 0; i < possibleTitleInts.length; i++) {
         var num = possibleTitleInts[i];
