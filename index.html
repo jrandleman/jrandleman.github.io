@@ -341,6 +341,7 @@ function buildBoard() {
 
 
 function makePuzzle(classTrigger,flag,xpFlag) {
+	diffBorder(flag);
 	document.getElementById('sudfooter').classList.remove('footerShift1');
 	if(classTrigger == 1) {
 		document.getElementById('sudokuStyle').innerHTML = '.xLime { cursor:pointer;width:15px;height:35px;visibility:visible;'+
@@ -433,6 +434,31 @@ function makePuzzle(classTrigger,flag,xpFlag) {
 /******************************************************************************/
 /* HELPER FUNCTIONS */
 /******************************************************************************/
+
+function diffBorder(flag) {
+	if (flag == 1) {
+		document.getElementById('ez').style.textDecoration = 'underline';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	} else if (flag == 2) {
+		document.getElementById('md').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	} else if (flag == 3) {
+		document.getElementById('hr').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	}  else {
+		document.getElementById('xp').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+	}
+}
+
 
 function prepClones() {
 	for(let i = 0; i < 9; i++) {
