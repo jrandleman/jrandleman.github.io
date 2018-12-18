@@ -49,6 +49,8 @@
 	background-color:#F9ED4B;
 	border: 2px solid #F9ED4B;
 }
+img { cursor:zoom-in; }
+.zoomin { transform:scale(1.5);cursor:zoom-out; }
 </style>
 
 <br><center><h1 style="font-family:Prosto One">PERSPECTIVE LENGTH</h1></center>
@@ -58,20 +60,31 @@
 <span><a class="numbersButton" href="gstarNumbers.html">STAR CALCULATION</a></span><span class="blackout">--</span>
 <span><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html">SUDOKU PUZZLES</a></span></center></h1><br>
 
-<center><img src="pper1.jpg" width="500" height="666.6667">
+<center><img onclick="zoomUp(this);" src="pper1.jpg" width="500" height="666.6667">
 <span style="color:black;">--------------------</span>
-<img src="pper2.jpg" width="500" height="666.6667"></center>
+<img onclick="zoomUp(this);" src="pper2.jpg" width="500" height="666.6667"></center>
 
-<br><center><img src="pper3.jpg" width="500" height="666.6667"></center>
+<br><center><img onclick="zoomUp(this);" src="pper3.jpg" width="500" height="666.6667"></center>
 
-<br><center><img src="pper4.jpg" width="500" height="666.6667">
+<br><center><img onclick="zoomUp(this);" src="pper4.jpg" width="500" height="666.6667">
 <span style="color:black;">--------------------</span>
-<img src="pper5.jpg" width="500" height="666.6667"></center>
+<img onclick="zoomUp(this);" src="pper5.jpg" width="500" height="666.6667"></center>
 
-<br><center><img src="pper6.jpg" width="500" height="666.6667"></center>
+<br><center><img onclick="zoomUp(this);" src="pper6.jpg" width="500" height="666.6667"></center>
 
 <br><br><br><center><a class="button" href="gperspectiveLength.html">Go Back to Perspectives</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></center><br><br><br>
+
+<script>
+function zoomUp(elem) {
+	elem.classList = 'zoomin';
+	elem.onclick = function(){zoomDown(elem)};
+}
+function zoomDown(elem) {
+	elem.classList.remove('zoomin');
+	elem.onclick = function(){zoomUp(elem)};
+}
+</script>
 
 </body>
 </html>

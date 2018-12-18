@@ -57,6 +57,9 @@
 	background-color:#F9ED4B;
 	border: 2px solid #F9ED4B;
 }
+img { cursor:zoom-in; }
+.zoomin { transform:scale(1.5);cursor:zoom-out; }
+.zoomin2 { transform:scale(1.4);cursor:zoom-out; }
 </style>
 
 <br><center><h1 style="font-family:Prosto One">SUDOKU PUZZLE</h1></center>
@@ -70,16 +73,35 @@
 In the sketches of sudoku boards<br> below, each letter can be swapped with other variants of itself &mdash; ie columns A&#x2080; and<br>A&#x2082; or F&#x2080; and F&#x2081;, 
 or rows M&#x2081; and M&#x2082; or O&#x2080; and O&#x2082; could be swapped within sudoku's rules.</p>
 
-<center><img src="https://jrandleman.github.io/sudpic1.jpg" width="750" height="1000"><br></center><br><br>
-<center><img src="https://jrandleman.github.io/sudpic20.jpg" width="500" height="666.6667"><span style="color:black;">--------------------</span>
-<img src="https://jrandleman.github.io/sudpic3.jpg" width="500" height="666.6667"></center><br><br>
+<center><img onclick="zoomUp(this);" src="https://jrandleman.github.io/sudpic1.jpg" width="750" height="1000"><br></center><br><br>
+<center><img onclick="zoomUp(this);" src="https://jrandleman.github.io/sudpic20.jpg" width="500" height="666.6667"><span style="color:black;">--------------------</span>
+<img onclick="zoomUp(this);" src="https://jrandleman.github.io/sudpic3.jpg" width="500" height="666.6667"></center><br><br>
 
 <p class="infoTitle">Below are the average number of spaces per section of a sudoku board<br>(each of the 3 horizontal sections & each 
 of the 6 cube sections) for each puzzle<br> difficulty of easy, medium, hard, and expert: as per a sudoku app on my phone.</p>
-<center><img src="https://jrandleman.github.io/sudpic4.jpg" width="1000" height="750"><br>
+<center><img onclick="zoomUp(this);" src="https://jrandleman.github.io/sudpic4.jpg" width="1000" height="750"><br>
 
 <br><br><br><center><a class="button" href="https://jrandleman.github.io/index.html">Go Back to Sudoku</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/hq.html">&#xe88a;</a></center><br><br><br>
+
+<script>
+function zoomUp(elem) {
+	elem.classList = 'zoomin';
+	elem.onclick = function(){zoomDown(elem)};
+}
+function zoomDown(elem) {
+	elem.classList.remove('zoomin');
+	elem.onclick = function(){zoomUp(elem)};
+}
+function zoomUp2(elem) {
+	elem.classList = 'zoomin2';
+	elem.onclick = function(){zoomDown2(elem)};
+}
+function zoomDown2(elem) {
+	elem.classList.remove('zoomin2');
+	elem.onclick = function(){zoomUp2(elem)};
+}
+</script>
 
 </body>
 </html>

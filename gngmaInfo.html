@@ -56,13 +56,15 @@
 	background-color:#F9ED4B;
 	border: 2px solid #F9ED4B;
 }
+img { cursor:zoom-in; }
+.zoomin { transform:scale(1.5);cursor:zoom-out; }
 </style>
 
 <br><br><center><h1 style="font-family:Prosto One"><big><big>NGMA CONVERSION</big></big></h1></center><p class="infoTitle">
 	In creating NGMA, I arranged its various phonetic features into vowels,<br> consonants, vowel/consonant vowel/vowel and 
 	consonant/consonant pairs,<br> pronounciations of the letter "R", as well as shorthand versions of common words.<br><br>
 	<br>The following image is one of the original keys I had developed in<br> my sophomore year of high school for NGMA's handwritten variation.</p>
-<br><center><img src="pngmaInfo.jpeg" width="768" height="1026"></center><br>
+<br><center><img onclick="zoomUp(this);" src="pngmaInfo.jpeg" width="768" height="1026"></center><br>
 <div class="row"><div class="column1" style="text-align:center;margin:22px;"><h2 style="font-family:Prosto One"><big><big>ENGLISH</big></big>
 <br><i>Brothers Karamazov<br>character &#8470; - 646</i></h2>
 	<div class="engTxt">"In that sense, "all things are lawful" for him. What's more, even if this period never 
@@ -99,6 +101,17 @@
 <script type="text/javascript" src="gngmaRTScript.js"></script>
 <br><br><center><a class="infoButton" href="gngmaConversion.html">Go Back to Conversion</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></center><br><br><br>
+
+<script>
+function zoomUp(elem) {
+	elem.classList = 'zoomin';
+	elem.onclick = function(){zoomDown(elem)};
+}
+function zoomDown(elem) {
+	elem.classList.remove('zoomin');
+	elem.onclick = function(){zoomUp(elem)};
+}
+</script>
 
 </body>
 </html>
