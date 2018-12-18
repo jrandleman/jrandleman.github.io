@@ -54,20 +54,10 @@
 <span><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html">SUDOKU PUZZLES</a></span></center></h1><br>
 <center><img src="tesseract1.gif" width="300" height="300"></center>
 <p class="subtitle">4D TESSERACT</p><br>
-<br><center><img onclick="zoomUp(this);" class="zoomout" src="pdim.jpg" width="750" height="1000"></center>
+<br><center><img onclick="zoomHi(this);" class="zoomout" src="pdim.jpg" width="750" height="1000"></center>
 <br><br><br><center><a class="button" href="gspatialDimensions.html">Go Back to Dimensions</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></center><br><br><br>
-
-<script>
-function zoomUp(elem) {
-	elem.classList = 'zoomin';
-	elem.onclick = function(){zoomDown(elem)};
-}
-function zoomDown(elem) {
-	elem.classList = 'zoomout';
-	elem.onclick = function(){zoomUp(elem)};
-}
-</script>
+<script type="text/javascript" src="gzoomPicScript.js"></script>
 
 </body>
 </html>

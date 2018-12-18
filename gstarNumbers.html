@@ -51,17 +51,7 @@ img { cursor:zoom-in; }
 <img onclick="zoomUp(this);" src="pstar20.jpg" width="500" height="666.6667"></center>
 <br><br><br><center><a class="button" href="gstarCalculation.html">Return to Star Calculation</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="hq.html">&#xe88a;</a></center><br><br><br>
-
-<script>
-function zoomUp(elem) {
-	elem.classList = 'zoomin';
-	elem.onclick = function(){zoomDown(elem)};
-}
-function zoomDown(elem) {
-	elem.classList.remove('zoomin');
-	elem.onclick = function(){zoomUp(elem)};
-}
-</script>
+<script type="text/javascript" src="gzoomPicScript.js"></script>
 
 </body>
 </html>

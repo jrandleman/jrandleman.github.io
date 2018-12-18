@@ -150,22 +150,9 @@ img { cursor:zoom-in; }
 <span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout">------</span>
 <span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
-</center></p><br></center>
+</center></p><br></center><script type="text/javascript" src="gzoomPicScript.js"></script>
 
 <script>
-/******************************************************************************/
-/* IMG ZOOM FUNCTION */
-/******************************************************************************/
-
-function zoomUp(elem) {
-	elem.classList = 'zoomin';
-	elem.onclick = function(){zoomDown(elem)};
-}
-function zoomDown(elem) {
-	elem.classList.remove('zoomin');
-	elem.onclick = function(){zoomUp(elem)};
-}
-
 /******************************************************************************/
 /* DATE FUNCTION */
 /******************************************************************************/
@@ -213,9 +200,10 @@ function onh() {
 
 function onj() {
 	document.getElementById("codeinfo").style = "font-family:Prosto One;color:lime;font-size:35px;";
-	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- JavaScript Pages (7) -:-</div><a class='jstyle' href="+
+	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- JavaScript Pages (8) -:-</div><a class='jstyle' href="+
 		"'gwebScript.js' target='_blank'>Home Page</a><br><i>Header, Footer, Text:</i> <a class='jstyle' href="+
-		"'gwebHFTScript.js' target='_blank'>Content Creation</a><br><i>NGMA:</i> <a class='jstyle' href="+
+		"'gwebHFTScript.js' target='_blank'>Content Creation</a><br><i>Picture Magnification:</i> <a class='jstyle' href="+
+		"'https://jrandleman.github.io/gzoomPicScript.js' target='_blank'>Zoom Functions</a><br><i>NGMA:</i> <a class='jstyle' href="+
 		"'gngmaRTScript.js' target='_blank'>Translation</a>, <a class='jstyle' href="+
 		"'gngmaRevConstant.js' target='_blank'>Reversion Words</a><br><i>Spatial Dimensions:</i> <a class='jstyle' href="+
 		"'gdimensionScript.js' target='_blank'>Computation Code</a><br><i>Perspective Length:</i> <a class='jstyle' href="+
