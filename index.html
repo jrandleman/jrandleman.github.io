@@ -141,7 +141,7 @@ html { scroll-behavior:smooth; }
 	font-family:Homenaje;
 }
 #split1, #split2 { margin-top:-10px;margin-bottom:-10px;visibility:hidden;color:red; }
-#lastTag { color:cyan; }
+#lastTag { color:cyan;visibility:hidden; }
 .footerShift1 { position:absolute;top:550px;left:575px; }
 </style>
 <style id="sudokuStyle"></style>
@@ -775,7 +775,6 @@ function printIt() {
 	document.getElementById('lnId').style = "visibility:hidden";
 	document.getElementById('nmId').style = "visibility:hidden";
 	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('lastTag').style = "visibility:hidden";
 	document.getElementById('easy').style = "visibility:hidden";
 	document.getElementById('medium').style = "visibility:hidden";
 	document.getElementById('hard').style = "visibility:hidden";
@@ -792,7 +791,6 @@ function printIt() {
 	document.getElementById('lnId').style = "visibility:visible";
 	document.getElementById('nmId').style = "visibility:visible";
 	document.getElementById('sudfooter').style = "visibility:visible;";
-	document.getElementById('lastTag').style = "visibility:visible";
 	document.getElementById('easy').style = "visibility:visible";
 	document.getElementById('medium').style = "visibility:visible";
 	document.getElementById('hard').style = "visibility:visible";
@@ -821,7 +819,6 @@ function printAns() {
 	document.getElementById('lnId').style = "visibility:hidden";
 	document.getElementById('nmId').style = "visibility:hidden";
 	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('lastTag').style = "visibility:hidden";
 	document.getElementById('easy').style = "visibility:hidden";
 	document.getElementById('medium').style = "visibility:hidden";
 	document.getElementById('hard').style = "visibility:hidden";
@@ -848,7 +845,6 @@ function printAns() {
 	document.getElementById('lnId').style = "visibility:visible";
 	document.getElementById('nmId').style = "visibility:visible";
 	document.getElementById('sudfooter').style = "visibility:visible;";
-	document.getElementById('lastTag').style = "visibility:visible";
 	document.getElementById('easy').style = "visibility:visible";
 	document.getElementById('medium').style = "visibility:visible";
 	document.getElementById('hard').style = "visibility:visible";
