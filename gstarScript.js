@@ -14,126 +14,12 @@ function aboutStars() {
 		' and start anew');
 }
 
-
-function yellowQ() { document.getElementById("spinning3DText3").style = "color:yellow;"; }
-function borderQ() { document.getElementById("spinning3DText3").style = "color:#FE8F10;"; }
-
-/******************************************************************************/
-/* HEADER/FOOTER HOVER FUNCTIONS */
-/******************************************************************************/
-
-function cogAnim(flag) {
-	if(flag == 1) {
-		document.getElementById("lnId").classList.add("fa-spin");
-	} else {
-		document.getElementById("lnId").classList.remove("fa-spin");
-	}
-}
-
-function on(x) {
-	if(x == 1) {
-		document.getElementById("con2").innerHTML = "&#x27AA;";	
-	} else if(x == 1.5) {
-		document.getElementById("con2").innerHTML = "&#x27AB;";
-	} else if(x == 2) {
-		document.getElementById("con3").innerHTML = "&#x2751;";	
-	} else if(x == 2.5) {
-		document.getElementById("con3").innerHTML = "&#x2752;";
-	} else if(x == 3) {
-		document.getElementById("con4").innerHTML = "&#x2738;";	
-	} else if(x == 3.5) {
-		document.getElementById("con4").innerHTML = "&#x2729;";
-	} else if(x == 4) {
-		document.getElementById("con5").innerHTML = "&#x2468;";	
-	} else if(x == 4.5) {
-		document.getElementById("con5").innerHTML = "&#x24C8;";
-	}
-    
-}
-
-/* CURSOR CROSSHAIR ON DRAW */
-function cross() { document.getElementById("canvas1").style = "cursor:crosshair;border-radius:50%;"; }
-
-/******************************************************************************/ 
-/* TYPEWRITER */
-/******************************************************************************/
-
-var ch = 0;
-var speed = 80;
-var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
-var possible = possibleChars.split('');
-var possibleTitleInts = [];
-var titleArr = [];
-
-var numText = "SHOW ME THE NUMBERS";
-var numLen = numText.length;
-const numFilledArr = randTitle().split('').splice(0,numLen);
-
-var titleTxt = "Star Calculation!";
-var titleLen = (titleTxt.length);
-const titleFilledArr = randTitle().split('').splice(0,titleLen);
-
-var subt1Text = " Spawn Star ";
-var subt1Len = subt1Text.length;
-const subt1FilledArr = randTitle().split('').splice(0,subt1Len);
-
-var subt2Text = " Sequence ";
-var subt2Len = subt2Text.length;
-const subt2FilledArr = randTitle().split('').splice(0,subt2Len);
-
-var ssub1Text = "Star Points: ";
-var ssub1Len = ssub1Text.length;
-const ssub1FilledArr = randTitle().split('').splice(0,ssub1Len);
-
-var id1Text = "-:- ENTER -:-";
-var id1Len = id1Text.length;
-const id1FilledArr = randTitle().split('').splice(0,id1Len);
-
-
-function randTitle() {
-    while (possibleTitleInts.length < numLen) {
-        var ranNum =  Math.floor(Math.random() * (numLen));
-        if (possibleTitleInts.indexOf(ranNum) == -1) possibleTitleInts.push(ranNum);
-    }
-    for (let i = 0; i < possibleTitleInts.length; i++) {
-        var num = possibleTitleInts[i];
-        titleArr.push(possible[num]);
-    }
-    return titleArr.join('');
-}
-
-
-function typeWriter() {
-    if (ch < numText.length) {
-        var letter = titleTxt.charAt(ch);
-		var numletter = numText.charAt(ch);
-		var subt1letter = subt1Text.charAt(ch);
-		var subt2letter = subt2Text.charAt(ch);
-		var ssub1letter = ssub1Text.charAt(ch);
-		var id1letter = id1Text.charAt(ch);
-
-        titleFilledArr.splice(ch,1,letter);
-        numFilledArr.splice(ch,1,numletter);
-        subt1FilledArr.splice(ch,1,subt1letter);
-        subt2FilledArr.splice(ch,1,subt2letter);
-        ssub1FilledArr.splice(ch,1,ssub1letter);
-        id1FilledArr.splice(ch,1,id1letter);
-
-        document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-        document.getElementById("numId").innerHTML = numFilledArr.join('');
-        document.getElementById("subt1Id").innerHTML = subt1FilledArr.join('');
-        document.getElementById("subt2Id").innerHTML = subt2FilledArr.join('');
-        document.getElementById("ssub1").innerHTML = ssub1FilledArr.join('');
-        document.getElementById("id1").innerHTML = id1FilledArr.join('');
-        ch++;
-        setTimeout(typeWriter, speed);
-    }
-}
-
 /******************************************************************************/
 /* DRAW INITIALIZATION FUNCTION */
 /******************************************************************************/
 
+/* CURSOR CROSSHAIR ON DRAW */
+function cross() { document.getElementById("canvas1").style = "cursor:crosshair;border-radius:50%;"; }
 var canvasWidth = 300, canvasHeight = 300;
 var canvas1 = null;
 var bounds = null;
