@@ -544,124 +544,106 @@ function mixCols(AS) {
 	var rn = Math.floor(Math.random()*(12))+1;
 	for (let p = 0; p < 9; p++) {
 		if(rn == 1 || rn == 2) {
+			var temp = AS[p][0];
+			AS[p][0] = AS[p][3];
+			AS[p][3] = AS[p][6];
+			AS[p][6] = temp;
 			if(rn == 1) {
-				var temp = AS[p][0];
-				AS[p][0] = AS[p][3];
-				AS[p][3] = AS[p][6];
-				AS[p][6] = temp;
 				var temp1 = AS[p][7];
 				AS[p][7] = AS[p][4];
 				AS[p][4] = AS[p][1];
 				AS[p][1] = temp1;
 			} else {
-				var temp = AS[p][0];
-				AS[p][0] = AS[p][3];
-				AS[p][3] = AS[p][6];
-				AS[p][6] = temp;
 				var temp1 = AS[p][8];
 				AS[p][8] = AS[p][5];
 				AS[p][5] = AS[p][2];
 				AS[p][2] = temp1;
 			}
 		} else if(rn == 3 || rn == 4) {
+			var temp = AS[p][0];
+			AS[p][0] = AS[p][3];
+			AS[p][3] = AS[p][6];
+			AS[p][6] = temp;
+			var temp1 = AS[p][7];
+			AS[p][7] = AS[p][4];
+			AS[p][4] = AS[p][1];
+			AS[p][1] = temp1;
 			if(rn == 3) {
-				var temp1 = AS[p][6];
-				AS[p][6] = AS[p][3];
-				AS[p][3] = AS[p][0];
-				AS[p][0] = temp1;
-				var temp = AS[p][1];
-				AS[p][1] = AS[p][4];
-				AS[p][4] = AS[p][7];
-				AS[p][7] = temp;
+				var temp2 = AS[p][8];
+				AS[p][8] = AS[p][5];
+				AS[p][5] = AS[p][2];
+				AS[p][2] = temp2;
 			} else {
-				var temp1 = AS[p][6];
-				AS[p][6] = AS[p][3];
-				AS[p][3] = AS[p][0];
-				AS[p][0] = temp1;
-				var temp = AS[p][2];
+				var temp2 = AS[p][2];
 				AS[p][2] = AS[p][5];
 				AS[p][5] = AS[p][8];
-				AS[p][8] = temp;
+				AS[p][8] = temp2;
 			}
 		} else if(rn == 5 || rn == 6) {
+			var temp = AS[p][6];
+			AS[p][6] = AS[p][3];
+			AS[p][3] = AS[p][0];
+			AS[p][0] = temp;
 			if(rn == 5) {
-				var temp = AS[p][1];
+				var temp1 = AS[p][1];
 				AS[p][1] = AS[p][4];
 				AS[p][4] = AS[p][7];
-				AS[p][7] = temp;
-				var temp1 = AS[p][6];
-				AS[p][6] = AS[p][3];
-				AS[p][3] = AS[p][0];
-				AS[p][0] = temp1;
+				AS[p][7] = temp1;
 			} else {
-				var temp = AS[p][1];
-				AS[p][1] = AS[p][4];
-				AS[p][4] = AS[p][7];
-				AS[p][7] = temp;
-				var temp1 = AS[p][8];
-				AS[p][8] = AS[p][5];
-				AS[p][5] = AS[p][2];
-				AS[p][2] = temp1;
+				var temp1 = AS[p][2];
+				AS[p][2] = AS[p][5];
+				AS[p][5] = AS[p][8];
+				AS[p][8] = temp1;
 			}
 		} else if(rn == 7 || rn == 8) {
+			var temp = AS[p][6];
+			AS[p][6] = AS[p][3];
+			AS[p][3] = AS[p][0];
+			AS[p][0] = temp;
+			var temp1 = AS[p][1];
+			AS[p][1] = AS[p][4];
+			AS[p][4] = AS[p][7];
+			AS[p][7] = temp1;
 			if(rn == 7) {
-				var temp1 = AS[p][7];
-				AS[p][7] = AS[p][4];
-				AS[p][4] = AS[p][1];
-				AS[p][1] = temp1;
-				var temp = AS[p][0];
-				AS[p][0] = AS[p][3];
-				AS[p][3] = AS[p][6];
-				AS[p][6] = temp;
+				var temp2 = AS[p][8];
+				AS[p][8] = AS[p][5];
+				AS[p][5] = AS[p][2];
+				AS[p][2] = temp2;
 			} else {
-				var temp1 = AS[p][7];
-				AS[p][7] = AS[p][4];
-				AS[p][4] = AS[p][1];
-				AS[p][1] = temp1;
-				var temp = AS[p][2];
+				var temp2 = AS[p][2];
 				AS[p][2] = AS[p][5];
 				AS[p][5] = AS[p][8];
-				AS[p][8] = temp;
+				AS[p][8] = temp2;
 			}
 		} else if(rn == 9 || rn == 10) {
-			if(rn == 9) {
-				var temp = AS[p][2];
-				AS[p][2] = AS[p][5];
-				AS[p][5] = AS[p][8];
-				AS[p][8] = temp;
-				var temp1 = AS[p][6];
+			var temp = AS[p][7];
+			AS[p][7] = AS[p][4];
+			AS[p][4] = AS[p][1];
+			AS[p][1] = temp;
+			var temp1 = AS[p][2];
+			AS[p][2] = AS[p][5];
+			AS[p][5] = AS[p][8];
+			AS[p][8] = temp1;
+			if(rn == 10) {
+				var temp2 = AS[p][6];
 				AS[p][6] = AS[p][3];
 				AS[p][3] = AS[p][0];
-				AS[p][0] = temp1;
-			} else {
-				var temp = AS[p][2];
-				AS[p][2] = AS[p][5];
-				AS[p][5] = AS[p][8];
-				AS[p][8] = temp;
-				var temp1 = AS[p][7];
-				AS[p][7] = AS[p][4];
-				AS[p][4] = AS[p][1];
-				AS[p][1] = temp1;
+				AS[p][0] = temp2;
 			}
 		} else if(rn == 11 || rn == 12) {
-			if(rn == 11) {
-				var temp1 = AS[p][8];
-				AS[p][8] = AS[p][5];
-				AS[p][5] = AS[p][2];
-				AS[p][2] = temp1;
-				var temp = AS[p][0];
+			var temp = AS[p][1];
+			AS[p][1] = AS[p][4];
+			AS[p][4] = AS[p][7];
+			AS[p][7] = temp;
+			var temp1 = AS[p][8];
+			AS[p][8] = AS[p][5];
+			AS[p][5] = AS[p][2];
+			AS[p][2] = temp1;
+			if(rn == 12) {
+				var temp2 = AS[p][0];
 				AS[p][0] = AS[p][3];
 				AS[p][3] = AS[p][6];
-				AS[p][6] = temp;
-			} else {
-				var temp1 = AS[p][8];
-				AS[p][8] = AS[p][5];
-				AS[p][5] = AS[p][2];
-				AS[p][2] = temp1;
-				var temp = AS[p][1];
-				AS[p][1] = AS[p][4];
-				AS[p][4] = AS[p][7];
-				AS[p][7] = temp;
+				AS[p][6] = temp2;
 			}
 		}
 	}
