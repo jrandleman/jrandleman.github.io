@@ -763,7 +763,7 @@
 	font-size:31px;
 	padding:10px;
 }
-.blackout { color:black; }
+.blackout { color:black;visibility:hidden; }
 .blackLink { color:black;text-decoration:none; }
 .df { cursor:default; }
 .linkIt { color:#F9ED4B; }
