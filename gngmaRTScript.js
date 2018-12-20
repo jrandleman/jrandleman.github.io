@@ -57,9 +57,7 @@ function dnldButton() {
 var myWindow;
 
 function printOpt() {
-	document.getElementById("ngmaEnter1").style = "font-family:Arial;";
-	document.getElementById("ngmaEnter2").style = "font-family:Arial;";
-	document.getElementById("br").innerHTML = "";
+	document.getElementById('printButton').style.marginTop = '-45px';
 	document.getElementById("printButton").innerHTML = "<button id='dwn-btn1' class='getContentBtn material-icons' onclick='printIt()'>"+
 		"<b>&#xe8ad;</b></button><span class='blackout'>-----------------------------------</span>"+
 		"<button id='dwn-btn2' class='getContentBtn material-icons' onclick='dnldButton()'>file_download</button>";
@@ -119,12 +117,12 @@ function putPlaceHolders(){
 }
 function rtnN(event,elem) {
 	elem.value = stripText(elem);
-	if (event.keyCode == "13") startScript();
+	if (event.keyCode == "13" || event == "trans") startScript();
 	document.getElementById('eTIn').value = stripText(document.getElementById('eTIn'));
 }
 function rtnE(event,elem) {
 	elem.value = stripText(elem);
-	if (event.keyCode == "13") startRevScript();
+	if (event.keyCode == "13" || event == "trans") startRevScript();
 	document.getElementById('nTIn').value = stripText(document.getElementById('nTIn'));
 }
 function stripText(elem) {
@@ -1403,4 +1401,3 @@ const nul = N+G+M+A; /* " c&idekeycard " */
 const into = AP+PR+OV+ED+IN; /* "-:-PARAMETERS PASSED-:-SECURITY MEASURES DEACTIVATED-:-" */
 const intro = GR+EE+TI+NG; /* "Welcome Home, Mr. Randleman." */
 const gotin = OV+ER; /* "-:- SECURITY OVERRIDE -:-"" */
-

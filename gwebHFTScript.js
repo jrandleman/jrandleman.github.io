@@ -62,14 +62,10 @@ const subt1FilledArrN = randTitle(prcLenN).split('').splice(0,subt1LenN);
 var subt2TextN = " YOUR TEXT ", subt2LenN = subt2TextN.length;
 const subt2FilledArrN = randTitle(prcLenN).split('').splice(0,subt2LenN);
 
-var id1TextN = "-:- ENGLISH ", id1LenN = id1TextN.length;
+var id1TextN = "NGMA ", id1LenN = id1TextN.length;
 const id1FilledArrN = randTitle(prcLenN).split('').splice(0,id1LenN);
-var id2TextN = " NGMA -:-", id2LenN = id2TextN.length;
+var id2TextN = "ENGL", id2LenN = id2TextN.length;
 const id2FilledArrN = randTitle(prcLenN).split('').splice(0,id2LenN);
-var id3TextN = "-:- NGMA ", id3LenN = id3TextN.length;
-const id3FilledArrN = randTitle(prcLenN).split('').splice(0,id3LenN);
-var id4TextN = " ENGLISH -:-", id4LenN = id4TextN.length;
-const id4FilledArrN = randTitle(prcLenN).split('').splice(0,id4LenN);
 /*************************** -:- DIMENSION VARS -:- ***************************/
 var id1TextD = "-:- CLICK TO ENTER -:-", id1LenD = id1TextD.length;
 const id1FilledArrD = randTitle(id1LenD).split('').splice(0,id1LenD);
@@ -168,8 +164,6 @@ function typeWriterNcon() {
 		var subt2letter = subt2TextN.charAt(ch);
 		var id1letter = id1TextN.charAt(ch);
 		var id2letter = id2TextN.charAt(ch);
-		var id3letter = id3TextN.charAt(ch);
-		var id4letter = id4TextN.charAt(ch);
 
 		titleFilledArrN.splice(ch,1,letter);
 		prcFilledArrN.splice(ch,1,prcletter);
@@ -177,8 +171,6 @@ function typeWriterNcon() {
 		subt2FilledArrN.splice(ch,1,subt2letter);
 		id1FilledArrN.splice(ch,1,id1letter);
 		id2FilledArrN.splice(ch,1,id2letter);
-		id3FilledArrN.splice(ch,1,id3letter);
-		id4FilledArrN.splice(ch,1,id4letter);
 
 		document.getElementById("webTitleID").innerHTML = titleFilledArrN.join('');
 		document.getElementById("prcId").innerHTML = prcFilledArrN.join('');
@@ -186,8 +178,6 @@ function typeWriterNcon() {
 		document.getElementById("subt2Id").innerHTML = subt2FilledArrN.join('');
 		document.getElementById("id1").innerHTML = id1FilledArrN.join('');
 		document.getElementById("id2").innerHTML = id2FilledArrN.join('');
-		document.getElementById("id3").innerHTML = id3FilledArrN.join('');
-		document.getElementById("id4").innerHTML = id4FilledArrN.join('');
 		ch++;
 		setTimeout(typeWriterNcon, speed);
 	}

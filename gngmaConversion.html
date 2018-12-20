@@ -7,10 +7,12 @@
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Sonsie One' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();" id='ncon'>
+
 <style>
 html { scroll-behavior:smooth; }
 textarea { font-size:18px;border:4px solid blue;background-color:aqua;color:blue;outline:none;resize:none;cursor:pointer;font-weight:bold; }
@@ -51,12 +53,20 @@ textarea:-ms-input-placeholder { text-align:center;font-family:arial black;font-
 	transition:all 0.4s;
 }
 .delCpyBtn1:active:after, .delCpyBtn2:active:after, .delCpyBtn3:active:after, .delCpyBtn4:active:after { padding:0;margin:0;opacity:1;transition:0s; }
-.delCpyBtn1 { position:absolute;top:705px;left:350px; }
-.delCpyBtn2 { position:absolute;top:705px;right:350px; }
-.delCpyBtn3 { position:absolute;top:945px;left:350px; }
-.delCpyBtn4 { position:absolute;top:945px;right:350px; }
+.delCpyBtn1 { position:absolute;top:780px;left:350px; }
+.delCpyBtn2 { position:absolute;top:780px;right:350px; }
+.delCpyBtn3 { position:absolute;top:1020px;left:350px; }
+.delCpyBtn4 { position:absolute;top:1020px;right:350px; }
 .delCpyBtn1:hover, .delCpyBtn2:hover, .delCpyBtn3:hover, .delCpyBtn4:hover, .getContentBtn:hover { color:aqua;background-color:blue;border:4px solid aqua; }
 #ngmaEnter1, #ngmaEnter2, #dwn-btn1, #dwn-btn2 { outline:none; }
+.npageButton { color:orange;font-style:italic;font-weight:bold;font-size:55px;font-family:Aldrich; }
+.nROBtn1, .nROBtn2 { border:none;background-color:transparent;color:orange;font-size:85px;cursor:pointer; }
+.nROBtn1 { margin-top:-30px;position:relative;transform:translateY(20px); }
+.nROBtn2 { margin-top:-25px;transform: rotate(180deg); }
+.nROBtn1:hover, .nROBtn2:hover { color:aqua; }
+.nROBtn1:active { font-size:75px;margin-top:-20px; }
+.nROBtn2:active { font-size:75px;margin-top:-15px; }
+#printButton { margin-top:-20px; }
 </style>
 
 <!-- *** NGMA HEADER *** -->
@@ -71,11 +81,10 @@ textarea:-ms-input-placeholder { text-align:center;font-family:arial black;font-
 <!-- *** NGMA CONVERSION FUNCTION *** -->
 <center><div class="column0"><div id="spinning3DText3" onclick="aboutNgma()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <div class="pageTitle"><big>&#x270E;<span id="subt1Id"></span>&#x270E;<br>&#x270E;<span id="subt2Id"></span>&#x270E;</big></div></center>
-<div id="br"><br></div><br><center>
-<button id="ngmaEnter1" class="pageButton" onclick="startScript()"><b><span id="id1"></span>&#x2794;<span id="id2"></span></b></button>
-<span class="blackout">--------------------</span><span>
-<button id="ngmaEnter2" class="pageButton" onclick="startRevScript()"><b><span id="id3"></span>&#x2794;<span id="id4"></span></b></button>
-</span><br><br><div id="printButton"></div></center><br>
+<!-- *** N <=> E Btns *** -->
+<center><div id="ngmaEnter1" class="material-icons nROBtn1" onclick="rtnN('trans',document.getElementById('nTIn'))">redo</div><br>
+<span class="npageButton"><b id="id1"></b></span><span class="blackout">----</span><span class="npageButton"><b id="id2"></b></span><span class="blackout">--</span>
+<br><div id="ngmaEnter2" class="material-icons nROBtn2" onclick="rtnE('trans',document.getElementById('eTIn'))">redo</div><br><div id="printButton"></div></center><br>
 <!-- *** ENG => NGMA AREA *** -->
 <center><span id="cB1" class="delCpyBtn1 material-icons" style="visibility:hidden;">content_copy</span><span class="blackout">------</span>
 <textarea id="nTIn" rows="10" cols="50" onkeyup="rtnN(event,this);" onClick="clkText(this);"></textarea>
