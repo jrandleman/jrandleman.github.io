@@ -364,6 +364,7 @@ function startRevScript() {
 	for(let i = 0; rPArr[i] == ' ';) rPArr.splice(i,1);
 	for(let i = rPLen-1; rPArr[i] == ' ' && rPArr[i-1] == ' '; i--) rPArr.splice(i,1);
 	document.getElementById("nTIn").value = rPArr.join('');
+	document.getElementById('ngmaEnter1').scrollIntoView();
 }
 
 /******************************************************************************/
