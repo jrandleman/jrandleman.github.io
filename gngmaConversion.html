@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();" id='ncon'>
+<style>html { scroll-behavior:smooth; }</style>
 
 <!-- *** NGMA HEADER *** -->
 <h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
@@ -26,16 +27,26 @@
 <div class="pageTitle"><big>&#x270E;<span id="subt1Id"></span>&#x270E;<br>&#x270E;<span id="subt2Id"></span>&#x270E;</big></div></center>
 <div id="br"><br></div><br><center>
 <button id="ngmaEnter1" class="pageButton" onclick="startScript()"><b><span id="id1"></span>&#x2794;<span id="id2"></span></b></button>
-<span id="printButton" class="df" style="color:black;">--------------------</span><span>
+<span class="blackout">--------------------</span><span>
 <button id="ngmaEnter2" class="pageButton" onclick="startRevScript()"><b><span id="id3"></span>&#x2794;<span id="id4"></span></b></button>
-</span></center><br><br><p class="ngmaTextConversion" id="demo0"><center><div id="copId1"></div></center></p>
+</span><br><br><div id="printButton"></div></center><br>
+<!-- *** ENG => NGMA AREA *** -->
+<center><span id="cB1" class="delCpyBtn1 material-icons" style="visibility:hidden;">content_copy</span><span class="blackout">------</span>
+<textarea id="nTIn" rows="10" cols="50" onkeyup="rtnN(event,this);" onClick="clkText(this);"></textarea>
+<span class="blackout">------</span>
+<span id="dB1" class="delCpyBtn2 material-icons" style="visibility:hidden;" onclick="clearInput('nTIn');">delete_forever</span><br><br>
+<!-- *** NGMA => ENG AREA *** -->
+<span id="cB2" class="delCpyBtn3 material-icons" style="visibility:hidden;">content_copy</span><span class="blackout">------</span>
+<textarea id="eTIn" rows="10" cols="50" onkeyup="rtnE(event,this);" onClick="clkText(this);"></textarea>
+<span class="blackout">------</span>
+<span id="dB2" class="delCpyBtn4 material-icons" style="visibility:hidden;" onclick="clearInput('eTIn');">delete_forever</span></center>
 <p class="ngmaText3" id="demo1"></p><p class="ngmaText2" id="demo2"></p> 
 <p class="ngmaText1" id="demo3"></p><p class="ngmaText2" id="demo4"></p><p class="ngmaText1" id="demo5"></p>
 <p class="ngmaText1" id="demo6"></p><p class="ngmaText2" id="demo7"></p><p class="ngmaText1" id="demo8"></p>
 <p class="ngmaText2" id="demo9"></p><p class="ngmaText1" id="demo10"></p><p class="ngmaText2" id="demo11"></p>
 <p class="ngmaText1" id="demo12"></p><p class="ngmaText2" id="demo13"></p><p class="ngmaText1" id="demo14"></p>
 <p class="ngmaText2" id="demo15"></p><p class="ngmaText1" id="demo16"></p><p class="ngmaText1" id="demo17"></p>
-<p class="ngmaText1" id="demo18"></p><p class="ngmaTextConversion" id="demo00"><center><div id="copId2"></div></center></p><br>
+<p class="ngmaText1" id="demo18"></p>
 <script type="text/javascript" src="gngmaRevConstant.js"></script>
 <script type="text/javascript" src="gngmaRTScript.js"></script>
 <script type="text/javascript" src="gwebHFTScript.js"></script>

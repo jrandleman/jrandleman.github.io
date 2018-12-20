@@ -297,6 +297,53 @@
 }
 .spinning3DText02::after { transform: rotateY(-0.5deg);transform-origin: 100% 50%; }
 
+/*NGMA CONVERSION*/
+
+textarea { font-size:18px;border:4px solid blue;background-color:aqua;color:blue;outline:none;resize:none;cursor:pointer;font-weight:bold; }
+textarea::-webkit-input-placeholder { text-align:center;font-family:arial black;font-style:italic;color:blue; }
+textarea:-moz-placeholder { text-align:center;font-family:arial black;font-style:italic;color:blue; }
+textarea::-moz-placeholder { text-align:center;font-family:arial black;font-style:italic;color:blue; }
+textarea:-ms-input-placeholder { text-align:center;font-family:arial black;font-style:italic;color:blue; }
+#nTIn::-webkit-input-placeholder { font-size:75px; }
+#nTIn:-moz-placeholder { font-size:75px; }
+#nTIn::-moz-placeholder { font-size:75px; }
+#nTIn:-ms-input-placeholder { font-size:75px; }
+#eTIn::-webkit-input-placeholder { font-size:73px; }
+#eTIn:-moz-placeholder { font-size:73px; }
+#eTIn::-moz-placeholder { font-size:73px; }
+#eTIn:-ms-input-placeholder { font-size:73px; }
+.delCpyBtn1, .delCpyBtn2, .delCpyBtn3, .delCpyBtn4, .getContentBtn {
+	border-radius: 50%;
+	border: 4px solid blue;
+	color:blue;
+	font-size:50px;
+	padding:5px;
+	text-decoration:none;
+	background-color:aqua;
+}
+.delCpyBtn1, .delCpyBtn3 { cursor:copy; }
+.delCpyBtn2, .delCpyBtn4, .getContentBtn { cursor:pointer; }
+.delCpyBtn1, .delCpyBtn2, .delCpyBtn3, .delCpyBtn4 {overflow: hidden;}
+.delCpyBtn1:after, .delCpyBtn2:after, .delCpyBtn3:after, .delCpyBtn4:after {
+	content:"";
+	background:white;
+	display:block;
+	position:absolute;
+	padding-top:200%;
+	padding-left:200%;
+	margin-left:-20px!important;
+	margin-top:-120%;
+	opacity:0;
+	transition:all 0.4s;
+}
+.delCpyBtn1:active:after, .delCpyBtn2:active:after, .delCpyBtn3:active:after, .delCpyBtn4:active:after { padding:0;margin:0;opacity:1;transition:0s; }
+.delCpyBtn1 { position:absolute;top:705px;left:350px; }
+.delCpyBtn2 { position:absolute;top:705px;right:350px; }
+.delCpyBtn3 { position:absolute;top:945px;left:350px; }
+.delCpyBtn4 { position:absolute;top:945px;right:350px; }
+.delCpyBtn1:hover, .delCpyBtn2:hover, .delCpyBtn3:hover, .delCpyBtn4:hover, .getContentBtn:hover { color:aqua;background-color:blue;border:4px solid aqua; }
+#ngmaEnter1, #ngmaEnter2, #dwn-btn1, #dwn-btn2 { outline:none; }
+
 /*GENERAL CSS*/
 
 .hovColor:hover, .hovColor:active {color: black;background:orange;}

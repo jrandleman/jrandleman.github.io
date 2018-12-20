@@ -9,8 +9,7 @@ function aboutNgma() {
 		" roots. \n\nOrignially developed to speed up class note-taking,"+
 		" NGMA is designed to decrease the character-to-concept ratio"+
 		" of written word relative to that of English, along with an"+
-		" additional layer of personal privacy.\n\n => Note: Click"+
-		" the NGMA text you translated to copy it!");
+		" additional layer of personal privacy.");
 }
 
 /******************************************************************************/
@@ -31,16 +30,16 @@ function download(filename, text) {
 function dnldButton() {
 	var usrDAns = prompt('Download your:\n => (1) NGMA\n => (2) English\n => (3) Both', '-:- Enter Option Here -:-').toLowerCase();
 	if((usrDAns == '1' || usrDAns == '(1)') || usrDAns == "ngma") {
-		var nDText = document.getElementById("demo0").innerHTML.replace(/&amp;/g, '&');
+		var nDText = document.getElementById("eTIn").value.replace(/&amp;/g, '&');
 		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nConverted NGMA:\n'+nDText;
 		var filename = "convertedNgma.txt";
 	} else if((usrDAns == '2' || usrDAns == '(2)') || usrDAns == "english") {
-		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nReverted English:\n'+document.getElementById("demo00").innerHTML;
+		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nReverted English:\n'+document.getElementById("nTIn").value;
 		var filename = "revertedEnglish.txt";
 	} else if((usrDAns == '3' || usrDAns == '(3)') || usrDAns == "both") {
-		var nDText = document.getElementById("demo0").innerHTML.replace(/&amp;/g, '&');
+		var nDText = document.getElementById("eTIn").value.replace(/&amp;/g, '&');
 		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\n'+
-			'Converted NGMA:\n'+nDText+'\n\nReverted English:\n'+document.getElementById("demo00").innerHTML;
+			'Converted NGMA:\n'+nDText+'\n\nReverted English:\n'+document.getElementById("nTIn").value;
 		var filename = "bothNgmaEnglish.txt";
 	} else if (usrDAns == null) {
 		return;
@@ -61,9 +60,13 @@ function printOpt() {
 	document.getElementById("ngmaEnter1").style = "font-family:Arial;";
 	document.getElementById("ngmaEnter2").style = "font-family:Arial;";
 	document.getElementById("br").innerHTML = "";
-	document.getElementById("printButton").innerHTML = "---<button class='returnButton material-icons' onclick='printIt()'"+
-		" style='font-size:35px;cursor:pointer;'><b>&#xe8ad;</b></button>----<button id='dwn-btn' class='returnButton material-icons'"+
-		" style='font-size:35px;cursor:pointer;' onclick='dnldButton()'>file_download</button>---";
+	document.getElementById("printButton").innerHTML = "<button id='dwn-btn1' class='getContentBtn material-icons' onclick='printIt()'>"+
+		"<b>&#xe8ad;</b></button><span class='blackout'>-----------------------------------</span>"+
+		"<button id='dwn-btn2' class='getContentBtn material-icons' onclick='dnldButton()'>file_download</button>";
+	document.getElementById('cB1').style.visibility = 'visible';
+	document.getElementById('cB2').style.visibility = 'visible';
+	document.getElementById('dB1').style.visibility = 'visible';
+	document.getElementById('dB2').style.visibility = 'visible';
 }
 
 
@@ -71,22 +74,22 @@ function printIt() {
 	var printTxt = prompt('Print your:\n => (1) NGMA\n => (2) English\n => (3) Both', '-:- Enter Option Here -:-').toLowerCase();
 	if ((((printTxt == '1' || printTxt == '(1)') || printTxt == "ngma") || ((printTxt == '2' || printTxt == '(2)') || printTxt == "english")) || ((printTxt == '3' || printTxt == '(3)') || printTxt == 'both')) {
 		if ((printTxt == '1' || printTxt == '(1)') || printTxt == "ngma") {
-			var ntext = document.getElementById("demo0").innerHTML;
+			var ntext = document.getElementById("eTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
 			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>NGMA Conversion:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
 		} else if ((printTxt == '2' || printTxt == '(2)') || printTxt == "english") {
-			var etext = document.getElementById("demo00").innerHTML;
+			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
 			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center><h1><u><i style='font-family:arial'>English Reversion:</i></u></h1><p style='font-size:22px'><b>"+etext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
 		} else {
-			var ntext = document.getElementById("demo0").innerHTML;
-			var etext = document.getElementById("demo00").innerHTML;
+			var ntext = document.getElementById("eTIn").value;
+			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
 			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>Translated Text:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
@@ -100,6 +103,36 @@ function printIt() {
 		alert('\nNot a Valid Option!\n\n => Enter: "1" for NGMA, "2" for English, or "3" for Both');
 		printIt();
 	}
+}
+
+/******************************************************************************/
+/* TEXT AREA FUNCTIONS */
+/******************************************************************************/
+
+setTimeout(putPlaceHolders, 1000);
+function clkText(elem) { elem.style.cursor = 'auto'; }
+function clearInput(tId) { document.getElementById(tId).value = '';document.getElementById(tId).select(); }
+function putPlaceHolders(){
+	document.getElementById('nTIn').placeholder = 'Enter  Your \nEnglish';
+	document.getElementById('eTIn').placeholder = String.fromCharCode(949,0x5201,0x10B4) + "  " + String.fromCharCode(955,937) +
+		"\n" + String.fromCharCode(957,915,956,0x0041);
+}
+function rtnN(event,elem) {
+	elem.value = stripText(elem);
+	if (event.keyCode == "13") startScript();
+	document.getElementById('eTIn').value = stripText(document.getElementById('eTIn'));
+}
+function rtnE(event,elem) {
+	elem.value = stripText(elem);
+	if (event.keyCode == "13") startRevScript();
+	document.getElementById('nTIn').value = stripText(document.getElementById('nTIn'));
+}
+function stripText(elem) {
+	var elemText = elem.value.replace(/\n/g, '');
+	var elemArr = elemText.split('');
+	for(let i = 0; elemArr[i] == ' ';) elemArr.splice(i,1);
+	for(let i = elemText.length-1; elemArr[i] == ' ' && elemArr[i-1] == ' '; i--) elemArr.splice(i,1);
+	return elemArr.join('');
 }
 
 /******************************************************************************/
@@ -136,33 +169,37 @@ function ngmaInfo() {
 }
 
 
+var keyCounter = 0;
+
 function startScript() {	
-	var userStr1 = " " + prompt("Enter Your English", "Here") + " ";
-	if (userStr1 == " null ") return;
+	var userStr1 = " " + document.getElementById('nTIn').value + " ";
+	if (userStr1 == "  ") return;
 	if ((userStr1.toLowerCase() == QUEST) || (userStr1.toLowerCase() == QUESTING)) {
+		printOpt();
 		var userStr2 = " " + prompt("There were 25 monsters and 28 kids", "How many didn't?") + " ";
 		if (userStr2 == " null ") return;
 		if ((userStr2.toLowerCase() == AN1) || (userStr2.toLowerCase() == AN2)) {
 			alert("Well Done! Original thinking is always rewarding.");
-			var userStr3 = " " + prompt("Translate Your Text", "Here") + " ";
-			if (userStr3 == " null ") return;
-			if (userStr3.toLowerCase() == nul) {
-				alert(into);
-				alert(intro);
-				structure();
-			} else {
-				printOpt();
-				var convertedPhrase = createFinalArray(userStr3);
-				document.getElementById("demo0").innerHTML = convertedPhrase;
-			}
+			keyCounter++;
 		} else {
 			alert("Nope!");
-			document.getElementById("demo0").innerHTML = 'Do Over';
+			document.getElementById('eTIn').value = 'Do Over';
 		}
+		document.getElementById('ngmaEnter1').scrollIntoView();
+	} else if (userStr1.toLowerCase() == nul && keyCounter > 0) {
+		alert(into);
+		alert(intro);
+		structure();
+		document.getElementById('demo1').scrollIntoView();
 	} else {
 		printOpt();
 		var convertedPhrase = createFinalArray(userStr1);
-		document.getElementById("demo0").innerHTML = convertedPhrase;
+		convPhraseLen = convertedPhrase.length;
+		convPhraseArr = convertedPhrase.split('');
+		for(let i = 0; convPhraseArr[i] == ' ';) convPhraseArr.splice(i,1);
+		for(let i = convPhraseLen-1; convPhraseArr[i] == ' ' && convPhraseArr[i-1] == ' '; i--) convPhraseArr.splice(i,1);
+		document.getElementById('eTIn').value = convPhraseArr.join('');
+		document.getElementById('ngmaEnter1').scrollIntoView();
 	}
 }
 
@@ -171,69 +208,20 @@ function startScript() {
 /******************************************************************************/
 
 /************* CLICK TO COPY NGMA *************/
-const demo0 = document.querySelector("#demo0");
-demo0.onclick = function() {
-		document.execCommand("copy");
-		copMessage1();
-}
-demo0.addEventListener("copy", function(event) {
-		event.preventDefault();
-			if (event.clipboardData) event.clipboardData.setData("text/plain", demo0.textContent);
+const cB1 = document.querySelector("#cB1");
+cB1.onclick = function() { document.execCommand("copy"); }
+cB1.addEventListener("copy", function(event) {
+	event.preventDefault();
+	if (event.clipboardData) event.clipboardData.setData("text/plain", document.getElementById("nTIn").value);
 });
 
-
-/************* CLICK TO COPY ENGLISH *************/
-const demo00 = document.querySelector("#demo00");
-demo00.onclick = function() {
-		document.execCommand("copy");
-		copMessage2();
-}
-demo00.addEventListener("copy", function(event) {
-		event.preventDefault();
-			if (event.clipboardData) event.clipboardData.setData("text/plain", demo00.textContent);
+/************ CLICK TO COPY ENGLISH ************/
+const cB2 = document.querySelector("#cB2");
+cB2.onclick = function() { document.execCommand("copy"); }
+cB2.addEventListener("copy", function(event) {
+	event.preventDefault();
+	if (event.clipboardData) event.clipboardData.setData("text/plain", document.getElementById("eTIn").value);
 });
-
-/************** COPIED NGMA MESSAGE **************/
-const copSpeed = 1500;
-
-function copMessage1() {
-	document.getElementById("copId1").style = "background-color:lime;color:black;"+
-	"font-size:34px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
-	"margin-top:-15px;margin-bottom:5px;width:280px;cursor:wait;";
-	document.getElementById("copId1").innerHTML = "NGMA COPIED";
-	document.getElementById("copId1").classList = "fadeOut";
-	document.getElementById("demo0").style = "visibility:hidden;";
-	document.getElementById("demo0").classList = "";
-	setTimeout(copGone1, copSpeed);
-}
-
-function copGone1() {
-	document.getElementById("copId1").style = "";
-	document.getElementById("copId1").innerHTML = "";
-	document.getElementById("copId1").classList = "";
-	document.getElementById("demo0").classList = "ngmaTextConversion";
-	document.getElementById("demo0").style = "visibility:visible;";	
-}
-
-/************* COPIED ENGLISH MESSAGE *************/
-function copMessage2() {
-	document.getElementById("copId2").style = "background-color:lime;color:black;"+
-	"font-size:34px;font-weight:bold;font-style:italic;font-family:Arial;border-radius:20px;"+
-	"margin-top:-33px;margin-bottom:33px;width:330px;cursor:wait;";
-	document.getElementById("copId2").innerHTML = "ENGLISH COPIED";
-	document.getElementById("copId2").classList = "fadeOut";
-	document.getElementById("demo00").style = "visibility:hidden;";
-	document.getElementById("demo00").classList = "";
-	setTimeout(copGone2, copSpeed);
-}
-
-function copGone2() {
-	document.getElementById("copId2").style = "";
-	document.getElementById("copId2").innerHTML = "";
-	document.getElementById("copId2").classList = "";
-	document.getElementById("demo00").classList = "ngmaTextConversion";
-	document.getElementById("demo00").style = "visibility:visible;";	
-}
 
 /******************************************************************************/
 /* CONSTANTS */
@@ -250,7 +238,7 @@ const mCr = "'Let us strive to be more liberal as we grow older for this is"+
 " man with a green-eyed selfishness, because he does not accept your"+
 " religion or political idea. Remember his rights of franchise is his,"+
 " not yours. Never surrender your rights to utter an honest thought on"+
-" the line of justice and reason.' <br>- Martin C. Randleman, Co. B"+
+" the line of justice and reason.' - Martin C. Randleman, Co. B"+
 " 10th Iowa Inf. Civil War Union Captain";
 
 /******************************************************************************/
@@ -262,8 +250,8 @@ const eArr = (' ? ! . , ; "' + engWordConst).split(' ');
 const nArr = fixPhrase(generateFinalArray().split('')).split(' ');
 
 function getNgmaString() {
-	var ENTER_PHRASE_HERE = " " + prompt("Enter Your Ngma", String.fromCharCode(951,0x0045,929)) + " ";
-	if (ENTER_PHRASE_HERE == " null ") return 123;
+	var ENTER_PHRASE_HERE = " " + document.getElementById('eTIn').value + " ";
+	if (ENTER_PHRASE_HERE == "  ") return 123;
 	var phraseArr2 = ENTER_PHRASE_HERE.split('');
 	for (let i = 0; i < phraseArr2.length; i++) {
 		if (phraseArr2[i] == "?") {
@@ -374,7 +362,10 @@ function startRevScript() {
 			rPArr[i+2] = rPArr[i+2].toUpperCase();
 		}
 	}
-	document.getElementById("demo00").innerHTML = rPArr.join('');
+	rPLen = rPArr.join('').length;
+	for(let i = 0; rPArr[i] == ' ';) rPArr.splice(i,1);
+	for(let i = rPLen-1; rPArr[i] == ' ' && rPArr[i-1] == ' '; i--) rPArr.splice(i,1);
+	document.getElementById("nTIn").value = rPArr.join('');
 }
 
 /******************************************************************************/
@@ -1380,7 +1371,7 @@ const ER = String.fromCharCode(0x004F,0x0056,0x0045,0x0052,0x0052,0x0049,0x0044,
 function createFinalArray(userStrArg) {
 	var finalArray      = [];
 	if ((userStrArg.toLowerCase() == ' does it work ') || 
-		(userStrArg.toLowerCase() == ' does it work? ')) {
+			(userStrArg.toLowerCase() == ' does it work? ')) {
 		return doesItWork;
 	} else if (userStrArg.toLowerCase() == ' i am ') {
 		return iAm;
@@ -1412,3 +1403,4 @@ const nul = N+G+M+A; /* " c&idekeycard " */
 const into = AP+PR+OV+ED+IN; /* "-:-PARAMETERS PASSED-:-SECURITY MEASURES DEACTIVATED-:-" */
 const intro = GR+EE+TI+NG; /* "Welcome Home, Mr. Randleman." */
 const gotin = OV+ER; /* "-:- SECURITY OVERRIDE -:-"" */
+
