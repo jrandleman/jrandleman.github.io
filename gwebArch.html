@@ -42,7 +42,7 @@
 	text-decoration:none;
 }
 .returnButton:hover { color:black;background-color:#F9ED4B;border: 2px solid #F9ED4B; }
-.iconButton {
+.iconButton, .niconButton {
 	border-radius:20px;
 	color:#F9ED4B;
 	font-size:35px;
@@ -53,16 +53,6 @@
 	padding:8px;
 }
 .iconButton:hover { background-color:#F9ED4B;color:black;font-weight:bold; }
-.niconButton {
-	border-radius:20px;
-	color:#F9ED4B;
-	font-size:35px;
-	font-family:arial;
-	text-decoration:none;
-	background-color:black;
-	border: 2px solid #F9ED4B;
-	padding:8px;
-}
 .niconButton:hover {
 	background-color:#F9ED4B;
 	text-decoration:underline;
@@ -78,6 +68,8 @@
 .ccon:hover { color:#CCFFFF;cursor:pointer; }
 .fcon { font-size:95px;color:#F5F; }
 .fcon:hover { color:#FF99FF;cursor:pointer; }
+.icon { font-size:95px;color:orange; }
+.icon:hover { color:#FFCC99;cursor:pointer; }
 .hstyle { color:orangered; }
 .hstyle:hover {
 	font-style:italic;
@@ -124,6 +116,13 @@
 	color:black;
 	font-weight:bold;
 }
+.istyle { color:orange; }
+.istyle:hover { 
+	font-style:italic;
+	background-color:#FFCC99;
+	color:black;
+	font-weight:bold;
+}
 img { cursor:zoom-in; }
 .zoomin { transform:scale(1.15);cursor:zoom-out; }
 </style>
@@ -139,7 +138,8 @@ img { cursor:zoom-in; }
 <br><br><center><span class="hcon fab fa-html5" onclick="onh()"></span><span class="blackout">------</span> 
 <span class="jcon fab fa-node-js" onclick="onj()"></span><span class="blackout">------</span>
 <span class="ccon fab fa-css3-alt" onclick="onc()"></span><span class="blackout">------</span>
-<span class="fcon far fa-file-image" onclick="onf()"></span></center><br>
+<span class="fcon fas fa-globe-americas" onclick="onf()"></span><span class="blackout">------</span>
+<span class="icon far fa-file-image" onclick="oni()"></span></center><br>
 <br><center><div id="codeinfo" style="font-family:Prosto One;color:white;font-size:85px;"><\></div></center>
 <center><br><br><a class="returnButton material-icons" style="font-size:45px" href="index.html">&#xe88a;</a><br><br>
 <p><center><span><a class="niconButton" href="gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
@@ -228,6 +228,28 @@ function onf() {
 		"'https://jrandleman.github.io/sud.ico' target='_blank'>S</a><br><i>Math/Ngma Info:</i> <a class='fstyle3' href="+
 		"'fav3.ico' target='_blank'>Green</a><br><i>Curiosities:</i> <a class='fstyle4' href="+
 		"'fav4.ico' target='_blank'>Purple</a>";
+}
+
+
+function oni() {
+	document.getElementById("codeinfo").style = "font-family:Prosto One;color:orange;font-size:35px;";
+	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- Pictures (16) -:-</div><i>Reference:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/pwebArch2.png' target='_blank'>Site Architecture</a><br><i>NGMA Information:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/pngmaInfo.jpeg' target='_blank'>Initial Key</a><br><i>Spatial Dimensions:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/tesseract1.gif' target='_blank'>Tesseract</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pdim.jpg' target='_blank'>Math</a><br><i>Perspective:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper1.jpg' target='_blank'>Dst1</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper2.jpg' target='_blank'>D2</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper3.jpg' target='_blank'>D3</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper4.jpg' target='_blank'>Spun1</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper5.jpg' target='_blank'>S2</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pper6.jpg' target='_blank'>DS</a><br><i>Star Calculation:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/pstar1.jpg' target='_blank'>Hand Drawn</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/pstar20.jpg' target='_blank'>Equation</a><br><i>Sudoku:</i> <a class='istyle' href="+
+		"'https://jrandleman.github.io/sudpic1.jpg' target='_blank'>Preset 1</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/sudpic20.jpg' target='_blank'>Preset 2</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/sudpic30.jpg' target='_blank'>Mix Math</a>, <a class='istyle' href="+
+		"'https://jrandleman.github.io/sudpic4.jpg' target='_blank'>Spacing</a>";
 }
 
 /******************************************************************************/
