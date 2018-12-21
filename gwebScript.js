@@ -475,7 +475,7 @@ function checkHoliday() {
             "<span id='spg'>S </span><span id='spy'>D</span><span id='spg'>A</span><span id='spy'>Y</span><span id='spg'>! </span>"+
             "<span id='spl'>&#x2663;</span>";
         holiCounter++;
-    } else if(holi == "12/20") { /* May The Fourth Be With You */
+    } else if(holi == "05/04") { /* May The Fourth Be With You */
         document.getElementById("holiyay").innerHTML = "<span id='m4i'>&#x2736;</span><span id='m4b'>M</span><span id='m4y'>A</span>"+
             "<span id='m4b'>Y </span><span id='m4y'>T</span><span id='m4b'>H</span><span id='m4y'>E </span>"+
             "<span id='m4b'>&#x275D;</span><span id='m4y'>F</span><span id='m4b'>O</span><span id='m4y'>U</span>"+
