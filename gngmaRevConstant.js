@@ -156,7 +156,7 @@ var yNames = " yusuf yosef yousef yahir yahya yehuda yadiel yisroel yaretzi yare
 
 var zWords = " zone zip zealand zoom zero zoo zdnet zimbabwe zones zoophilia zope zambia zoning zen zshops zinc zoloft";
 
-var zNames = " zachary zayden zion zane zander zayne zaiden zachariah zeke zechariah zaire zaid zyaire zavier zackary zahir zoey zoe zara zuri zariah zelda zahra zaylee zariyah zaria zaniyah zainab zendaya";
+var zNames = " zachary zayden zion zane zander zayne zaiden zachariah zeke zechariah zaire zaid zyaire zavier zackary zahir zoey zoe zara zuri zariah zelda zahra zaylee zariyah zaria zaniyah zainab zendaya ";
 
 
 const engWords = aWords+bWords+cWords+dWords+eWords+fWords+gWords+hWords+iWords+jWords+kWords+lWords+mWords+nWords+oWords+pWords+qWords+rWords+sWords+tWords+uWords+vWords+wWords+xWords+yWords+zWords;
