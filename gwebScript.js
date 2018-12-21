@@ -48,6 +48,7 @@ function aboutWP() {
                             " eyes peeled and your mind sharp: this website contains more"+
                             " information than that which is immediately obvious...");
                         document.getElementById("noice").innerHTML = "Welcome, "+name+"!";
+                        document.getElementById("clm2").style.top = '195px';
                     }
                 }
             }
