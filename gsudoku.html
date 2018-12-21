@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sudoku Puzzle Page</title>
+<link rel="shortcut icon" type="image/x-icon" href="sud.ico"/>
+<link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
+<body style="background-color:cyan;cursor:default;" onload="structure();">
+<center><!--Proto&Resume--><h1><span style="font-size:32px;margin-top:-10px;margin-right:5px;">
+<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<span><u><big><big><big id="title"></big></big></big></u></span>
+<span style="font-size:32px;margin-top:-10px;margin-left:5px;">
+<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId">&#xe7fd;</a></span></h1>
+<center style="margin-bottom:30px;"><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html" id='sMN'></a></center>
+<style>
+html { scroll-behavior:smooth; }
+.proResBtn {
+	border-radius: 50%;
+	border: 5px solid black;
+	color:black;
+	padding:5px;
+	background-color:cyan;
+	text-decoration:none;
+	font-size:45.8333333px; 
+}
+.proResBtn:hover { color:cyan;background-color:black;cursor:pointer; }
+.returnButton {
+	border-radius: 50%;
+	border: 2px solid black;
+	color:black;
+	padding:5px;
+	text-decoration:none;
+	background-color:cyan;
+}
+.returnButton:hover { color:cyan;background-color:black;border: 2px solid black; }
+.iconButton {
+	border-radius:20px;
+	color:black;
+	font-size:35px;
+	font-family:arial;
+	text-decoration:none;
+	background-color:cyan;
+	border: 2px solid black;
+	padding:8px;
+}
+.iconButton:hover { background-color:black;color:cyan;font-weight:bold; }
+.niconButton {
+	border-radius:20px;
+	color:black;
+	font-size:35px;
+	font-family:arial;
+	text-decoration:none;
+	background-color:cyan;
+	border: 2px solid black;
+	padding:8px;
+}
+.niconButton:hover { background-color:black;text-decoration:underline;color:cyan;font-weight:bold; }
+.blackout { color:cyan; }
+.numbersButton {
+	border-radius: 20px;
+	border:2px solid black;
+	color: black;
+	font-size: 15px;
+	font-weight:bold;
+	background-color:cyan;
+	padding:5px;
+	font-family:Prosto One;
+}
+.numbersButton:hover { font-style:italic; }
+#title { font-family:orbitron;font-weight:bold; }
+#timeId { margin-top:10px;font-size:45px;margin-left:-17px;font-family:Gugi; }
+#cy { color:cyan; }
+#numberList { margin-top:-13px;margin-bottom:-12px; }
+#iNum0 { font-size:21px;margin-bottom:-10px;margin-top:-2px;font-style:italic;font-weight:bold;text-decoration:underline;font-family:Prosto One; }
+#iNum2,#iNum3,#iNum4,#iNum5,
+#iNum6,#iNum7,#iNum8,#iNum9 {
+	border-radius:50%;
+	border:3px solid black;
+	font-size:18px;
+	background-color:paleturquoise;
+	font-weight:bold;
+	padding-left:6px;
+	padding-right:6px;
+	font-family:Prosto One;
+}
+#iNum1 {
+	border-radius:50%;
+	border:3px solid black;
+	font-size:18px;
+	background-color:paleturquoise;
+	font-weight:bold;
+	padding-left:9px;
+	padding-right:9px;
+	font-family:Prosto One;
+}
+#genPuz { background-color:paleturquoise;font-size:20px;border-radius:50px;border:3px solid black;font-family:Prosto One; }
+#genPuz:hover { font-style:italic;cursor:pointer; }
+#noice { font-size:150px;font-family:arial black;color:forestgreen;text-decoration:underline dashed; }
+.y { visibility:hidden; }
+.x {
+	cursor:pointer;
+	width:15px;
+	height:35px;
+	visibility:visible;
+	text-align:center;
+	font-size:30px;
+	padding:3px;
+	background-color:cyan;
+	border:2px solid black;
+	font-family:Homenaje;
+}
+.x:hover { background-color:#BBFFFF;cursor:pointer; }
+.xP {
+	cursor:pointer;
+	width:15px;
+	height:35px;
+	visibility:visible;
+	text-align:center;
+	font-size:30px;
+	padding:3px;
+	background-color:yellow;
+	border:2px solid black;
+	font-family:Homenaje;
+}
+.xLP, .xRP {
+	cursor:pointer;
+	width:15px;
+	height:35px;
+	visibility:visible;
+	text-align:center;
+	font-size:30px;
+	padding:3px;
+	background-color:yellow;
+	border:2px solid black;
+	border-radius:30px;
+	font-family:Homenaje;
+}
+#split1, #split2 { margin-top:-10px;margin-bottom:-10px;visibility:hidden;color:red; }
+#lastTag { color:cyan;visibility:hidden; }
+.footerShift1 { position:absolute;top:550px;left:575px; }
+</style>
+<style id="sudokuStyle"></style>
+
+<span id='printBtn1'></span>
+<span id='easy'><button onclick="makePuzzle(1,1,2);clearTime();" id="genPuz" style="background-color:lime;"><b id="ez"></b></button></span>
+<span id='medium'><span id="cy">--</span><button onclick="makePuzzle(2,2,2);clearTime();" id="genPuz" style="background-color:dodgerblue;"><b id="md"></b></button></span>
+<span id='hard'><span id="cy">--</span><button onclick="makePuzzle(2,3,2);clearTime();" id="genPuz" style="background-color:red;"><b id="hr"></b></button></span>
+<span id='expert'><span id="cy">--</span><button onclick="makePuzzle(2,4,1);clearTime();" id="genPuz" style="background-color:#F5F;"><b id="xp"></b></button></span>
+<span id='printBtn2'></span>
+<br><b><div id="timeId" style="visibility:hidden;"></div></b><br><div id="numberList"></div><br>
+<b style="font-size:45px;"><span id='noice'></span><div id="puzBorder"><div id="SudokuBoard"></div></div></b>
+
+<br><center id="sudfooter" class="footerShift1"><a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/hq.html">home</a><br><br>
+<p><center><span><a class="niconButton" href="https://jrandleman.github.io/gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
+<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="https://jrandleman.github.io/gperspectiveLength.html">&#x27AB;</a></span>
+<span class="blackout">------</span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
+<span class="blackout">------</span>
+<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="https://jrandleman.github.io/gstarCalculation.html">&#x2729;</a></span>
+</center></p><br></center>
+
+<span id="A0"></span><br><span id="A1"></span><br><span id="A2"></span><br><span id="A3"></span><br><span id="A4"></span><br>
+<span id="A5"></span><br><span id="A6"></span><br><span id="A7"></span><br><span id="A8"></span><span id='lastTag'></span></center>
+
+<script id="timerScript"></script>
+<script> 
+/* Author: Jordan Randleman */
+/******************************************************************************/
+/* TITLE/BUTTON GENERATION FUNCTIONS */
+/******************************************************************************/
+
+var titleTxt = "ULOZUP EKZDUS", titleArr = titleTxt.split('');
+var arrIdx = [5,11,3,9,1,7,6,12,4,10,2,8,0], ch0 = 0;
+function generateTitle() {
+	if (ch0 < titleTxt.length - 1) {
+		var ch1 = ch0 + 1;
+		swapTitleLetters(ch1);
+	}
+}
+function swapTitleLetters(ch1) {
+	if(ch1 < titleTxt.length) {
+		if(arrIdx[ch0] > arrIdx[ch1]) {
+			var tempL = titleArr[ch0]; titleArr[ch0] = titleArr[ch1]; titleArr[ch1] = tempL;
+			var tempN = arrIdx[ch0]; arrIdx[ch0] = arrIdx[ch1]; arrIdx[ch1] = tempN;
+		}
+		document.getElementById('title').innerHTML = titleArr.join('');
+		ch1++;
+		setTimeout(swapTitleLetters(ch1), 90);
+	} else {
+		ch0++;
+		setTimeout(generateTitle, 90);
+	}
+}
+
+
+var btnTxt = "HNBSEES ERMUW T OMH", btnArr = btnTxt.split('');
+var bArrIdx = [9,12,15,18,6,10,0,4,16,17,5,13,3,7,8,11,2,14,1], ch2 = 0;
+function generateBtn() {
+	if (ch2 < 18) {
+		var ch3 = ch2 + 1;
+		swapBtnLetters(ch3);
+	}
+}
+function swapBtnLetters(ch3) {
+	if(ch3 < 19) {
+		if(bArrIdx[ch2] > bArrIdx[ch3]) {
+			var tempL = btnArr[ch2]; btnArr[ch2] = btnArr[ch3]; btnArr[ch3] = tempL;
+			var tempN = bArrIdx[ch2]; bArrIdx[ch2] = bArrIdx[ch3]; bArrIdx[ch3] = tempN;
+		}
+		document.getElementById('sMN').innerHTML = btnArr.join('');
+		ch3++;
+		setTimeout(swapBtnLetters(ch3), 60);
+	} else {
+		ch2++;
+		setTimeout(generateBtn, 60);
+	}
+}
+
+
+var ezTxt = "YSAE", hrTxt = "DRAH", ezArr = ezTxt.split(''), hrArr = hrTxt.split('');
+var mdTxt = "DEM", xpTxt = "PXE", mdArr = mdTxt.split(''), xpArr = xpTxt.split('');
+var diffIdx = [3,2,1,0], ch4 = 0;
+document.getElementById("ez").innerHTML = ezArr.join(''); document.getElementById("hr").innerHTML = hrArr.join('');
+document.getElementById("md").innerHTML = mdArr.join(''); document.getElementById("xp").innerHTML = xpArr.join('');
+function generateDiffBtn() {
+	if (ch4 < 3) {
+		var ch5 = ch4 + 1;
+		swapDiffBtnLetters(ch5);
+	}
+}
+function swapDiffBtnLetters(ch5) {
+	if(ch5 < 4) {
+		if(diffIdx[ch4] > diffIdx[ch5]) {
+			var tempL = ezArr[ch4]; ezArr[ch4] = ezArr[ch5]; ezArr[ch5] = tempL;
+			var tempL2 = hrArr[ch4]; hrArr[ch4] = hrArr[ch5]; hrArr[ch5] = tempL2;
+			var tempL3 = mdArr[ch4]; mdArr[ch4] = mdArr[ch5]; mdArr[ch5] = tempL3;
+			var tempL4 = xpArr[ch4]; xpArr[ch4] = xpArr[ch5]; xpArr[ch5] = tempL4;
+			var tempN = diffIdx[ch4]; diffIdx[ch4] = diffIdx[ch5]; diffIdx[ch5] = tempN;
+		}
+		document.getElementById("ez").innerHTML = ezArr.join(''); document.getElementById("hr").innerHTML = hrArr.join('');
+		document.getElementById("md").innerHTML = mdArr.join(''); document.getElementById("xp").innerHTML = xpArr.join('');
+		ch5++;
+		setTimeout(swapDiffBtnLetters(ch5), 123);
+	} else {
+		ch4++;
+		setTimeout(generateDiffBtn, 123);
+	}
+}
+
+/******************************************************************************/
+/* TIMER FUNCTION */
+/******************************************************************************/
+
+function setTimer() {
+	document.getElementById('timeId').innerHTML = '<label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>';
+	document.getElementById('timerScript').innerHTML = 'var tVar = setInterval(setTime, 1000); var hoursLabel = document.getElementById("hours"), '+
+		'minutesLabel = document.getElementById("minutes"), secondsLabel = document.getElementById("seconds"), totalSeconds = 0;function'+
+		' setTime() {++totalSeconds;secondsLabel.innerHTML = pad(totalSeconds % 60);minutesLabel.innerHTML = pad(parseInt((totalSeconds /'+
+		' 60)% 60));hoursLabel.innerHTML = pad(parseInt((totalSeconds / 3600)%24));}function pad(val) {var valString = val + "";if (valString'+
+		'.length < 2) {return "0" + valString;} else {return valString;}}function clearTime(){document.getElementById("hours").innerHTML = '+
+		'"00";document.getElementById("minutes").innerHTML = "00";document.getElementById("seconds").innerHTML = "00";clearInterval(tVar);'+
+		'totalSeconds = 0;tVar = setInterval(setTime, 1000);}';
+}
+
+/******************************************************************************/
+/* HEADER HOVER FUNCTION */
+/******************************************************************************/
+
+function cogAnim(flag) {
+    if(flag == 1) {
+        document.getElementById("lnId").classList.add("fa-spin");
+    } else {
+        document.getElementById("lnId").classList.remove("fa-spin");
+    }
+}
+
+/******************************************************************************/
+/* FOOTER FUNCTION */
+/******************************************************************************/
+
+function on(x) {
+	if(x == 1) {
+		document.getElementById("con2").innerHTML = "&#x27AA;";	
+	} else if(x == 1.5) {
+		document.getElementById("con2").innerHTML = "&#x27AB;";
+	} else if(x == 2) {
+		document.getElementById("con3").innerHTML = "&#x2751;";	
+	} else if(x == 2.5) {
+		document.getElementById("con3").innerHTML = "&#x2752;";
+	} else if(x == 3) {
+		document.getElementById("con4").innerHTML = "&#x2738;";	
+	} else if(x == 3.5) {
+		document.getElementById("con4").innerHTML = "&#x2729;";
+	}
+    
+}
+
+/******************************************************************************/
+/* INITIALIZATION FUNCTION */
+/******************************************************************************/
+
+function structure() {
+	buildBoard();
+	setTimer();
+	generateTitle();
+	generateBtn();
+	generateDiffBtn();
+}
+
+var A1, A2, A3, A4, A5, A6, A7, A8, A9, AS;
+
+function buildBoard() {
+	var c = -1;
+	for(let j = 0; j < 9; j++) {
+		for(let i = 0; i < 9; i++) {
+			c++;
+			var tail = '', wall = ' + ';
+			if(((((c==2||c==5)||(c==11||c==14))||((c==20||c==23)||(c==29||c==32)))||(((c==38||c==41)||(c==47||c==50))||((c==56||c==59 )||(c==65||c==68))))||(c==74||c==77)) {
+				wall = ' || ';
+			} else if((c==8||c==35)||(c==62||c==71)) { 
+				wall = '<br>';
+			} else if (((c==17||c==26)||(c==44||c==53))||c==80) {
+				wall = '';
+				if (c==17||c==44) {
+					tail = '<br><span style="color:cyan;font-size:1px;">|</span>';
+				} else if (c==26||c==53) {
+					tail = '<br><div id="split'+String((Number(String(c).split("")[0])+1)/3)+'">= = = = = || = = = = = || = = = = =</div>';
+				}
+			}
+			document.getElementById('SudokuBoard').innerHTML += '<input onclick="avNum(\''+String(j)+String(i)+'\');" onmouseover="hiliN(\''+String(j)+String(i)+'\');"'+
+				' onkeyup="checkNum(\''+String(j)+String(i)+'\',event);" class="y" id="'+String(j)+String(i)+'" value="">'+
+				'<span class="y" id="y'+String(c)+'">'+String(wall)+'</span>'+String(tail);
+		}
+	}
+}
+
+
+function makePuzzle(classTrigger,flag,xpFlag) {
+	diffBorder(flag);
+	document.getElementById('sudfooter').classList.remove('footerShift1');
+	if(classTrigger == 1) {
+		document.getElementById('sudokuStyle').innerHTML = '.xLime { cursor:pointer;width:15px;height:35px;visibility:visible;'+
+			'text-align:center;font-size:30px;padding:3px;background-color:lime;border:2px solid black;font-family:Homenaje; }'+
+			'.xRed { cursor:pointer;width:15px;height:35px;visibility:visible;text-align:center;font-size:30px;'+
+			'padding:3px;background-color:red;border:2px solid black;font-family:Homenaje; }';
+	} else {
+		document.getElementById('sudokuStyle').innerHTML = '.xLime, .xRed { cursor:pointer;width:15px;height:35px;visibility:visible;'+
+			'text-align:center;font-size:30px;padding:3px;background-color:cyan;border:2px solid black;font-family:Homenaje; }';
+	}
+	if(xpFlag == 1) {
+		document.getElementById('lastTag').innerHTML = 'yessir';
+	} else {
+		document.getElementById('lastTag').innerHTML = 'nosir';
+	}
+	document.getElementById('timeId').style = "visibility:visible";
+	document.getElementById('genPuz').scrollIntoView();
+	document.getElementById('printBtn1').innerHTML = '<button onclick="printIt();" id="genPuz"><b>'+
+		'<span class="material-icons">print</span> PUZZLE</b></button><span id="cy">---</span>';
+	document.getElementById('printBtn2').innerHTML = '<span id="cy">---</span><button onclick="printAns();"'+
+		' id="genPuz"><b><span class="material-icons">print</span> ANSWER</b></button><span id="cy">----</span>';
+	document.getElementById('noice').innerHTML = ''; /* CLEAR WIN MESSAGE */
+	prepClones();
+	clearCells();
+	A1 = [1,2,3,4,5,6,7,8,9], A2 = [4,5,6,7,8,9,1,2,3], A3 = [7,8,9,1,2,3,4,5,6];
+	A4 = [2,3,1,5,6,4,8,9,7], A5 = [5,6,4,8,9,7,2,3,1], A6 = [8,9,7,2,3,1,5,6,4];
+	A7 = [3,1,2,6,4,5,9,7,8], A8 = [6,4,5,9,7,8,3,1,2], A9 = [9,7,8,3,1,2,6,4,5];
+	AS = mixCols([A1,A2,A3,A4,A5,A6,A7,A8,A9]);
+	document.getElementById('puzBorder').style = "border:5px double red;width:610px;height:545px;";
+	/* GENERATE RANDOM ROW IDXS TO SWITCH WITH ONE ANOTHER IN AS */
+	var rowArray = swapRowColBox().replace(/,/g, '').split('');
+	var rowA1 = rowArray.splice(0,3), rowA2 = rowArray.splice(rowArray.indexOf('-')+1,3);
+	var rowB1 = rowArray.splice(rowArray.indexOf(':')+1,3), rowB2 = rowArray.splice(rowArray.indexOf(';')+1,3);
+	var rowC1 = rowArray.splice(rowArray.indexOf('!')+1,3), rowC2 = rowArray.splice(rowArray.indexOf('?')+1,3);
+	for (let j = 0; j < 3; j++) {
+		rowA1[j] = Number(rowA1[j]), rowA2[j] = Number(rowA2[j]);
+		rowB1[j] = Number(rowB1[j]), rowB2[j] = Number(rowB2[j]);
+		rowC1[j] = Number(rowC1[j]), rowC2[j] = Number(rowC2[j]);
+	}
+	/* GENERATE RANDOM COLUMN IDXS TO SWITCH WITH ONE ANOTHER IN AS */
+	var colArray = swapRowColBox().replace(/,/g, '').split('');
+	var colA1 = colArray.splice(0,3), colA2 = colArray.splice(colArray.indexOf('-')+1,3);
+	var colB1 = colArray.splice(colArray.indexOf(':')+1,3), colB2 = colArray.splice(colArray.indexOf(';')+1,3);
+	var colC1 = colArray.splice(colArray.indexOf('!')+1,3), colC2 = colArray.splice(colArray.indexOf('?')+1,3);
+	for (let j = 0; j < 3; j++) {
+		colA1[j] = Number(colA1[j]), colA2[j] = Number(colA2[j]);
+		colB1[j] = Number(colB1[j]), colB2[j] = Number(colB2[j]);
+		colC1[j] = Number(colC1[j]), colC2[j] = Number(colC2[j]);
+	}
+	/* SWAP ROWS */
+	for(let k = 0; k < 3; k++) {
+		var tempA = AS[rowA1[k]];
+		AS[rowA1[k]] = AS[rowA2[k]];
+		AS[rowA2[k]] = tempA;
+
+		var tempB = AS[rowB1[k]];
+		AS[rowB1[k]] = AS[rowB2[k]];
+		AS[rowB2[k]] = tempB;
+
+		var tempC = AS[rowC1[k]];
+		AS[rowC1[k]] = AS[rowC2[k]];
+		AS[rowC2[k]] = tempC;
+	}
+	/* SWAP COLUMNS */
+	for(let k = 0; k < 3; k++) {
+		for(let l = 0; l < 9; l++) {
+			var tempA = AS[l][colA1[k]];
+			AS[l][colA1[k]] = AS[l][colA2[k]];
+			AS[l][colA2[k]] = tempA;
+		
+			var tempB = AS[l][colB1[k]];
+			AS[l][colB1[k]] = AS[l][colB2[k]];
+			AS[l][colB2[k]] = tempB;
+		
+			var tempC = AS[l][colC1[k]];
+			AS[l][colC1[k]] = AS[l][colC2[k]];
+			AS[l][colC2[k]] = tempC;
+		}
+	}
+	/* CLONE THE PUZZLE */
+	for (let m = 0; m < 9; m++) {
+		for (let n = 0; n < AS[m].length; n++) {
+			document.getElementById('A'+String(m)).innerHTML += AS[m][n];
+		}
+	}
+	prepPuzzle(flag);
+	printPuzzle();
+}
+
+/******************************************************************************/
+/* HELPER FUNCTIONS */
+/******************************************************************************/
+
+function diffBorder(flag) {
+	if (flag == 1) {
+		document.getElementById('ez').style.textDecoration = 'underline';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	} else if (flag == 2) {
+		document.getElementById('md').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	} else if (flag == 3) {
+		document.getElementById('hr').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('xp').style.textDecoration = '';
+	}  else {
+		document.getElementById('xp').style.textDecoration = 'underline';
+		document.getElementById('ez').style.textDecoration = '';
+		document.getElementById('md').style.textDecoration = '';
+		document.getElementById('hr').style.textDecoration = '';
+	}
+}
+
+
+function prepClones() {
+	for(let i = 0; i < 9; i++) {
+		document.getElementById('A'+String(i)).innerHTML = '';
+		document.getElementById('A'+String(i)).style = 'visibility:hidden;';
+	}
+}
+
+
+function clearCells() {
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).style = 'background-color:;';
+			document.getElementById(String(i)+String(j)).classList = '';
+			document.getElementById(String(i)+String(j)).classList = 'x';
+		}
+	}
+}
+
+
+function prepNumberList() {
+ document.getElementById('numberList').innerHTML = "<span id='iNum0'>"+
+ 	"<span style='font-size:24px;'>A</span>vailable <span style='font-size:24px;'>N</span>umbers:</span>"+
+ 	"<span id='cy'>--</span><span id='iNum1'>1</span><span id='cy'>--</span><span id='iNum2'>2</span>"+
+ 	"<span id='cy'>--</span><span id='iNum3'>3</span><span id='cy'>--</span><span id='iNum4'>4</span>"+
+ 	"<span id='cy'>--</span><span id='iNum5'>5</span><span id='cy'>--</span><span id='iNum6'>6</span>"+
+ 	"<span id='cy'>--</span><span id='iNum7'>7</span><span id='cy'>--</span><span id='iNum8'>8</span>"+
+ 	"<span id='cy'>--</span><span id='iNum9'>9</span>";
+}
+
+
+function prepPuzzle(flag) {
+	if(flag == 1) {
+		var spNum1 = 3;
+		var spNum2 = 4;
+		var spNum3 = 5;
+	} else if(flag == 3) {
+		var spNum1 = 5;
+		var spNum2 = 6;
+		var spNum3 = 6;
+	} else if(flag == 4) {
+		var spNum1 = 5;
+		var spNum2 = 6;
+		var spNum3 = 7;
+	} else {
+		var spNum1 = 4;
+		var spNum2 = 5;
+		var spNum3 = 6;
+	}
+
+	var A1Space = [], A2Space = [], A3Space = [], A4Space = [], A5Space = [];
+	var A6Space = [], A7Space = [], A8Space = [], A9Space = [];
+	var ASpace = [A1Space,A2Space,A3Space,A4Space,A5Space,A6Space,A7Space,A8Space,A9Space];
+	for (let j = 0; j < 9; j++) {
+		if ((j == 4 || j == 7) || j== 0) {
+			while (ASpace[j].length < spNum1) {
+				var ranNumber = Math.floor(Math.random()*(9));
+				if(ASpace[j].indexOf(ranNumber) == -1) ASpace[j].push(ranNumber);
+			}
+		} else if ((j == 1 || j == 3) || (j == 8)) {
+			while (ASpace[j].length < spNum2) {
+				var ranNumber = Math.floor(Math.random()*(9));
+				if(ASpace[j].indexOf(ranNumber) == -1) ASpace[j].push(ranNumber);
+			}
+		} else {
+			while (ASpace[j].length < spNum3) {
+				var ranNumber = Math.floor(Math.random()*(9));
+				if(ASpace[j].indexOf(ranNumber) == -1) ASpace[j].push(ranNumber);
+			}
+		}
+	}
+	for (let i = 0; i < 9; i++) {
+		for (let k = 0; k < ASpace[i].length; k++) {
+			AS[i].splice(ASpace[i][k],1,'');
+		}
+	}
+	return AS;
+}
+
+/******************************************************************************/
+/* RANDOMIZER FUNCTIONS */
+/******************************************************************************/
+
+function mixCols(AS) {
+	var rn = Math.floor(Math.random()*(12))+1;
+	for (let p = 0; p < 9; p++) {
+		if((rn == 1 || rn == 2) || (rn == 3 || rn == 4)) {
+			var temp = AS[p][0];
+			AS[p][0] = AS[p][3];
+			AS[p][3] = AS[p][6];
+			AS[p][6] = temp;
+			if(rn == 1) {
+				var temp1 = AS[p][8];
+				AS[p][8] = AS[p][5];
+				AS[p][5] = AS[p][2];
+				AS[p][2] = temp1;
+			} else {
+				var temp1 = AS[p][7];
+				AS[p][7] = AS[p][4];
+				AS[p][4] = AS[p][1];
+				AS[p][1] = temp1;
+				if(rn == 3 || rn == 4) {
+					if(rn == 3) {
+						var temp2 = AS[p][8];
+						AS[p][8] = AS[p][5];
+						AS[p][5] = AS[p][2];
+						AS[p][2] = temp2;
+					} else {
+						var temp2 = AS[p][2];
+						AS[p][2] = AS[p][5];
+						AS[p][5] = AS[p][8];
+						AS[p][8] = temp2;
+					}
+				}
+			}
+		} else if((rn == 5 || rn == 6) || (rn == 7 || rn == 8)) {
+			var temp = AS[p][6];
+			AS[p][6] = AS[p][3];
+			AS[p][3] = AS[p][0];
+			AS[p][0] = temp;
+			if(rn == 5) {
+				var temp1 = AS[p][2];
+				AS[p][2] = AS[p][5];
+				AS[p][5] = AS[p][8];
+				AS[p][8] = temp1;
+			} else {
+				var temp1 = AS[p][1];
+				AS[p][1] = AS[p][4];
+				AS[p][4] = AS[p][7];
+				AS[p][7] = temp1;
+				if(rn == 7 || rn == 8) {
+					if(rn == 7) {
+						var temp2 = AS[p][8];
+						AS[p][8] = AS[p][5];
+						AS[p][5] = AS[p][2];
+						AS[p][2] = temp2;
+					} else {
+						var temp2 = AS[p][2];
+						AS[p][2] = AS[p][5];
+						AS[p][5] = AS[p][8];
+						AS[p][8] = temp2;
+					}
+				}
+			}
+		} else if(rn == 9 || rn == 10) {
+			var temp = AS[p][7];
+			AS[p][7] = AS[p][4];
+			AS[p][4] = AS[p][1];
+			AS[p][1] = temp;
+			var temp1 = AS[p][2];
+			AS[p][2] = AS[p][5];
+			AS[p][5] = AS[p][8];
+			AS[p][8] = temp1;
+			if(rn == 10) {
+				var temp2 = AS[p][6];
+				AS[p][6] = AS[p][3];
+				AS[p][3] = AS[p][0];
+				AS[p][0] = temp2;
+			}
+		} else if(rn == 11 || rn == 12) {
+			var temp = AS[p][1];
+			AS[p][1] = AS[p][4];
+			AS[p][4] = AS[p][7];
+			AS[p][7] = temp;
+			var temp1 = AS[p][8];
+			AS[p][8] = AS[p][5];
+			AS[p][5] = AS[p][2];
+			AS[p][2] = temp1;
+			if(rn == 12) {
+				var temp2 = AS[p][0];
+				AS[p][0] = AS[p][3];
+				AS[p][3] = AS[p][6];
+				AS[p][6] = temp2;
+			}
+		}
+	}
+	return AS;
+}
+
+
+function swapRowColBox() {
+	var arrRandA1 = [], arrRandA2 = [];
+	var arrRandB1 = [], arrRandB2 = [];
+	var arrRandC1 = [], arrRandC2 = [];
+	while (arrRandA1.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3));
+		if(arrRandA1.indexOf(ranNum) == -1) arrRandA1.push(ranNum);
+	}
+	while (arrRandA2.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3));
+		if(arrRandA2.indexOf(ranNum) == -1) arrRandA2.push(ranNum);
+	}
+	for(let i = 0; i < 3; i++) {
+		if(arrRandA1[i] == arrRandA2[i]) {
+			if (i != 2) {
+				var temp = arrRandA1[i];
+				arrRandA1[i] = arrRandA1[i+1];
+				arrRandA1[i+1] = temp;
+			} else {
+				var temp = arrRandA1[i];
+				arrRandA1[i] = arrRandA1[i-1];
+				arrRandA1[i-1] = temp;
+			}
+		}
+	}
+	while (arrRandB1.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3)) + 3;
+		if(arrRandB1.indexOf(ranNum) == -1) arrRandB1.push(ranNum);
+	}
+	while (arrRandB2.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3)) + 3;
+		if(arrRandB2.indexOf(ranNum) == -1) arrRandB2.push(ranNum);
+	}
+	for(let i = 0; i < 3; i++) {
+		if(arrRandB1[i] == arrRandB2[i]) {
+			if (i != 2) {
+				var temp = arrRandB1[i];
+				arrRandB1[i] = arrRandB1[i+1];
+				arrRandB1[i+1] = temp;
+			} else {
+				var temp = arrRandB1[i];
+				arrRandB1[i] = arrRandB1[i-1];
+				arrRandB1[i-1] = temp;
+			}
+		}
+	}
+	while (arrRandC1.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3)) + 6;
+		if(arrRandC1.indexOf(ranNum) == -1) arrRandC1.push(ranNum);
+	}
+	while (arrRandC2.length < 3) {
+		var ranNum = Math.floor(Math.random()*(3)) + 6;
+		if(arrRandC2.indexOf(ranNum) == -1) arrRandC2.push(ranNum);
+	}
+	for(let i = 0; i < 3; i++) {
+		if(arrRandC1[i] == arrRandC2[i]) {
+			if (i != 2) {
+				var temp = arrRandC1[i];
+				arrRandC1[i] = arrRandC1[i+1];
+				arrRandC1[i+1] = temp;
+			} else {
+				var temp = arrRandC1[i];
+				arrRandC1[i] = arrRandC1[i-1];
+				arrRandC1[i-1] = temp;
+			}
+		}
+	}
+	return (arrRandA1+'-'+arrRandA2+':'+arrRandB1+';'+arrRandB2+'!'+arrRandC1+'?'+arrRandC2);
+}
+
+/******************************************************************************/
+/* PRINT FUNCTIONS */
+/******************************************************************************/
+
+function printPuzzle() {
+	/* PRINT ROWS */
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).classList = 'x';
+			document.getElementById(String(i)+String(j)).value = AS[i][j];
+		}
+	}
+	/* PRINT IN-BTWN BARS */
+	for(let k = 0; k < 81; k++) {
+		document.getElementById('y'+String(k)).style = 'visibility:visible;color:red;';
+	}
+	document.getElementById('split1').style = 'visibility:visible;';
+	document.getElementById('split2').style = 'visibility:visible;';
+	/* ADJUST CELL BORDERS */
+	for(let i = 0; i < 9; i++) {
+		for(let j = 0; j < 9; j++) {
+			var cell = document.getElementById(String(i)+String(j));
+			if (cell.value === '') cell.style.borderRadius = "30px";
+		}
+	}
+	prepNumberList();
+}
+
+
+function printIt() {
+	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('lnId').style = "visibility:hidden";
+	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('easy').style = "visibility:hidden";
+	document.getElementById('medium').style = "visibility:hidden";
+	document.getElementById('hard').style = "visibility:hidden";
+	document.getElementById('expert').style = "visibility:hidden";
+	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
+	document.getElementById('printBtn1').style = 'visibility:hidden;';
+	document.getElementById('printBtn2').style = 'visibility:hidden;';
+	document.getElementById('puzBorder').style = 'visibility:hidden;';
+	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
+		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Puzzle Made By Jordan Randleman</b>';
+	window.print();
+	document.getElementById('sMN').style = "visibility:visible;";
+	document.getElementById('lnId').style = "visibility:visible";
+	document.getElementById('nmId').style = "visibility:visible";
+	document.getElementById('sudfooter').style = "visibility:visible;";
+	document.getElementById('easy').style = "visibility:visible";
+	document.getElementById('medium').style = "visibility:visible";
+	document.getElementById('hard').style = "visibility:visible";
+	document.getElementById('expert').style = "visibility:visible";
+	document.getElementById('timeId').style = "visibility:visible;";
+	document.getElementById('numberList').style = 'visibility:visible;';
+	document.getElementById('printBtn1').style = 'visibility:visible;';
+	document.getElementById('printBtn2').style = 'visibility:visible;';
+	document.getElementById('puzBorder').style = 'visibility:visible;border:5px double red;width:610px;height:545px;';
+	document.getElementById('noice').innerHTML = '';
+}
+
+
+function printAns() {
+	var rUSure = confirm("Printing the answer key will reset your puzzle's progress.\n\n=> Continue Printing?");
+	if (!rUSure) return;
+	clearCells();
+	var A1Ans = document.getElementById('A0').innerHTML.split(''), A2Ans = document.getElementById('A1').innerHTML.split('');
+	var A3Ans = document.getElementById('A2').innerHTML.split(''), A4Ans = document.getElementById('A3').innerHTML.split('');
+	var A5Ans = document.getElementById('A4').innerHTML.split(''), A6Ans = document.getElementById('A5').innerHTML.split('');
+	var A7Ans = document.getElementById('A6').innerHTML.split(''), A8Ans = document.getElementById('A7').innerHTML.split('');
+	var A9Ans = document.getElementById('A8').innerHTML.split('');
+	var ASAns = [A1Ans,A2Ans,A3Ans,A4Ans,A5Ans,A6Ans,A7Ans,A8Ans,A9Ans];
+	
+	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('lnId').style = "visibility:hidden";
+	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('easy').style = "visibility:hidden";
+	document.getElementById('medium').style = "visibility:hidden";
+	document.getElementById('hard').style = "visibility:hidden";
+	document.getElementById('expert').style = "visibility:hidden";
+	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
+	document.getElementById('printBtn1').style = 'visibility:hidden;';
+	document.getElementById('printBtn2').style = 'visibility:hidden;';
+	document.getElementById('puzBorder').style = 'visibility:hidden;';
+	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
+		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Answer Made By Jordan Randleman</b>';
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).value = ASAns[i][j];
+		}
+	}
+	window.print();
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).value = AS[i][j];
+		}
+	}
+	document.getElementById('sMN').style = "visibility:visible;";
+	document.getElementById('lnId').style = "visibility:visible";
+	document.getElementById('nmId').style = "visibility:visible";
+	document.getElementById('sudfooter').style = "visibility:visible;";
+	document.getElementById('easy').style = "visibility:visible";
+	document.getElementById('medium').style = "visibility:visible";
+	document.getElementById('hard').style = "visibility:visible";
+	document.getElementById('expert').style = "visibility:visible";
+	document.getElementById('timeId').style = "visibility:visible;";
+	document.getElementById('numberList').style = 'visibility:visible;';
+	document.getElementById('printBtn1').style = 'visibility:visible;';
+	document.getElementById('printBtn2').style = 'visibility:visible;';
+	document.getElementById('puzBorder').style = 'visibility:visible;border:5px double red;width:610px;height:545px;';
+	document.getElementById('noice').innerHTML = '';
+	/* ADJUST CELL BORDERS */
+	for(let i = 0; i < 9; i++) {
+		for(let j = 0; j < 9; j++) {
+			var cell = document.getElementById(String(i)+String(j));
+			if (cell.value === '') cell.style.borderRadius = "30px";
+		}
+	}
+	prepNumberList();
+	clearTime();
+}
+
+/******************************************************************************/
+/* USER FUNCTIONS */
+/******************************************************************************/
+
+function hiliN(idx) {
+	if(document.getElementById('lastTag').innerHTML == 'yessir') {
+		return;
+	}
+	var hiNum = document.getElementById(idx).value;
+	document.getElementById(idx).addEventListener("mouseout", function(){ loliN(idx); });
+	if (hiNum != '') {
+		for (let i = 0; i < 9; i++) {
+			for (let j = 0; j < 9; j++) {
+				var cell = document.getElementById(String(i)+String(j));
+				var cellNum = cell.value;
+				if ((hiNum == cellNum)) {
+					if (cell.classList.contains('x')) {
+						cell.classList = '';
+						cell.classList = 'xP';
+					} else if (cell.classList.contains('xLime')) {
+						cell.classList = '';
+						cell.classList = 'xLP';
+					} else if (cell.classList.contains('xRed') ){
+						cell.classList = '';
+						cell.classList = 'xRP';
+					}
+				}
+			}
+		}
+	}
+}
+
+
+function loliN(idx) {
+	var hiNum = document.getElementById(idx).value;
+	if (hiNum != '') {
+		for (let i = 0; i < 9; i++) {
+			for (let j = 0; j < 9; j++) {
+				var cell = document.getElementById(String(i)+String(j));
+				if (cell.classList.contains('xP')) {
+					cell.classList = '';
+					cell.classList = 'x';
+				} else if (cell.classList.contains('xLP')) {
+					cell.classList = '';
+					cell.classList = 'xLime';
+				} else if (cell.classList.contains('xRP')) {
+					cell.classList = '';
+					cell.classList = 'xRed';
+				}
+			}
+		}
+	}
+}
+
+
+function checkWin(idx) {
+	var winCounter = 0;
+	var oCt = 0, tCt = 0, thCt = 0, fCt = 0, fiCt = 0;
+	var sCt = 0, seCt = 0, eCt = 0, nCt = 0;
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			var cell = document.getElementById(String(i)+String(j));
+			var celv = cell.value;
+			var celc = cell.classList;
+			if (celv == 1 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				oCt++;
+			} else if (celv == 2 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				tCt++;
+			} else if (celv == 3 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				thCt++;
+			} else if (celv == 4 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				fCt++;
+			} else if (celv == 5 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				fiCt++;
+			} else if (celv == 6 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				sCt++;
+			} else if (celv == 7 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				seCt++;
+			} else if (celv == 8 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				eCt++;
+			} else if (celv == 9 && (!celc.contains('xRed') && !celc.contains('xRP'))) {
+				nCt++;
+			} 
+		}
+	}
+	if (oCt == 9) { /* CHECK NUMBER MAXED OUT */
+		document.getElementById('iNum1').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(1,'lime');
+	} else {
+		document.getElementById('iNum1').style = 'visibility:visible;';
+		parseCells(1,'');
+	}
+	if (tCt == 9) {
+		document.getElementById('iNum2').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(2,'lime');
+	} else {
+		document.getElementById('iNum2').style = 'visibility:visible;';
+		parseCells(2,'');
+	}  
+	if (thCt == 9) {
+		document.getElementById('iNum3').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(3,'lime');
+	} else {
+		document.getElementById('iNum3').style = 'visibility:visible;';
+		parseCells(3,'');
+	}  
+	if (fCt == 9) {
+		document.getElementById('iNum4').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(4,'lime');
+	} else {
+		document.getElementById('iNum4').style = 'visibility:visible;';
+		parseCells(4,'');
+	}  
+	if (fiCt == 9) {
+		document.getElementById('iNum5').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(5,'lime');
+	} else {
+		document.getElementById('iNum5').style = 'visibility:visible;';
+		parseCells(5,'');
+	}  
+	if (sCt == 9) {
+		document.getElementById('iNum6').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(6,'lime');
+	} else {
+		document.getElementById('iNum6').style = 'visibility:visible;';
+		parseCells(6,'');
+	}  
+	if (seCt == 9) {
+		document.getElementById('iNum7').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(7,'lime');
+	} else {
+		document.getElementById('iNum7').style = 'visibility:visible;';
+		parseCells(7,'');
+	}  
+	if (eCt == 9) {
+		document.getElementById('iNum8').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(8,'lime');
+	} else {
+		document.getElementById('iNum8').style = 'visibility:visible;';
+		parseCells(8,'');
+	}  
+	if (nCt == 9) {
+		document.getElementById('iNum9').style = 'visibility:hidden;';
+		winCounter++;
+		parseCells(9,'lime');
+	} else {
+		document.getElementById('iNum9').style = 'visibility:visible;';
+		parseCells(9,'');
+	}
+	if (winCounter == 9) { /* CHECK IF WON */
+		document.getElementById('iNum0').style = 'visibility:hidden;';
+		document.getElementById('noice').innerHTML = '<i>WINNER!</i>';
+		clearInterval(tVar);
+	} else {
+		document.getElementById('iNum0').style = 'visibility:visible;';
+		document.getElementById('noice').innerHTML = '';
+	}
+}
+function parseCells(val,color) {
+	for (let l = 0; l < 9; l++) {
+		for (let m = 0; m < 9; m++) {
+			if(document.getElementById(String(l)+String(m)).value == val) {
+				document.getElementById(String(l)+String(m)).style.backgroundColor = color;
+			}
+		}
+	}
+}
+
+
+function avNum(idx) { /* CHANGE AVAIL# HOVER COLOR && CLICK TO ENTER # */
+	for (let i = 1; i < 10; i++) { 
+		document.getElementById('iNum'+String(i)).onmouseover = function() {changeNumBtn(i,'yellow','pointer')};
+		document.getElementById('iNum'+String(i)).onmouseout = function() {changeNumBtn(i,'paleturquoise','pointer')};
+		document.getElementById('iNum'+String(i)).onclick = function() {mouseOn(idx,i)};
+	}
+}
+function mouseOn(idx,flag) {
+	var A1Clone = document.getElementById('A0').innerHTML.split(''), A2Clone = document.getElementById('A1').innerHTML.split('');
+	var A3Clone = document.getElementById('A2').innerHTML.split(''), A4Clone = document.getElementById('A3').innerHTML.split('');
+	var A5Clone = document.getElementById('A4').innerHTML.split(''), A6Clone = document.getElementById('A5').innerHTML.split('');
+	var A7Clone = document.getElementById('A6').innerHTML.split(''), A8Clone = document.getElementById('A7').innerHTML.split('');
+	var A9Clone = document.getElementById('A8').innerHTML.split('');
+	var ASClone = [A1Clone,A2Clone,A3Clone,A4Clone,A5Clone,A6Clone,A7Clone,A8Clone,A9Clone];
+
+	var uNum = document.getElementById(idx).value;
+	var iOne = idx.split('').splice(0,1);
+	var iTwo = idx.split('').splice(1,1);
+	var gNum = ASClone[iOne][iTwo];
+
+	if (flag == 1 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 1 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 2 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 2 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 3 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 3 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 4 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 4 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 5 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 5 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 6 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 6 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 7 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 7 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 8 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 8 && flag != gNum) {
+		badCell(idx,flag);
+	} else if (flag == 9 && flag == gNum) {
+		goodCell(idx,gNum);
+	} else if (flag == 9 && flag != gNum) {
+		badCell(idx,flag);
+	}
+	document.getElementById(idx).select();
+	changeNumBtn(flag,'yellow','pointer'); /* KEEP COLOR/CURSOR POST-CLICK */
+}
+function changeNumBtn(flag,color,curStyle) {
+	document.getElementById('iNum'+String(flag)).style.backgroundColor = color;
+	document.getElementById('iNum'+String(flag)).style.cursor = curStyle;
+}
+
+
+function goodCell(index,number) {
+	document.getElementById(index).classList = "";
+	document.getElementById(index).classList.add("xLime");
+	document.getElementById(index).value = '';
+	document.getElementById(index).value = number;
+	checkWin(index);
+}
+
+
+function badCell(index,number) {
+	document.getElementById(index).classList = '';
+	document.getElementById(index).classList.add('xRed');
+	document.getElementById(index).value = '';
+	document.getElementById(index).value = number;
+	checkWin(index);
+}
+
+
+function checkNum(idx,event) {
+	var A1Clone = document.getElementById('A0').innerHTML.split(''), A2Clone = document.getElementById('A1').innerHTML.split('');
+	var A3Clone = document.getElementById('A2').innerHTML.split(''), A4Clone = document.getElementById('A3').innerHTML.split('');
+	var A5Clone = document.getElementById('A4').innerHTML.split(''), A6Clone = document.getElementById('A5').innerHTML.split('');
+	var A7Clone = document.getElementById('A6').innerHTML.split(''), A8Clone = document.getElementById('A7').innerHTML.split('');
+	var A9Clone = document.getElementById('A8').innerHTML.split('');
+	var ASClone = [A1Clone,A2Clone,A3Clone,A4Clone,A5Clone,A6Clone,A7Clone,A8Clone,A9Clone];
+
+	var uNum = document.getElementById(idx).value;
+	var iOne = idx.split('').splice(0,1);
+	var iTwo = idx.split('').splice(1,1);
+	var gNum = ASClone[iOne][iTwo];
+
+	var keyClick = event.keyCode;
+	if(keyClick == '49') {
+		var uInt = '1';
+	} else if(keyClick == '50') {
+		var uInt = '2';
+	} else if(keyClick == '51') {
+		var uInt = '3';
+	} else if(keyClick == '52') {
+		var uInt = '4';
+	} else if(keyClick == '53') {
+		var uInt = '5';
+	} else if(keyClick == '54') {
+		var uInt = '6';
+	} else if(keyClick == '55') {
+		var uInt = '7';
+	} else if(keyClick == '56') {
+		var uInt = '8';
+	} else if(keyClick == '57') {
+		var uInt = '9';
+	} 
+
+	if(keyClick == '49' && gNum == 1) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '50' && gNum == 2) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '51' && gNum == 3) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '52' && gNum == 4) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '53' && gNum == 5) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '54' && gNum == 6) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '55' && gNum == 7) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '56' && gNum == 8) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '57' && gNum == 9) {
+		goodCell(idx,gNum);
+	} else if(keyClick == '49' && gNum != 1) {
+		badCell(idx,uInt);
+	} else if(keyClick == '50' && gNum != 2) {
+		badCell(idx,uInt);
+	} else if(keyClick == '51' && gNum != 3) {
+		badCell(idx,uInt);
+	} else if(keyClick == '52' && gNum != 4) {
+		badCell(idx,uInt);
+	} else if(keyClick == '53' && gNum != 5) {
+		badCell(idx,uInt);
+	} else if(keyClick == '54' && gNum != 6) {
+		badCell(idx,uInt);
+	} else if(keyClick == '55' && gNum != 7) {
+		badCell(idx,uInt);
+	} else if(keyClick == '56' && gNum != 8) {
+		badCell(idx,uInt);
+	} else if(keyClick == '57' && gNum != 9) {
+		badCell(idx,uInt);
+	} else if((keyClick != '37' && keyClick != '39') && (keyClick != '9' && keyClick != '91')) {
+		document.getElementById(idx).value = '';
+		document.getElementById(idx).classList = '';
+		document.getElementById(idx).classList = 'x';
+		checkWin(idx);
+	}
+}
+</script>
+
+</body>
+</html>
