@@ -48,7 +48,14 @@ function aboutWP() {
                             " eyes peeled and your mind sharp: this website contains more"+
                             " information than that which is immediately obvious...");
                         document.getElementById("noice").innerHTML = "Welcome, "+name+"!";
-                        document.getElementById("clm2").style.top = '195px';
+                        if(holiCounter > 0) {
+                            var c2Height = document.getElementById('noice').offsetHeight;
+                            var oldC2Height = document.getElementById('clm2').style.top.split('');
+                            for(let i = 0; i < 2; i++) oldC2Height.pop();
+                            document.getElementById('clm2').style.top = String(c2Height+Number(oldC2Height.join(''))) + 'px';
+                        } else {
+                            document.getElementById("clm2").style.top = '195px';
+                        }
                     }
                 }
             }
@@ -149,10 +156,6 @@ var possibleTitleInts = [];
 var titleArr = [];
 const titleFilledArr = randTitle().split('');
 
-/* var nText = "NGMA CONVERSION"; */
-/* var nLen = nText.length; */
-/* const nFilledArr = randTitle().split('').splice(0,nLen); */
-
 var pText = "PERSPECTIVE LENGTH";
 var pLen = pText.length;
 const pFilledArr = randTitle().split('').splice(0,pLen);
@@ -164,14 +167,6 @@ const dFilledArr = randTitle().split('').splice(0,dLen);
 var sText = "STAR CALCULATION";
 var sLen = sText.length;
 const sFilledArr = randTitle().split('').splice(0,sLen);
-
-/* var lnText = "Website's Prototypes"; */
-/* var lnLen = lnText.length; */
-/* const lnFilledArr = randTitle().split('').splice(0,lnLen); */
-
-/* var nmText = " Jordan Randleman"; */
-/* var nmLen = nmText.length; */
-/* const nmFilledArr = randTitle().split('').splice(0,nmLen); */
 
 var numText = "SHOW ME THE NUMBERS";
 var numLen = numText.length;
@@ -252,23 +247,23 @@ function typeWriter() {
 /* SPINNING SUDOKU FUNCTION */
 /******************************************************************************/
 
-setTimeout(sudIcon, 50); // 17
-setTimeout(sudIcon2, 50); // 17
+setTimeout(sudIcon, 17);
+setTimeout(sudIcon2, 17);
 function sudIcon() {
     document.getElementById("sudIcon").classList = 'spinning3DSud1';
     document.getElementById("sudIcon").innerHTML = '1';
 }
 function sudIcon2() {
     for(let sdkup = 0; sdkup < 9999; sdkup++) {
-        var sud2Time = 1100 + ((sdkup*13500)+100); // 1000
-        var sud3Time = 2600 + ((sdkup*13500)+100); // 2500
-        var sud4Time = 4100 + ((sdkup*13500)+100); // 4000
-        var sud5Time = 5600 + ((sdkup*13500)+100); // 5500
-        var sud6Time = 7100 + ((sdkup*13500)+100); // 7000
-        var sud7Time = 8600 + ((sdkup*13500)+100); // 8500
-        var sud8Time = 10100 + ((sdkup*13500)+100); // 10000
-        var sud9Time = 11600 + ((sdkup*13500)+100); // 11500
-        var sud1Time = 13100 + ((sdkup*13500)+100); // 13000
+        var sud2Time = 1100 + ((sdkup*13500)+100);
+        var sud3Time = 2600 + ((sdkup*13500)+100);
+        var sud4Time = 4100 + ((sdkup*13500)+100);
+        var sud5Time = 5600 + ((sdkup*13500)+100);
+        var sud6Time = 7100 + ((sdkup*13500)+100);
+        var sud7Time = 8600 + ((sdkup*13500)+100);
+        var sud8Time = 10100 + ((sdkup*13500)+100);
+        var sud9Time = 11600 + ((sdkup*13500)+100);
+        var sud1Time = 13100 + ((sdkup*13500)+100);
         setTimeout(sud2, sud2Time);
         setTimeout(sud3, sud3Time);
         setTimeout(sud4, sud4Time);
@@ -335,12 +330,13 @@ function sud1() {
     document.getElementById("sudIcon").classList.add('spinning3DSud1');
 }
 
+
 /******************************************************************************/
 /* SPINNING STAR FUNCTION */
 /******************************************************************************/
 
-setTimeout(starIcon, 50);
-setTimeout(starIcon2, 50);
+setTimeout(starIcon, 300); /* 50 ON GITHUB AND SCU SITE */
+setTimeout(starIcon2, 300); /* 50 ON GITHUB AND SCU SITE */
 function starIcon() {
     document.getElementById("starIcon").classList = 'spinning3DStar5';
     document.getElementById("starIcon").innerHTML = '&#x272D;';
@@ -424,6 +420,7 @@ if(mm<10) {
 
 today = mm + '/' + dd + '/' + yyyy;
 var holi = today.split('').splice(0,5).join('');
+var holiCounter = 0; /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 
 function checkHoliday() {
     if(holi == "07/13") { /* Jordan Bday */
@@ -434,24 +431,28 @@ function checkHoliday() {
             "<span id='jrbg'>Y </span><span id='jrbr'>C</span><span id='jrbg'>R</span><span id='jrbr'>E</span>"+
             "<span id='jrbg'>A</span><span id='jrbr'>T</span><span id='jrbg'>O</span><span id='jrbr'>R</span>"+
             "<span id='jrbg'>! </span><span id='jrbi'>&#x2660;</span>";
+        holiCounter++;
     } else if(holi == "03/29") { /* Dad Bday */
         document.getElementById("holiyay").innerHTML = "<span id='rrbi'>&#x265B;</span><span id='rrbb'>H</span><span id='rrbr'>A</span>"+
             "<span id='rrbb'>P</span><span id='rrbr'>P</span><span id='rrbb'>Y </span><span id='rrbr'>B</span>"+
             "<span id='rrbb'>I</span><span id='rrbr'>R</span><span id='rrbb'>T</span><span id='rrbr'>H</span>"+
             "<span id='rrbb'>D</span><span id='rrbr'>A</span><span id='rrbb'>Y </span><span id='rrbr'>D</span>"+
             "<span id='rrbb'>A</span><span id='rrbr'>D</span><span id='rrbb'>! </span><span id='rrbi'>&#x265B;</span>";
+        holiCounter++;
     } else if(holi == "02/16") { /* Mom Bday */
         document.getElementById("holiyay").innerHTML = "<span id='krbi'>&#x2665;</span><span id='krbp'>H</span><span id='krbb'>A</span>"+
             "<span id='krbp'>P</span><span id='krbb'>P</span><span id='krbp'>Y </span><span id='krbb'>B</span>"+
             "<span id='krbp'>I</span><span id='krbb'>R</span><span id='krbp'>T</span><span id='krbb'>H</span>"+
             "<span id='krbp'>D</span><span id='krbb'>A</span><span id='krbp'>Y </span><span id='krbb'>M</span>"+
             "<span id='krbp'>O</span><span id='krbb'>M</span><span id='krbp'>! </span><span id='krbi'>&#x2665;</span>";
+        holiCounter++;
     } else if(holi == "02/02") { /* Will Bday */
         document.getElementById("holiyay").innerHTML = "<span id='wrbi'>&#x2606;</span><span id='wrbp'>H</span><span id='wrbb'>A</span>"+
             "<span id='wrbp'>P</span><span id='wrbb'>P</span><span id='wrbp'>Y </span><span id='wrbb'>B</span>"+
             "<span id='wrbp'>I</span><span id='wrbb'>R</span><span id='wrbp'>T</span><span id='wrbb'>H</span>"+
             "<span id='wrbp'>D</span><span id='wrbb'>A</span><span id='wrbp'>Y </span><span id='wrbb'>W</span>"+
             "<span id='wrbp'>I</span><span id='wrbb'>L</span><span id='wrbp'>L</span><span id='wrbb'>! </span><span id='wrbi'>&#x2606;</span>";
+        holiCounter++;
     } else if(holi == "02/14") { /* Valentines */
         document.getElementById("holiyay").innerHTML = "<span id='valh'>&#x2665;</span><span id='valw'>H</span><span id='valp'>A</span>"+
             "<span id='valw'>P</span><span id='valp'>P</span><span id='valw'>Y </span><span id='valp'>V</span>"+
@@ -459,11 +460,13 @@ function checkHoliday() {
             "<span id='valw'>T</span><span id='valp'>I</span><span id='valw'>N</span><span id='valp'>E</span>"+
             "<span id='valw'>S </span><span id='valp'>D</span><span id='valw'>A</span><span id='valp'>Y</span>"+
             "<span id='valw'>! </span><span id='valh'>&#x2665;</span>";
+        holiCounter++;
     } else if(holi == "03/14") { /* Pi */
         document.getElementById("holiyay").innerHTML = "<span id='pip'>&#x1D6D1;</span><span id='pio'>H</span><span id='piy'>A</span>"+
             "<span id='pio'>P</span><span id='piy'>P</span><span id='pio'>Y </span><span id='piy'>P</span>"+
             "<span id='pio'>I </span><span id='piy'>D</span><span id='pio'>A</span><span id='piy'>Y</span>"+
             "<span id='pio'>! </span><span id='pip'>&#x1D6D1;</span>";
+        holiCounter++;
     } else if(holi == "03/17") { /* St Patricks */
         document.getElementById("holiyay").innerHTML = "<span id='spl'>&#x2663;</span><span id='spg'>H</span><span id='spy'>A</span>"+
             "<span id='spg'>P</span><span id='spy'>P</span><span id='spg'>Y </span><span id='spy'>S</span>"+
@@ -471,13 +474,15 @@ function checkHoliday() {
             "<span id='spg'>R</span><span id='spy'>I</span><span id='spg'>C</span><span id='spy'>K</span>"+
             "<span id='spg'>S </span><span id='spy'>D</span><span id='spg'>A</span><span id='spy'>Y</span><span id='spg'>! </span>"+
             "<span id='spl'>&#x2663;</span>";
-    } else if(holi == "05/04") { /* May The Fourth Be With You */
+        holiCounter++;
+    } else if(holi == "12/20") { /* May The Fourth Be With You */
         document.getElementById("holiyay").innerHTML = "<span id='m4i'>&#x2736;</span><span id='m4b'>M</span><span id='m4y'>A</span>"+
             "<span id='m4b'>Y </span><span id='m4y'>T</span><span id='m4b'>H</span><span id='m4y'>E </span>"+
             "<span id='m4b'>&#x275D;</span><span id='m4y'>F</span><span id='m4b'>O</span><span id='m4y'>U</span>"+
             "<span id='m4b'>R</span><span id='m4y'>T</span><span id='m4b'>H</span><span id='m4y'>&#x275E; </span><span id='m4b'>B</span>"+
             "<span id='m4y'>E </span><span id='m4b'>W</span><span id='m4y'>I</span><span id='m4b'>T</span><span id='m4y'>H </span>"+
             "<span id='m4b'>Y</span><span id='m4y'>O</span><span id='m4b'>U</span><span id='m4y'>! </span><span id='m4i'>&#x2736;</span>";
+        holiCounter++;
     } else if(holi == "05/05") { /* Cinco De Mayo */
         document.getElementById("holiyay").innerHTML = "<span id='cdmi'>&#x266A;</span><span id='cdmy'>F</span><span id='cdmg'>E</span>"+
             "<span id='cdmr'>L</span><span id='cdmy'>I</span><span id='cdmg'>Z </span><span id='cdmr'>C</span>"+
@@ -488,41 +493,54 @@ function checkHoliday() {
             "<span id='cdmy'>Y </span><span id='cdmg'>B</span><span id='cdmr'>I</span><span id='cdmy'>R</span><span id='cdmg'>T</span>"+
             "<span id='cdmr'>H</span><span id='cdmy'>D</span><span id='cdmg'>A</span><span id='cdmr'>Y </span><span id='cdmy'>J</span>"+
             "<span id='cdmg'>O</span><span id='cdmr'>W</span><span id='cdmy'>I</span><span id='cdmg'>! </span><span id='cdmi'>&#x263B;</span>";
+        holiCounter++;
     } else if(holi == "10/31") { /* Halloween */
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x263E;</span><span id='hlwno'>H </span><span id='hlwnb'>A </span>"+
             "<span id='hlwno'>P </span><span id='hlwnb'>P </span><span id='hlwno'>Y </span><span id='hlwnb'>H </span>"+
             "<span id='hlwno'>A </span><span id='hlwnb'>L </span><span id='hlwno'>L </span><span id='hlwnb'>O </span>"+
             "<span id='hlwno'>W </span><span id='hlwnb'>E </span><span id='hlwno'>E </span><span id='hlwnb'>N </span>"+
             "<span id='hlwno'>! </span><span id='hlwng'>&#x263E;</span>";
+        holiCounter++;
     } else if(holi == "11/01") { /* All Saint's Day */
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x271F;</span><span id='hlwsb'>H </span><span id='hlwsw'>A </span>"+
             "<span id='hlwsb'>P </span><span id='hlwsw'>P </span><span id='hlwsb'>Y </span><span id='hlwsw'>H </span>"+
             "<span id='hlwsb'>A </span><span id='hlwsw'>L </span><span id='hlwsb'>L </span><span id='hlwsw'>O </span>"+
             "<span id='hlwsb'>W </span><span id='hlwsw'>M </span><span id='hlwsb'>A </span><span id='hlwsw'>S </span>"+
             "<span id='hlwsb'>! </span><span id='hlwng'>&#x271F;</span>";
+        holiCounter++;
     } else if(holi == "12/24") { /* Xmas Eve */
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x2734;</span><span id='xmasr'>M</span><span id='xmasg'>E</span>"+
             "<span id='xmasr'>R</span><span id='xmasg'>R</span><span id='xmasr'>Y </span><span id='xmasg'>C</span>"+
             "<span id='xmasr'>H</span><span id='xmasg'>R</span><span id='xmasr'>I</span><span id='xmasg'>S</span>"+
             "<span id='xmasr'>T</span><span id='xmasg'>M</span><span id='xmasr'>A</span><span id='xmasg'>S </span><span id='xmasr'>E</span>"+
             "<span id='xmasg'>V</span><span id='xmasr'>E</span><span id='xmasg'>! </span><span id='hlwng'>&#x2734;</span>";
+        holiCounter++;
     } else if(holi == "12/25") { /* Xmas */
         document.getElementById("holiyay").innerHTML = "<span id='xmasw'>&#x2744;</span><span id='xmasr'>M</span><span id='xmasg'>E</span>"+
             "<span id='xmasr'>R</span><span id='xmasg'>R</span><span id='xmasr'>Y </span><span id='xmasg'>C</span>"+
             "<span id='xmasr'>H</span><span id='xmasg'>R</span><span id='xmasr'>I</span><span id='xmasg'>S</span>"+
             "<span id='xmasr'>T</span><span id='xmasg'>M</span><span id='xmasr'>A</span><span id='xmasg'>S</span>"+
             "<span id='xmasr'>! </span><span id='xmasw'>&#x2744;</span>";
+        holiCounter++;
     } else if(holi == "12/31") { /* New Years Eve */
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x2655;</span><span id='nyg'>H</span><span id='nyb'>A</span>"+
             "<span id='nyg'>P</span><span id='nyb'>P</span><span id='nyg'>Y </span><span id='nyb'>N</span>"+
             "<span id='nyg'>E</span><span id='nyb'>W</span><span id='nyg'>Y</span><span id='nyb'>E</span>"+
             "<span id='nyg'>A</span><span id='nyb'>R</span><span id='nyg'>S</span><span id='nyb'>E</span>"+
             "<span id='nyg'>V</span><span id='nyb'>E</span><span id='nyg'>! </span><span id='hlwng'>&#x2655;</span>";
+        holiCounter++;
     } else if(holi == "01/01") { /* New Years */
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x265B;</span><span id='nyg'>H</span><span id='nyb'>A</span>"+
             "<span id='nyg'>P</span><span id='nyb'>P</span><span id='nyg'>Y </span><span id='nyb'>N</span>"+
             "<span id='nyg'>E</span><span id='nyb'>W</span><span id='nyg'>Y</span><span id='nyb'>E</span>"+
             "<span id='nyg'>A</span><span id='nyb'>R</span><span id='nyg'>S</span><span id='nyb'>! </span><span id='hlwng'>&#x265B;</span>";
+        holiCounter++;
+    }
+
+    if(holiCounter > 0) {
+        var c2Height = document.getElementById('holiyay').offsetHeight;
+        var oldC2Height = document.getElementById('clm2').style.top.split('');
+        for(let i = 0; i < 2; i++) oldC2Height.pop();
+        document.getElementById('clm2').style.top = String(c2Height+Number(oldC2Height.join(''))) + 'px';
     }
 }
-
