@@ -247,8 +247,8 @@ function typeWriter() {
 /* SPINNING SUDOKU FUNCTION */
 /******************************************************************************/
 
-setTimeout(sudIcon, 17);
-setTimeout(sudIcon2, 17);
+setTimeout(sudIcon, 100);
+setTimeout(sudIcon2, 100);
 function sudIcon() {
     document.getElementById("sudIcon").classList = 'spinning3DSud1';
     document.getElementById("sudIcon").innerHTML = '1';
@@ -335,8 +335,8 @@ function sud1() {
 /* SPINNING STAR FUNCTION */
 /******************************************************************************/
 
-setTimeout(starIcon, 300); /* 50 ON GITHUB AND SCU SITE */
-setTimeout(starIcon2, 300); /* 50 ON GITHUB AND SCU SITE */
+setTimeout(starIcon, 50);
+setTimeout(starIcon2, 50);
 function starIcon() {
     document.getElementById("starIcon").classList = 'spinning3DStar5';
     document.getElementById("starIcon").innerHTML = '&#x272D;';
