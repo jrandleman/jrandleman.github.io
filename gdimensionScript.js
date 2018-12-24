@@ -115,78 +115,75 @@ function createCube(cube,color) {
 	viewScale(cube,color);
 	const tessSpace = 200, pentMv = 200, hexMv = 500, sepMv = 375, octMv = 1100, nonMv = 775, decMv = 2200, hendMv = 1550, dodMv = 4400, triMv = 3100;
 	const mA = [0,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv];
-	for (let i = 0; i < cube+0.1; i++) {
-		if(i < 5) {
-			shape = gen(color,cube,0,pentMv,0,0,0,0,0,0,0,0);
-		} else if (cube >= 5) {
-			shape += gen(color,cube,tessSpace,0,0,0,0,0,0,0,0,0);
-			if(i >= 6) { /* LD5 + RD5 */
-				shape += gen(color,cube,0,pentMv,hexMv,0,0,0,0,0,0,0) + gen(color,cube,tessSpace,0,hexMv,0,0,0,0,0,0,0);
-				if(i >= 7) { /* BLD5 + BRD5 + TLD5 + TRD5 */
-					shape += gen(color,cube,0,pentMv,0,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,0,sepMv,0,0,0,0,0,0)+
-						gen(color,cube,0,pentMv,hexMv,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,hexMv,sepMv,0,0,0,0,0,0);	
-					if(i >= 8) { /* LEFT COLUMN 0*TessSpace W/ PentMv - RIGHT COL TS W/ 0*PM - ALWAYS MOST RECENT MV ON RIGHT, MIX ALL IN BTWN MV COMBOS & 0 TILL FULL */
-						var combos = binaryCombos(2);
-						var bA = genCombos(combos);
-						var genArr = [];
-						for (let j = 0; j < (combos.length); j++) {
-							shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
-							shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
-						}
-						if(i >= 9) {
-							var combos = binaryCombos(3);
-							var bA = genCombos(combos);
-							var genArr = [];
-							for (let j = 0; j < (combos.length); j++) {
-								shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
-								shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
-							}
-							if(i >= 10) {
-								var combos = binaryCombos(4);
-								var bA = genCombos(combos);
-								var genArr = [];
-								for (let j = 0; j < (combos.length); j++) {
-									shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
-									shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
-								}
-								if(i >= 11) {
-									var combos = binaryCombos(5);
-									var bA = genCombos(combos);
-									var genArr = [];
-									for (let j = 0; j < (combos.length); j++) {
-										shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
-										shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
-									}
-									if(i >= 12) {
-										var combos = binaryCombos(6);
-										var bA = genCombos(combos);
-										var genArr = [];
-										for (let j = 0; j < (combos.length); j++) {
-											shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
-											shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
-										}
-										if(i >= 13) {
-											var combos = binaryCombos(7);
-											var bA = genCombos(combos);
-											var genArr = [];
-											for (let j = 0; j < (combos.length); j++) {
-												shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
-												shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+	shape = gen(color,cube,0,pentMv,0,0,0,0,0,0,0,0);
+	if (cube >= 5) {
+		shape += gen(color,cube,tessSpace,0,0,0,0,0,0,0,0,0);
+	}
+	if(cube >= 6) { /* LD5 + RD5 */
+			shape += gen(color,cube,0,pentMv,hexMv,0,0,0,0,0,0,0) + gen(color,cube,tessSpace,0,hexMv,0,0,0,0,0,0,0);
+	}
+	if(cube >= 7) { /* BLD5 + BRD5 + TLD5 + TRD5 */
+		shape += gen(color,cube,0,pentMv,0,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,0,sepMv,0,0,0,0,0,0)+
+			gen(color,cube,0,pentMv,hexMv,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,hexMv,sepMv,0,0,0,0,0,0);	
+	}
+	if(cube >= 8) { /* LEFT COLUMN 0*TessSpace W/ PentMv - RIGHT COL TS W/ 0*PM - ALWAYS MOST RECENT MV ON RIGHT, MIX ALL IN BTWN MV COMBOS & 0 TILL FULL */
+		var combos = binaryCombos(2);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
 		}
-		if(color == 'red') {
-			document.getElementById('dimCubeR').innerHTML = shape;
-		} else {
-			document.getElementById('dimCubeL').innerHTML = shape;
+	}
+	if(cube >= 9) {
+		var combos = binaryCombos(3);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
 		}
+	}
+	if(cube >= 10) {
+		var combos = binaryCombos(4);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
+		}
+	}
+	if(cube >= 11) {
+		var combos = binaryCombos(5);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
+		}
+	}
+	if(cube >= 12) {
+		var combos = binaryCombos(6);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
+		}
+	}
+	if(cube >= 13) {
+		var combos = binaryCombos(7);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
+			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
+		}
+	}
+	if(color == 'red') {
+		document.getElementById('dimCubeR').innerHTML = shape;
+	} else {
+		document.getElementById('dimCubeL').innerHTML = shape;
 	}
 }
 
