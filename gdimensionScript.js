@@ -61,7 +61,7 @@ function startDim() {
 		}
 		var phrase = 'There '+verb+dimnum+' '+part1+'within a single '+part2;
 		document.getElementById("demo21").innerHTML = phrase;
-		if(Number(dimin) < 14 && Number(dimout) < 14) {
+		if(Number(dimin) < 16 && Number(dimout) < 16) {
 			createCube(Number(dimin),'red');
 			createCube(Number(dimout),'lime');
 		} else { 
@@ -113,26 +113,27 @@ function dimensions(dimout,dimin) {
 var shape;
 function createCube(cube,color) {
 	viewScale(cube,color);
-	const tessSpace = 200, pentMv = 200, hexMv = 500, sepMv = 375, octMv = 1100, nonMv = 775, decMv = 2200, hendMv = 1550, dodMv = 4400, triMv = 3100;
-	const mA = [0,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv];
-	shape = gen(color,cube,0,pentMv,0,0,0,0,0,0,0,0);
+	const tessSpace = 200, pentMv = 200, hexMv = 500, sepMv = 375, octMv = 1100, nonMv = 775, decMv = 2200;
+	const hendMv = 1550, dodMv = 4400, triMv = 3100, tdcMv = 8800, pdcMv = 6200;
+	const mA = [0,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv,tdcMv,pdcMv];
+	shape = gen(color,cube,0,pentMv,0,0,0,0,0,0,0,0,0,0);
 	if (cube >= 5) {
-		shape += gen(color,cube,tessSpace,0,0,0,0,0,0,0,0,0);
+		shape += gen(color,cube,tessSpace,0,0,0,0,0,0,0,0,0,0,0);
 	}
 	if(cube >= 6) { /* LD5 + RD5 */
-			shape += gen(color,cube,0,pentMv,hexMv,0,0,0,0,0,0,0) + gen(color,cube,tessSpace,0,hexMv,0,0,0,0,0,0,0);
+			shape += gen(color,cube,0,pentMv,hexMv,0,0,0,0,0,0,0,0,0) + gen(color,cube,tessSpace,0,hexMv,0,0,0,0,0,0,0,0,0);
 	}
 	if(cube >= 7) { /* BLD5 + BRD5 + TLD5 + TRD5 */
-		shape += gen(color,cube,0,pentMv,0,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,0,sepMv,0,0,0,0,0,0)+
-			gen(color,cube,0,pentMv,hexMv,sepMv,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,hexMv,sepMv,0,0,0,0,0,0);	
+		shape += gen(color,cube,0,pentMv,0,sepMv,0,0,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,0,sepMv,0,0,0,0,0,0,0,0)+
+			gen(color,cube,0,pentMv,hexMv,sepMv,0,0,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,hexMv,sepMv,0,0,0,0,0,0,0,0);	
 	}
 	if(cube >= 8) { /* LEFT COLUMN 0*TessSpace W/ PentMv - RIGHT COL TS W/ 0*PM - ALWAYS MOST RECENT MV ON RIGHT, MIX ALL IN BTWN MV COMBOS & 0 TILL FULL */
 		var combos = binaryCombos(2);
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0);
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0,0,0);
 		}
 	}
 	if(cube >= 9) {
@@ -140,8 +141,8 @@ function createCube(cube,color) {
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0);
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0,0,0);
 		}
 	}
 	if(cube >= 10) {
@@ -149,8 +150,8 @@ function createCube(cube,color) {
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0);
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0,0,0);
 		}
 	}
 	if(cube >= 11) {
@@ -158,8 +159,8 @@ function createCube(cube,color) {
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0);
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0,0,0);
 		}
 	}
 	if(cube >= 12) {
@@ -167,8 +168,8 @@ function createCube(cube,color) {
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0);
+			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0,0,0);
+			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0,0,0);
 		}
 	}
 	if(cube >= 13) {
@@ -176,8 +177,26 @@ function createCube(cube,color) {
 		var bA = genCombos(combos);
 		var genArr = [];
 		for (let j = 0; j < (combos.length); j++) {
-			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
-			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv);
+			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv,0,0);
+			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv,0,0);
+		}
+	}
+	if(cube >= 14) {
+		var combos = binaryCombos(8);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],tdcMv,0);
+			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],tdcMv,0);
+		}
+	}
+	if(cube >= 15) {
+		var combos = binaryCombos(9);
+		var bA = genCombos(combos);
+		var genArr = [];
+		for (let j = 0; j < (combos.length); j++) {
+			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],mA[bA[j][8]],pdcMv);
+			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],mA[bA[j][8]],pdcMv);
 		}
 	}
 	if(color == 'red') {
@@ -281,21 +300,21 @@ function viewScale(cube,color) {
 			document.getElementById(svgId).style.width = "1100";
 			document.getElementById(svgId).style.left = String(lft - 400)+"px";
 			for(let i = 0; i < 28; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 		} else if(cube == 7) {
 			document.getElementById(svgId).style.transform = "scale(.75)";
 			document.getElementById(svgId).style.height = "800";
 			document.getElementById(svgId).style.width = "1100";
 			document.getElementById(svgId).style.left = String(lft - 200)+"px";
 			for(let i = 0; i < 33; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 		} else if(cube == 8 || cube == 9) {
 			document.getElementById(svgId).style.transform = "scale(.5)";
 			document.getElementById(svgId).style.height = "900";
 			document.getElementById(svgId).style.width = "2450";
 			document.getElementById(svgId).style.left = String(lft - 300)+"px";
 			for(let i = 0; i < 26; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 			if (cube == 9) {
 				document.getElementById(svgId).style.height = "1675";
 				document.getElementById(svgId).style.width = "2550";
@@ -310,46 +329,60 @@ function viewScale(cube,color) {
 			document.getElementById(svgId).style.width = "4500";
 			document.getElementById(svgId).style.left = String(lft - 450)+"px";
 			for(let i = 0; i < 30; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 		} else if(cube == 11) {
 			document.getElementById(svgId).style.transform = "scale(.275)";
 			document.getElementById(svgId).style.height = "3450";
 			document.getElementById(svgId).style.width = "4650";
 			document.getElementById(svgId).style.left = String(lft - 440)+"px";
 			for(let i = 0; i < 52; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 		} else if(cube == 12) {
 			document.getElementById(svgId).style.transform = "scale(.145)";
 			document.getElementById(svgId).style.height = "3900";
 			document.getElementById(svgId).style.width = "9050";
 			document.getElementById(svgId).style.left = String(lft - 450)+"px";
 			for(let i = 0; i < 30; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
 		} else if(cube == 13) {
 			document.getElementById(svgId).style.transform = "scale(.140)";
 			document.getElementById(svgId).style.height = "7000";
 			document.getElementById(svgId).style.width = "9350";
 			document.getElementById(svgId).style.left = String(lft - 450)+"px";
 			for(let i = 0; i < 55; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById('insertBR').innerHTML = brStr;
+		} else if(cube == 14) {
+			document.getElementById(svgId).style.transform = "scale(.07)";
+			document.getElementById(svgId).style.height = "8000";
+			document.getElementById(svgId).style.width = "18150";
+			document.getElementById(svgId).style.left = String(lft - 450)+"px";
+			for(let i = 0; i < 30; i++) brStr += "<br>";
+			document.getElementById('insertBR').innerHTML = brStr;
+		} else if(cube == 15) {
+			document.getElementById(svgId).style.transform = "scale(.07)";
+			document.getElementById(svgId).style.height = "14250";
+			document.getElementById(svgId).style.width = "19000";
+			document.getElementById(svgId).style.left = String(lft - 450)+"px";
+			for(let i = 0; i < 55; i++) brStr += "<br>";
+			document.getElementById('insertBR').innerHTML = brStr;
 		}
 	}
 }
 
 
-function gen(color,cube,tessSpace,pentMv,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv) {
+function gen(color,cube,tessSpace,pentMv,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv,tdcMv,pdcMv) {
 	var shape = "";
 	var lCounter = 0;
 	for(let i = 0; i < 41; i +=40) {
 		var c1p1 = Number(i);
 		var c1p2 = Number(i)+100;
-		var x1 = c1p1+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10);
-		var x2 = c1p2+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10);
+		var x1 = c1p1+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10)+tdcMv+(pdcMv/10);
+		var x2 = c1p2+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10)+tdcMv+(pdcMv/10);
 		var x3 = x1+200, x4 = x2+200;
 		var x5 = x1+40, x6 = x2+40;
 		var x7 = x3+40, x8 = x4+40;
-		var y1 = c1p1+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv;
-		var y2 = c1p2+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv;
+		var y1 = c1p1+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv+(tdcMv/10)+pdcMv;
+		var y2 = c1p2+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv+(tdcMv/10)+pdcMv;
 		var y3 = y1+20, y4 = y2+20;
 		var y5 = y1+40, y6 = y2+40;
 		var y7 = y3+40, y8 = y4+40;
@@ -402,6 +435,10 @@ function gen(color,cube,tessSpace,pentMv,hexMv,sepMv,octMv,nonMv,decMv,hendMv,do
 					var mvX = -dodMv, mvY = (-dodMv/10);
 				} else if (j == 9) { /* 13D CUBE */
 					var mvX = (-triMv/10), mvY = -triMv;
+				} else if (j == 10) { /* 14D CUBE */
+					var mvX = -tdcMv, mvY = (-tdcMv/10);
+				} else if (j == 11) { /* 15D CUBE */
+					var mvX = (-pdcMv/10), mvY = -pdcMv;
 				}
 				shape+="<line x1='"+String(x1)+"' y1='"+String(y1)+"' x2='"+String(x1+mvX)+"' y2='"+String(y1+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*TL*/
 				shape+="<line x1='"+String(x1)+"' y1='"+String(y2)+"' x2='"+String(x1+mvX)+"' y2='"+String(y2+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*BL*/
