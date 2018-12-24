@@ -61,21 +61,22 @@
 }
 .blackout { color:black; }
 .hcon { font-size:100px;color:orangered; }
-.hcon:hover { color:coral;cursor:pointer; }
+.hcon:hover { color:coral;cursor: url('curHtml.png'), auto; }
 .jcon { font-size:100px;color:lime; }
-.jcon:hover { color:#CCFF99;cursor:pointer; }
+.jcon:hover { color:#CCFF99;cursor: url('curJs.png'), auto; }
 .ccon { font-size:100px;color:turquoise; }
-.ccon:hover { color:#CCFFFF;cursor:pointer; }
+.ccon:hover { color:#CCFFFF;cursor: url('curCss.png'), auto; }
 .fcon { font-size:95px;color:#F5F; }
-.fcon:hover { color:#FF99FF;cursor:pointer; }
+.fcon:hover { color:#FF99FF;cursor: url('curIco.png'), auto; }
 .icon { font-size:95px;color:orange; }
-.icon:hover { color:#FFCC99;cursor:pointer; }
+.icon:hover { color:#FFCC99;cursor: url('curPng.png'), auto; }
 .hstyle { color:orangered; }
 .hstyle:hover {
 	font-style:italic;
 	background-color:coral;
 	color:black;
 	font-weight:bold;
+	cursor: url('curHtml5.png'), auto;
 }
 .jstyle { color:lime; }
 .jstyle:hover {
@@ -83,6 +84,7 @@
 	background-color:lightgreen;
 	color:black;
 	font-weight:bold;
+	cursor: url('curJs2.png'), auto;
 }
 .cstyle { color:turquoise; }
 .cstyle:hover {
@@ -90,6 +92,7 @@
 	background-color:lightblue;
 	color:black;
 	font-weight:bold;
+	cursor: url('curCss3.png'), auto;
 }
 .fstyle1, .fstyle2, .fstyle3, .fstyle4 { color:#F5F; }
 .fstyle1:hover {
@@ -97,32 +100,46 @@
 	background-color:orangered;
 	color:black;
 	font-weight:bold;
+	cursor: url('curIco2.png'), auto;
 }
 .fstyle2:hover {
 	font-style:italic;
 	background-color:turquoise;
 	color:black;
 	font-weight:bold;
+	cursor: url('curIco2.png'), auto;
 }
 .fstyle3:hover {
 	font-style:italic;
 	background-color:lime;
 	color:black;
 	font-weight:bold;
+	cursor: url('curIco2.png'), auto;
 }
 .fstyle4:hover {
 	font-style:italic;
 	background-color:#FF99FF;
 	color:black;
 	font-weight:bold;
+	cursor: url('curIco2.png'), auto;
 }
-.istyle { color:orange; }
-.istyle:hover { 
+.istyle, .is1, .is2, .is3, .is4, .is5, .is6, .is7, .is8, .is9 { color:orange; }
+.istyle:hover, .is1:hover, .is2:hover, .is3:hover, .is4:hover, .is5:hover, .is6:hover, .is7:hover, .is8:hover, .is9:hover { 
 	font-style:italic;
 	background-color:#FFCC99;
 	color:black;
 	font-weight:bold;
 }
+.istyle:hover { cursor: url('curPic.png'), auto; }
+.is1:hover { cursor: url('curHtml.png'), auto; }
+.is2:hover { cursor: url('curHtml5.png'), auto; }
+.is3:hover { cursor: url('curJs.png'), auto; }
+.is4:hover { cursor: url('curJs2.png'), auto; }
+.is5:hover { cursor: url('curCss.png'), auto; }
+.is6:hover { cursor: url('curCss3.png'), auto; }
+.is7:hover { cursor: url('curIco.png'), auto; }
+.is8:hover { cursor: url('curIco2.png'), auto; }
+.is9:hover { cursor: url('curPng.png'), auto; }
 img { cursor:zoom-in; }
 .zoomin { transform:scale(1.15);cursor:zoom-out; }
 </style>
@@ -203,7 +220,7 @@ function onj() {
 	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- JavaScript Pages (8) -:-</div><a class='jstyle' href="+
 		"'gwebScript.js' target='_blank'>Home Page</a><br><i>Header, Footer, Text:</i> <a class='jstyle' href="+
 		"'gwebHFTScript.js' target='_blank'>Content Creation</a><br><i>Picture Magnification:</i> <a class='jstyle' href="+
-		"'https://jrandleman.github.io/gzoomPicScript.js' target='_blank'>Zoom Functions</a><br><i>NGMA:</i> <a class='jstyle' href="+
+		"'gzoomPicScript.js' target='_blank'>Zoom Functions</a><br><i>NGMA:</i> <a class='jstyle' href="+
 		"'gngmaRTScript.js' target='_blank'>Translation</a>, <a class='jstyle' href="+
 		"'gngmaRevConstant.js' target='_blank'>Reversion Words</a><br><i>Spatial Dimensions:</i> <a class='jstyle' href="+
 		"'gdimensionScript.js' target='_blank'>Computation Code</a><br><i>Perspective Length:</i> <a class='jstyle' href="+
@@ -225,7 +242,7 @@ function onf() {
 	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- Favicons (5) -:-</div><i>Home/Demos:</i> <a class='fstyle1' href="+
 		"'fav1.ico' target='_blank'>Red</a><br><i>Resumes:</i> <a class='fstyle2' href="+
 		"'fav2.ico' target='_blank'>Blue</a><br><i>Sudoku Puzzle:</i> <a class='fstyle2' href="+
-		"'https://jrandleman.github.io/sud.ico' target='_blank'>S</a><br><i>Math/Ngma Info:</i> <a class='fstyle3' href="+
+		"'sud.ico' target='_blank'>S</a><br><i>Math/Ngma Info:</i> <a class='fstyle3' href="+
 		"'fav3.ico' target='_blank'>Green</a><br><i>Curiosities:</i> <a class='fstyle4' href="+
 		"'fav4.ico' target='_blank'>Purple</a>";
 }
@@ -234,22 +251,32 @@ function onf() {
 function oni() {
 	document.getElementById("codeinfo").style = "font-family:Prosto One;color:orange;font-size:35px;";
 	document.getElementById("codeinfo").innerHTML = "<div style='font-size:45px;'>-:- Pictures (16) -:-</div><i>Reference:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/pwebArch2.png' target='_blank'>Site Architecture</a><br><i>NGMA Information:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/pngmaInfo.jpeg' target='_blank'>Initial Key</a><br><i>Spatial Dimensions:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/tesseract1.gif' target='_blank'>Tesseract</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pdim.jpg' target='_blank'>Math</a><br><i>Perspective:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper1.jpg' target='_blank'>Dst1</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper2.jpg' target='_blank'>D2</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper3.jpg' target='_blank'>D3</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper4.jpg' target='_blank'>Spun1</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper5.jpg' target='_blank'>S2</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pper6.jpg' target='_blank'>DS</a><br><i>Star Calculation:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/pstar1.jpg' target='_blank'>Hand Drawn</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/pstar20.jpg' target='_blank'>Equation</a><br><i>Sudoku:</i> <a class='istyle' href="+
-		"'https://jrandleman.github.io/sudpic1.jpg' target='_blank'>Preset 1</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/sudpic20.jpg' target='_blank'>Preset 2</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/sudpic30.jpg' target='_blank'>Mix Math</a>, <a class='istyle' href="+
-		"'https://jrandleman.github.io/sudpic4.jpg' target='_blank'>Spacing</a>";
+		"'pwebArch2.png' target='_blank'>Site Architecture</a><br><i>NGMA Information:</i> <a class='istyle' href="+
+		"'pngmaInfo.jpeg' target='_blank'>Initial Key</a><br><i>Spatial Dimensions:</i> <a class='istyle' href="+
+		"'tesseract1.gif' target='_blank'>Tesseract</a>, <a class='istyle' href="+
+		"'pdim.jpg' target='_blank'>Math</a><br><i>Perspective:</i> <a class='istyle' href="+
+		"'pper1.jpg' target='_blank'>Dst1</a>, <a class='istyle' href="+
+		"'pper2.jpg' target='_blank'>D2</a>, <a class='istyle' href="+
+		"'pper3.jpg' target='_blank'>D3</a>, <a class='istyle' href="+
+		"'pper4.jpg' target='_blank'>Spun1</a>, <a class='istyle' href="+
+		"'pper5.jpg' target='_blank'>S2</a>, <a class='istyle' href="+
+		"'pper6.jpg' target='_blank'>DS</a><br><i>Star Calculation:</i> <a class='istyle' href="+
+		"'pstar1.jpg' target='_blank'>Hand Drawn</a>, <a class='istyle' href="+
+		"'pstar20.jpg' target='_blank'>Equation</a><br><i>Sudoku:</i> <a class='istyle' href="+
+		"'sudpic1.jpg' target='_blank'>Preset 1</a>, <a class='istyle' href="+
+		"'sudpic20.jpg' target='_blank'>Preset 2</a>, <a class='istyle' href="+
+		"'sudpic30.jpg' target='_blank'>Mix Math</a>, <a class='istyle' href="+
+		"'sudpic4.jpg' target='_blank'>Spacing</a><br><i>Cursors:</i> <a class='is1' href="+
+		"'curHtml.png' target='_blank'>H1</a>, <a class='is2' href="+
+		"'curHtml5.png' target='_blank'>H2</a>, <a class='is3' href="+
+		"'curJs.png' target='_blank'>J1</a>, <a class='is4' href="+
+		"'curJs2.png' target='_blank'>J2</a>, <a class='is5' href="+
+		"'curCss.png' target='_blank'>C1</a>, <a class='is6' href="+
+		"'curCss3.png' target='_blank'>C2</a>, <a class='is7' href="+
+		"'curIco.png.jpg' target='_blank'>I1</a>, <a class='is8' href="+
+		"'curIco2.png.jpg' target='_blank'>I2</a>, <a class='is9' href="+
+		"'curPng.png' target='_blank'>P1</a>, <a class='istyle' href="+
+		"'curPic.png' target='_blank'>P2</a>";
 }
 
 /******************************************************************************/
