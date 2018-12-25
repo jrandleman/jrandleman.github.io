@@ -362,7 +362,7 @@ function startRevScript() {
 			rPArr[i+2] = rPArr[i+2].toUpperCase();
 		}
 	}
-	rPLen = rPArr.join('').length;
+	var rPLen = rPArr.join('').length;
 	for(let i = 0; rPArr[i] == ' ';) rPArr.splice(i,1);
 	for(let i = rPLen-1; rPArr[i] == ' ' && rPArr[i-1] == ' '; i--) rPArr.splice(i,1);
 	document.getElementById("nTIn").value = rPArr.join('');
