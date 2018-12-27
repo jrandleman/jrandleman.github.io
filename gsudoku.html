@@ -10,11 +10,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 <body style="background-color:cyan;cursor:default;" onload="structure();">
 <center><!--Proto&Resume--><h1><span style="font-size:32px;margin-top:-10px;margin-right:5px;">
-<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<a class="proResBtn fas fa-cog" href="gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
 <span><u><big><big><big id="title"></big></big></big></u></span>
 <span style="font-size:32px;margin-top:-10px;margin-left:5px;">
-<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId">&#xe7fd;</a></span></h1>
-<center style="margin-bottom:30px;"><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html" id='sMN'></a></center>
+<a class="proResBtn material-icons" href="gresume.html" id="nmId">&#xe7fd;</a></span></h1>
+<center style="margin-bottom:30px;"><a class="numbersButton" href="gsudNumbers.html" id='sMN'></a></center>
 <style>
 html { scroll-behavior:smooth; }
 .proResBtn {
@@ -36,7 +36,7 @@ html { scroll-behavior:smooth; }
 	background-color:cyan;
 }
 .returnButton:hover { color:cyan;background-color:black;border: 2px solid black; }
-.iconButton {
+.iconButton, .niconButton {
 	border-radius:20px;
 	color:black;
 	font-size:35px;
@@ -47,16 +47,6 @@ html { scroll-behavior:smooth; }
 	padding:8px;
 }
 .iconButton:hover { background-color:black;color:cyan;font-weight:bold; }
-.niconButton {
-	border-radius:20px;
-	color:black;
-	font-size:35px;
-	font-family:arial;
-	text-decoration:none;
-	background-color:cyan;
-	border: 2px solid black;
-	padding:8px;
-}
 .niconButton:hover { background-color:black;text-decoration:underline;color:cyan;font-weight:bold; }
 .blackout { color:cyan; }
 .numbersButton {
@@ -71,36 +61,25 @@ html { scroll-behavior:smooth; }
 }
 .numbersButton:hover { font-style:italic; }
 #title { font-family:orbitron;font-weight:bold; }
-#timeId { margin-top:10px;font-size:45px;margin-left:-17px;font-family:Gugi; }
+#timeId {  margin-bottom:10px;margin-top:20px;font-size:45px;margin-left:-17px;font-family:Gugi; }
 #cy { color:cyan; }
 #numberList { margin-top:-13px;margin-bottom:-12px; }
 #iNum0 { font-size:21px;margin-bottom:-10px;margin-top:-2px;font-style:italic;font-weight:bold;text-decoration:underline;font-family:Prosto One; }
-#iNum2,#iNum3,#iNum4,#iNum5,
-#iNum6,#iNum7,#iNum8,#iNum9 {
+#iNum1,#iNum2,#iNum3,#iNum4,#iNum5,#iNum6,#iNum7,#iNum8,#iNum9 {
 	border-radius:50%;
 	border:3px solid black;
 	font-size:18px;
 	background-color:paleturquoise;
 	font-weight:bold;
-	padding-left:6px;
-	padding-right:6px;
 	font-family:Prosto One;
 }
-#iNum1 {
-	border-radius:50%;
-	border:3px solid black;
-	font-size:18px;
-	background-color:paleturquoise;
-	font-weight:bold;
-	padding-left:9px;
-	padding-right:9px;
-	font-family:Prosto One;
-}
+#iNum2,#iNum3,#iNum4,#iNum5,#iNum6,#iNum7,#iNum8,#iNum9 { padding-left:6px;padding-right:6px; }
+#iNum1 { padding-left:9px;padding-right:9px; }
 #genPuz { background-color:paleturquoise;font-size:20px;border-radius:50px;border:3px solid black;font-family:Prosto One; }
 #genPuz:hover { font-style:italic;cursor:pointer; }
 #noice { font-size:150px;font-family:arial black;color:forestgreen;text-decoration:underline dashed; }
 .y { visibility:hidden; }
-.x {
+.xLP, .xRP, .xP, .x {
 	cursor:pointer;
 	width:15px;
 	height:35px;
@@ -108,58 +87,40 @@ html { scroll-behavior:smooth; }
 	text-align:center;
 	font-size:30px;
 	padding:3px;
-	background-color:cyan;
 	border:2px solid black;
 	font-family:Homenaje;
 }
+.x { background-color:cyan; }
 .x:hover { background-color:#BBFFFF;cursor:pointer; }
-.xP {
-	cursor:pointer;
-	width:15px;
-	height:35px;
-	visibility:visible;
-	text-align:center;
-	font-size:30px;
-	padding:3px;
-	background-color:yellow;
-	border:2px solid black;
-	font-family:Homenaje;
-}
-.xLP, .xRP {
-	cursor:pointer;
-	width:15px;
-	height:35px;
-	visibility:visible;
-	text-align:center;
-	font-size:30px;
-	padding:3px;
-	background-color:yellow;
-	border:2px solid black;
-	border-radius:30px;
-	font-family:Homenaje;
-}
+.xLP, .xRP, .xP { background-color:yellow; }
+.xLP, .xRP { border-radius:30px; }
 #split1, #split2 { margin-top:-10px;margin-bottom:-10px;visibility:hidden;color:red; }
 #lastTag { color:cyan;visibility:hidden; }
 .footerShift1 { position:absolute;top:550px;left:575px; }
+#sGB, #hAN { border-radius:50%;border:3px solid black;color:black;padding:1px;text-decoration:none;font-size:35px;cursor:pointer; }
+#sGB { background-color:lime; }
+#hAN { background-color:yellow; }
+#hAN:hover { color:yellow;background-color:black; }
+#sGB:hover { color:red;background-color:black; }
 </style>
 <style id="sudokuStyle"></style>
 
 <span id='printBtn1'></span>
-<span id='easy'><button onclick="makePuzzle(1,1,2);clearTime();" id="genPuz" style="background-color:lime;"><b id="ez"></b></button></span>
-<span id='medium'><span id="cy">--</span><button onclick="makePuzzle(2,2,2);clearTime();" id="genPuz" style="background-color:dodgerblue;"><b id="md"></b></button></span>
-<span id='hard'><span id="cy">--</span><button onclick="makePuzzle(2,3,2);clearTime();" id="genPuz" style="background-color:red;"><b id="hr"></b></button></span>
-<span id='expert'><span id="cy">--</span><button onclick="makePuzzle(2,4,1);clearTime();" id="genPuz" style="background-color:#F5F;"><b id="xp"></b></button></span>
+<span id='easy'><button onclick="makePuzzle(1);clearTime();" id="genPuz" style="background-color:lime;"><b id="ez"></b></button></span>
+<span id='medium'><span id="cy">--</span><button onclick="makePuzzle(2);clearTime();" id="genPuz" style="background-color:dodgerblue;"><b id="md"></b></button></span>
+<span id='hard'><span id="cy">--</span><button onclick="makePuzzle(3);clearTime();" id="genPuz" style="background-color:red;"><b id="hr"></b></button></span>
+<span id='expert'><span id="cy">--</span><button onclick="makePuzzle(4);clearTime();" id="genPuz" style="background-color:#F5F;"><b id="xp"></b></button></span>
 <span id='printBtn2'></span>
 <br><b><div id="timeId" style="visibility:hidden;"></div></b><br><div id="numberList"></div><br>
 <b style="font-size:45px;"><span id='noice'></span><div id="puzBorder"><div id="SudokuBoard"></div></div></b>
 
 <br><center id="sudfooter" class="footerShift1"><a class="returnButton material-icons" style="font-size:45px" href="index.html">home</a><br><br>
-<p><center><span><a class="niconButton" href="https://jrandleman.github.io/gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
-<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="https://jrandleman.github.io/gperspectiveLength.html">&#x27AB;</a></span>
+<p><center><span><a class="niconButton" href="gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
+<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="gperspectiveLength.html">&#x27AB;</a></span>
 <span class="blackout">------</span>
-<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout">------</span>
-<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="https://jrandleman.github.io/gstarCalculation.html">&#x2729;</a></span>
+<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
 </center></p><br></center>
 
 <span id="A0"></span><br><span id="A1"></span><br><span id="A2"></span><br><span id="A3"></span><br><span id="A4"></span><br>
@@ -255,7 +216,9 @@ function swapDiffBtnLetters(ch5) {
 /******************************************************************************/
 
 function setTimer() {
-	document.getElementById('timeId').innerHTML = '<label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>';
+	document.getElementById('timeId').innerHTML = '<div id="hAN" onclick="showHiliNums();" class="material-icons">visibility_off</div><span id="cy">--</span>'+
+		'<label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>'+
+		'<span id="cy">--</span><div id="sGB" onclick="showGoodBad();" class="material-icons">invert_colors_off</div>';
 	document.getElementById('timerScript').innerHTML = 'var tVar = setInterval(setTime, 1000); var hoursLabel = document.getElementById("hours"), '+
 		'minutesLabel = document.getElementById("minutes"), secondsLabel = document.getElementById("seconds"), totalSeconds = 0;function'+
 		' setTime() {++totalSeconds;secondsLabel.innerHTML = pad(totalSeconds % 60);minutesLabel.innerHTML = pad(parseInt((totalSeconds /'+
@@ -338,37 +301,12 @@ function buildBoard() {
 }
 
 
-function makePuzzle(classTrigger,flag,xpFlag) {
-	diffBorder(flag);
-	document.getElementById('sudfooter').classList.remove('footerShift1');
-	if(classTrigger == 1) {
-		document.getElementById('sudokuStyle').innerHTML = '.xLime { cursor:pointer;width:15px;height:35px;visibility:visible;'+
-			'text-align:center;font-size:30px;padding:3px;background-color:lime;border:2px solid black;font-family:Homenaje; }'+
-			'.xRed { cursor:pointer;width:15px;height:35px;visibility:visible;text-align:center;font-size:30px;'+
-			'padding:3px;background-color:red;border:2px solid black;font-family:Homenaje; }';
-	} else {
-		document.getElementById('sudokuStyle').innerHTML = '.xLime, .xRed { cursor:pointer;width:15px;height:35px;visibility:visible;'+
-			'text-align:center;font-size:30px;padding:3px;background-color:cyan;border:2px solid black;font-family:Homenaje; }';
-	}
-	if(xpFlag == 1) {
-		document.getElementById('lastTag').innerHTML = 'yessir';
-	} else {
-		document.getElementById('lastTag').innerHTML = 'nosir';
-	}
-	document.getElementById('timeId').style = "visibility:visible";
-	document.getElementById('genPuz').scrollIntoView();
-	document.getElementById('printBtn1').innerHTML = '<button onclick="printIt();" id="genPuz"><b>'+
-		'<span class="material-icons">print</span> PUZZLE</b></button><span id="cy">---</span>';
-	document.getElementById('printBtn2').innerHTML = '<span id="cy">---</span><button onclick="printAns();"'+
-		' id="genPuz"><b><span class="material-icons">print</span> ANSWER</b></button><span id="cy">----</span>';
-	document.getElementById('noice').innerHTML = ''; /* CLEAR WIN MESSAGE */
-	prepClones();
-	clearCells();
+function makePuzzle(flag) {
+	initBoardFeatures(flag);
 	A1 = [1,2,3,4,5,6,7,8,9], A2 = [4,5,6,7,8,9,1,2,3], A3 = [7,8,9,1,2,3,4,5,6];
 	A4 = [2,3,1,5,6,4,8,9,7], A5 = [5,6,4,8,9,7,2,3,1], A6 = [8,9,7,2,3,1,5,6,4];
 	A7 = [3,1,2,6,4,5,9,7,8], A8 = [6,4,5,9,7,8,3,1,2], A9 = [9,7,8,3,1,2,6,4,5];
 	AS = mixCols([A1,A2,A3,A4,A5,A6,A7,A8,A9]);
-	document.getElementById('puzBorder').style = "border:5px double red;width:610px;height:545px;";
 	/* GENERATE RANDOM ROW IDXS TO SWITCH WITH ONE ANOTHER IN AS */
 	var rowArray = swapRowColBox().replace(/,/g, '').split('');
 	var rowA1 = rowArray.splice(0,3), rowA2 = rowArray.splice(rowArray.indexOf('-')+1,3);
@@ -433,6 +371,27 @@ function makePuzzle(classTrigger,flag,xpFlag) {
 /* HELPER FUNCTIONS */
 /******************************************************************************/
 
+function initBoardFeatures(flag) {
+	diffBorder(flag);
+	document.getElementById('sudfooter').classList.remove('footerShift1');
+	document.getElementById('sudokuStyle').innerHTML = '.xLime { cursor:pointer;width:15px;height:35px;visibility:visible;'+
+		'text-align:center;font-size:30px;padding:3px;background-color:lime;border:2px solid black;font-family:Homenaje; }'+
+		'.xRed { cursor:pointer;width:15px;height:35px;visibility:visible;text-align:center;font-size:30px;'+
+		'padding:3px;background-color:red;border:2px solid black;font-family:Homenaje; }';
+	document.getElementById('lastTag').innerHTML = 'nosir';
+	document.getElementById('timeId').style = "visibility:visible";
+	document.getElementById('genPuz').scrollIntoView();
+	document.getElementById('printBtn1').innerHTML = '<button onclick="printIt();" id="genPuz"><b>'+
+		'<span class="material-icons">print</span> PUZZLE</b></button><span id="cy">---</span>';
+	document.getElementById('printBtn2').innerHTML = '<span id="cy">---</span><button onclick="printAns();"'+
+		' id="genPuz"><b><span class="material-icons">print</span> ANSWER</b></button><span id="cy">----</span>';
+	document.getElementById('noice').innerHTML = ''; /* CLEAR WIN MESSAGE */
+	prepClones();
+	clearCells();
+	document.getElementById('puzBorder').style = "border:5px double red;width:610px;height:545px;";
+}
+
+
 function diffBorder(flag) {
 	if (flag == 1) {
 		document.getElementById('ez').style.textDecoration = 'underline';
@@ -456,7 +415,6 @@ function diffBorder(flag) {
 		document.getElementById('hr').style.textDecoration = '';
 	}
 }
-
 
 function prepClones() {
 	for(let i = 0; i < 9; i++) {
@@ -737,36 +695,11 @@ function printPuzzle() {
 
 
 function printIt() {
-	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('lnId').style = "visibility:hidden";
-	document.getElementById('nmId').style = "visibility:hidden";
-	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('easy').style = "visibility:hidden";
-	document.getElementById('medium').style = "visibility:hidden";
-	document.getElementById('hard').style = "visibility:hidden";
-	document.getElementById('expert').style = "visibility:hidden";
-	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
-	document.getElementById('printBtn1').style = 'visibility:hidden;';
-	document.getElementById('printBtn2').style = 'visibility:hidden;';
-	document.getElementById('puzBorder').style = 'visibility:hidden;';
+	printPagePre();
 	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
 		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Puzzle Made By Jordan Randleman</b>';
 	window.print();
-	document.getElementById('sMN').style = "visibility:visible;";
-	document.getElementById('lnId').style = "visibility:visible";
-	document.getElementById('nmId').style = "visibility:visible";
-	document.getElementById('sudfooter').style = "visibility:visible;";
-	document.getElementById('easy').style = "visibility:visible";
-	document.getElementById('medium').style = "visibility:visible";
-	document.getElementById('hard').style = "visibility:visible";
-	document.getElementById('expert').style = "visibility:visible";
-	document.getElementById('timeId').style = "visibility:visible;";
-	document.getElementById('numberList').style = 'visibility:visible;';
-	document.getElementById('printBtn1').style = 'visibility:visible;';
-	document.getElementById('printBtn2').style = 'visibility:visible;';
-	document.getElementById('puzBorder').style = 'visibility:visible;border:5px double red;width:610px;height:545px;';
-	document.getElementById('noice').innerHTML = '';
+	printPagePost();
 }
 
 
@@ -781,19 +714,7 @@ function printAns() {
 	var A9Ans = document.getElementById('A8').innerHTML.split('');
 	var ASAns = [A1Ans,A2Ans,A3Ans,A4Ans,A5Ans,A6Ans,A7Ans,A8Ans,A9Ans];
 	
-	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('lnId').style = "visibility:hidden";
-	document.getElementById('nmId').style = "visibility:hidden";
-	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('easy').style = "visibility:hidden";
-	document.getElementById('medium').style = "visibility:hidden";
-	document.getElementById('hard').style = "visibility:hidden";
-	document.getElementById('expert').style = "visibility:hidden";
-	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
-	document.getElementById('printBtn1').style = 'visibility:hidden;';
-	document.getElementById('printBtn2').style = 'visibility:hidden;';
-	document.getElementById('puzBorder').style = 'visibility:hidden;';
+	printPagePre();
 	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
 		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Answer Made By Jordan Randleman</b>';
 	for (let i = 0; i < 9; i++) {
@@ -807,6 +728,35 @@ function printAns() {
 			document.getElementById(String(i)+String(j)).value = AS[i][j];
 		}
 	}
+	printPagePost();
+	/* ADJUST CELL BORDERS */
+	for(let i = 0; i < 9; i++) {
+		for(let j = 0; j < 9; j++) {
+			var cell = document.getElementById(String(i)+String(j));
+			if (cell.value === '') cell.style.borderRadius = "30px";
+		}
+	}
+	prepNumberList();
+	clearTime();
+}
+
+
+function printPagePre() {
+	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('lnId').style = "visibility:hidden";
+	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('easy').style = "visibility:hidden";
+	document.getElementById('medium').style = "visibility:hidden";
+	document.getElementById('hard').style = "visibility:hidden";
+	document.getElementById('expert').style = "visibility:hidden";
+	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
+	document.getElementById('printBtn1').style = 'visibility:hidden;';
+	document.getElementById('printBtn2').style = 'visibility:hidden;';
+	document.getElementById('puzBorder').style = 'visibility:hidden;';
+}
+function printPagePost() {
 	document.getElementById('sMN').style = "visibility:visible;";
 	document.getElementById('lnId').style = "visibility:visible";
 	document.getElementById('nmId').style = "visibility:visible";
@@ -821,25 +771,44 @@ function printAns() {
 	document.getElementById('printBtn2').style = 'visibility:visible;';
 	document.getElementById('puzBorder').style = 'visibility:visible;border:5px double red;width:610px;height:545px;';
 	document.getElementById('noice').innerHTML = '';
-	/* ADJUST CELL BORDERS */
-	for(let i = 0; i < 9; i++) {
-		for(let j = 0; j < 9; j++) {
-			var cell = document.getElementById(String(i)+String(j));
-			if (cell.value === '') cell.style.borderRadius = "30px";
-		}
-	}
-	prepNumberList();
-	clearTime();
 }
 
 /******************************************************************************/
 /* USER FUNCTIONS */
 /******************************************************************************/
 
-function hiliN(idx) {
-	if(document.getElementById('lastTag').innerHTML == 'yessir') {
-		return;
+var flipCount = 0;
+function showGoodBad() {
+	if(flipCount % 2 == 0) {
+		document.getElementById('sudokuStyle').innerHTML = '.xLime, .xRed { cursor:pointer;width:15px;height:35px;visibility:visible;'+
+			'text-align:center;font-size:30px;padding:3px;background-color:cyan;border:2px solid black;font-family:Homenaje; }';
+		document.getElementById('sGB').innerHTML = 'invert_colors';
+	} else {
+		document.getElementById('sudokuStyle').innerHTML = '.xLime { cursor:pointer;width:15px;height:35px;visibility:visible;'+
+			'text-align:center;font-size:30px;padding:3px;background-color:lime;border:2px solid black;font-family:Homenaje; }'+
+			'.xRed { cursor:pointer;width:15px;height:35px;visibility:visible;text-align:center;font-size:30px;'+
+			'padding:3px;background-color:red;border:2px solid black;font-family:Homenaje; }';
+		document.getElementById('sGB').innerHTML = 'invert_colors_off';
 	}
+	flipCount++;
+}
+
+
+var hiliCount = 0;
+function showHiliNums() {
+	if(hiliCount % 2 == 0) {
+		document.getElementById('lastTag').innerHTML = 'yessir';
+		document.getElementById('hAN').innerHTML = 'visibility';
+	} else {
+		document.getElementById('lastTag').innerHTML = 'nosir';
+		document.getElementById('hAN').innerHTML = 'visibility_off';
+	}
+	hiliCount++;
+}
+
+
+function hiliN(idx) {
+	if(document.getElementById('lastTag').innerHTML == 'yessir') return;
 	var hiNum = document.getElementById(idx).value;
 	document.getElementById(idx).addEventListener("mouseout", function(){ loliN(idx); });
 	if (hiNum != '') {
