@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('\n\nTo sketch a star in a single stroke:\n   '+String.fromCharCode(0x2022)+
+	alert('\nTo sketch a star in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Select the desired number of points\n   '+String.fromCharCode(0x2022)+
 		'   Enter your selection to orient the points on the sketchpad\n'+'   '+String.fromCharCode(0x2022)+
 		'   Click the pencil to draw & then connect points chronologically\n\nMade a mistake?\n'+
