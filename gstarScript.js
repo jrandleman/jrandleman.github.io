@@ -5,13 +5,11 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('To sketch a star in a single stroke:\n   '+String.fromCharCode(0x2022)+
+	alert('\nTo sketch a star in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Select the desired number of points\n   '+String.fromCharCode(0x2022)+
 		'   Enter your selection to orient the points on the sketchpad\n'+'   '+String.fromCharCode(0x2022)+
 		'   Click the pencil to draw & then connect points chronologically\n\nMade a mistake?\n'+
-		'  => Click "trashcan" to clear sketch & "arrow" to undo last line\nWant to change stars'+
-		' but already started drawing?\n  => Click the "enter" button to reload the page'+
-		' and start anew');
+		'  => Click "trashcan" to clear sketch & "arrow" to undo last line');
 }
 
 /******************************************************************************/
@@ -144,10 +142,7 @@ function entrBtn(event) {
 
 
 function startStars() {	
-	if (initFlag > 0) {
-		location.reload();
-		return;
-	}
+	if (initFlag > 0) erase();
 	var starPNum = document.getElementById("starInput").value;
 	drawFace(ctx, radius);
 	drawNumbers(ctx, radius, starPNum);
