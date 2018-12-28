@@ -8,7 +8,7 @@ function aboutStars() {
 	alert('\nTo animate a star drawn in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Select the desired number of points\n   '+String.fromCharCode(0x2022)+
 		'   Enter your selection\n'+'   '+String.fromCharCode(0x2022)+
-		'   Voila!');
+		'   Voila!\n');
 }
 
 /******************************************************************************/
