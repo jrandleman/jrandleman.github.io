@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html style="background-color:#F5F;border:10px dashed black;">
 <head><title>Star Calculation</title>
-<link rel="shortcut icon" type="image/x-icon" href="fav4.ico"/>
+<link rel="shortcut icon" type="image/x-icon" href="https://jrandleman.github.io/fav4.ico"/>
 <link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
@@ -9,45 +9,36 @@
 <link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
-<link rel="stylesheet" type="text/css" href="gngmaStyle.css">
+<link rel="stylesheet" type="text/css" href="ngmaStyle.css"> <!-- http://students.engr.scu.edu/~jrandlem/ngmaStyle.css -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
-<body class="df" id="scrollable" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();startStars();">
+<body class="df" id="scrollable" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();shapeSequence();">
 
 <!-- *** STAR HEADER *** -->
 <h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
 <span style="float:left;font-size:32px;margin-top:-10px;margin-left:17px;">
-<a class="proResBtn fas fa-cog" href="gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
 <span style="float:right;font-size:32px;margin-top:-10px;margin-right:17px;">
-<a class="proResBtn material-icons" href="gresume.html" id="nmId"><span style="font-size:55px;">&#xe7fd;</span></a></span></h1>
-<center><a class="numbersButton" href="gstarNumbers.html" id="numId"></a></center>
+<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId"><span style="font-size:55px;">&#xe7fd;</span></a></span></h1>
+<center><a class="numbersButton" href="https://jrandleman.github.io/gstarNumbers.html" id="numId"></a></center>
 
 <!-- *** STAR POINT FUNCTION *** -->
 <br><center><div class="column0"><div id="spinning3DText3" onclick="aboutStars()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <div class="pageTitle"><big><b><u>&#x2606;<span id="subt1Id"></span>&#x2606;<br>&#x2606;<span id="subt2Id"></span>&#x2606;</u></b></big></div>
 <br><center class="pageSubtitle"><span><b id="ssub1"></b>
-<input class="pageInput" style="text-align:center;" type="number" id="starInput" min="0" max="999999" value="14" onwheel="" onkeyup="entrBtn(event)"></span>
-<span><button class="starButton" style="margin:15px;margin-left:1px;padding:5px;" onclick="startStars();"><b id="id1"></b></button></span></div></center>
-<div class="ngmaText4 rainbowText" style="font-family:Bungee Inline;font-size:45px;" id="niceStar"></div>
+<input class="pageInput" style="text-align:center;" type="number" id="starInput" min="2" max="999999" value="14" onwheel="" onkeyup="entrBtn(event)"></span>
+<span><button class="starButton" style="margin:15px;margin-left:1px;padding:5px;" onclick="shapeSequence();"><b id="id1"></b></button></span></div></center>
+<br><center><svg height="450" width="450" id="genStar"></svg></center>
 
-<div class="column3"><br><br><br><br><center><div class="dCanvas"><!-- *** DRAWING CANVAS *** -->
-<center><canvas id="canvas1" width="300" height="300" style="border-radius:50%;"></canvas></center>
-<br><br><br><button id="redrawButton" onclick="erase()"><div class="fas fa-trash-alt"></div></button><span class="blackout df">---</span>
-<button id="drawButton" style="margin:15px;" onclick="init(),cross();"><b class="fas fa-pencil-alt"></b></button><span class="blackout df">---</span>
-<button id="redrawButton" onclick="undoLastLine();"><div class="fas fa-undo-alt"></div></button></div></div></center>
-<div class="column4"><center><div class="a9Canvas"><!-- *** A9 CANVAS *** -->
-<canvas id="canvas" width="420" height="420"></canvas></div></center></div></center>
-<script type="application/javascript" src="gstarScript.js"></script>
-<script type="text/javascript" src="gwebHFTScript.js"></script>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<center><p><a class="returnButton material-icons" style="font-size:45px" href="index.html">&#xe88a;</a></p></center><br>
-
-<p><center><span><a class="niconButton" href="gngmaConversion.html">&#x270E;</a></span>
+<script type="application/javascript" src="https://jrandleman.github.io/gstarScript.js"></script>
+<script type="text/javascript" src="https://jrandleman.github.io/gwebHFTScript.js"></script>
+<center><p><a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/index.html">&#xe88a;</a></p></center><br>
+<p><center><span><a class="niconButton" href="https://jrandleman.github.io/gngmaConversion.html">&#x270E;</a></span>
 <span class="blackout df">------</span>
-<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout df">------</span>
-<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="gperspectiveLength.html">&#x27AB;</a></span>
+<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="https://jrandleman.github.io/gperspectiveLength.html">&#x27AB;</a></span>
 <span class="blackout">------</span>
-<span><a id="con5" onmouseover="on(4)" onmouseout="on(4.5)" class="iconButton" href="gsudoku.html">&#x24C8;</a></span>
+<span><a id="con5" onmouseover="on(4)" onmouseout="on(4.5)" class="iconButton" href="https://jrandleman.github.io/gsudoku.html">&#x24C8;</a></span>
 </center></p><br>
 
 </body>
