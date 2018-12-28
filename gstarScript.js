@@ -55,6 +55,11 @@ function starPoints(pNum) {
 /* POLYGON POINTS SVG SCRIPT */
 /******************************************************************************/
 
+function entrBtn(event) {
+	var keyClick = event.keyCode;
+	if(keyClick == '13') shapeSequence();
+}
+
 /* radius 1/2 pf max height */
 function findX(ptNum,omega) { return 200*Math.sin((2*ptNum*Math.PI)/omega); }
 function findY(ptNum,omega) { return 400*Math.pow(Math.sin((ptNum*Math.PI)/omega),2); }
