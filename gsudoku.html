@@ -357,6 +357,16 @@ function makePuzzle(flag) {
 			AS[l][colC2[k]] = tempC;
 		}
 	}
+	/* 33% CHANCE TO ROTATE THE PUZZLE */
+	var rotatedPuzzle = [], rotateKey = Math.floor(Math.random()*(3)) + 1;
+	if(rotateKey == 2) {
+		for(let o = 0; o < 9; o++) {
+			var arr = [];
+			for(let p = 0; p < 9; p++) arr.push(AS[p][o]);
+			rotatedPuzzle.push(arr);
+		}
+		for(let q = 0; q < 9; q++) AS[q] = rotatedPuzzle[q];
+	}
 	/* CLONE THE PUZZLE */
 	for (let m = 0; m < 9; m++) {
 		for (let n = 0; n < AS[m].length; n++) {
