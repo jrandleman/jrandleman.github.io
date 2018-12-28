@@ -5,11 +5,10 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('\nTo sketch a star in a single stroke:\n   '+String.fromCharCode(0x2022)+
+	alert('\nTo animate a star drawn in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Select the desired number of points\n   '+String.fromCharCode(0x2022)+
-		'   Enter your selection to orient the points on the sketchpad\n'+'   '+String.fromCharCode(0x2022)+
-		'   Click the pencil to draw & then connect points chronologically\n\nMade a mistake?\n'+
-		'  => Click "trashcan" to clear sketch & "arrow" to undo last line');
+		'   Enter your selection\n'+'   '+String.fromCharCode(0x2022)+
+		'   Voila!');
 }
 
 /******************************************************************************/
