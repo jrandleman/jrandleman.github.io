@@ -80,7 +80,7 @@ function shapeSequence(omega) {
 	for(let j = 1; j <= omega; j++) {
 		svgArray.push(pointArr[starArray.indexOf(j)]);
 	}
-	/* fill-rule:evenodd; */
-	document.getElementById('genStar').innerHTML = '<polygon points="'+svgArray.join('')+'" style="fill:lime;stroke:#F5F;stroke-width:2.5;fill-rule:nonzero;"/>';
+	/* fill-rule:nonzero; */
+	document.getElementById('genStar').innerHTML = '<polygon points="'+svgArray.join('')+'" style="fill:lime;stroke:#F5F;stroke-width:1.5;fill-rule:evenodd;"/>';
 	return;
 }
