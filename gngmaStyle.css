@@ -447,7 +447,7 @@
 	position:relative;
 	left:50%;
 	z-index:2;
-	margin-top:-12px;
+	margin-top:-14px;
 }
 .a9Canvas {
 	width:420;
@@ -593,24 +593,16 @@
     color:yellow;
 }
 .row:after { content: "";display: table;clear: both; }
-#drawButton {
-	border-radius: 50%;
-	font-weight:bold;
-	background:black;
-	border: 0px solid black;
-	font-size:55px;
-	color:yellow;
-	cursor:pointer;
-}
-#redrawButton {
+#drawButton, #redrawButton {
 	border-radius: 50%;
 	font-weight:bold;
 	background:black;
 	border:black;
-	font-size:37px;
+	font-size:70px;
 	color:yellow;
 	cursor:pointer;
 }
+#redrawButton { padding-left:12px;padding-right:12px; }
 #drawButton:hover, #redrawButton:hover { color:black;background:yellow; }
 .pageInput { 
 	border-radius: 20px;

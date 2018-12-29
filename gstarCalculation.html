@@ -11,8 +11,9 @@
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
-<body class="df" id="scrollable" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();shapeSequence();">
-<style id="starStyle"></style>
+<body class="df" id="scrollable" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();startStars();shapeSequence();">
+<style>.switchStrBtn {border-radius:50%;border:2px solid yellow;color:yellow;font-size:45px;padding:5px;background-color:black;outline:none;}
+.switchStrBtn:hover {color:black;background-color:yellow;border:2px solid black;cursor:pointer;}</style><style id="starStyle"></style>
 
 <!-- *** STAR HEADER *** -->
 <h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
@@ -25,10 +26,24 @@
 <!-- *** STAR POINT FUNCTION *** -->
 <br><center><div class="column0"><div id="spinning3DText3" onclick="aboutStars()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <div class="pageTitle"><big><b><u>&#x2606;<span id="subt1Id"></span>&#x2606;<br>&#x2606;<span id="subt2Id"></span>&#x2606;</u></b></big></div>
+<br><button class="switchStrBtn material-icons" onclick="showHandDrawn();">create</button><span class="blackout df">---------</span>
+<button class="switchStrBtn material-icons" onclick="showAnimated();">star</button><br>
 <br><center class="pageSubtitle"><span><b id="ssub1"></b>
 <input class="pageInput" style="text-align:center;" type="number" id="starInput" min="2" max="999999" value="14" onwheel="" onkeyup="entrBtn(event)"></span>
-<span><button class="starButton" style="margin:15px;margin-left:1px;padding:5px;" onclick="shapeSequence();"><b id="id1"></b></button></span></div></center>
-<br><center><svg height="450" width="450" id="genStar"></svg></center>
+<span><button class="starButton" style="margin:15px;margin-left:1px;padding:5px;" onclick="initStarShow();"><b id="id1"></b></button></span></div></center>
+<!-- *** ANIMATED STAR SVG *** -->
+<div id="starAnimDrawn"><br><center><svg height="450" width="450" id="genStar"></svg></center></div>
+<div id="starHandDrawn" style="position:absolute;top:0;visibility:hidden;">
+<div class="ngmaText4 rainbowText" style="font-family:Bungee Inline;font-size:45px;" id="niceStar"></div>
+<!-- *** DRAWING CANVAS *** -->
+<div class="column3"><br><br><br><br><center><div class="dCanvas">
+<center><canvas id="canvas1" width="300" height="300" style="border-radius:50%;"></canvas></center><br><br><br>
+<button id="redrawButton" onclick="erase()"><div class="fas fa-trash-alt"></div></button><span class="blackout df">----------------------</span>
+<button id="drawButton" onclick="undoLastLine();"><div class="fas fa-undo-alt"></div></button></div></div></center>
+<!-- *** A9 CANVAS *** -->
+<div class="column4"><center><div class="a9Canvas">
+<canvas id="canvas" width="420" height="420"></canvas></div></center></div></center>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 
 <script type="application/javascript" src="gstarScript.js"></script>
 <script type="text/javascript" src="gwebHFTScript.js"></script>
