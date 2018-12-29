@@ -81,6 +81,11 @@ function shapeSequence(omega) {
 		svgArray.push(pointArr[starArray.indexOf(j)]);
 	}
 	/* fill-rule:nonzero; */
-	document.getElementById('genStar').innerHTML = '<polygon points="'+svgArray.join('')+'" style="fill:lime;stroke:#F5F;stroke-width:1.5;fill-rule:evenodd;"/>';
+	document.getElementById('genStar').innerHTML = '<polygon id="drawing" class="poly" points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;"/>';
+	document.getElementById('starStyle').innerHTML = '.poly {stroke-dasharray:'+drawing.getTotalLength()+';stroke-dashoffset:'+drawing.getTotalLength()+';'+
+		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
+	setTimeout(function() {
+		document.getElementById('drawing').style = 'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
+	}, 2575);
 	return;
 }
