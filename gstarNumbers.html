@@ -4,7 +4,7 @@
 <link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
 <link rel="shortcut icon" type="image/x-icon" href="fav3.ico"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
-<body class="df" style="background-color:black;border:10px dashed lime;color:yellow;">
+<body class="df" style="background-color:black;border:10px dashed lime;color:yellow;" onload="kaleidoscope();">
 
 <style>
 .df { cursor:default; }
@@ -46,12 +46,94 @@ img { cursor:zoom-in; }
 <span><a class="numbersButton" href="gdimNumbers.html">SPATIAL DIMENSIONS</a></span><span class="blackout">--</span>
 <span><a class="numbersButton" href="gperNumbers.html">PERSPECTIVE LENGTH</a></span><span class="blackout">--</span>
 <span><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html">SUDOKU PUZZLES</a></span></center></h1><br>
+<center><span><svg height="450" width="450" id="genStar4"></svg><!-- SPINNING STARS SVG -->
+<svg height="450" width="450" id="genStar2"></svg><svg height="450" width="450" id="genStar3"></svg></span></center><br>
 <center><img onclick="zoomUp(this);" src="pstar1.jpg" width="500" height="666.6667">
 <span style="color:black;">--------------------</span>
 <img onclick="zoomUp(this);" src="pstar20.jpg" width="500" height="666.6667"></center>
 <br><br><br><center><a class="button" href="gstarCalculation.html">Return to Star Calculation</a><br><br><br>
 <a class="returnButton material-icons" style="font-size:45px" href="index.html">&#xe88a;</a></center><br><br><br>
-<script type="text/javascript" src="gzoomPicScript.js"></script>
+<script type="text/javascript" src="gzoomPicScript.js"></script></script><script id="starNumScript"></script>
+<script>
+function kaleidoscope() {
+	document.getElementById('starNumScript').innerHTML = "var timeoutCounter = 1;for(let q = 0; q < 999; q++) {for(let z = 1; z < 10; z++) {"+
+		"setTimeout(shapeSequence,timeoutCounter*125,z*4,'no');setTimeout(shapeSequence,timeoutCounter*125,(z+1)*4-2,'nope');"+
+		"setTimeout(shapeSequence,timeoutCounter*125,(z+1)*2-1,'nosir');timeoutCounter++;}for(let y = 11; y > 1; y--) {"+
+		"setTimeout(shapeSequence,timeoutCounter*125,y*4,'no');setTimeout(shapeSequence,timeoutCounter*125,(y+1)*4-2,'nope');"+
+		"setTimeout(shapeSequence,timeoutCounter*125,(y+1)*2-1,'nosir');timeoutCounter++;}}";
+}
+
+/******************************************************************************/
+/* POLYGON POINTS SVG SCRIPT */
+/******************************************************************************/
+
+/* radius 1/2 pf max height */
+function findX(pNum,omega) { return 200*Math.sin((2*pNum*Math.PI)/omega); }
+function findY(pNum,omega) { return 400*Math.pow(Math.sin((pNum*Math.PI)/omega),2); }
+function shapeSequence(omega,flag) {
+	const x0 = 225, y0 = 10;
+	var pointArr = [];
+	pointArr.push(x0+","+y0+" ");
+	for(let pNum = 1; pNum < omega; pNum++) {
+		var xCur = Math.round(x0 - findX(pNum,omega));
+		var yCur = Math.round(y0 + findY(pNum,omega));
+		pointArr.push(xCur+","+yCur+" ");
+	}
+	var starArray = starPoints(omega);
+	var svgArray = [];
+	for(let j = 1; j <= omega; j++) {
+		svgArray.push(pointArr[starArray.indexOf(j)]);
+	}
+	if(flag == 'no') {
+		document.getElementById('genStar2').innerHTML = '<polygon points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;'+
+			'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;"/>';
+	} else if(flag == 'nope') {
+		document.getElementById('genStar3').innerHTML = '<polygon points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;'+
+			'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;"/>';
+	} else if(flag == 'nosir') {
+		document.getElementById('genStar4').innerHTML = '<polygon points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;'+
+			'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;"/>';
+	}
+	
+}
+
+/******************************************************************************/
+/* A9 SEQUENCING FUNCTIONS */
+/******************************************************************************/
+
+function setSequence(pointNum,orderArr,a,b) {
+	for (i = 1; i < pointNum; i++) {
+		if (orderArr[i-1] + a <= pointNum) {
+			orderArr[i] = orderArr[i-1] + a;
+		} else {
+			orderArr[i] = orderArr[i-1] - b;
+		}
+	}
+	return orderArr;
+}
+function starPoints(pointNum) {	
+	if (pointNum < 0) {
+		return [1];
+	} else {
+		var orderArr = [1];
+		if (pointNum % 2 != 0) {
+			var a = 2;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		} else if (pointNum % 4 == 0) {
+			var a = (pointNum - 2) / 2;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		} else {
+			var a = (pointNum - 2) / 4;
+			if (a % 2 == 0) a++;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		}
+		return orderArr;
+	}
+}
+</script>
 
 </body>
 </html>
