@@ -283,8 +283,8 @@ function shapeSequence(omega) {
 	document.getElementById('starStyle').innerHTML = '.poly {stroke-dasharray:'+drawing.getTotalLength()+';stroke-dashoffset:'+drawing.getTotalLength()+';'+
 		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
 	setTimeout(function() {
-		document.getElementById('drawing').style = '-moz-transition:fill .5s ease-in;-o-transition:fill .5s ease-in;'+
-			'-webkit-transition:fill .2s ease-in;transition:fill .5s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
+		document.getElementById('drawing').style = '-moz-transition:fill 1.33s ease-in;-o-transition:fill 1.33s ease-in;'+
+			'-webkit-transition:fill 1.33s ease-in;transition:fill 1.33s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
 	}, 2575);
 	return;
 }
