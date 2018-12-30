@@ -284,7 +284,7 @@ function shapeSequence(omega) {
 		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
 	setTimeout(function() {
 		document.getElementById('drawing').style = '-moz-transition:fill .5s ease-in;-o-transition:fill .5s ease-in;'+
-			'-webkit-transition:fill .5s ease-in;transition:fill .5s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
+			'-webkit-transition:fill .2s ease-in;transition:fill .5s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
 	}, 2575);
 	return;
 }
