@@ -307,6 +307,23 @@ function makePuzzle(flag) {
 	A4 = [2,3,1,5,6,4,8,9,7], A5 = [5,6,4,8,9,7,2,3,1], A6 = [8,9,7,2,3,1,5,6,4];
 	A7 = [3,1,2,6,4,5,9,7,8], A8 = [6,4,5,9,7,8,3,1,2], A9 = [9,7,8,3,1,2,6,4,5];
 	AS = mixCols([A1,A2,A3,A4,A5,A6,A7,A8,A9]);
+	/* SWAP NUMBERS */
+	var ranFlips = [], switchNums = Math.floor(Math.random()*(3))+2;
+	while(ranFlips.length < (switchNums*2)) {
+		var switchKey = Math.floor(Math.random()*(9))+1;
+		if(ranFlips.indexOf(switchKey) == -1) ranFlips.push(switchKey);
+	}
+	for(let l = 0; l < ranFlips.length; l+=2) {
+		for(let i = 0; i < 9; i++) {
+			for(let j = 0; j < 9; j++) {
+				if(AS[i][j] == ranFlips[l]) {
+					AS[i][j] = ranFlips[l+1];
+				} else if(AS[i][j] == ranFlips[l+1]) {
+					AS[i][j] = ranFlips[l];
+				}
+			}
+		}
+	}
 	/* GENERATE RANDOM ROW IDXS TO SWITCH WITH ONE ANOTHER IN AS */
 	var rowArray = swapRowColBox().replace(/,/g, '').split('');
 	var rowA1 = rowArray.splice(0,3), rowA2 = rowArray.splice(rowArray.indexOf('-')+1,3);
