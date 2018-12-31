@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head><title>Tessellation Generation</title>
+<link rel="shortcut icon" type="image/x-icon" href="fav4.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'></head>
+<body style="background-color:black;" onload="setSvgWH();findShapeLen(6);">
+<style id="starStyle"></style><style>
+.starInput{text-align:center;border-radius:30px;border:2px solid transparent;color:transparent;background-color:transparent;font-size:20px;}
+#inputs {position:absolute;top:0;left:0;background-color:transparent;color:transparent;border:2px solid transparent;padding:5px;z-index:999;}
+#try {color:transparent;background-color:transparent;border:1px solid transparent;border-radius:50%;font-size:18px;padding-top:5px;padding-bottom:5px;}
+#title {font-size:26px;font-weight:bold;font-family:arial;text-decoration:underline;}#title:hover{cursor:default;}
+#genStar2 {position:absolute;top:0;right:999;height:100;width:100;visibility:hidden;}
+.returnButton {border-radius:50%;border:2px solid transparent;color:transparent;padding:5px;text-decoration:none;background-color:transparent;z-index:999;font-size:65px;}
+.returnButton:hover { color:transparent;background-color:transparent;border:2px solid transparent; }
+#btns {position:absolute;bottom:0;left:542px;background-color:transparent;border:2px solid transparent;padding:10px;z-index:999;}
+</style><style id="inputStyle"></style><style id="btnStyle"></style>
+<!-- INPUT PARAMETERS -->
+<center id="inputs" onmouseover="showInput()" onmouseout="hideInput()"><span id="title">SHAPE SIDES: </span>
+<input class="starInput" type="number" id="starInput" min="2" max="999999" value="6" onwheel="" onkeyup="entrBtn2(event,this)">
+<span style="visibility:hidden">-</span><button onclick="findShapeLen(document.getElementById('starInput').value,'auto')" id="try" class="material-icons">input</button>
+<br><br><span id="title">SHAPE RADII: </span>
+<input class="starInput" type="number" id="starDmtr" min="2" max="999999" value="100" onwheel="" onkeyup="entrBtn(event,document.getElementById('starInput'))">
+<span style="visibility:hidden">-</span><button onclick="findShapeLen(document.getElementById('starInput').value)" id="try" class="material-icons">input</button></center>
+<!-- FOOTER -->
+<div id="btns" onmouseover="showBtn()" onmouseout="hideBtn()"><a class="returnButton material-icons" style="" href="index.html">home</a>
+<span style="visibility:hidden">--------</span><a class="returnButton material-icons" href="gstarCalculation.html">grade</a>
+<span style="visibility:hidden">--------</span><a class="returnButton material-icons" href="gstarNumbers.html">iso</a></div>
+<!-- STAR SVG -->
+<center><svg id="genStar"></svg></center><svg id="genStar2"></svg>
+<script id="starNumScript"></script><script>
+/******************************************************************************/
+/* BUTTON FUNCTIONS */
+/******************************************************************************/
+
+function on(x) {
+	if(x == 3) {
+		document.getElementById("con4").innerHTML = "&#x2738;";	
+	} else if(x == 3.5) {
+		document.getElementById("con4").innerHTML = "&#x2729;";
+	}
+}
+function showInput() {
+	document.getElementById('inputStyle').innerHTML = '.starInput{border:2px solid lime;background-color:#CCFF99;color:black;}.starInput:hover{font-style:italic;}'+
+	'#inputs{background-color:black;border:2px solid #F5F;color:lime;}#try{color:black;background-color:#CCFF99;font-weight:bold;border:2px solid lime;border-radius:50%;'+
+	'padding-top:5px;padding-bottom:5px;}#try:hover{cursor:pointer}';
+}
+function hideInput() {
+	document.getElementById('inputStyle').innerHTML = '.starInput{text-align:center;border-radius:30px;border:2px solid transparent;outline:none;'+
+		'color:transparent;background-color:transparent;font-size:10px;}#inputs{position:absolute;top:0;left:0;background-color:transparent;outline:none;color:transparent;'+
+		'border:2px solid transparent;padding:5px;z-index:999;}#try{color:transparent;background-color:transparent;border:1px solid transparent;outline:none;}';
+}
+function showBtn() {
+	document.getElementById('btnStyle').innerHTML = '.returnButton {border-radius:50%;border:2px solid lime;color:lime;padding:5px;text-decoration:none;'+
+		'background-color:black;z-index:999;font-size:65px;}.returnButton:hover { color:black;background-color:lime;border:2px solid lime; }#btns {position:absolute;'+
+		'bottom:0;left:542px;background-color:black;border:2px solid #F5F;padding:10px;z-index:999;}';
+}
+function hideBtn() {
+	document.getElementById('btnStyle').innerHTML = '.returnButton {border-radius:50%;border:2px solid transparent;color:transparent;padding:5px;text-decoration:none;'+
+		'background-color:transparent;z-index:999;font-size:65px;}.returnButton:hover { color:transparent;background-color:transparent;border:2px solid transparent; }'+
+		'#btns {position:absolute;bottom:0;left:542px;background-color:transparent;border:2px solid transparent;padding:10px;z-index:999;}';
+}
+function entrBtn2(event,elem) { if(event.keyCode == '13') findShapeLen(elem.value,'auto'); }
+function entrBtn(event,elem) { if(event.keyCode == '13') findShapeLen(elem.value); }
+
+/******************************************************************************/
+/* SVG STAR HELPER FUNCTIONS */
+/******************************************************************************/
+
+function dynamicRadius() {
+	var totalPts = document.getElementById('starInput').value;
+	if((totalPts == 6 || totalPts == 3) || totalPts == 2) {
+		document.getElementById('starDmtr').value = '100';
+	} else if((totalPts == 5 || totalPts == 7) || totalPts == 10) {
+		document.getElementById('starDmtr').value = '90';
+	} else if(((totalPts == 14 || totalPts == 11) || (totalPts == 13 || totalPts == 17)) || totalPts == 19) {
+		document.getElementById('starDmtr').value = '88';
+	} else {
+		document.getElementById('starDmtr').value = '87';
+	}
+}
+function dynamicY(om) {
+	if(om == 4) {
+		return .45;
+	} else if(om == 5 || om == 8) {
+		return .7;
+	} else if(om == 10) {
+		return .77;
+	} else {
+		return .75;
+	}
+}
+function getSvgCenter() {
+	var widthArr = document.getElementById('genStar').style.width.split(''), lenWidth = widthArr.indexOf('p');
+	widthArr.splice(lenWidth,widthArr.length);
+	return Number(widthArr.join('')/2);
+}
+function setSvgWH() { document.getElementById('genStar').style = 'height:'+window.innerHeight*2+';width:'+window.innerWidth*2+';'+
+	'border:5px solid #F5F;transform:scale(.5);position:absolute;top:-370;left:-725;'; }
+function starRadius() { return document.getElementById('starDmtr').value; }
+/* radius 1/2 pf max height -:- x = r*sin(2P*pi/omega) -:- y = 2r*sin^2(P*pi/omega) */
+function findX(pNum,omega) { return starRadius()*Math.sin((2*pNum*Math.PI)/omega); }
+function findY(pNum,omega) { return 2*starRadius()*Math.pow(Math.sin((pNum*Math.PI)/omega),2); }
+/* X-AXIS */
+var r1 = starRadius()*Math.pow(3,0.5), r2 = starRadius()*0.5*Math.pow(3,0.5);
+var evR = [0,r1,-r1,r1*2,-r1*2,r1*3,-r1*3,r1*4,-r1*4,r1*5,-r1*5,r1*6,-r1*6,r1*7,-r1*7,r1*8,-r1*8,r1*9,-r1*9,r1*10,-r1*10,r1*11,-r1*11,r1*12,-r1*12];
+var odR = [r2,-r2,r2*3,-r2*3,r2*5,-r2*5,r2*7,-r2*7,r2*9,-r2*9,r2*11,-r2*11,r2*13,-r2*13,r2*15,-r2*15,r2*17,-r2*17,r2*19,-r2*19,r2*21,-r2*21,r2*23,-r2*23,r2*25,-r2*25];
+var rowArr = [evR,odR,evR,odR,evR,odR,evR,odR,evR,odR,evR,odR,evR,odR,evR,odR,evR,odR];
+var xPos = [];
+for(let i = 0; i < rowArr.length; i++) {
+	for(let j = 0; j < rowArr[i].length; j++) xPos.push(rowArr[i][j]);
+}
+/* Y-AXIS */
+var Mv = 2*starRadius(), eLn = evR.length, oLn = odR.length;
+var hexRLn = [eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn,eLn,oLn];
+var yPos = [];
+for(let k = 0; k < hexRLn.length; k++) {
+	for(let l = 0; l < hexRLn[k]; l++) yPos.push(Mv*k);
+}
+
+/******************************************************************************/
+/* POLYGON POINTS SVG SCRIPT */
+/******************************************************************************/
+
+function shapeSequence(omega) {
+	setSvgWH();
+	document.getElementById('genStar').innerHTML = '';
+	var newYPos = [], shapes = [];
+	for(let i = 0; i < yPos.length; i++) newYPos.push(yPos[i]*dynamicY(omega));
+	for(let i = 0; i < xPos.length; i++) {
+		var x0 = getSvgCenter()+xPos[i], y0 = -starRadius()+newYPos[i], pointArr = [];
+		pointArr.push(x0+","+y0+" ");
+		for(let pNum = 1; pNum < omega; pNum++) {
+			var xCur = Math.round(x0 - findX(pNum,omega)), yCur = Math.round(y0 + findY(pNum,omega));
+			pointArr.push(xCur+","+yCur+" ");
+		}
+		var starArray = starPoints(omega), svgArray = [];
+		for(let j = 1; j <= omega; j++) svgArray.push(pointArr[starArray.indexOf(j)]);
+		shapes.push('<polygon class="poly2 starId2" points="'+pointArr.join('')+'" style="stroke:#F5F;stroke-width:3;"/>'+
+			'<polygon class="poly starId" points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:3;"/>');
+	}
+	for(let j = 0; j < xPos.length; j++) document.getElementById('genStar').innerHTML += shapes[j];
+	var elems = document.getElementsByClassName('starId');
+	var elems2 = document.getElementsByClassName('starId2');
+	for(let i = 0; i < elems.length; i++) {
+		setTimeout(function() { elems[i].style = /*'-moz-transition:fill .88s ease-in;-o-transition:fill .88s ease-in;'+
+			'-webkit-transition:fill .88s ease-in;transition:fill .88s ease-in;*/'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
+			/*elems2[i].style = '-moz-transition:fill .88s ease-in;-o-transition:fill .88s ease-in;-webkit-transition:fill .88s ease-in;'+
+			'transition:fill .88s ease-in;fill:black;fill-rule:nonzero;stroke:#F5F;stroke-width:1.5;';document.getElementById('genStar').style = '-moz-'+
+			'transition:background .88s ease-in;-o-transition:background .88s ease-in;-webkit-transition:background .88s ease-in;transition:background '+
+			'.88s ease-in;background-color:black;height:'+window.innerHeight+';width:'+window.innerWidth+';border:5px solid #F5F;';*/
+		}, 2575);
+	}
+}
+
+function findShapeLen(omega,flag) {
+	if(flag == 'auto') dynamicRadius();
+	var x0 = 50, y0 = 10, pointArr = [];
+	pointArr.push(x0+","+y0+" ");
+	for(let pNum = 1; pNum < omega; pNum++) {
+		var xCur = Math.round(x0 - findX(pNum,omega)), yCur = Math.round(y0 + findY(pNum,omega));
+		pointArr.push(xCur+","+yCur+" ");
+	}
+	var starArray = starPoints(omega), svgArray = [];
+	for(let j = 1; j <= omega; j++) svgArray.push(pointArr[starArray.indexOf(j)]);
+	document.getElementById('genStar2').innerHTML = '<polygon id="drawingStar" points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:3;"/>'+
+		'<polygon id="drawingShape" points="'+pointArr.join('')+'" style="stroke:#F5F;stroke-width:3;"/>';
+	document.getElementById('starStyle').innerHTML = '.poly {stroke-dasharray:'+drawingStar.getTotalLength()+';stroke-dashoffset:'+drawingStar.getTotalLength()+';'+
+		'animation:dash 2.5s linear forwards;}.poly2 {stroke-dasharray:'+drawingShape.getTotalLength()+';stroke-dashoffset:'+drawingShape.getTotalLength()+';'+
+		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
+	shapeSequence(omega);
+}
+
+/******************************************************************************/
+/* A9 SEQUENCING FUNCTIONS */
+/******************************************************************************/
+
+function setSequence(pointNum,orderArr,a,b) {
+	for (i = 1; i < pointNum; i++) {
+		if (orderArr[i-1] + a <= pointNum) {
+			orderArr[i] = orderArr[i-1] + a;
+		} else {
+			orderArr[i] = orderArr[i-1] - b;
+		}
+	}
+	return orderArr;
+}
+function starPoints(pointNum) {	
+	if (pointNum < 0) {
+		return [1];
+	} else {
+		var orderArr = [1];
+		if (pointNum % 2 != 0) {
+			var a = 2;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		} else if (pointNum % 4 == 0) {
+			var a = (pointNum - 2) / 2;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		} else {
+			var a = (pointNum - 2) / 4;
+			if (a % 2 == 0) a++;
+			var b = pointNum - a;
+			setSequence(pointNum,orderArr,a,b);
+		}
+		return orderArr;
+	}
+}
+</script>
+</body>
+</html>
