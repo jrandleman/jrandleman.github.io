@@ -109,22 +109,25 @@ const ssub3FilledArrP = randTitle(id1LenP).split('').splice(0,ssub3LenP);
 var ssub4TextP = "Vertical ", ssub4LenP = ssub4TextP.length;
 const ssub4FilledArrP = randTitle(id1LenP).split('').splice(0,ssub4LenP);
 /*************************** -:- STAR CALC VARS -:- ***************************/
-var numTextS = "SHOW ME THE NUMBERS", numLenS = numTextS.length;
-const numFilledArrS = randTitle(numLenS).split('').splice(0,numLenS);
-
 var titleTxtS = "Star Calculation!", titleLenS = (titleTxtS.length);
-const titleFilledArrS = randTitle(numLenS).split('').splice(0,titleLenS);
+const titleFilledArrS = randTitle(titleLenS).split('').splice(0,titleLenS);
+
+var numTextS = "THE NUMBERS", numLenS = numTextS.length;
+const numFilledArrS = randTitle(titleLenS).split('').splice(0,numLenS);
+
+var tesTextS = "TESSELLATION", tesLenS = tesTextS.length;
+const tesFilledArrS = randTitle(titleLenS).split('').splice(0,tesLenS);
 
 var subt1TextS = " Spawn Star ", subt1LenS = subt1TextS.length;
-const subt1FilledArrS = randTitle(numLenS).split('').splice(0,subt1LenS);
+const subt1FilledArrS = randTitle(titleLenS).split('').splice(0,subt1LenS);
 var subt2TextS = " Sequence ", subt2LenS = subt2TextS.length;
-const subt2FilledArrS = randTitle(numLenS).split('').splice(0,subt2LenS);
+const subt2FilledArrS = randTitle(titleLenS).split('').splice(0,subt2LenS);
 
 var ssub1TextS = "Star Points: ", ssub1LenS = ssub1TextS.length;
-const ssub1FilledArrS = randTitle(numLenS).split('').splice(0,ssub1LenS);
+const ssub1FilledArrS = randTitle(titleLenS).split('').splice(0,ssub1LenS);
 
 var id1TextS = "-:- ENTER -:-", id1LenS = id1TextS.length;
-const id1FilledArrS = randTitle(numLenS).split('').splice(0,id1LenS);
+const id1FilledArrS = randTitle(titleLenS).split('').splice(0,id1LenS);
 
 /******************************************************************************/ 
 // TYPEWRITER FUNCTIONS
@@ -253,9 +256,10 @@ function typeWriterPer() {
 
 
 function typeWriterStar() {
-    if (ch < numTextS.length) {
+    if (ch < titleTxtS.length) {
         var letter = titleTxtS.charAt(ch);
 		var numletter = numTextS.charAt(ch);
+		var tesletter = tesTextS.charAt(ch);
 		var subt1letter = subt1TextS.charAt(ch);
 		var subt2letter = subt2TextS.charAt(ch);
 		var ssub1letter = ssub1TextS.charAt(ch);
@@ -263,6 +267,7 @@ function typeWriterStar() {
 
         titleFilledArrS.splice(ch,1,letter);
         numFilledArrS.splice(ch,1,numletter);
+        tesFilledArrS.splice(ch,1,tesletter);
         subt1FilledArrS.splice(ch,1,subt1letter);
         subt2FilledArrS.splice(ch,1,subt2letter);
         ssub1FilledArrS.splice(ch,1,ssub1letter);
@@ -270,6 +275,7 @@ function typeWriterStar() {
 
         document.getElementById("webTitleID").innerHTML = titleFilledArrS.join('');
         document.getElementById("numId").innerHTML = numFilledArrS.join('');
+        document.getElementById("tesId").innerHTML = tesFilledArrS.join('');
         document.getElementById("subt1Id").innerHTML = subt1FilledArrS.join('');
         document.getElementById("subt2Id").innerHTML = subt2FilledArrS.join('');
         document.getElementById("ssub1").innerHTML = ssub1FilledArrS.join('');

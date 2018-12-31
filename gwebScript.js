@@ -172,7 +172,7 @@ var numText = "SHOW ME THE NUMBERS";
 var numLen = numText.length;
 const numFilledArr = randTitle().split('').splice(0,numLen);
 
-var num2Text = "SHOW NUMBERS";
+var num2Text = "THE NUMBERS";
 var num2Len = num2Text.length;
 const num2FilledArr = randTitle().split('').splice(0,num2Len);
 
