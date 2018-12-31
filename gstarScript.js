@@ -5,12 +5,11 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('Click the "pencil" or "star" button below (under "Spawn Star Sequence") to either hand-draw or animate your star of choice.'+
+	alert('=> Click the "pencil" or "star" button below (under "Spawn Star Sequence") to either hand-draw or animate your star of choice.'+
 		'\n\nTo sketch a star by hand in a single stroke:\n   '+String.fromCharCode(0x2022)+
-		'   Select the desired number of points\n   '+String.fromCharCode(0x2022)+
-		'   Enter your selection to orient the points on the sketchpad\n'+'   '+String.fromCharCode(0x2022)+
-		'   Connect the points chronologically\nMade a mistake?\n'+
-		'  => Click "trashcan" to clear sketch & "arrow" to undo last line');
+		'   Enter desired # of points and connect them chronologically\n   '+String.fromCharCode(0x2022)+
+		'   Click "trashcan" to clear sketch & "arrow" to undo last line\n\n'+
+		'For Tessellation:\n=> Mouseover top-right to edit parameters & bottom-center to exit');
 }
 
 /******************************************************************************/
