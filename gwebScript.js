@@ -172,6 +172,14 @@ var numText = "SHOW ME THE NUMBERS";
 var numLen = numText.length;
 const numFilledArr = randTitle().split('').splice(0,numLen);
 
+var num2Text = "SHOW NUMBERS";
+var num2Len = num2Text.length;
+const num2FilledArr = randTitle().split('').splice(0,num2Len);
+
+var tesText = "TESSELLATION";
+var tesLen = tesText.length;
+const tesFilledArr = randTitle().split('').splice(0,tesLen);
+
 var prcText = "SHOW ME THE PROCESS";
 var prcLen = prcText.length;
 const prcFilledArr = randTitle().split('').splice(0,prcLen);
@@ -210,6 +218,8 @@ function typeWriter() {
         var dletter = dText.charAt(ch);
         var sletter = sText.charAt(ch);
         var numletter = numText.charAt(ch);
+        var num2letter = num2Text.charAt(ch);
+        var tesletter = tesText.charAt(ch);
         var prcletter = prcText.charAt(ch);
         var sculetter = scuText.charAt(ch);
         var wspletter = wspText.charAt(ch);
@@ -220,6 +230,8 @@ function typeWriter() {
         dFilledArr.splice(ch,1,dletter);
         sFilledArr.splice(ch,1,sletter);
         numFilledArr.splice(ch,1,numletter);
+        num2FilledArr.splice(ch,1,num2letter);
+        tesFilledArr.splice(ch,1,tesletter);
         prcFilledArr.splice(ch,1,prcletter);
         scuFilledArr.splice(ch,1,sculetter);
         wspFilledArr.splice(ch,1,wspletter);
@@ -231,7 +243,8 @@ function typeWriter() {
         document.getElementById("sId").innerHTML = sFilledArr.join('');
         document.getElementById("numId1").innerHTML = numFilledArr.join('');
         document.getElementById("numId2").innerHTML = numFilledArr.join('');
-        document.getElementById("numId3").innerHTML = numFilledArr.join('');
+        document.getElementById("numId3").innerHTML = num2FilledArr.join('');
+        document.getElementById("numId4").innerHTML = tesFilledArr.join('');
         document.getElementById("numIdS").innerHTML = numFilledArr.join('');
         document.getElementById("prcId").innerHTML = prcFilledArr.join('');
         document.getElementById("scuId").innerHTML = scuFilledArr.join('');
