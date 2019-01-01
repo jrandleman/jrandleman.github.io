@@ -546,7 +546,7 @@ function checkHoliday() {
         document.getElementById("holiyay").innerHTML = "<span id='hlwng'>&#x265B;</span><span id='nyg'>H</span><span id='nyb'>A</span>"+
             "<span id='nyg'>P</span><span id='nyb'>P</span><span id='nyg'>Y </span><span id='nyb'>N</span>"+
             "<span id='nyg'>E</span><span id='nyb'>W </span><span id='nyg'>Y</span><span id='nyb'>E</span>"+
-            "<span id='nyg'>A</span><span id='nyb'>R</span><span id='nyg'>S</span><span id='nyb'>! </span><span id='hlwng'>&#x265B;</span>";
+            "<span id='nyg'>A</span><span id='nyb'>R</span><span id='nyg'>!</span><span id='nyb'>! </span><span id='hlwng'>&#x265B;</span>";
         holiCounter++;
     }
 
