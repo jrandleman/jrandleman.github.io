@@ -16,6 +16,8 @@ function aboutDimensions() {
 // INITIALIZATION FUNCTION
 /******************************************************************************/
 
+function entrBtn(event) {if(event.keyCode == '13') startDim();}
+
 function startDim() {	
 	var dimin = document.getElementById("quantity1").value; 
 	var dimout = document.getElementById("quantity2").value; 
@@ -70,12 +72,6 @@ function startDim() {
 	}
 }
 
-
-function entrBtn(event) {
-	var keyClick = event.keyCode;
-	if(keyClick == '13') startDim();
-}
-
 /******************************************************************************/
 // FACTORIAL FUNCTION
 /******************************************************************************/
@@ -110,100 +106,100 @@ function dimensions(dimout,dimin) {
 /* DIMENSION DRAWING */
 /******************************************************************************/
 
-var shape;
-function createCube(cube,color) {
-	viewScale(cube,color);
-	const tessSpace = 200, pentMv = 200, hexMv = 500, sepMv = 375, octMv = 1100, nonMv = 775, decMv = 2200;
-	const hendMv = 1550, dodMv = 4400, triMv = 3100, tdcMv = 8800, pdcMv = 6200;
-	const mA = [0,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv,tdcMv,pdcMv];
-	shape = gen(color,cube,0,pentMv,0,0,0,0,0,0,0,0,0,0);
-	if (cube >= 5) {
-		shape += gen(color,cube,tessSpace,0,0,0,0,0,0,0,0,0,0,0);
+function dynamicDim(cube) {
+	/* CREATECUBE FUNCTION */
+	var dynamicString = 'var shape;\nfunction createCube(cube,color) {\nviewScale(cube,color);';
+	var shapeLog1 = 'shape = gen(color,cube,0,200';
+	for(let h1 = cube - 5; h1 > 0; h1--) shapeLog1 += ',0';
+	dynamicString += '\n'+shapeLog1+');';
+	if(cube >= 5) {
+		var shapeLog2 = 'if (cube >= 5) {\nshape += gen(color,cube,200,0';
+		for(let h2 = cube - 5; h2 > 0; h2--) shapeLog2 += ',0';
+		dynamicString += '\n'+shapeLog2+');\n}';
 	}
-	if(cube >= 6) { /* LD5 + RD5 */
-			shape += gen(color,cube,0,pentMv,hexMv,0,0,0,0,0,0,0,0,0) + gen(color,cube,tessSpace,0,hexMv,0,0,0,0,0,0,0,0,0);
-	}
-	if(cube >= 7) { /* BLD5 + BRD5 + TLD5 + TRD5 */
-		shape += gen(color,cube,0,pentMv,0,sepMv,0,0,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,0,sepMv,0,0,0,0,0,0,0,0)+
-			gen(color,cube,0,pentMv,hexMv,sepMv,0,0,0,0,0,0,0,0)+gen(color,cube,tessSpace,0,hexMv,sepMv,0,0,0,0,0,0,0,0);	
-	}
-	if(cube >= 8) { /* LEFT COLUMN 0*TessSpace W/ PentMv - RIGHT COL TS W/ 0*PM - ALWAYS MOST RECENT MV ON RIGHT, MIX ALL IN BTWN MV COMBOS & 0 TILL FULL */
-		var combos = binaryCombos(2);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],octMv,0,0,0,0,0,0,0);
+	/* MAKE mA ARRAY */
+	var num = cube - 5, evDim = 550, odDim = 387.5, mA = [0];
+	for(let i = 0; i < num; i++) {
+		if(i % 2 == 0) {
+			mA.push(evDim*Math.pow(2,i/2));
+		} else {
+			mA.push(odDim*Math.pow(2,(i-1)/2));
 		}
 	}
-	if(cube >= 9) {
-		var combos = binaryCombos(3);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],nonMv,0,0,0,0,0,0);
+	dynamicString += '\nvar mA = ['+mA+'];';
+	if(cube >= 6) {
+		var shapeLog4 = 'shape += gen(color,cube,0,200,mA[1]', shapeLog5 = 'shape += gen(color,cube,200,0,mA[1]';
+		for(let h3 = cube - 6; h3 > 0; h3--) {
+			shapeLog4 += ',0';
+			shapeLog5 += ',0';
+		}
+		dynamicString += '\nif(cube >= 6) {\n'+shapeLog4+');\n'+shapeLog5+');\n}';
+	}
+	if(cube >= 7) {
+		for(let j = 7; j <= cube; j++) {
+			dynamicString += '\nif(cube >= '+j+') {\nvar combos = binaryCombos('+String(j-6)+');\nvar bA = genCombos(combos);\nvar genArr = [];';
+			var genOne = 'shape += gen(color,cube,0,200', genTwo = 'shape += gen(color,cube,200,0';
+			for(let k = 0; k < j - 6; k++) {
+				genOne += ',mA[bA[k]['+String(k)+']]';
+				genTwo += ',mA[bA[k]['+String(k)+']]';
+			}
+			genOne += ',mA['+String(j-5)+']';
+			genTwo += ',mA['+String(j-5)+']';
+			for(let l = 0; l < cube-j; l++) {
+				genOne += ',0';
+				genTwo += ',0';
+			}
+			dynamicString += '\nfor (let k = 0; k < (combos.length); k++) {\n'+genOne+');\n'+genTwo+');\n'+'}'+'\n'+'}';
 		}
 	}
-	if(cube >= 10) {
-		var combos = binaryCombos(4);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],decMv,0,0,0,0,0);
+	dynamicString += '\nif(color == "red") {\ndocument.getElementById("dimCubeR").innerHTML = shape;\n} else {'+
+		'\ndocument.getElementById("dimCubeL").innerHTML = shape;\n}\n}';
+	
+	/* GEN FUNCTION */
+	
+	dynamicString += '\n\nfunction gen(color,cube,tessSpace,pentMv';
+	var genArgs = [];
+	for(let m = 0; m < mA.length - 1; m++) {
+		dynamicString += ',dim'+String(m);
+		genArgs.push('dim'+String(m));
+	}
+	dynamicString += ') {\nvar shape = "", lCounter = 0;\nfor(let i = 0; i < 41; i +=40) {\nvar c1p1 = Number(i), c1p2 = Number(i)+100;';
+	var x1Var = 'var x1 = c1p1+tessSpace', x2Var = 'var x2 = c1p2+tessSpace';
+	for(let n = 0; n < genArgs.length; n++) {
+		if(n % 2 == 0) {
+			x1Var += '+'+String(genArgs[n]);
+			x2Var += '+'+String(genArgs[n]);
+		} else {
+			x1Var += '+('+String(genArgs[n])+'/10)';
+			x2Var += '+('+String(genArgs[n])+'/10)';
 		}
 	}
-	if(cube >= 11) {
-		var combos = binaryCombos(5);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],hendMv,0,0,0,0);
+	dynamicString += '\n'+x1Var+';\n'+x2Var+';\nvar x3 = x1+200, x4 = x2+200, x5 = x1+40, x6 = x2+40, x7 = x3+40, x8 = x4+40;';
+	var y1Var = 'var y1 = c1p1+tessSpace', y2Var = 'var y2 = c1p2+tessSpace';
+	for(let o = 0; o < genArgs.length; o++) {
+		if(o % 2 != 0) {
+			y1Var += '+'+String(genArgs[o]);
+			y2Var += '+'+String(genArgs[o]);
+		} else {
+			y1Var += '+('+String(genArgs[o])+'/10)';
+			y2Var += '+('+String(genArgs[o])+'/10)';
 		}
 	}
-	if(cube >= 12) {
-		var combos = binaryCombos(6);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape += gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0,0,0);
-			shape += gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],dodMv,0,0,0);
+	dynamicString += '\n'+y1Var+';\n'+y2Var+';\nvar y3 = y1+20, y4 = y2+20, y5 = y1+40, y6 = y2+40, y7 = y3+40, y8 = y4+40;';
+	dynamicString += '\nif(cube <= 0){shape += cube0(color);break;}\nif(cube == 1){shape += cube1(color);break;}\nshape += cube3(x1,x2,y1,y2,color);'+
+		'\nif(cube == 2) break;\nif(cube >= 4) shape += cube4(x3,x4,y3,y4,color);';
+	dynamicString += '\nif(lCounter < 1 && cube >= 3) {\nshape += cube13(x1,x2,x5,x6,y1,y2,y5,y6,color);\nif(cube >= 4) shape+= cube44(x3,x4,x7,x8,y3,y4,y7,y8,color);\n}';
+	dynamicString += '\nif(cube >= 4) {\nfor (let j = 0; j < cube-3; j++) {\nif (j == 0) {\nvar mvX = 200, mvY = 20;\n} else if (j == 1) {\nvar mvX = pentMv, mvY = pentMv;';
+	for(let p = 2; p < cube-3; p++) {
+		dynamicString += '\n} else if (j == '+p+') {';
+		if(p % 2 == 0) {
+			dynamicString += '\nvar mvX = -'+genArgs[p-2]+', mvY = (-'+genArgs[p-2]+'/10);';
+		} else {
+			dynamicString += '\nvar mvX = (-'+genArgs[p-2]+'/10), mvY = -'+genArgs[p-2]+';';
 		}
 	}
-	if(cube >= 13) {
-		var combos = binaryCombos(7);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv,0,0);
-			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],triMv,0,0);
-		}
-	}
-	if(cube >= 14) {
-		var combos = binaryCombos(8);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],tdcMv,0);
-			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],tdcMv,0);
-		}
-	}
-	if(cube >= 15) {
-		var combos = binaryCombos(9);
-		var bA = genCombos(combos);
-		var genArr = [];
-		for (let j = 0; j < (combos.length); j++) {
-			shape+=gen(color,cube,0,200,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],mA[bA[j][8]],pdcMv);
-			shape+=gen(color,cube,200,0,mA[bA[j][0]],mA[bA[j][1]],mA[bA[j][2]],mA[bA[j][3]],mA[bA[j][4]],mA[bA[j][5]],mA[bA[j][6]],mA[bA[j][7]],mA[bA[j][8]],pdcMv);
-		}
-	}
-	if(color == 'red') {
-		document.getElementById('dimCubeR').innerHTML = shape;
-	} else {
-		document.getElementById('dimCubeL').innerHTML = shape;
-	}
+	dynamicString += '\n}\nshape += formCube(x1,x2,y1,y2,mvX,mvY,color);\nif (j > 0) shape += formCube2(x3,x4,y3,y4,mvX,mvY,color);\n}\n}\nlCounter++;\n}\nreturn shape;\n}';
+	document.getElementById('dynamicScript').innerHTML = dynamicString;
 }
 
 /******************************************************************************/
@@ -259,200 +255,99 @@ function viewScale(cube,color) {
 			var lft = 510;
 		}
 		var brStr = "";
-		if((cube == 0 || cube == 1) || cube == 2) {
-			document.getElementById(svgId).style.transform = "scale(3)";
-			document.getElementById(svgId).style.height = "5";
-			document.getElementById(svgId).style.width = "150";
-			document.getElementById(svgId).style.left = String(lft + 50)+"px";
-			if (cube == 0) document.getElementById(svgId).style.left = String(lft + 205)+"px";
-			if (cube == 2) {
-				document.getElementById(svgId).style.height = "100";
-				for(let i = 0; i < 18; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
-			} else {
+		if((cube == 0 || cube == 1) || (cube == 2 || cube == 3)){
+			document.getElementById(svgId).style.transform = "scale(4)";
+			document.getElementById(svgId).style.left = String(lft - 50)+"px";
+			if(cube == 0 || cube == 1) {
+				document.getElementById(svgId).style.height = "5";
+				document.getElementById(svgId).style.width = "100";
 				for(let i = 0; i < 1; i++) brStr += "<br>";
 				document.getElementById('insertBR').innerHTML = brStr;
+			} else if(cube == 2 || cube == 3) {
+				document.getElementById(svgId).style.width = "150";
+				if(cube == 2) {
+					document.getElementById(svgId).style.height = "100";
+					for(let i = 0; i < 25; i++) brStr += "<br>";
+					document.getElementById('insertBR').innerHTML = brStr;
+				} else {
+					document.getElementById(svgId).style.height = "150";
+					for(let i = 0; i < 35; i++) brStr += "<br>";
+					document.getElementById('insertBR').innerHTML = brStr;
+				}
 			}
-		} else if(cube == 3) {
-			document.getElementById(svgId).style.transform = "scale(3)";
-			document.getElementById(svgId).style.height = "150";
-			document.getElementById(svgId).style.width = "150";
-			document.getElementById(svgId).style.left = String(lft)+"px";
-			for(let i = 0; i < 25; i++) brStr += "<br>";
+		} else {
+			/* SCALE */
+			var size = cube;
+			if(size % 2 != 0) size--;
+			size = Math.pow(2,(6-size)/2);
+			/* HEIGHT / WIDTH */
+			var height = 175, width = 450;
+			for(let j = cube - 1; j > 3; j--) {
+				if(j % 2 == 0) {
+					height += 100*Math.pow(2,(j-2)/2);
+					width += evWidth(j);
+				} else {
+					height += 100*Math.pow(2,(j-7)/2);
+					width += 1100*Math.pow(2,(j-7)/2);
+				}
+			}
+			if(cube % 2 == 0) {
+				for(let i = 0; i < 20+(cube-4); i++) brStr += "<br>";
+			} else {
+				for(let i = 0; i < 43+(cube-5); i++) brStr += "<br>";
+			}			
 			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 4) {
-				document.getElementById(svgId).style.transform = "scale(2.75)";
-				document.getElementById(svgId).style.height = "175";
-				document.getElementById(svgId).style.width = "425";
-				document.getElementById(svgId).style.left = String(lft - 250)+"px";
-				for(let i = 0; i < 26; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 5) {
-			document.getElementById(svgId).style.transform = "scale(1.3)";
-			document.getElementById(svgId).style.height = "375";
-			document.getElementById(svgId).style.width = "550";
-			document.getElementById(svgId).style.left = String(lft - 150)+"px";
-			for(let i = 0; i < 27; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 6) {
-			document.getElementById(svgId).style.transform = "scale(1.15)";
-			document.getElementById(svgId).style.height = "450";
-			document.getElementById(svgId).style.width = "1100";
-			document.getElementById(svgId).style.left = String(lft - 400)+"px";
-			for(let i = 0; i < 28; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 7) {
-			document.getElementById(svgId).style.transform = "scale(.75)";
-			document.getElementById(svgId).style.height = "800";
-			document.getElementById(svgId).style.width = "1100";
-			document.getElementById(svgId).style.left = String(lft - 200)+"px";
-			for(let i = 0; i < 33; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 8 || cube == 9) {
-			document.getElementById(svgId).style.transform = "scale(.5)";
-			document.getElementById(svgId).style.height = "900";
-			document.getElementById(svgId).style.width = "2450";
-			document.getElementById(svgId).style.left = String(lft - 300)+"px";
-			for(let i = 0; i < 26; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-			if (cube == 9) {
-				document.getElementById(svgId).style.height = "1675";
-				document.getElementById(svgId).style.width = "2550";
+			if(cube == 4) {
+				document.getElementById(svgId).style.left = String(lft - 120)+"px";
+			} else {
 				document.getElementById(svgId).style.left = String(lft - 350)+"px";
-				brStr = "";
-				for(let i = 0; i < 47; i++) brStr += "<br>";
-				document.getElementById('insertBR').innerHTML = brStr;
 			}
-		} else if(cube == 10) {
-			document.getElementById(svgId).style.transform = "scale(.29)";
-			document.getElementById(svgId).style.height = "1900";
-			document.getElementById(svgId).style.width = "4500";
-			document.getElementById(svgId).style.left = String(lft - 450)+"px";
-			for(let i = 0; i < 30; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 11) {
-			document.getElementById(svgId).style.transform = "scale(.275)";
-			document.getElementById(svgId).style.height = "3450";
-			document.getElementById(svgId).style.width = "4650";
-			document.getElementById(svgId).style.left = String(lft - 440)+"px";
-			for(let i = 0; i < 52; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 12) {
-			document.getElementById(svgId).style.transform = "scale(.145)";
-			document.getElementById(svgId).style.height = "3900";
-			document.getElementById(svgId).style.width = "9050";
-			document.getElementById(svgId).style.left = String(lft - 450)+"px";
-			for(let i = 0; i < 30; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 13) {
-			document.getElementById(svgId).style.transform = "scale(.140)";
-			document.getElementById(svgId).style.height = "7000";
-			document.getElementById(svgId).style.width = "9350";
-			document.getElementById(svgId).style.left = String(lft - 450)+"px";
-			for(let i = 0; i < 55; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 14) {
-			document.getElementById(svgId).style.transform = "scale(.07)";
-			document.getElementById(svgId).style.height = "8000";
-			document.getElementById(svgId).style.width = "18150";
-			document.getElementById(svgId).style.left = String(lft - 450)+"px";
-			for(let i = 0; i < 30; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
-		} else if(cube == 15) {
-			document.getElementById(svgId).style.transform = "scale(.07)";
-			document.getElementById(svgId).style.height = "14250";
-			document.getElementById(svgId).style.width = "19000";
-			document.getElementById(svgId).style.left = String(lft - 450)+"px";
-			for(let i = 0; i < 55; i++) brStr += "<br>";
-			document.getElementById('insertBR').innerHTML = brStr;
+			document.getElementById(svgId).style.transform = "scale("+String(size)+")";
+			document.getElementById(svgId).style.height = String(height);
+			document.getElementById(svgId).style.width = String(width);
 		}
 	}
 }
 
 
-function gen(color,cube,tessSpace,pentMv,hexMv,sepMv,octMv,nonMv,decMv,hendMv,dodMv,triMv,tdcMv,pdcMv) {
-	var shape = "";
-	var lCounter = 0;
-	for(let i = 0; i < 41; i +=40) {
-		var c1p1 = Number(i);
-		var c1p2 = Number(i)+100;
-		var x1 = c1p1+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10)+tdcMv+(pdcMv/10);
-		var x2 = c1p2+tessSpace+hexMv+(sepMv/10)+octMv+(nonMv/10)+decMv+(hendMv/10)+dodMv+(triMv/10)+tdcMv+(pdcMv/10);
-		var x3 = x1+200, x4 = x2+200;
-		var x5 = x1+40, x6 = x2+40;
-		var x7 = x3+40, x8 = x4+40;
-		var y1 = c1p1+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv+(tdcMv/10)+pdcMv;
-		var y2 = c1p2+tessSpace+(hexMv/10)+sepMv+(octMv/10)+nonMv+(decMv/10)+hendMv+(dodMv/10)+triMv+(tdcMv/10)+pdcMv;
-		var y3 = y1+20, y4 = y2+20;
-		var y5 = y1+40, y6 = y2+40;
-		var y7 = y3+40, y8 = y4+40;
+function cube0(color){return "<circle cx='2' cy='2' r='1' stroke='"+color+"' stroke-width='2' fill='"+color+"' />";}
+function cube1(color){return "<line x1='0' y1='0' x2='100' y2='0' style='stroke:"+color+";stroke-width:2' />";}
+function cube3(x1,x2,y1,y2,color){
+	return "<polygon points='"+String(x1)+","+String(y1)+" "+String(x1)+","+String(y2)+" "+String(x2)+","+String(y2)+" "+String(x2)+","+String(y1)+
+		"' style='fill:black;fill-opacity:0;stroke:"+color+";stroke-width:2;'/>";
+}
+function cube4(x3,x4,y3,y4,color){
+	return "<polygon points='"+String(x3)+","+String(y3)+" "+String(x3)+","+String(y4)+" "+String(x4)+","+String(y4)+" "+String(x4)+","+String(y3)+
+		"' style='fill:black;fill-opacity:0;stroke:"+color+";stroke-width:2;'/>";
+}
+function cube13(x1,x2,x5,x6,y1,y2,y5,y6,color) {
+	return "<line x1='"+String(x1)+"' y1='"+String(y1)+"' x2='"+String(x5)+"' y2='"+String(y5)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x1)+"' y1='"+String(y2)+"' x2='"+String(x5)+"' y2='"+String(y6)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x2)+"' y1='"+String(y2)+"' x2='"+String(x6)+"' y2='"+String(y6)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x2)+"' y1='"+String(y1)+"' x2='"+String(x6)+"' y2='"+String(y5)+"' style='stroke:"+color+";stroke-width:2' />";
+}
+function cube44(x3,x4,x7,x8,y3,y4,y7,y8,color) {
+	return "<line x1='"+String(x3)+"' y1='"+String(y3)+"' x2='"+String(x7)+"' y2='"+String(y7)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x3)+"' y1='"+String(y4)+"' x2='"+String(x7)+"' y2='"+String(y8)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x4)+"' y1='"+String(y4)+"' x2='"+String(x8)+"' y2='"+String(y8)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x4)+"' y1='"+String(y3)+"' x2='"+String(x8)+"' y2='"+String(y7)+"' style='stroke:"+color+";stroke-width:2' />";
+}
+function formCube(x1,x2,y1,y2,mvX,mvY,color){
+	return "<line x1='"+String(x1)+"' y1='"+String(y1)+"' x2='"+String(x1+mvX)+"' y2='"+String(y1+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x1)+"' y1='"+String(y2)+"' x2='"+String(x1+mvX)+"' y2='"+String(y2+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x2)+"' y1='"+String(y2)+"' x2='"+String(x2+mvX)+"' y2='"+String(y2+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x2)+"' y1='"+String(y1)+"' x2='"+String(x2+mvX)+"' y2='"+String(y1+mvY)+"' style='stroke:"+color+";stroke-width:2' />";
+}
+function formCube2(x3,x4,y3,y4,mvX,mvY,color){
+	return "<line x1='"+String(x3)+"' y1='"+String(y3)+"' x2='"+String(x3+mvX)+"' y2='"+String(y3+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x3)+"' y1='"+String(y4)+"' x2='"+String(x3+mvX)+"' y2='"+String(y4+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x4)+"' y1='"+String(y4)+"' x2='"+String(x4+mvX)+"' y2='"+String(y4+mvY)+"' style='stroke:"+color+";stroke-width:2' />"+
+		"<line x1='"+String(x4)+"' y1='"+String(y3)+"' x2='"+String(x4+mvX)+"' y2='"+String(y3+mvY)+"' style='stroke:"+color+";stroke-width:2' />";
+}
 
-		if(cube <= 0) { shape += "<circle cx='2' cy='2' r='1' stroke='"+color+"' stroke-width='2' fill='"+color+"' />";break; } /* 0D CUBE */
-		if(cube == 1) { shape += "<line x1='0' y1='0' x2='100' y2='0' style='stroke:"+color+";stroke-width:2' />";break; } /* 1D CUBE */
-		/* 3D CUBE */
-		shape += "<polygon points='"+String(x1)+","+String(y1)+" "+String(x1)+","+String(y2)+" "+
-			String(x2)+","+String(y2)+" "+String(x2)+","+String(y1)+"' style='fill:black;fill-opacity:0;stroke:"+color+";stroke-width:2;'/>";
-		/* 2D CUBE */
-		if(cube == 2) break;
-		/* 4D CUBE */
-		if(cube >= 4) {
-			shape += "<polygon points='"+String(x3)+","+String(y3)+" "+String(x3)+","+String(y4)+" "+
-				String(x4)+","+String(y4)+" "+String(x4)+","+String(y3)+"' style='fill:black;fill-opacity:0;stroke:"+color+";stroke-width:2;'/>";
-		}
-		/* 3D CUBE + */
-		if(lCounter < 1 && cube >= 3) { /* CUBE 1 */
-			shape+= "<line x1='"+String(x1)+"' y1='"+String(y1)+"' x2='"+String(x5)+"' y2='"+String(y5)+"' style='stroke:"+color+";stroke-width:2' />"; /*TL*/
-			shape+= "<line x1='"+String(x1)+"' y1='"+String(y2)+"' x2='"+String(x5)+"' y2='"+String(y6)+"' style='stroke:"+color+";stroke-width:2' />"; /*BL*/
-			shape+= "<line x1='"+String(x2)+"' y1='"+String(y2)+"' x2='"+String(x6)+"' y2='"+String(y6)+"' style='stroke:"+color+";stroke-width:2' />"; /*BR*/
-			shape+= "<line x1='"+String(x2)+"' y1='"+String(y1)+"' x2='"+String(x6)+"' y2='"+String(y5)+"' style='stroke:"+color+";stroke-width:2' />"; /*TR*/
-			/* 4D CUBE */
-			if(cube >= 4) { /* CUBE 2 */
-				shape+= "<line x1='"+String(x3)+"' y1='"+String(y3)+"' x2='"+String(x7)+"' y2='"+String(y7)+"' style='stroke:"+color+";stroke-width:2' />"; /*TL*/
-				shape+= "<line x1='"+String(x3)+"' y1='"+String(y4)+"' x2='"+String(x7)+"' y2='"+String(y8)+"' style='stroke:"+color+";stroke-width:2' />"; /*BL*/
-				shape+= "<line x1='"+String(x4)+"' y1='"+String(y4)+"' x2='"+String(x8)+"' y2='"+String(y8)+"' style='stroke:"+color+";stroke-width:2' />"; /*BR*/
-				shape+= "<line x1='"+String(x4)+"' y1='"+String(y3)+"' x2='"+String(x8)+"' y2='"+String(y7)+"' style='stroke:"+color+";stroke-width:2' />"; /*TR*/
-			}
-		}
-		if(cube >= 4) { /* DRAWS LINES CONNECTING HIGHER DIMENSIONS – ADD A ''-Mv IN THE VAIN OF SEP/HEX AND COPY HOW THEY WERE EXECUTED */
-			for (let j = 0; j < cube-3; j++) {
-				if (j == 0) { /* 4D CUBE */
-					var mvX = 200, mvY = 20;
-				} else if (j == 1) { /* 5D CUBE */
-					var mvX = pentMv, mvY = pentMv;
-				} else if (j == 2) { /* 6D CUBE */
-					var mvX = -hexMv, mvY = (-hexMv/10);
-				} else if (j == 3) { /* 7D CUBE */
-					var mvX = (-sepMv/10), mvY = -sepMv;
-				} else if (j == 4) { /* 8D CUBE */
-					var mvX = -octMv, mvY = (-octMv/10);
-				} else if (j == 5) { /* 9D CUBE */
-					var mvX = (-nonMv/10), mvY = -nonMv;
-				} else if (j == 6) { /* 10D CUBE */
-					var mvX = -decMv, mvY = (-decMv/10);
-				} else if (j == 7) { /* 11D CUBE */
-					var mvX = (-hendMv/10), mvY = -hendMv;
-				} else if (j == 8) { /* 12D CUBE */
-					var mvX = -dodMv, mvY = (-dodMv/10);
-				} else if (j == 9) { /* 13D CUBE */
-					var mvX = (-triMv/10), mvY = -triMv;
-				} else if (j == 10) { /* 14D CUBE */
-					var mvX = -tdcMv, mvY = (-tdcMv/10);
-				} else if (j == 11) { /* 15D CUBE */
-					var mvX = (-pdcMv/10), mvY = -pdcMv;
-				}
-				shape+="<line x1='"+String(x1)+"' y1='"+String(y1)+"' x2='"+String(x1+mvX)+"' y2='"+String(y1+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*TL*/
-				shape+="<line x1='"+String(x1)+"' y1='"+String(y2)+"' x2='"+String(x1+mvX)+"' y2='"+String(y2+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*BL*/
-				shape+="<line x1='"+String(x2)+"' y1='"+String(y2)+"' x2='"+String(x2+mvX)+"' y2='"+String(y2+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*BR*/
-				shape+="<line x1='"+String(x2)+"' y1='"+String(y1)+"' x2='"+String(x2+mvX)+"' y2='"+String(y1+mvY)+"' style='stroke:"+color+";stroke-width:2' />"; /*TR*/
-				if (j > 0) {
-					shape+="<line x1='"+String(x3)+"' y1='"+String(y3)+"' x2='"+String(x3+mvX)+"' y2='"+String(y3+mvY)+"' style='stroke:"+color+";stroke-width:2' />";/*TL*/
-					shape+="<line x1='"+String(x3)+"' y1='"+String(y4)+"' x2='"+String(x3+mvX)+"' y2='"+String(y4+mvY)+"' style='stroke:"+color+";stroke-width:2' />";/*BL*/
-					shape+="<line x1='"+String(x4)+"' y1='"+String(y4)+"' x2='"+String(x4+mvX)+"' y2='"+String(y4+mvY)+"' style='stroke:"+color+";stroke-width:2' />";/*BR*/
-					shape+="<line x1='"+String(x4)+"' y1='"+String(y3)+"' x2='"+String(x4+mvX)+"' y2='"+String(y3+mvY)+"' style='stroke:"+color+";stroke-width:2' />";/*TR*/
-				}
-			}
-		}
-		lCounter++;
-	}
-	return shape;
+
+function evWidth(num) {
+	var shift = (num+2)/2;
+	if(shift % 2 != 0) shift--;
+	return 100*factor((shift-2)/2);
 }
