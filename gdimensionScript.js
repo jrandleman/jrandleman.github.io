@@ -209,10 +209,10 @@ function dynamicDim(cube) {
 function clearSvg() {
 	document.getElementById('dimCubeR').innerHTML = "";
 	document.getElementById('dimCubeL').innerHTML = "";
-	document.getElementById('dimCubeR').style.height = "";
-	document.getElementById('dimCubeL').style.height = "";
-	document.getElementById('dimCubeR').style.width = "";
-	document.getElementById('dimCubeL').style.width = "";
+	document.getElementById('dimCubeR').style.height = "1";
+	document.getElementById('dimCubeL').style.height = "1";
+	document.getElementById('dimCubeR').style.width = "1";
+	document.getElementById('dimCubeL').style.width = "1";
 	document.getElementById('dimCubeR').style.transform = "scale(1)";
 	document.getElementById('dimCubeL').style.transform = "scale(1)";
 	document.getElementById('insertBR').innerHTML = "";
