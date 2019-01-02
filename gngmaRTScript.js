@@ -76,14 +76,14 @@ function printIt() {
 		if ((printTxt == '1' || printTxt == '(1)') || printTxt == "ngma") {
 			var ntext = document.getElementById("eTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/index.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>NGMA Conversion:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
 		} else if ((printTxt == '2' || printTxt == '(2)') || printTxt == "english") {
 			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/index.html</span></i></b></p><br>");
 			myWindow.document.write("<center><h1><u><i style='font-family:arial'>English Reversion:</i></u></h1><p style='font-size:22px'><b>"+etext+"</b></p></center>");
 			myWindow.print();
 			myWindow.close();
@@ -91,7 +91,7 @@ function printIt() {
 			var ntext = document.getElementById("eTIn").value;
 			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
-			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/hq.html</span></i></b></p><br>");
+			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/index.html</span></i></b></p><br>");
 			myWindow.document.write("<center style='font-family:arial'><h1><u><i>Translated Text:</i></u></h1><p style='font-size:22px'><b>"+ntext+"</b></p></center>");
 			myWindow.document.write("<center><p style='font-size:22px'><b>"+etext+"</b></p></center>");
 			myWindow.print();
