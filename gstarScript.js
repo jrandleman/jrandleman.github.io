@@ -44,10 +44,6 @@ function showAnimated() {
 }
 function kaleidoscope() {
 	if(kalCounter % 2 == 0) {
-		var allGood = confirm('-:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-\n-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-'+
-			' !!! WARNING !!! -:-:-:-:-:-:-:-:-:-:-:-:-:-:-\n-:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-\n\n'+
-			'=>   THE FOLLOWING ANIMATION HAS FAST, FLASHING COLORS!\n=>   THOSE WITH EPILEPSY BE ADVISED!\n\nCONTINUE PLAYING ANIMATION?');
-		if(!allGood) return;
 		document.getElementById('mandala'). innerHTML = '<svg height="450" width="450" style="transform:scale(1.25)" id="genMandala2"></svg>';
 		document.getElementById('starStyle2').innerHTML = '';
 		document.getElementById('playPause').innerHTML = "pause_circle_filled";
