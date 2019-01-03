@@ -200,20 +200,7 @@ ctx.translate(radius, radius);
 radius = radius * 0.90;
 
 
-function entrBtn(event) {
-	var keyClick = event.keyCode;
-	if(keyClick == '13') {
-		if(document.getElementById('starHandDrawn').style.position == 'absolute') {
-			shapeSequence();
-		} else if(document.getElementById('starAnimDrawn').style.position == 'absolute') {
-			startStars();
-		} else if(document.getElementById('startMandala').style.position == 'absolute') {
-			makeMandala();
-		}
-	}
-}
-
-
+function entrBtn(event) {if(event.keyCode == '13') {shapeSequence();startStars();makeMandala();}}
 function startStars() {	
 	init(),cross();
 	if (initFlag > 0) erase();
