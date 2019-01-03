@@ -81,9 +81,9 @@ const subt1FilledArrD = randTitle(id1LenD).split('').splice(0,subt1LenD);
 var subt2TextD = " DIMENSIONS ", subt2LenD = subt2TextD.length;
 const subt2FilledArrD = randTitle(id1LenD).split('').splice(0,subt2LenD);
 
-var ssub1TextD = "Inner Cube:", ssub1LenD = ssub1TextD.length;
+var ssub1TextD = "Inner Hypercube:", ssub1LenD = ssub1TextD.length;
 const ssub1FilledArrD = randTitle(id1LenD).split('').splice(0,ssub1LenD);
-var ssub2TextD = "Outer Cube:", ssub2LenD = ssub2TextD.length;
+var ssub2TextD = "Outer Hypercube:", ssub2LenD = ssub2TextD.length;
 const ssub2FilledArrD = randTitle(id1LenD).split('').splice(0,ssub2LenD);
 /************************** -:- PERSPECTIVE VARS -:- **************************/
 var id1TextP = "-:- CLICK TO ENTER -:-", id1LenP = id1TextP.length;

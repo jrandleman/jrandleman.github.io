@@ -5,11 +5,11 @@
 /******************************************************************************/
 
 function aboutDimensions() {
-	alert("Calculate the number of smaller spatial dimensional cubes (red) inside"+ 
-		" another larger spatial dimensional cube (green). \n\nFor example: 0D = point,"+
+	alert("Calculate the number of smaller spatial dimensional hypercubes (red) inside"+ 
+		" another larger spatial dimensional hypercube (green). \n\nFor example: 0D = point,"+
 		" 1D = line, 2D = face, 3D = cube, 4D = tesseract, etc. \n\nTherefore,"+
-		" 6 would be returned if a 2D inner spatial cube and a 3D outer"+
-		" spatial cube were entered (as there are 6 faces in a 3D cube).");
+		" 6 would be returned if a 2D inner hypercube and a 3D outer"+
+		" hypercube were entered (as there are 6 faces in a 3D cube).");
 }
 
 /******************************************************************************/
@@ -28,7 +28,7 @@ function startDim() {
 		return;
 	}
 	if (Number(dimin) > Number(dimout)) {
-		document.getElementById("demo21").innerHTML = "Inner spatial dimensional cubes cannot be larger than the outer ones!";
+		document.getElementById("demo21").innerHTML = "Inner hypercubes cannot be larger than the outer ones!";
 		clearSvg();
 	} else {
 		var dimnum = dimensions(dimout,dimin);
@@ -48,7 +48,7 @@ function startDim() {
 		} else if (dimin == 4) {
 			var part1 = 'tesseract'+plural;
 		} else {
-			var part1 = dimin+'D cube'+plural;
+			var part1 = dimin+'D hypercube'+plural;
 		}
 		if (dimout == 0) {
 			var part2 = 'point.';
@@ -59,7 +59,7 @@ function startDim() {
 		} else if (dimout == 4) {
 			var part2 = 'tesseract.';
 		} else {
-			var part2 = dimout+'D cube.';
+			var part2 = dimout+'D hypercube.';
 		}
 		var phrase = 'There '+verb+dimnum+' '+part1+'within a single '+part2;
 		document.getElementById("demo21").innerHTML = phrase;
