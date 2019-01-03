@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('=> Click the "pencil" or "star" button below (under "Spawn Star Sequence") to either hand-draw or animate your star of choice.'+
+	alert('=> Click the "pencil", "star", or "rotation" button below to either hand-draw, animate, make a mandala of your star of choice.'+
 		'\n\nTo sketch a star by hand in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Enter desired # of points and connect them chronologically\n   '+String.fromCharCode(0x2022)+
 		'   Click "trashcan" to clear sketch & "arrow" to undo last line\n\n'+
@@ -16,22 +16,61 @@ function aboutStars() {
 /* SWITCH DRAWING FUNCTIONS */
 /******************************************************************************/
 
-function showHandDrawn() {
+var kalCounter = 0;
+
+function initStarShow() {shapeSequence();startStars();makeMandala();}
+function showMandala() {
 	document.getElementById('starAnimDrawn').style = 'position:absolute;top:0;visibility:hidden;';
+	document.getElementById('starHandDrawn').style = 'position:absolute;top:0;visibility:hidden;';
+	document.getElementById('startMandala').style = '';
+	document.getElementById('genMandala').style = 'transform:scale(1.25);';
+	makeMandala();
+}
+function showHandDrawn() {
+	clearKal('upIt');
+	document.getElementById('starAnimDrawn').style = 'position:absolute;top:0;visibility:hidden;';
+	document.getElementById('startMandala').style = 'position:absolute;top:0;visibility:hidden;right:999';
 	document.getElementById('starHandDrawn').style = '';
+	document.getElementById('genMandala').style = '';
 	startStars();
 }
 function showAnimated() {
+	clearKal('upIt');
 	document.getElementById('starHandDrawn').style = 'position:absolute;top:0;visibility:hidden;';
+	document.getElementById('startMandala').style = 'position:absolute;top:0;visibility:hidden;right:999';
 	document.getElementById('starAnimDrawn').style = '';
+	document.getElementById('genMandala').style = '';
 	shapeSequence();
 }
-function initStarShow() {
-	if(document.getElementById('starHandDrawn').style.position == 'absolute') {
-		shapeSequence();
-	} else if(document.getElementById('starAnimDrawn').style.position == 'absolute') {
-		startStars();
+function kaleidoscope() {
+	if(kalCounter % 2 == 0) {
+		document.getElementById('mandala'). innerHTML = '<svg height="450" width="450" style="transform:scale(1.25)" id="genMandala2"></svg>';
+		document.getElementById('starStyle2').innerHTML = '';
+		document.getElementById('playPause').innerHTML = "pause_circle_filled";
+		document.getElementById('starNumScript').innerHTML = "var timeoutCounter = 1;for(q = 0; q < 999; q++) {for(let z = 1; z < 50; z++) {"+
+			"setTimeout(makeMandalaKal,timeoutCounter*100,z);timeoutCounter++;timeoutCounter++;}for(y = 51; y > 1; y--) {"+
+			"setTimeout(makeMandalaKal,timeoutCounter*100,y);timeoutCounter++;}}"+
+			"function makeMandalaKal(omega) {const x0 = 225, y0 = 10;var pointArr = [], polyString = '';pointArr.push(x0+','+y0+' ');"+
+			"for(let pNum = 1; pNum < omega; pNum++) {var xCur = Math.round(x0 - findX(pNum,omega)), yCur = Math.round(y0 + findY(pNum,omega));"+
+			"pointArr.push(xCur+','+yCur+' ');}for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j++) polyString += mandaLine(pointArr,i,j,"+
+			"'lime');if(omega % 2 == 0) {for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=2) polyString += mandaLine(pointArr,i,j,'red');"+
+			"if(omega % 4 != 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=4) polyString += mandaLine(pointArr,i,j,'dodgerblue');}"+
+			"if((omega-5) % 3 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=3) polyString += mandaLine(pointArr,i,j,'orange');"+
+			"if((omega-2) % 5 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=5) polyString += mandaLine(pointArr,i,j,'#F5F');"+
+			"if((omega-2) % 6 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=6) polyString += mandaLine(pointArr,i,j,'hotpink');"+
+			"if((omega-2) % 9 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=9) polyString += mandaLine(pointArr,i,j,'#00FFCC');"+
+			"document.getElementById('genMandala2').innerHTML = polyString;}";
+	} else {
+		clearKal();
+		makeMandala();
 	}
+	kalCounter++;
+}
+function clearKal(flag) {
+	if(flag == 'upIt') kalCounter++;
+	document.getElementById('mandala'). innerHTML = '<svg height="450" width="450" style="transform:scale(1.25)" id="genMandala"></svg>';
+	document.getElementById('playPause').innerHTML = "play_circle_filled";
+	document.getElementById('starNumScript').innerHTML = "";
 }
 
 /******************************************************************************/
@@ -164,7 +203,9 @@ function entrBtn(event) {
 			shapeSequence();
 		} else if(document.getElementById('starAnimDrawn').style.position == 'absolute') {
 			startStars();
-		}
+		} else if(document.getElementById('startMandala').style.position == 'absolute') {
+		makeMandala();
+	}
 	}
 }
 
@@ -255,11 +296,11 @@ function starPoints(pNum) {
 /* POLYGON POINTS SVG SCRIPT */
 /******************************************************************************/
 
-/* radius 1/2 pf max height */
+/* radius 1/2 pf max height -:- x = r*sin(2P*pi/omega) -:- y = 2r*sin^2(P*pi/omega) */
 function findX(ptNum,omega) { return 200*Math.sin((2*ptNum*Math.PI)/omega); }
 function findY(ptNum,omega) { return 400*Math.pow(Math.sin((ptNum*Math.PI)/omega),2); }
 
-function shapeSequence(omega) {
+function shapeSequence() {
 	document.getElementById('genStar').innerHTML = '';
 	var omega = document.getElementById("starInput").value;
 	const x0 = 225, y0 = 10;
@@ -286,4 +327,41 @@ function shapeSequence(omega) {
 			'-webkit-transition:fill 1.33s ease-in;transition:fill 1.33s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
 	}, 2575);
 	return;
+}
+
+/******************************************************************************/
+/* MANDALA SVG SCRIPT */
+/******************************************************************************/
+
+function makeMandala() {
+	var omega = document.getElementById("starInput").value;
+	const x0 = 225, y0 = 10;
+	var pointArr = [];
+	pointArr.push(x0+","+y0+" ");
+	for(let pNum = 1; pNum < omega; pNum++) {
+		var xCur = Math.round(x0 - findX(pNum,omega));
+		var yCur = Math.round(y0 + findY(pNum,omega));
+		pointArr.push(xCur+","+yCur+" ");
+	}
+	var polyString = '';
+	for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j++) polyString += mandaLine(pointArr,i,j,'lime');
+	if(omega % 2 == 0) {
+		for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=2) polyString += mandaLine(pointArr,i,j,'red');
+		if(omega % 4 != 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=4) polyString += mandaLine(pointArr,i,j,'dodgerblue');
+	}
+	if((omega-5) % 3 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=3) polyString += mandaLine(pointArr,i,j,'orange');
+	if((omega-2) % 5 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=5) polyString += mandaLine(pointArr,i,j,'#F5F');
+	if((omega-2) % 6 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=6) polyString += mandaLine(pointArr,i,j,'hotpink');
+	if((omega-2) % 9 == 0) for(let i = 0; i < pointArr.length; i++) for(let j = i+1; j < pointArr.length; j+=9) polyString += mandaLine(pointArr,i,j,'#00FFCC');
+	document.getElementById('genMandala').innerHTML = polyString;
+	document.getElementById('starStyle2').innerHTML = '.manda {stroke-dasharray:'+999+';stroke-dashoffset:'+999+';'+
+		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
+}
+
+function mandaLine(pointArr,i,j,color) {
+	var xOne = pointArr[i].split('').splice(0,pointArr[i].indexOf(',')).join('');
+	var yOne = pointArr[i].split('').splice(pointArr[i].indexOf(',')+1,pointArr[i].length).join('');
+	var xTwo = pointArr[j].split('').splice(0,pointArr[j].indexOf(',')).join('');
+	var yTwo = pointArr[j].split('').splice(pointArr[j].indexOf(',')+1,pointArr[j].length).join('');
+	return "<line class='manda' x1='"+xOne+"' y1='"+yOne+"' x2='"+xTwo+"' y2='"+yTwo+"' style='stroke:"+color+";stroke-width:.75' />";
 }
