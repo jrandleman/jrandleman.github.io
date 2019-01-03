@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 function aboutStars() {
-	alert('=> Click the "pencil", "star", or "rotation" button below to either hand-draw, animate, make a mandala of your star of choice.'+
+	alert('=> Click the "pencil", "star", or "rotation" button below to either hand-draw, animate, or make a mandala of your star of choice.'+
 		'\n\nTo sketch a star by hand in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Enter desired # of points and connect them chronologically\n   '+String.fromCharCode(0x2022)+
 		'   Click "trashcan" to clear sketch & "arrow" to undo last line\n\n'+
