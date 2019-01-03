@@ -44,6 +44,10 @@ function showAnimated() {
 }
 function kaleidoscope() {
 	if(kalCounter % 2 == 0) {
+		var allGood = confirm('-:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-\n-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-'+
+			' !!! WARNING !!! -:-:-:-:-:-:-:-:-:-:-:-:-:-:-\n-:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-:-:-:-:--:-:-:-:-:-:-:-:-:-:-\n\n'+
+			'=>   THE FOLLOWING ANIMATION HAS FAST, FLASHING COLORS!\n=>   THOSE WITH EPILEPSY BE ADVISED!\n\nCONTINUE PLAYING ANIMATION?');
+		if(!allGood) return;
 		document.getElementById('mandala'). innerHTML = '<svg height="450" width="450" style="transform:scale(1.25)" id="genMandala2"></svg>';
 		document.getElementById('starStyle2').innerHTML = '';
 		document.getElementById('playPause').innerHTML = "pause_circle_filled";
@@ -67,7 +71,7 @@ function kaleidoscope() {
 	kalCounter++;
 }
 function clearKal(flag) {
-	if(flag == 'upIt') kalCounter++;
+	if(flag == 'upIt') kalCounter = 2;
 	document.getElementById('mandala'). innerHTML = '<svg height="450" width="450" style="transform:scale(1.25)" id="genMandala"></svg>';
 	document.getElementById('playPause').innerHTML = "play_circle_filled";
 	document.getElementById('starNumScript').innerHTML = "";
@@ -79,7 +83,7 @@ function clearKal(flag) {
 
 /* CURSOR CROSSHAIR ON DRAW */
 function cross() { document.getElementById("canvas1").style = "cursor:crosshair;border-radius:50%;"; }
-var canvasWidth = 300, canvasHeight = 300;
+var canvasWidth = 360, canvasHeight = 360;
 var canvas1 = null;
 var bounds = null;
 var context = null;
@@ -204,8 +208,8 @@ function entrBtn(event) {
 		} else if(document.getElementById('starAnimDrawn').style.position == 'absolute') {
 			startStars();
 		} else if(document.getElementById('startMandala').style.position == 'absolute') {
-		makeMandala();
-	}
+			makeMandala();
+		}
 	}
 }
 
@@ -235,7 +239,7 @@ function drawFace(ctx, radius) {
 
 function drawNumbers(ctx, radius, pNum) {
 	var ang;
-	ctx.font = radius*0.08 + "px arial black";
+	ctx.font = radius*0.07 + "px arial black";
 	ctx.textBaseline="middle";
 	ctx.textAlign="center";
 	ctx.fillStyle="#000000";
