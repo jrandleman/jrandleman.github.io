@@ -26,6 +26,8 @@ function aboutPL() {
 // INITIALIZATION FUNCTION
 /******************************************************************************/
 
+function entrBtn(event) { if(event.keyCode == '13') perspectiveLength(); }
+
 function perspectiveLength() {
 	var bL = document.getElementById("baseL").value;
 	var qL = document.getElementById("distL").value;
@@ -33,8 +35,8 @@ function perspectiveLength() {
 	var tVVal = document.getElementById("thetaV").value;
 	var tH = formatTheta(tHVal);
 	var tV = formatTheta(tVVal);
-	var absTH = Math.pow(Math.abs(Math.sin(tH)),2);
-	var absTV = Math.pow(Math.abs(Math.sin(tV)),2);
+	var absTH = Math.pow(Math.abs(bL*Math.sin(tV)),2); /* LONG-LEG OF PERSPECTIVE TRIANGLE */
+	var absTV = Math.pow((Math.abs(bL*Math.cos(tV)*Math.sin(tH))),2); /* SHORT-LEG OF PER T */
 	var bLSquared = Math.pow(bL,2);	
 	var rt3Abs = Math.pow(3*(absTH+absTV),.5);
 	var bLrt3 = bL*(Math.pow(3,.5));
@@ -98,13 +100,7 @@ function perspectiveLength() {
 		var lineLen = 200*pL;
 	}
 	var lineAng = lineAngle();
-	document.getElementById("line").style = "-webkit-transform:rotate("+lineAng+"deg);height:"+lineLen+"px;";
-}
-
-
-function entrBtn(event) {
-	var keyClick = event.keyCode;
-	if(keyClick == '13') perspectiveLength();
+	document.getElementById("line").style = "-webkit-transform:rotate("+String(lineAng)+"deg);height:"+String(lineLen)+"px;";
 }
 
 /******************************************************************************/ 
@@ -112,41 +108,11 @@ function entrBtn(event) {
 /******************************************************************************/
 
 function lineAngle() {
-	/*** 1 = VERT - 2 = HORIZ ***/
-	var linebL = document.getElementById("baseL").value;
-	var lineqL = document.getElementById("distL").value;
-	var lineqL2 = 2*lineqL;
-	var linebLSquared = Math.pow(linebL,2);	
-	var linebLrt3 = linebL*(Math.pow(3,.5));
-
-	var absTH1 = Math.pow(Math.abs(Math.sin(0)),2);
-	var absTV1 = Math.pow(Math.abs(Math.sin(formatTheta(document.getElementById("thetaV").value))),2);
-	var rt3Abs1 = Math.pow(3*(absTH1+absTV1),.5);
-	var pL1 = ((linebLSquared*rt3Abs1)/(linebLrt3+lineqL2));
-	var opposite = pL1/2;
-
-	var absTH2 = Math.pow(Math.abs(Math.sin(formatTheta(document.getElementById("thetaH").value))),2);
-	var absTV2 = Math.pow(Math.abs(Math.sin(0)),2);
-	var rt3Abs2 = Math.pow(3*(absTH2+absTV2),.5);
-	var pL2 = ((linebLSquared*rt3Abs2)/(linebLrt3+lineqL2));
-	var adjacent = pL2/2;
-
-	var lineThetaRad = Math.atan(opposite/adjacent);
+	var tanV = Math.tan(formatTheta(document.getElementById("thetaV").value));
+	var sinH = Math.sin(formatTheta(document.getElementById("thetaH").value));
+	var lineThetaRad = Math.atan(tanV/sinH);
 	var lineThetaDeg = ((lineThetaRad*180)/(Math.PI));
-	var linV = (document.getElementById("thetaV").value).split('');
-	var linH = (document.getElementById("thetaH").value).split('');
-	
-	var vNegCount = 0, hNegCount = 0; 
-	linV.forEach((symbol) => {if(symbol == '-') vNegCount++;});
-	linH.forEach((symbol) => {if(symbol == '-') hNegCount++;});
-
-	if ((vNegCount % 2 != 0 && hNegCount % 2 == 0) || (vNegCount % 2 == 0 && hNegCount % 2 != 0)) {
-		var sign = -1;
-	} else {
-		var sign = 1;
-	}
-	var lineA = (90 - (sign*lineThetaDeg));
-	return lineA;
+	return (90 - (lineThetaDeg));
 }
 
 /******************************************************************************/
