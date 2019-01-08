@@ -135,7 +135,12 @@ function lineAngle() {
 	var lineThetaDeg = ((lineThetaRad*180)/(Math.PI));
 	var linV = (document.getElementById("thetaV").value).split('');
 	var linH = (document.getElementById("thetaH").value).split('');
-	if ((linV[0] == '-' && linH[0] != '-') || (linH[0] == '-' && linV[0] != '-')) {
+	
+	var vNegCount = 0, hNegCount = 0; 
+	linV.forEach((symbol) => {if(symbol == '-') vNegCount++;});
+	linH.forEach((symbol) => {if(symbol == '-') hNegCount++;});
+
+	if ((vNegCount % 2 != 0 && hNegCount % 2 == 0) || (vNegCount % 2 == 0 && hNegCount % 2 != 0)) {
 		var sign = -1;
 	} else {
 		var sign = 1;
