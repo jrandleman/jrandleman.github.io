@@ -35,8 +35,8 @@ function perspectiveLength() {
 	var tVVal = document.getElementById("thetaV").value;
 	var tH = formatTheta(tHVal);
 	var tV = formatTheta(tVVal);
-	var absTH = Math.pow(Math.abs(bL*Math.sin(tV)),2); /* LONG-LEG OF PERSPECTIVE TRIANGLE */
-	var absTV = Math.pow((Math.abs(bL*Math.cos(tV)*Math.sin(tH))),2); /* SHORT-LEG OF PER T */
+	var absTH = Math.pow(Math.abs(Math.sin(tV)),2); /* LONG-LEG OF PERSPECTIVE TRIANGLE */
+	var absTV = Math.pow((Math.abs(Math.cos(tV)*Math.sin(tH))),2); /* SHORT-LEG OF PER T */
 	var bLSquared = Math.pow(bL,2);	
 	var rt3Abs = Math.pow(3*(absTH+absTV),.5);
 	var bLrt3 = bL*(Math.pow(3,.5));
