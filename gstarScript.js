@@ -9,7 +9,7 @@ function aboutStars() {
 		'\n\nTo sketch a star by hand in a single stroke:\n   '+String.fromCharCode(0x2022)+
 		'   Enter desired # of points and connect them chronologically\n   '+String.fromCharCode(0x2022)+
 		'   Click "trashcan" to clear sketch & "arrow" to undo last line\n\n'+
-		'For Tessellation:\n=> Mouseover top-right to edit parameters & bottom-center to exit');
+		'For Tessellation:\n=> Mouseover top-left to edit parameters & bottom-center to exit');
 }
 
 /******************************************************************************/
