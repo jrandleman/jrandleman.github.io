@@ -16,7 +16,7 @@ function aboutDimensions() {
 // INITIALIZATION FUNCTION
 /******************************************************************************/
 
-function entrBtn(event) {if(event.keyCode == '13') startDim();}
+function entrBtn(event) {if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') startDim();}
 
 function startDim() {	
 	var dimin = document.getElementById("quantity1").value; 
