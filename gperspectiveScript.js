@@ -97,7 +97,7 @@ function perspectiveLength() {
 	if (pL == 0) {
 		var lineLen = 3;
 	} else {
-		var lineLen = 200*pL;
+		var lineLen = 150*pL;
 	}
 	var lineAng = lineAngle();
 	document.getElementById("line").style = "-webkit-transform:rotate("+String(lineAng)+"deg);height:"+String(lineLen)+"px;";
