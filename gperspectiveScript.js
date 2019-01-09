@@ -26,15 +26,48 @@ function aboutPL() {
 // INITIALIZATION FUNCTION
 /******************************************************************************/
 
-function entrBtn(event) { if(event.keyCode == '13') perspectiveLength(); }
+function reduce(numerator,denominator){
+	var gcd = function gcd(a,b){ return b ? gcd(b, a%b) : a; };
+	gcd = gcd(numerator,denominator);
+	return [numerator/gcd, denominator/gcd];
+}
 
-function perspectiveLength() {
-	var bL = document.getElementById("baseL").value;
-	var qL = document.getElementById("distL").value;
-	var tHVal = document.getElementById("thetaH").value;
-	var tVVal = document.getElementById("thetaV").value;
-	var tH = formatTheta(tHVal);
-	var tV = formatTheta(tVVal);
+function pLen() {
+	var bL = document.getElementById("baseL").value, qL = document.getElementById("distL").value;
+	var tH = document.getElementById("thetaH").value, tV = document.getElementById("thetaV").value;
+	/* ANGLE IN UNITS OF PI FOR PHRASE */
+	var simpleH = reduce(Math.round(tH/0.26179938779),12);
+	var simpleV = reduce(Math.round(tV/0.26179938779),12);
+	if(simpleH[0] == 1 && simpleH[1] == 1) {
+		var tHPhrase = "pi";
+	} else if(simpleH[0] == 1) {
+		var tHPhrase = "pi/"+String(simpleH[1]);
+	} else if(simpleH[1] == 1) {
+		var tHPhrase = String(simpleH[0])+"pi";
+	} else {
+		var tHPhrase = String(simpleH[0])+"pi/"+String(simpleH[1]);
+	}
+	if(simpleV[0] == 1 && simpleV[1] == 1) {
+		var tVPhrase = "pi";
+	} else if(simpleV[0] == 1) {
+		var tVPhrase = "pi/"+String(simpleV[1]);
+	} else if(simpleV[1] == 1) {
+		var tVPhrase = String(simpleV[0])+"pi";
+	} else {
+		var tVPhrase = String(simpleV[0])+"pi/"+String(simpleV[1]);
+	}
+	/* ANGLE NEXT TO INPUT */
+	if(simpleH[0] == 0) {
+		document.getElementById('showH').innerHTML = '(0)';
+	} else {
+		document.getElementById('showH').innerHTML = '('+tHPhrase+')';
+	}
+	if(simpleV[0] == 0) {
+		document.getElementById('showV').innerHTML = '(0)';
+	} else {
+		document.getElementById('showV').innerHTML = '('+tVPhrase+')';
+	}
+
 	var absTH = Math.pow(Math.abs(Math.sin(tV)),2); /* LONG-LEG OF PERSPECTIVE TRIANGLE */
 	var absTV = Math.pow((Math.abs(Math.cos(tV)*Math.sin(tH))),2); /* SHORT-LEG OF PER T */
 	var bLSquared = Math.pow(bL,2);	
@@ -46,6 +79,10 @@ function perspectiveLength() {
 	} else {
 		var pL = ((bLSquared*rt3Abs)/(bLrt3+qL2));
 	}
+
+	var plR = String(pL).split(''), plPI = plR.indexOf('.');
+	if(((plR[plPI+1] == '9' && plR[plPI+2] == '9') && (plR[plPI+3] == '9' && plR[plPI+4] == '9')) && plR[plPI+5] == '9') pL = Math.round(pL);
+	if(((plR[plPI+1] == '0' && plR[plPI+2] == '0') && (plR[plPI+3] == '0' && plR[plPI+4] == '0')) && plR[plPI+5] == '0') pL = Math.round(pL);
 
 	if (tH == 1) {
 		var thetaHPlural = " radian";
@@ -66,30 +103,30 @@ function perspectiveLength() {
 			" being angled, appears to be "+pL+" in. from your perspective.";
 	} else if ((qL > 0 && tH != 0) && tV != 0) {
 		var phrase = "A line with base length "+bL+" in., moved away "+qL+" in., and angled "+
-			tHVal+" & "+tVVal+" radians horizontally & vertically respectively "+
+			tHPhrase+" & "+tVPhrase+" radians horizontally & vertically respectively "+
 			"appears to be "+pL+" in. from your perspective.";
 	} else if (qL > 0 && tH != 0) {
 		var phrase = "A line with base length "+bL+" in. moved away "+qL+" in. and angled "+
-			tHVal+thetaHPlural+" horizontally appears to be "+pL+" in. from your perspective.";
+			tHPhrase+thetaHPlural+" horizontally appears to be "+pL+" in. from your perspective.";
 	} else if (qL > 0 && tV != 0) {
 		var phrase = "A line with base length "+bL+" in. moved away "+qL+" in. and angled "+
-			tVVal+thetaVPlural+" vertically appears to be "+pL+" in. from your perspective.";
+			tVPhrase+thetaVPlural+" vertically appears to be "+pL+" in. from your perspective.";
 	} else if (tH != 0 && tV != 0) {
-		var phrase = "A line with base length "+bL+" in., angled "+tHVal+" & "+tVVal+
+		var phrase = "A line with base length "+bL+" in., angled "+tHPhrase+" & "+tVPhrase+
 			" radians horizontally & vertically respectively, appears to be "+pL+" in."+
 			" from your perspective.";
 	} else if (qL > 0) {
 		var phrase = "A line with base length "+bL+" in. moved away "+qL+" in. "+
 			"appears to be "+pL+" in. from your perspective.";
 	} else if (tH != 0) {
-		var phrase = "A line with base length "+bL+" in. angled "+tHVal+thetaHPlural+
+		var phrase = "A line with base length "+bL+" in. angled "+tHPhrase+thetaHPlural+
 			" horizontally appears to be "+pL+" in. from your perspective.";
 	} else if (tV != 0) {
-		var phrase = "A line with base length "+bL+" in. angled "+tVVal+thetaVPlural+
+		var phrase = "A line with base length "+bL+" in. angled "+tVPhrase+thetaVPlural+
 			" vertically appears to be "+pL+" in. from your perspective.";
 	} else {
 		var phrase = "A line with base length "+bL+" in., moved away "+qL+" in., and angled "+
-			tHVal+" & "+tVVal+" radians horizontally & vertically respectively "+
+			tHPhrase+" & "+tVPhrase+" radians horizontally & vertically respectively "+
 			"appears to be "+pL+" in. from your perspective.";
 	}
 
@@ -100,7 +137,8 @@ function perspectiveLength() {
 		var lineLen = 150*pL;
 	}
 	var lineAng = lineAngle();
-	document.getElementById("line").style = "-webkit-transform:rotate("+String(lineAng)+"deg);height:"+String(lineLen)+"px;";
+	document.getElementById("line").style = "-webkit-transform:rotate("+String(lineAng)+"rad);height:"+String(lineLen)+"px;";
+	document.getElementById("boxStyle").innerHTML = "#lineBox2{border:8px double #F5F;padding-bottom:20px;height:"+String(150*bL+20)+"px;}";
 }
 
 /******************************************************************************/ 
@@ -108,11 +146,10 @@ function perspectiveLength() {
 /******************************************************************************/
 
 function lineAngle() {
-	var tanV = Math.tan(formatTheta(document.getElementById("thetaV").value));
-	var sinH = Math.sin(formatTheta(document.getElementById("thetaH").value));
+	var tanV = Math.tan(document.getElementById("thetaV").value);
+	var sinH = Math.sin(document.getElementById("thetaH").value);
 	var lineThetaRad = Math.atan(tanV/sinH);
-	var lineThetaDeg = ((lineThetaRad*180)/(Math.PI));
-	return (90 - (lineThetaDeg));
+	return (1.57079632679-lineThetaRad);
 }
 
 /******************************************************************************/

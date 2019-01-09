@@ -2,6 +2,7 @@
 <html style="background-color:#F5F;border:10px dashed black;">
 <head><title>Perspective Length</title>
 <link rel="shortcut icon" type="image/x-icon" href="fav4.ico"/>
+<link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
@@ -11,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();" id='per'>
+<style>.thetaStyle{text-align:center;width:155px;}.ngmaText {font-size:30px;}
+.thetaText {text-align:center;color:orange;font-family:IBM Plex Mono;font-weight:bold;font-size:30px;}</style><style id="boxStyle"></style>
 
 <!-- *** PERSPECTIVE HEADER *** -->
 <h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
@@ -24,11 +27,15 @@
 <center><div class="column0"><div id="spinning3DText3" onclick="aboutPL()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <div class="pageTitle"><big>&#x27AB;<span id="subt1Id"></span>&#x27AA;<br>&#x27AA;<span id="subt2Id"></span>&#x27AB;</big></div></center>
 <center class="pageSubtitle"><b><span id="ssub1"></span>
-<input class="pageInput" style="text-align:center;" type="number" id="baseL" min="0" max="999998" value="1" onwheel="" onkeyup="entrBtn(event)"><br><span id="ssub2"></span>
-<input class="pageInput" style="text-align:center;" type="number" id="distL" min="0" max="999999" value="0" onwheel="" onkeyup="entrBtn(event)"><br><span id="ssub3"></span>&#120505;:
-<input class="pageInput" style="text-align:center;width:125px" type="text" id="thetaH" value="pi/2" onkeyup="entrBtn(event)"><br><span id="ssub4"></span>&#120505;:
-<input class="pageInput" style="text-align:center;width:125px" type="text" id="thetaV" value="0" onkeyup="entrBtn(event)"></center>
-<center><br><br><button class="pageButton" onclick="perspectiveLength()"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo22"></p>
+<input class="pageInput" style="text-align:center;" type="number" id="baseL" min="0" max="999998" value="1" onwheel="" onkeyup="pLen();" onkeydown="pLen()" onclick="pLen()">
+<br><span id="ssub2"></span>
+<input class="pageInput" style="text-align:center;" type="number" id="distL" min="0" max="999999" value="0" onwheel="" onkeyup="pLen();" onkeydown="pLen()" onclick="pLen()">
+<br><span id="ssub3"></span>&#120505;:
+<input class="pageInput thetaStyle" type="number" id="thetaH" value="1.57079632674" onwheel="" onkeyup="pLen();" step="0.26179938779" onkeydown="pLen()" onclick="pLen()">
+<span id="showH" class="thetaText" style="position:absolute;padding-top:10px;">(pi/2)</span><br><span id="ssub4"></span>&#120505;:
+<input class="pageInput thetaStyle" type="number" id="thetaV" value="0" onwheel="" onkeyup="pLen();" step="0.26179938779" onkeydown="pLen()" onclick="pLen()">
+<span id="showV" class="thetaText" style="position:absolute;padding-top:10px;padding-left:10px;">(0)</span></center>
+<center><br><br><button class="pageButton" onclick="pLen()"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo22"></p>
 <script type="text/javascript" src="gperspectiveScript.js"></script>
 <script type="text/javascript" src="gwebHFTScript.js"></script>
 <div id="lineBox"><div id="lineT">-:- LINE'S LENGTH FROM YOUR PERSPECTIVE -:-</div><div id="lineBox2"><div id="line"></div></div></div><br>
@@ -38,7 +45,7 @@
 <span class="blackout df">------</span>
 <span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout df">------</span>
-<span><a id="con5" onmouseover="on(4)" onmouseout="on(4.5)" class="iconButton" href="https://jrandleman.github.io/gsudoku.html">&#x24C8;</a></span>
+<span><a id="con5" onmouseover="on(4)" onmouseout="on(4.5)" class="iconButton" href="gsudoku.html">&#x24C8;</a></span>
 <span class="blackout">------</span>
 <span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
 </center></p><br>
