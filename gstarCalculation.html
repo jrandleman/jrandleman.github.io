@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <body class="df" id="scrollable" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();shapeSequence();">
-<style>.switchStrBtn{border-radius:50%;border:2px solid yellow;color:yellow;font-size:45px;padding:5px;background-color:black;outline:none;}
+<style>.switchStrBtn{border-radius:50%;border:2px solid yellow;color:yellow;font-size:45px;padding:5px;background-color:black;outline:none;}#genStar{transform:scale(1.2);}
 .switchStrBtn:hover{color:black;background-color:yellow;border:2px solid black;cursor:pointer;}</style><style id="starStyle"></style><style id="starStyle2"></style>
 
 <!-- *** STAR HEADER *** -->
@@ -31,17 +31,19 @@
 <button class="switchStrBtn material-icons" onclick="showAnimated();">star</button><span class="blackout df">---------</span>
 <button class="switchStrBtn material-icons" onclick="showMandala();">camera</button><br>
 <br><center class="pageSubtitle"><span><b id="ssub1"></b>
-<input class="pageInput" style="text-align:center;" type="number" id="starInput" min="2" max="999999" value="14" onwheel="" onkeyup="entrBtn(event)"></span>
+<input class="pageInput" style="text-align:center;" type="number" id="starInput" min="2" max="999999" value="14" onwheel="" onkeyup="entrBtn(event)" onkeydown="entrBtn(event)"></span>
 <span><button class="starButton" style="margin:15px;margin-left:1px;padding:5px;" onclick="initStarShow();"><b id="id1"></b></button></span></div></center>
 <!-- *** MANDALA SVG *** -->
 <div id="startMandala" style="position:absolute;top:0;right:999;visibility:hidden;">
 <center><button class="switchStrBtn material-icons" onclick="kaleidoscope();" id="playPause">play_circle_filled</button><br><br><br><br><br>
 <div id="mandala"><svg height="450" width="450" id="genMandala"></svg></div><br><br><br></center></div>
 <!-- *** ANIMATED STAR SVG *** -->
-<div id="starAnimDrawn"><br><center><svg height="450" width="450" id="genStar"></svg></center></div>
+<div id="starAnimDrawn"><center>
+<button class="switchStrBtn material-icons" onclick="morphStarAnimation();" id="morphBtn" style="padding:7px;font-size:41px;">transform</button>
+<br><br><br><br><br><svg height="450" width="450" id="genStar"></svg><br><br><br><br></center></div>
+<!-- *** DRAWING CANVAS *** -->
 <div id="starHandDrawn" style="position:absolute;top:0;visibility:hidden;">
 <div class="ngmaText4 rainbowText" style="font-family:Bungee Inline;font-size:45px;" id="niceStar"></div>
-<!-- *** DRAWING CANVAS *** -->
 <div class="column3"><br><br><br><br><center><div class="dCanvas">
 <center><br><canvas id="canvas1" width="400" height="400" style="border-radius:50%;"></canvas></center><br><br><br><br>
 <button id="redrawButton" onclick="erase()"><div class="fas fa-trash-alt"></div></button><span class="blackout df">----------------------</span>

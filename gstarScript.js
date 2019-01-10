@@ -16,9 +16,21 @@ function aboutStars() {
 /* SWITCH DRAWING FUNCTIONS */
 /******************************************************************************/
 
-var kalCounter = 0;
+var kalCounter = 0, morphCounter = 0, animTimeout, morphTimeout;
 
-function initStarShow() {shapeSequence();startStars();makeMandala();}
+function entrBtn(event) { if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') initStarShow(); }
+function initStarShow() {
+	var animCheck = document.getElementById('starAnimDrawn');
+	var handCheck = document.getElementById('starHandDrawn');
+	var mandCheck = document.getElementById('startMandala');
+	if(handCheck.style.position == 'absolute' && mandCheck.style.position == 'absolute') {
+		(document.getElementById('morphBtn').innerHTML == "share") ? morphShape() : shapeSequence();
+	} else if(animCheck.style.position == 'absolute' && mandCheck.style.position == 'absolute') {
+		startStars();
+	} else {
+		makeMandala();	
+	}
+}
 function showMandala() {
 	document.getElementById('starAnimDrawn').style = 'position:absolute;top:0;visibility:hidden;';
 	document.getElementById('starHandDrawn').style = 'position:absolute;top:0;visibility:hidden;';
@@ -40,7 +52,20 @@ function showAnimated() {
 	document.getElementById('startMandala').style = 'position:absolute;top:0;visibility:hidden;right:999';
 	document.getElementById('starAnimDrawn').style = '';
 	document.getElementById('genMandala').style = '';
-	shapeSequence();
+	morphCounter = 1;
+	morphStarAnimation();
+}
+function morphStarAnimation() {
+	if(morphCounter % 2 == 0) {
+		document.getElementById('morphBtn').innerHTML = "share";
+		shapeSequence(1);morphShape();
+		document.getElementById('drawing').style = 'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
+	} else {
+		document.getElementById('morphBtn').innerHTML = "transform";
+		document.getElementById('drawing').style = '';
+		shapeSequence();
+	}
+	morphCounter++;
 }
 function kaleidoscope() {
 	if(kalCounter % 2 == 0) {
@@ -88,7 +113,6 @@ var startX = 0, startY = 0;
 var mouseX = 0, mouseY = 0;
 var isDrawing = false;
 var existingLines = [];
-
 
 function draw() {
 	context.fillStyle = "#FFDA00";
@@ -195,8 +219,6 @@ var radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 
-
-function entrBtn(event) {if(event.keyCode == '13') {shapeSequence();startStars();makeMandala();}}
 function startStars() {	
 	init(),cross();
 	if (initFlag > 0) erase();
@@ -287,7 +309,8 @@ function starPoints(pNum) {
 function findX(ptNum,omega) { return 200*Math.sin((2*ptNum*Math.PI)/omega); }
 function findY(ptNum,omega) { return 400*Math.pow(Math.sin((ptNum*Math.PI)/omega),2); }
 
-function shapeSequence() {
+function shapeSequence(flag) {
+	clearTimeout(animTimeout);
 	document.getElementById('genStar').innerHTML = '';
 	var omega = document.getElementById("starInput").value;
 	const x0 = 225, y0 = 10;
@@ -303,17 +326,60 @@ function shapeSequence() {
 	for(let j = 1; j <= omega; j++) {
 		svgArray.push(pointArr[starArray.indexOf(j)]);
 	}
+	/* MORPHING ANIMATION */
+	if(flag == 1) {
+		const maxShapeMorph = 1000; /* INSERT MAXIMUM NUMBER OF SIDES FOR MORPHING SHAPE HERE */
+		/* shapes must have same # of points t4 clone last point till maxShapeMorph reached */
+		var lastElemSvg = svgArray[svgArray.length - 1];
+		while(svgArray.length < maxShapeMorph) svgArray.push(lastElemSvg);
+		/* CREATE ANIMATIONS FOR SHAPES UNTIL "maxShapeMorph" NUMBER OF SHAPE SIDES REACHED */
+		document.getElementById('genStar').innerHTML=('<polygon id="drawing" points="'+svgArray.join('')+'" style="fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;">'+
+			genShapes(maxShapeMorph).join('')+'</polygon>');
+		return;
+	}
 	/* fill-rule:nonzero; */
 	/*'<circle cx="225" cy="210" r="200" stroke="#F5F" stroke-width="3" />'+
 	'<polygon points="'+pointArr.join('')+'" style="stroke:#F5F;stroke-width:3;"/>'+*/
 	document.getElementById('genStar').innerHTML = '<polygon id="drawing" class="poly" points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;"/>';
 	document.getElementById('starStyle').innerHTML = '.poly {stroke-dasharray:'+drawing.getTotalLength()+';stroke-dashoffset:'+drawing.getTotalLength()+';'+
 		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
-	setTimeout(function() {
+	animTimeout = setTimeout(function() {
 		document.getElementById('drawing').style = '-moz-transition:fill 1.33s ease-in;-o-transition:fill 1.33s ease-in;'+
 			'-webkit-transition:fill 1.33s ease-in;transition:fill 1.33s ease-in;fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
 	}, 2575);
 	return;
+}
+
+/******************************************************************************/
+/* MORPHING SVG SCRIPT */
+/******************************************************************************/
+
+function genShapes(max) {
+	var shapeArray = [];
+	for(let i = 2; i <= max; i++) {
+		shapeArray.push('<animate begin="indefinite" fill="freeze" id="anim-to-'+i+'S" attributeName="points" dur="750ms" to="'+shapeStarArray(i,max)+'" />');
+	}
+	return shapeArray;
+}
+
+
+function morphShape() { 
+	clearTimeout(morphTimeout);
+	document.getElementById("anim-to-"+document.getElementById("starInput").value+"S").beginElement();
+	document.getElementById('drawing').style = 'stroke:#F5F;stroke-width:1.5;';
+	morphTimeout = setTimeout(function() { document.getElementById('drawing').style = 'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;'; }, 850); 
+}
+
+
+function shapeStarArray(omega,max) {
+	const x0 = 225, y0 = 10;
+	var pointArr = [], svgArray = [], starArray = starPoints(omega);
+	pointArr.push(x0+","+y0+" ");
+	for(let pNum = 1; pNum < omega; pNum++) pointArr.push(Math.round(x0 - findX(pNum,omega))+","+Math.round(y0 + findY(pNum,omega))+" ");
+	for(let j = 1; j <= omega; j++) svgArray.push(pointArr[starArray.indexOf(j)]);
+	var lastElemSvg = svgArray[svgArray.length - 1];
+	while(svgArray.length < max) svgArray.push(lastElemSvg);
+	return svgArray.join('');
 }
 
 /******************************************************************************/
