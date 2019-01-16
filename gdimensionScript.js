@@ -19,7 +19,12 @@ function aboutDimensions() {
 const MAXIMUMDIM = 11;
 
 function entrBtn(event,elem,color) {if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') dimValidity(elem,color);}
-function initAnimation() {initLoneFunction();checkDimVal(document.getElementById('quantity2'),'lime');checkDimVal(document.getElementById('quantity1'),'red');};
+function initAnimation(flag) {
+	if(flag == 1) dynamicDim(MAXIMUMDIM);
+	initLoneFunction();
+	checkDimVal(document.getElementById('quantity2'),'lime');
+	checkDimVal(document.getElementById('quantity1'),'red');
+};
 
 function startDim() {	
 	var dimin = document.getElementById("quantity1").value; 
@@ -101,50 +106,17 @@ function initLoneFunction() {
 function genPtCombos(pt,dim) {
 	var pointNum = getTotalPoints(), ptClone = pt;
 	while(ptClone % 4 != 0) ptClone--;
-	var face = (ptClone / 4); /* first face = 0; */
-	var ptConnections = [];
-
-	var i = 0, count3 = 0, count4 = 0, count5 = 0, count3 = 0, count4 = 0, count5 = 0;
-	var count6 = 0, count7 = 0, count8 = 0, count9 = 0, count10 = 0, count11 = 0;
+	var face = (ptClone / 4); /* FIRST FACE = 0; */
+	var ptConnections = [], countArr = [], i = 0;
+	/* INIT COUNTER ARRAY */
+	for(let counter = 0; counter <= MAXIMUMDIM; counter++) countArr.push(0);
+	/* DETERMINE WHICH PT COMBOS TO MAKE PER FACE WITH EACH COUNTER */
 	while(i < face) {
-		count3 += Math.pow(2,(3-3));
-		count4 += Math.pow(2,(3-4));
-		count5 += Math.pow(2,(3-5));
-		count6 += Math.pow(2,(3-6));
-		count7 += Math.pow(2,(3-7));
-		count8 += Math.pow(2,(3-8));
-		count9 += Math.pow(2,(3-9));
-		count10 += Math.pow(2,(3-10));
-		count11 += Math.pow(2,(3-11));
+		for(let j = 3; j <= dim; j++) countArr[j] += Math.pow(2,(3 - j));
 		i++;
 	}
-	if(dim >= 3) {
-		ptConnections = pushDimPt(ptConnections,pt,count3,Math.pow(2,2));
-		if(dim >= 4) {
-			ptConnections = pushDimPt(ptConnections,pt,count4,Math.pow(2,3));
-			if(dim >= 5) {
-				ptConnections = pushDimPt(ptConnections,pt,count5,Math.pow(2,4));
-				if(dim >= 6) {
-					ptConnections = pushDimPt(ptConnections,pt,count6,Math.pow(2,5));
-					if(dim >= 7) {
-						ptConnections = pushDimPt(ptConnections,pt,count7,Math.pow(2,6));
-						if(dim >= 8) {
-							ptConnections = pushDimPt(ptConnections,pt,count8,Math.pow(2,7));
-							if(dim >= 9) {
-								ptConnections = pushDimPt(ptConnections,pt,count9,Math.pow(2,8));
-								if(dim >= 10) {
-									ptConnections = pushDimPt(ptConnections,pt,count10,Math.pow(2,9));
-									if(dim >= 11) {
-										ptConnections = pushDimPt(ptConnections,pt,count11,Math.pow(2,10));
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	/* DETERMINE THE ALL OF THE POINTS THE CURRENT POINT WILL CONNECT TO */
+	for(let k = 3; k <= dim; k++) ptConnections = pushDimPt(ptConnections,pt,countArr[k],Math.pow(2,(k - 1)));
 	/* PUSH POINT TO THE LEFT AND RIGHT OF CURRENT POINT */
 	var ptIdx = pointNum[face].indexOf(pt);
 	if(ptIdx == 0) {
@@ -157,7 +129,7 @@ function genPtCombos(pt,dim) {
 		ptConnections.push(pointNum[face][ptIdx-1]);
 		ptConnections.push(pointNum[face][ptIdx+1]);
 	}
-	
+	/* CONVERT ANY SINGLE NUMBER POINT COMBOS INTO A SINGLE-INT ARRAY */
 	var editedPtConnections = [];
 	for(let j = 0; j < ptConnections.length; j++) {
 		if(typeof ptConnections[j] === 'number') {
@@ -166,76 +138,97 @@ function genPtCombos(pt,dim) {
 			editedPtConnections.push(ptConnections[j]);
 		}
 	}
-
-
 	return editedPtConnections;
 }
 
 /******************************************************************************/
-/* DIMENSION DRAWING */
+/* DYNAMIC DIMENSION DRAWING */
 /******************************************************************************/
 
-function createFaces(cube) {
-	var shape = [], mA = [0,550,387.5,1100,775,2200,1550];
-	shape = (gen(shape,cube,0,200,0,0,0,0,0,0));
-
-	if (cube >= 5) shape = (gen(shape,cube,200,0,0,0,0,0,0,0));
-	if(cube >= 6) {
-		shape = (gen(shape,cube,0,200,mA[1],0,0,0,0,0));
-		shape = (gen(shape,cube,200,0,mA[1],0,0,0,0,0));
-		if(cube >= 7) {
-			var combos = binaryCombos(1), bA = genCombos(combos), genArr = [];
-			for (let k = 0; k < (combos.length); k++) {
-				shape = (gen(shape,cube,0,200,mA[bA[k][0]],mA[2],0,0,0,0));
-				shape = (gen(shape,cube,200,0,mA[bA[k][0]],mA[2],0,0,0,0));
-			}
-			if(cube >= 8) {
-				var combos = binaryCombos(2), bA = genCombos(combos), genArr = [];
-				for (let k = 0; k < (combos.length); k++) {
-					shape = (gen(shape,cube,0,200,mA[bA[k][0]],mA[bA[k][1]],mA[3],0,0,0));
-					shape = (gen(shape,cube,200,0,mA[bA[k][0]],mA[bA[k][1]],mA[3],0,0,0));
-				}
-				if(cube >= 9) {
-					var combos = binaryCombos(3), bA = genCombos(combos), genArr = [];
-					for (let k = 0; k < (combos.length); k++) {
-						shape = (gen(shape,cube,0,200,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[4],0,0));
-						shape = (gen(shape,cube,200,0,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[4],0,0));
-					}
-					if(cube >= 10) {
-						var combos = binaryCombos(4), bA = genCombos(combos), genArr = [];
-						for (let k = 0; k < (combos.length); k++) {
-							shape = (gen(shape,cube,0,200,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[bA[k][3]],mA[5],0));
-							shape = (gen(shape,cube,200,0,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[bA[k][3]],mA[5],0));
-						}
-						if(cube >= 11) {
-							var combos = binaryCombos(5), bA = genCombos(combos), genArr = [];
-							for (let k = 0; k < (combos.length); k++) {
-								shape = (gen(shape,cube,0,200,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[bA[k][3]],mA[bA[k][4]],mA[6]));
-								shape = (gen(shape,cube,200,0,mA[bA[k][0]],mA[bA[k][1]],mA[bA[k][2]],mA[bA[k][3]],mA[bA[k][4]],mA[6]));
-							}
-						}
-					}
-				}
-			}
+function dynamicDim(cube) {
+	/* CREATEFACES FUNCTION */
+	var dynamicString = 'function createFaces(cube) {\nvar shape = [];';
+	var shapeLog1 = 'shape = gen(shape,cube,0,200';
+	for(let h1 = cube - 5; h1 > 0; h1--) shapeLog1 += ',0';
+	dynamicString += '\n'+shapeLog1+');';
+	if(cube >= 5) {
+		var shapeLog2 = 'if (cube >= 5) {\nshape = gen(shape,cube,200,0';
+		for(let h2 = cube - 5; h2 > 0; h2--) shapeLog2 += ',0';
+		dynamicString += '\n'+shapeLog2+');\n}';
+	}
+	/* MAKE mA ARRAY */
+	var num = cube - 5, evDim = 550, odDim = 387.5, mA = [0];
+	for(let i = 0; i < num; i++) {
+		if(i % 2 == 0) {
+			mA.push(evDim*Math.pow(2,i/2));
+		} else {
+			mA.push(odDim*Math.pow(2,(i-1)/2));
 		}
 	}
-	return shape;
-}
-
-
-function gen(shape,cube,tessSpace,pentMv,dim0,dim1,dim2,dim3,dim4,dim5) {
-	for(let i = 0; i < 41; i +=40) {
-		var c1p1 = Number(i), c1p2 = Number(i)+100;
-		var x1 = c1p1+tessSpace+dim0+(dim1/10)+dim2+(dim3/10)+dim4+(dim5/10);
-		var x2 = c1p2+tessSpace+dim0+(dim1/10)+dim2+(dim3/10)+dim4+(dim5/10);
-		var x3 = x1+200, x4 = x2+200, x5 = x1+40, x6 = x2+40, x7 = x3+40, x8 = x4+40;
-		var y1 = c1p1+tessSpace+(dim0/10)+dim1+(dim2/10)+dim3+(dim4/10)+dim5;
-		var y2 = c1p2+tessSpace+(dim0/10)+dim1+(dim2/10)+dim3+(dim4/10)+dim5;
-		var y3 = y1+20, y4 = y2+20, y5 = y1+40, y6 = y2+40, y7 = y3+40, y8 = y4+40;
-		shape.push((String(x1)+","+String(y1)),(String(x1)+","+String(y2)),(String(x2)+","+String(y2)),(String(x2)+","+String(y1)));
-		if(cube >= 4) shape.push((String(x3)+","+String(y3)),(String(x3)+","+String(y4)),(String(x4)+","+String(y4)),(String(x4)+","+String(y3)));
+	dynamicString += '\nvar mA = ['+mA+'];';
+	if(cube >= 6) {
+		var shapeLog4 = 'shape = gen(shape,cube,0,200,mA[1]', shapeLog5 = 'shape = gen(shape,cube,200,0,mA[1]';
+		for(let h3 = cube - 6; h3 > 0; h3--) {
+			shapeLog4 += ',0';
+			shapeLog5 += ',0';
+		}
+		dynamicString += '\nif(cube >= 6) {\n'+shapeLog4+');\n'+shapeLog5+');\n}';
 	}
-	return shape;
+	if(cube >= 7) {
+		for(let j = 7; j <= cube; j++) {
+			dynamicString += '\nif(cube >= '+j+') {\nvar combos = binaryCombos('+String(j-6)+');\nvar bA = genCombos(combos);';
+			var genOne = 'shape = gen(shape,cube,0,200', genTwo = 'shape = gen(shape,cube,200,0';
+			for(let k = 0; k < j - 6; k++) {
+				genOne += ',mA[bA[k]['+String(k)+']]';
+				genTwo += ',mA[bA[k]['+String(k)+']]';
+			}
+			genOne += ',mA['+String(j-5)+']';
+			genTwo += ',mA['+String(j-5)+']';
+			for(let l = 0; l < cube-j; l++) {
+				genOne += ',0';
+				genTwo += ',0';
+			}
+			dynamicString += '\nfor (let k = 0; k < (combos.length); k++) {\n'+genOne+');\n'+genTwo+');\n'+'}'+'\n'+'}';
+		}
+	}
+	dynamicString += '\nreturn shape;\n}';
+	
+	/* GEN FUNCTION */
+	
+	dynamicString += '\n\nfunction gen(shape,cube,tessSpace,pentMv';
+	var genArgs = [];
+	for(let m = 0; m < mA.length - 1; m++) {
+		dynamicString += ',dim'+String(m);
+		genArgs.push('dim'+String(m));
+	}
+	dynamicString += ') {\nfor(let i = 0; i < 41; i +=40) {\nvar c1p1 = Number(i), c1p2 = Number(i)+100;';
+	var x1Var = 'var x1 = c1p1+tessSpace', x2Var = 'var x2 = c1p2+tessSpace';
+	for(let n = 0; n < genArgs.length; n++) {
+		if(n % 2 == 0) {
+			x1Var += '+'+String(genArgs[n]);
+			x2Var += '+'+String(genArgs[n]);
+		} else {
+			x1Var += '+('+String(genArgs[n])+'/10)';
+			x2Var += '+('+String(genArgs[n])+'/10)';
+		}
+	}
+	dynamicString += '\n'+x1Var+';\n'+x2Var+';\nvar x3 = x1+200, x4 = x2+200, x5 = x1+40, x6 = x2+40, x7 = x3+40, x8 = x4+40;';
+	var y1Var = 'var y1 = c1p1+tessSpace', y2Var = 'var y2 = c1p2+tessSpace';
+	for(let o = 0; o < genArgs.length; o++) {
+		if(o % 2 != 0) {
+			y1Var += '+'+String(genArgs[o]);
+			y2Var += '+'+String(genArgs[o]);
+		} else {
+			y1Var += '+('+String(genArgs[o])+'/10)';
+			y2Var += '+('+String(genArgs[o])+'/10)';
+		}
+	}
+	dynamicString += '\n'+y1Var+';\n'+y2Var+';\nvar y3 = y1+20, y4 = y2+20, y5 = y1+40, y6 = y2+40, y7 = y3+40, y8 = y4+40;';
+	
+	dynamicString += '\nshape.push((String(x1)+","+String(y1)),(String(x1)+","+String(y2)),(String(x2)+","+String(y2)),(String(x2)+","+String(y1)));\n'+
+		'if(cube >= 4) shape.push((String(x3)+","+String(y3)),(String(x3)+","+String(y4)),(String(x4)+","+String(y4)),(String(x4)+","+String(y3)));';
+	dynamicString += '\n}\nreturn shape;\n}';
+	document.getElementById('dynamicScript').innerHTML = dynamicString;
 }
 
 /******************************************************************************/
@@ -277,7 +270,7 @@ function dimValidity(elem,color) {
 		return;
 	} else {
 		if(highCount == 1) {
-			initAnimation();
+			initAnimation(0);
 			highCount = 0;
 		} else {
 			checkDimVal(elem,color);
