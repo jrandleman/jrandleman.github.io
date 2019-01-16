@@ -10,7 +10,7 @@
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
 <link rel="stylesheet" type="text/css" href="gngmaStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
-<body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();dynamicDim(15);createCube(2,'red');createCube(3,'lime');" id='dim'>
+<body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();initAnimation();" id='dim'>
 <style>
 #dimCubeR, #dimCubeL { position:absolute;transform-origin:top left; }
 #dimCubeL { margin-top:5px; }
@@ -30,11 +30,11 @@
 <center><div class="column0"><div id="spinning3DText3" onclick="aboutDimensions()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <br><div class="pageTitle"><big>&#x2752;<span id="subt1Id"></span>&#x2752;<br>&#x2752;<span id="subt2Id"></span>&#x2752;</big></div></center>
 <center class="pageSubtitle"><b><span id="ssub1"></span>
-<input class="pageInput" style="text-align:center;" type="number" id="quantity1" min="0" max="999998" value="2" onwheel="" onclick="startDim();" onkeyup="entrBtn(event)">
+<input class="pageInput" style="text-align:center;" type="number" id="quantity1" min="0" max="999998" value="2" onwheel="" onkeyup="entrBtn(event,this,'red')">
 <br><span id="ssub2"></span>
-<input class="pageInput" style="text-align:center;" type="number" id="quantity2" min="0" max="999999" value="3" onwheel="" onclick="startDim();" onkeyup="entrBtn(event)">
-</center><center><br><br><button class="pageButton" onclick="startDim()"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo21"></p>
-<script type="text/javascript" id="dynamicScript"></script><script type="text/javascript" src="gdimensionScript.js"></script>
+<input class="pageInput" style="text-align:center;" type="number" id="quantity2" min="0" max="999999" value="3" onwheel="" onkeyup="entrBtn(event,this,'lime')">
+</center><center><br><br><button class="pageButton" onclick="dimValidity(document.getElementById('quantity1'),'red');dimValidity(document.getElementById('quantity2'),'lime');"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo21"></p>
+<script id="soloScript"></script><script type="text/javascript" src="gdimensionScript.js"></script>
 <script type="text/javascript" src="gwebHFTScript.js"></script></b>
 <svg id="dimCubeR"></svg><svg id="dimCubeL"></svg><div id="insertBR"></div>
 
