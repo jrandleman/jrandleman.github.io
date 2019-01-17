@@ -16,7 +16,7 @@ function aboutDimensions() {
 /* INITIALIZATION FUNCTION */
 /******************************************************************************/
 
-const MAXIMUMDIM = 11;
+const MAXIMUMDIM = 11; /* DIMENSION NO. ANIMATION CAP */
 
 function entrBtn(event,elem,color) {if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') dimValidity(elem,color);}
 function initAnimation(flag) {
