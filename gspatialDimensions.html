@@ -16,6 +16,11 @@
 #dimCubeL { margin-top:5px; }
 #ssub1 { text-decoration:underline red; }
 #ssub2 { text-decoration:underline lime; }
+#cpySvgR, #cpySvgL { border-radius: 50%;font-size:20px;padding:5px;text-decoration:none;cursor:copy;outline:none; }
+#cpySvgR { background-color:salmon;color:#660033;border: 2px solid #660033; }
+#cpySvgL { background-color:lime;color:#003300;border: 2px solid #003300; }
+#cpySvgR:active {background-color:#660033;color:salmon;border-color:salmon; }
+#cpySvgL:active {background-color:#003300;color:lime;border-color:lime; }
 </style>
 
 <!-- *** DIMENSION HEADER *** -->
@@ -29,11 +34,13 @@
 <!-- *** DIMENSIONAL FUNCTION *** -->
 <center><div class="column0"><div id="spinning3DText3" onclick="aboutDimensions()" onmouseover="borderQ();" onmouseout="yellowQ();">?</div>
 <br><div class="pageTitle"><big>&#x2752;<span id="subt1Id"></span>&#x2752;<br>&#x2752;<span id="subt2Id"></span>&#x2752;</big></div></center>
-<center class="pageSubtitle"><b><span id="ssub1"></span>
+<center class="pageSubtitle"><span><button id="cpySvgR" class="material-icons">content_copy</button></span><i class="blackout">.</i><b><span id="ssub1"></span>
 <input class="pageInput" style="text-align:center;" type="number" id="quantity1" min="0" max="999998" value="2" onwheel="" onkeyup="entrBtn(event,this,'red')">
-<br><span id="ssub2"></span>
+<br><span><button id="cpySvgL" class="material-icons">content_copy</button></span><i class="blackout">.</i><span id="ssub2"></span>
 <input class="pageInput" style="text-align:center;" type="number" id="quantity2" min="0" max="999999" value="3" onwheel="" onkeyup="entrBtn(event,this,'lime')">
-</center><center><br><br><button class="pageButton" onclick="dimValidity(document.getElementById('quantity1'),'red');dimValidity(document.getElementById('quantity2'),'lime');"><b id="id1"></b></button></b></center><br><p class="ngmaText" id="demo21"></p>
+</center><center><br><br>
+<button class="pageButton" onclick="dimValidity(document.getElementById('quantity1'),'red');dimValidity(document.getElementById('quantity2'),'lime');"><b id="id1"></b></button>
+</b></center><br><p class="ngmaText" id="demo21"></p>
 <script id="soloScript"></script><script id="dynamicScript"></script><script type="text/javascript" src="gdimensionScript.js"></script>
 <script type="text/javascript" src="gwebHFTScript.js"></script></b>
 <svg id="dimCubeR"></svg><svg id="dimCubeL"></svg><div id="insertBR"></div>

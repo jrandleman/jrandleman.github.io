@@ -13,10 +13,31 @@ function aboutDimensions() {
 }
 
 /******************************************************************************/
-/* INITIALIZATION FUNCTION */
+/* COPY FUNCTIONS */
 /******************************************************************************/
 
-const MAXIMUMDIM = 11; /* DIMENSION NO. ANIMATION CAP */
+const MAXIMUMDIM = 11; /* CHANGE TO AFFECT ANIMATION DIMENSION NUMBER CAP */
+
+var copyPointArray = [], cpyPtStyle = [], cpyCheck = 0;
+var cpySvgL = document.querySelector("#cpySvgL"), cpySvgR = document.querySelector("#cpySvgR");
+cpySvgL.onclick = function() { cpyCheck = 1;document.execCommand("copy"); }
+cpySvgR.onclick = function() { cpyCheck = 2;document.execCommand("copy"); }
+
+document.addEventListener("copy", function(event) {
+	if(cpyCheck % 2 != 0) {
+		var dim = document.getElementById('quantity2').value;
+	} else {
+		var dim = document.getElementById('quantity1').value;
+	}
+	if(dim > MAXIMUMDIM) return;
+	event.preventDefault();
+	if (event.clipboardData) event.clipboardData.setData("text/plain", '<svg style="'+cpyPtStyle[0]+cpyPtStyle[1]+'"><polygon points="'+copyPointArray[dim]+
+		'" style="fill:black;fill-opacity:0;stroke:lime;stroke-width:2;"/></svg>');
+});
+
+/******************************************************************************/
+/* INITIALIZATION FUNCTION */
+/******************************************************************************/
 
 function entrBtn(event,elem,color) {if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') dimValidity(elem,color);}
 function initAnimation(flag) {
@@ -298,6 +319,8 @@ function insertShape(shapeArrayArg,cube) {
 	var maxPtNum = loneLineShape(MAXIMUMDIM).length, animStrL = '', animStrR = '';
 	var animArrL = ['2,1.5','1.33,1.83','1,2.5','1.33,3.16','2,3.5','2.66,3.16','3,2.5','2.66,1.83','2,1.5'];
 	var animArrR = ['2,1.5','1.33,1.83','1,2.5','1.33,3.16','2,3.5','2.66,3.16','3,2.5','2.66,1.83','2,1.5'];
+	copyPointArray.push(animArrL.toString());
+
 	while(animArrL.length < maxPtNum) {
 		animArrL.push('2,1.5');
 		animArrR.push('2,1.5');
@@ -311,6 +334,8 @@ function insertShape(shapeArrayArg,cube) {
 	for(let j = 1; j <= MAXIMUMDIM; j++) {
 		var cleanShapeArr2 = loneLineShape(j), shapeArr2 = [], lastElem2 = cleanShapeArr2[cleanShapeArr2.length - 1];
 		for(let k = 0; k < cleanShapeArr2.length; k++) shapeArr2.push(cleanShapeArr2[k]);
+		copyPointArray.push(shapeArr2.toString());
+		
 		while(shapeArr2.length < maxPtNum) shapeArr2.push(lastElem2)
 		animStrL += '<animate begin="indefinite" fill="freeze" id="anim-to-'+j+'SL" attributeName="points" dur="1s" to="'+shapeArr2.toString()+'" />\n';
 		animStrR += '<animate begin="indefinite" fill="freeze" id="anim-to-'+j+'SR" attributeName="points" dur="1s" to="'+shapeArr2.toString()+'" />\n';
@@ -507,6 +532,8 @@ function viewScale(cube,color) {
 	document.getElementById('dimCubeR').style.transform = "scale("+redSize+")";
 	document.getElementById('dimCubeR').style.height = redHi;
 	document.getElementById('dimCubeR').style.width = redWi;
+	cpyPtStyle[0] = "height:"+redHi+";";
+	cpyPtStyle[1] = "width:"+redWi+";";
 }
 
 
