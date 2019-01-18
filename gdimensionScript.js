@@ -24,14 +24,16 @@ cpySvgL.onclick = function() { cpyCheck = 1;document.execCommand("copy"); }
 cpySvgR.onclick = function() { cpyCheck = 2;document.execCommand("copy"); }
 
 document.addEventListener("copy", function(event) {
+	var lilDim = document.getElementById("quantity1").value; 
+	var bigDim = document.getElementById("quantity2").value;
+	if (((lilDim.split('')[0] == '-' || bigDim.split('')[0] == '-') || (lilDim > MAXIMUMDIM || bigDim > MAXIMUMDIM)) || (lilDim > bigDim)) return;
 	if(cpyCheck % 2 != 0) {
-		var dim = document.getElementById('quantity2').value;
+		var nowDim = bigDim;
 	} else {
-		var dim = document.getElementById('quantity1').value;
+		var nowDim = lilDim;
 	}
-	if(dim > MAXIMUMDIM) return;
 	event.preventDefault();
-	if (event.clipboardData) event.clipboardData.setData("text/plain", '<svg style="'+cpyPtStyle[0]+cpyPtStyle[1]+'"><polygon points="'+copyPointArray[dim]+
+	if (event.clipboardData) event.clipboardData.setData("text/plain", '<svg style="'+cpyPtStyle[0]+cpyPtStyle[1]+'"><polygon points="'+copyPointArray[nowDim]+
 		'" style="fill:black;fill-opacity:0;stroke:lime;stroke-width:2;"/></svg>');
 });
 
