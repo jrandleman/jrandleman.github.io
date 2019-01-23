@@ -22,7 +22,7 @@ img { cursor:zoom-in; }
 .zoomin { transform:scale(1.5);cursor:zoom-out; }
 td, th { border:1px solid yellow;text-align:right;padding:8px; }
 th { text-decoration:double underline;font-style:italic;color:orange;border-color:orange; }
-td:hover { background-color:yellow;color:black;font-weight:bold;cursor:text;padding:7.5px; }
+td:hover { background-color:yellow;color:black;font-weight:bold;cursor:copy;padding:7.5px; }
 .sym, th { text-align:center; }.sym:hover { padding:8px; }
 table { float:left;margin-left:25px;cursor:default;font-family:arial;color:yellow; }#table1 { margin-left:72px; }
 </style>
@@ -239,6 +239,7 @@ function hili(elem) {
     var selection = window.getSelection(); 
     selection.removeAllRanges(); 
     selection.addRange(txtRange);
+    document.execCommand('copy');
 }
 function brGen() { for(let i = 0; i < 73; i++) document.getElementById('brs').innerHTML += '<br>'; }
 </script>
