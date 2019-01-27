@@ -120,7 +120,7 @@ function aboutNgma() {
 		" of written word relative to that of English, along with an"+
 		" additional layer of personal privacy.\n\n=> Enter text to be translated"+
 		" in the boxes below, then click the corresponding arrow to convert from"+
-		" NGMA to English or vice versa.");
+		" English to NGMA or vice versa.");
 }
 
 /******************************************************************************/
