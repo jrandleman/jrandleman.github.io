@@ -12,9 +12,9 @@ var jngma = {
 		e: { eh: String.fromCharCode(949), ee: String.fromCharCode(917) },
 		// b(i)t -- sl(y)
 		i: { i: String.fromCharCode(953), ai: String.fromCharCode(921) },
-		// oh -- h(ow) -- t(oy)
+		// oh -- h(ow) -- t(oy) -- b(oo)k
 		o: { oh: String.fromCharCode(937), ow: String.fromCharCode(969), oi: String.fromCharCode(0x155F), oo: String.fromCharCode(0x144E) },
-		// (a)bout, (u)p -- b(oo)k -- wh(o) -- you
+		// (a)bout, (u)p -- wh(o) -- you
 		u: { uh: String.fromCharCode(0x0427), ou: String.fromCharCode(960), yu: String.fromCharCode(933) }
 	},
 	c: { // consonants
