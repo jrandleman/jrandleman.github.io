@@ -1,6 +1,115 @@
 /* Author: Jordan Randleman */
 
 /******************************************************************************/
+/* JS NGMA ALPHABET OBJECT */
+/******************************************************************************/
+
+var jngma = {
+	v: {
+		// l(a)p --  l(ay) -- l(aw)
+		a: { ah: String.fromCharCode(913), ae: String.fromCharCode(919), aw: String.fromCharCode(968) },
+		// (e)bb -- m(e)
+		e: { eh: String.fromCharCode(949), ee: String.fromCharCode(917) },
+		// b(i)t -- sl(y)
+		i: { i: String.fromCharCode(953), ai: String.fromCharCode(921) },
+		// oh -- h(ow) -- t(oy)
+		o: { oh: String.fromCharCode(937), ow: String.fromCharCode(969), oi: String.fromCharCode(0x155F), oo: String.fromCharCode(0x144E) },
+		// (a)bout, (u)p -- b(oo)k -- wh(o) -- you
+		u: { uh: String.fromCharCode(0x0427), ou: String.fromCharCode(960), yu: String.fromCharCode(933) }
+	},
+	c: { // consonants
+		b: String.fromCharCode(946), d: String.fromCharCode(916), f: String.fromCharCode(934), g: String.fromCharCode(915),
+		h: String.fromCharCode(951), j: String.fromCharCode(967), k: String.fromCharCode(0x30B9), l: String.fromCharCode(923),
+		m: String.fromCharCode(956), n: String.fromCharCode(957), p: String.fromCharCode(928), s: String.fromCharCode(931),
+		t: String.fromCharCode(932), v: String.fromCharCode(965), w: String.fromCharCode(948), x: String.fromCharCode(926),
+		y: String.fromCharCode(955), z: String.fromCharCode(950)
+	},
+	sc: { // special consonants
+		bee: String.fromCharCode(914), dee: String.fromCharCode(0x1402),
+		el: String.fromCharCode(0x1430), j: String.fromCharCode(0x04FE)
+	},
+	r: { // vowel-'r' combos
+		ar: String.fromCharCode(0x0052), r: String.fromCharCode(929), air: String.fromCharCode(228),
+		eer: String.fromCharCode(0x260B), er: String.fromCharCode(0x10B4), or: String.fromCharCode(0x004F)
+	},
+	t: { // consonant-'t' combos
+		at: String.fromCharCode(0x0466), ate: String.fromCharCode(0x0038), eet: String.fromCharCode(0x0CEE), ft: String.fromCharCode(964),
+		tch: String.fromCharCode(0x22C9), nt: String.fromCharCode(0x5201), st: String.fromCharCode(0x1560), ts: String.fromCharCode(0x00DF),
+		ct: String.fromCharCode(0x0043)
+	},
+	h: { ch: String.fromCharCode(935), sh: String.fromCharCode(936), th: String.fromCharCode(920) }, // c/s/t-h combos
+	e: { // endings
+		ed: String.fromCharCode(0x2661), ly: String.fromCharCode(0x01338), ing: String.fromCharCode(0x04A8), nk: String.fromCharCode(0x004E),
+		ous: String.fromCharCode(0x14D0), tion: String.fromCharCode(0x00B0), nd: String.fromCharCode(0x2207), ng: String.fromCharCode(0x0AEA)
+	},
+	w: { // common single-symbol words
+		a: String.fromCharCode(951), an: String.fromCharCode(951),
+		am: String.fromCharCode(956), me: String.fromCharCode(956), my: String.fromCharCode(956),
+		did: String.fromCharCode(916), do: String.fromCharCode(916),
+		in: String.fromCharCode(957), on: String.fromCharCode(957),
+		one: String.fromCharCode(0x0031), won: String.fromCharCode(0x0031),
+		about: String.fromCharCode(0x223C), and: String.fromCharCode(0x0026), are: String.fromCharCode(0x0052), as: String.fromCharCode(950),
+		at: String.fromCharCode(0x0466), ate: String.fromCharCode(0x0038), bc: String.fromCharCode(0x0CEC), be: String.fromCharCode(914),
+		but: String.fromCharCode(946), can: String.fromCharCode(0x30B9), could: String.fromCharCode(0x30B9), cash: String.fromCharCode(0x0024),
+		peace: String.fromCharCode(0x1210), diff: String.fromCharCode(0x2260), ear: String.fromCharCode(0x260B), end: String.fromCharCode(0x2207),
+		for: String.fromCharCode(934), fit: String.fromCharCode(964), go: String.fromCharCode(915), good: String.fromCharCode(0x00A7),
+		he: String.fromCharCode(0x2022), how: String.fromCharCode(969), i: String.fromCharCode(921), ink: String.fromCharCode(0x004E),
+		is: String.fromCharCode(931), it: String.fromCharCode(0x0074), its: String.fromCharCode(0x00DF), itch: String.fromCharCode(0x22C9),
+		kit: String.fromCharCode(0x0043), less: String.fromCharCode(60), more: String.fromCharCode(62), not: String.fromCharCode(0x5201),
+		of: String.fromCharCode(965), or: String.fromCharCode(0x004F), left: String.fromCharCode(171), right: String.fromCharCode(187),
+		man: String.fromCharCode(0x2642), person: String.fromCharCode(0x1E8A), put: String.fromCharCode(928), same: String.fromCharCode(0x003D),
+		she: String.fromCharCode(936), shun: String.fromCharCode(0x00B0), sit: String.fromCharCode(0x1560), so: String.fromCharCode(0x2234),
+		then: String.fromCharCode(0x0D24), the: String.fromCharCode(920), to: String.fromCharCode(932), will: String.fromCharCode(923),
+		well: String.fromCharCode(0x1430), would: String.fromCharCode(948), yeah: String.fromCharCode(955), you: String.fromCharCode(933)
+	},
+	p: { // punctuation
+		p: String.fromCharCode(0x2216), ep: String.fromCharCode(0x002E), c: String.fromCharCode(0x002D), ec: String.fromCharCode(0x002C),
+		m: String.fromCharCode(0x2014), col: String.fromCharCode(0x003A), fs: String.fromCharCode(0x002F), bs: String.fromCharCode(0x005C),
+		fb: String.fromCharCode(0x005B), bb: String.fromCharCode(0x005D), at: String.fromCharCode(0x0040)
+	},
+	ca: { // capital ABC's
+		a: String.fromCharCode(0x0041), b: String.fromCharCode(0x0042), c: String.fromCharCode(0x0043), d: String.fromCharCode(0x0044),
+		e: String.fromCharCode(0x0045), f: String.fromCharCode(0x0046), g: String.fromCharCode(0x0047), h: String.fromCharCode(0x0048),
+		i: String.fromCharCode(0x0049), j: String.fromCharCode(0x004A), k: String.fromCharCode(0x004B), l: String.fromCharCode(0x004C),
+		m: String.fromCharCode(0x004D), n: String.fromCharCode(0x004E), o: String.fromCharCode(0x004F), p: String.fromCharCode(0x0050),
+		q: String.fromCharCode(0x0051), r: String.fromCharCode(0x0052), s: String.fromCharCode(0x0053), t: String.fromCharCode(0x0054),
+		u: String.fromCharCode(0x0055), v: String.fromCharCode(0x0056), w: String.fromCharCode(0x0057), x: String.fromCharCode(0x0058),
+		y: String.fromCharCode(0x0059), z: String.fromCharCode(0x005A)
+	},
+	la: { // lowercase abc's
+		a: String.fromCharCode(0x0061), b: String.fromCharCode(0x0062), c: String.fromCharCode(0x0063), d: String.fromCharCode(0x0064),
+		e: String.fromCharCode(0x0065), f: String.fromCharCode(0x0066), g: String.fromCharCode(0x0067), h: String.fromCharCode(0x0068),
+		i: String.fromCharCode(0x0069), j: String.fromCharCode(0x006A), k: String.fromCharCode(0x006B), l: String.fromCharCode(0x006C),
+		m: String.fromCharCode(0x006D), n: String.fromCharCode(0x006E), o: String.fromCharCode(0x006F), p: String.fromCharCode(0x0070),
+		q: String.fromCharCode(0x0071), r: String.fromCharCode(0x0072), s: String.fromCharCode(0x0073), t: String.fromCharCode(0x0074),
+		u: String.fromCharCode(0x0075), v: String.fromCharCode(0x0076), w: String.fromCharCode(0x0077), x: String.fromCharCode(0x0078),
+		y: String.fromCharCode(0x0079), z: String.fromCharCode(0x007A)
+	},
+	n: { // numbers
+		o: String.fromCharCode(0x0030), i: String.fromCharCode(0x0031), ii: String.fromCharCode(0x0032), iii: String.fromCharCode(0x0033),
+		iv: String.fromCharCode(0x0034), v: String.fromCharCode(0x0035), vi: String.fromCharCode(0x0036), vii: String.fromCharCode(0x0037),
+		iix: String.fromCharCode(0x0038), ix: String.fromCharCode(0x0039)
+	},
+	s: String.fromCharCode(0x0020)
+};
+
+// vowel types
+const va = jngma.v.a, ve = jngma.v.e, vi = jngma.v.i, vo = jngma.v.o, vu = jngma.v.u;
+// consonant types
+const cn = jngma.c, sp = jngma.sc;
+// vowel-r & consonant-t combos
+const rc = jngma.r, tc = jngma.t;
+// upper & lowercase alphabet
+const hi = jngma.ca, lo = jngma.la;
+
+const h = jngma.h; // C/S/T-H combos
+const end = jngma.e; // endings
+const w = jngma.w; // words
+const p = jngma.p; // punctuation
+const num = jngma.n; // numbers
+const s = jngma.s; // space
+
+/******************************************************************************/
 /* INFO FUNCTIONS */
 /******************************************************************************/
 
@@ -114,8 +223,8 @@ function clkText(elem) { elem.style.cursor = 'auto'; }
 function clearInput(tId) { document.getElementById(tId).value = '';document.getElementById(tId).select(); }
 function putPlaceHolders(){
 	document.getElementById('nTIn').placeholder = 'Enter  Your \nEnglish';
-	document.getElementById('eTIn').placeholder = String.fromCharCode(949,0x5201,0x10B4) + "  " + String.fromCharCode(955,937) +
-		"\n" + String.fromCharCode(957,915,956,0x0041);
+	document.getElementById('eTIn').placeholder = ve.eh+tc.nt+rc.er + "  " + cn.y+vo.oh +
+		"\n" + cn.n+cn.g+cn.m+va.ah;
 }
 function rtnN(event,elem) {
 	elem.value = stripText(elem);
@@ -228,10 +337,7 @@ cB2.addEventListener("copy", function(event) {
 /******************************************************************************/
 
 const doesItWork = 'Of course';
-
-const iAm = String.fromCharCode(967,968,957)+' '+
-String.fromCharCode(915,968,923,932);
-
+const iAm = cn.j+va.aw+cn.n+' '+cn.g+va.aw+cn.l+cn.t;
 const mCr = "'Let us strive to be more liberal as we grow older for this is"+
 " the safety valve of our rights. Never belong to any organization that"+
 " makes you narrow or contracted, that makes you look upon your fellow"+
@@ -258,8 +364,8 @@ function getNgmaString() {
 			phraseArr2.splice(i,1," ?");
 		} else if (phraseArr2[i] == "!") {
 			phraseArr2.splice(i,1," !");
-		} else if (phraseArr2[i] == String.fromCharCode(0x2216)) {
-			phraseArr2.splice(i,1," "+String.fromCharCode(0x2216)+" ");
+		} else if (phraseArr2[i] == p.p) {
+			phraseArr2.splice(i,1," "+p.p+" ");
 		} else if (phraseArr2[i] == "-") {
 			phraseArr2.splice(i,1," - ");
 		} else if (phraseArr2[i] == '"') {
@@ -304,7 +410,7 @@ function fixPunc(sentence) {
 
 function fixPhrase(phrase) {
 	for (let i = 0; i < phrase.length; i++) {
-		if (phrase[i] == String.fromCharCode(0x2216)) {
+		if (phrase[i] == p.p) {
 			phrase.splice(i+1,0,' ');
 		} else if (phrase[i] == '-') {
 			phrase.splice(i+1,0,' ');
@@ -327,9 +433,7 @@ function generateFinalArray() {
 	var ngmaVowelConPairsArr2 = formatStrVowelConPairs2(ngmaVowelConPairsArr1);
 	var ngmaCharStr = replaceConsonants(ngmaVowelConPairsArr2);
 
-	ngmaCharStr.split(' ').forEach((word) => {
-		finalArr.push(removeDuplicateLetters(word));
-	});
+	ngmaCharStr.split(' ').forEach((word) => { finalArr.push(removeDuplicateLetters(word)); });
 
 	var formattedFinalArr = formatFinalArray1(finalArr);
 	return formatFinalArray2(formattedFinalArr);
@@ -340,9 +444,7 @@ function generateRevPhrase() {
 	var arr = getNgmaString();
 	if (arr == 123) return 123;
 
-	arr.split(' ').forEach((word) => {
-		revEng.push(passRevWords(word));
-	});
+	arr.split(' ').forEach((word) => { revEng.push(passRevWords(word)); });
 
 	var fixRevEng = fixPunc(revEng.join(' ').split(''));
 	return fixRevEng;
@@ -373,119 +475,49 @@ function startRevScript() {
 /* DIY */
 /******************************************************************************/
 
-const title1 = String.fromCharCode(0x002D,0x003A,0x002D,0x0020,0x004E,0x0047,
-		0x004D,0x0041,0x0020,0x004B,0x0045,0x0059,0x0020,0x002D,0x003A,0x002D);
+const title1 = p.c+p.col+p.c+s+hi.n+hi.g+hi.m+hi.a+s+hi.k+hi.e+hi.y+s+p.c+p.col+p.c;
 
 const title2 = "-:- CONSONANTS -:-";
-const consonantL = "(B: "+String.fromCharCode(946)+")"+
-" (D: "+String.fromCharCode(916)+") (F: "+String.fromCharCode(934)+")"+
-" (G: "+String.fromCharCode(915)+") (H: "+String.fromCharCode(951)+")"+
-" (J: "+String.fromCharCode(967)+") (K: "+String.fromCharCode(0x30B9)+")"+
-" (L: "+String.fromCharCode(923)+") (M: "+String.fromCharCode(956)+")"+
-" (N: "+String.fromCharCode(957)+") (P: "+String.fromCharCode(928)+")"+
-" (R: "+String.fromCharCode(929)+") (S: "+String.fromCharCode(931)+")"+
-" (T: "+String.fromCharCode(932)+") (V: "+String.fromCharCode(965)+")"+
-" (W: "+String.fromCharCode(948)+") (X: "+String.fromCharCode(926)+")"+
-" (Y: "+String.fromCharCode(955)+") (Z: "+String.fromCharCode(950)+")";
+const consonantL = "(B: "+cn.b+") (D: "+cn.d+") (F: "+cn.f+") (G: "+cn.g+")"+
+" (H: "+cn.h+") (J: "+cn.j+") (K: "+cn.k+") (L: "+cn.l+") (M: "+cn.m+") (N: "+cn.n+")"+
+" (P: "+cn.p+") (R: "+rc.r+") (S: "+cn.s+") (T: "+cn.t+") (V: "+cn.v+") (W: "+cn.w+")"+
+" (X: "+cn.x+") (Y: "+cn.y+") (Z: "+cn.z+")";
 
 const title3 = "-:- VOWELS -:-";
-const vowelL1 = "[l(a)st: "+String.fromCharCode(0x0041)+"] "+
-"[l(a)te: "+String.fromCharCode(0x0048)+"] "+
-"[l(i)st: "+String.fromCharCode(953)+"] "+
-"[l(e)st: "+String.fromCharCode(949)+"] "+
-"[l(ee)k: "+String.fromCharCode(0x0045)+"] "+
-"[l(u)ll: "+String.fromCharCode(0x0427)+"] "+
-"[l(oo)k: "+String.fromCharCode(0x144E)+"] ";
-const vowelL2 = "[l(o)se: "+String.fromCharCode(960)+"] "+
-"[l(o)st: "+String.fromCharCode(968)+"] "+
-"[l(ou)d: "+String.fromCharCode(969)+"] "+
-"[l(oa)d: "+String.fromCharCode(937)+"] "+
-"[(u)nit: "+String.fromCharCode(933)+"] "+
-"[b(oi)l: "+String.fromCharCode(0x155F)+"] "+
-"[b(i)le: "+String.fromCharCode(0x0049)+"] ";
+const vowelL1 = "[l(a)st: "+va.ah+"] [l(a)te: "+va.ae+"] [l(i)st: "+vi.i+"]"+
+" [l(e)st: "+ve.eh+"] [l(ee)k: "+ve.ee+"] [l(u)ll: "+vu.uh+"] [l(oo)k: "+vo.oo+"]";
+const vowelL2 = "[l(o)se: "+vu.ou+"] [l(o)st: "+va.aw+"] [l(ou)d: "+vo.ow+"]"+
+" [l(oa)d: "+vo.oh+"] [(u)nit: "+vu.yu+"] [b(oi)l: "+vo.oi+"] [b(i)le: "+vi.ai+"]";
 
 const title4 = "-:- T/S/C + H -:-";
-const conH = "('th': "+String.fromCharCode(920)+")"+
-" ('sh': "+String.fromCharCode(936)+") ('ch': "+String.fromCharCode(935)+")";
+const conH = "('th': "+h.th+") ('sh': "+h.sh+") ('ch': "+h.ch+")";
 
 const title5 = "-:- R/N COMBINATIONS -:-";
-const conRN = "('are': "+String.fromCharCode(0x0052)+")"+
-" ('air': "+String.fromCharCode(228)+")"+
-" ('ear': "+String.fromCharCode(0x260B)+")"+
-" ('er': "+String.fromCharCode(0x10B4)+")"+
-" ('or': "+String.fromCharCode(0x004F)+")"+
-" ('nd': "+String.fromCharCode(0x2207)+")"+
-" ('nk': "+String.fromCharCode(0x004E)+")"+
-" ('nt': "+String.fromCharCode(0x5201)+")"+
-" ('ng': "+String.fromCharCode(0x0AEA)+")"+
-" ('ing': "+String.fromCharCode(0x04A8)+")";
+const conRN = "('are': "+rc.ar+") ('air': "+rc.air+") ('ear': "+rc.eer+")"+
+" ('er': "+rc.er+") ('or': "+rc.or+") ('nd': "+end.nd+") ('nk': "+end.nk+")"+
+" ('nt': "+tc.nt+") ('ng': "+end.ng+") ('ing': "+end.ing+")";
 
 const title6 = "-:- T COMBINATIONS -:-";
-const conT = "('ft': "+String.fromCharCode(964)+")"+
-" ('st': "+String.fromCharCode(0x1560)+")"+
-" ('it': "+String.fromCharCode(0x0074)+")"+
-" ('ct': "+String.fromCharCode(0x0043)+")"+
-" ('at': "+String.fromCharCode(0x0466)+")"+
-" ('ts': "+String.fromCharCode(0x00DF)+")"+
-" ('eet': "+String.fromCharCode(0x0CEE)+")";
+const conT = "('ft': "+tc.ft+") ('st': "+tc.st+") ('it': "+lo.t+")"+
+" ('ct': "+tc.ct+") ('at': "+tc.at+") ('ts': "+tc.ts+") ('eet': "+tc.eet+")";
 
 const title7 = "-:- CONSONANT COMBINATIONS -:-";
-const conComb = "('bee': "+String.fromCharCode(0x0042)+")"+
-" ('dee': "+String.fromCharCode(0x1402)+")"+
-" ('-ed': "+String.fromCharCode(0x2661)+")"+
-" ('-ly': "+String.fromCharCode(0x01338)+")"+
-" ('el': "+String.fromCharCode(0x1430)+")"+
-" (vi(s)ion: "+String.fromCharCode(0x04FE)+")"+
-" (ac(tion): "+String.fromCharCode(0x00B0)+")"+
-"<br> (delic(ious): "+String.fromCharCode(0x14D0)+")"+
-" (comma: -)"+
-" (period: "+String.fromCharCode(0x2216)+")";
+const conComb = "('bee': "+sp.bee+") ('dee': "+sp.dee+") ('-ed': "+end.ed+")"+
+" ('-ly': "+end.ly+") ('el': "+sp.el+") (vi(s)ion: "+sp.j+") (ac(tion): "+end.tion+")"+
+" <br> (delic(ious): "+end.ous+") (comma: -) (period: "+p.p+")";
 
 const title8 = "-:- COMMON WORDS -:-";
-const comW1 = "(a,an: "+String.fromCharCode(951)+")"+
-" (and: "+String.fromCharCode(0x0026)+")"+
-" (are: "+String.fromCharCode(0x0052)+")"+
-" (as: "+String.fromCharCode(950)+")"+
-" (at: "+String.fromCharCode(0x0466)+")"+
-" (ate: "+String.fromCharCode(0x0038)+")"+
-" (be: "+String.fromCharCode(0x0042)+")"+
-" (because: "+String.fromCharCode(0x0CEC)+")"+
-" (but: "+String.fromCharCode(946)+")"+
-"<br> (can: "+String.fromCharCode(0x30B9)+")"+
-" (do,did: "+String.fromCharCode(916)+")"+
-" (ear: "+String.fromCharCode(0x260B)+")"+
-" (end: "+String.fromCharCode(0x2207)+")"+
-" (for: "+String.fromCharCode(934)+")";
-const comW2 = "(go: "+String.fromCharCode(915)+")"+
-" (good: "+String.fromCharCode(0x00A7)+")"+
-" (how: "+String.fromCharCode(969)+")"+
-" (I: "+String.fromCharCode(0x0049)+")"+
-" (in: "+String.fromCharCode(957)+")"+
-" (is: "+String.fromCharCode(931)+")"+
-" (it: "+String.fromCharCode(953)+")"+
-" (its: "+String.fromCharCode(0x00DF)+")"+
-" (left: "+String.fromCharCode(171)+")"+
-" (less: "+String.fromCharCode(60)+")"+
-" (more: "+String.fromCharCode(62)+")"+
-" (my: "+String.fromCharCode(956)+")"+
-" (not: "+String.fromCharCode(0x5201)+")"+
-" (of: "+String.fromCharCode(965)+")"+
-" (peace: "+String.fromCharCode(0x1210)+")"+
-" (person: "+String.fromCharCode(0x1E8A)+")";
-const comW3 = "(put: "+String.fromCharCode(928)+")"+
-" (right: "+String.fromCharCode(187)+")"+
-" (she: "+String.fromCharCode(936)+")"+
-" (so: "+String.fromCharCode(0x2234)+")"+
-" (the: "+String.fromCharCode(920)+")"+
-" (then: "+String.fromCharCode(0x0D24)+")"+
-" (to: "+String.fromCharCode(932)+")"+
-" (well: "+String.fromCharCode(0x1430)+")"+
-" (will: "+String.fromCharCode(923)+")"+
-"<br> (with: "+String.fromCharCode(948,953)+")"+
-" (would: "+String.fromCharCode(948)+")"+
-" (yeah: "+String.fromCharCode(955)+")"+
-" (you: "+String.fromCharCode(933)+")"+
-" (different: "+String.fromCharCode(0x2260)+")";
+const comW1 = "(a,an: "+w.a+") (and: "+w.and+") (are: "+w.are+") (as: "+w.as+")"+
+" (at: "+w.at+") (ate: "+w.ate+") (be: "+w.be+") (because: "+w.bc+") (but: "+w.but+")"+
+" <br> (can: "+w.can+") (do,did: "+w.do+") (ear: "+w.ear+") (end: "+w.end+") (for: "+w.for+")";
+const comW2 = "(go: "+w.go+") (good: "+w.good+") (how: "+w.how+") (I: "+w.i+")"+
+" (in: "+w.in+") (is: "+w.is+") (it: "+w.it+") (its: "+w.its+") (left: "+w.left+")"+
+" (less: "+w.less+") (more: "+w.more+") (my: "+w.my+") (not: "+w.not+") (of: "+w.of+")"+
+" (peace: "+w.peace+") (person: "+w.person+")";
+const comW3 = "(put: "+w.put+") (right: "+w.right+") (she: "+w.she+") (so: "+w.so+")"+
+" (the: "+w.the+") (then: "+w.then+") (to: "+w.to+") (well: "+w.well+") (will: "+w.will+")"+
+" <br> (with: "+cn.w+vi.i+") (would: "+w.would+") (yeah: "+w.yeah+") (you: "+w.you+")"+
+" (different: "+w.diff+")";
 
 /******************************************************************************/
 /* HELPER FUNCTION(S) */
@@ -516,9 +548,7 @@ function structure() {
 
 function removeDuplicateLetters(oldString) {
 	var newNgmaStr = '';
-	for (let i = 0; i < oldString.length; i++) {
-		if (oldString[i] != oldString[i-1]) newNgmaStr += oldString[i];
-	}
+	for (let i = 0; i < oldString.length; i++) if (oldString[i] != oldString[i-1]) newNgmaStr += oldString[i];
 	return newNgmaStr;
 }
 
@@ -526,9 +556,7 @@ function removeDuplicateLetters(oldString) {
 function editPunc(phraseArr) {
 	var len = phraseArr.length;
 	for (let i = 0; i < len; i++) {
-		if (((phraseArr[i] == " ") && (phraseArr[i+1] == ".")) && ((phraseArr[i+2] == ".") && (phraseArr[i+3] == "."))) {
-			phraseArr.splice(i,4," ,");
-		}
+		if ((phraseArr[i] == " " && phraseArr[i+1] == ".") && (phraseArr[i+2] == "." && phraseArr[i+3] == ".")) phraseArr.splice(i,4," ,");
 		if (phraseArr[i] == "?") {
 			phraseArr.splice(i,1," ?");
 		} else if (phraseArr[i] == "!") {
@@ -548,445 +576,193 @@ function editPunc(phraseArr) {
 
 function formatStrEditEnglish(engStr) {
 	return engStr
-		.replace(/,/g, '-').replace(/tion/g, String.fromCharCode(0x00B0))
-		.replace(/tch/g, 'ch').replace(/can't/g, "can not")
-		.replace(/le /g, 'l ').replace(/cious/g, String.fromCharCode(936,0x14D0))
-		.replace(/ci/g, String.fromCharCode(931,0x0069))
-		.replace(/ kn/g, ' '+String.fromCharCode(957))
-		.replace(/cq/g, String.fromCharCode(0x0071)).replace(/'d/g, ' would')
-		.replace(/i'm/g, 'I A'+String.fromCharCode(956)).replace(/'ll/g, ' will').replace(/'re/g, ' are')
-		.replace(/n't/g, ' not').replace(/'ve/g, ' have').replace(/ces /g, 'cez ')
-		.replace(/ded /g, 'de'+String.fromCharCode(0x2661)+' ').replace(/ses /g, 'sez ');
+		.replace(/,/g, '-').replace(/tion/g, end.tion).replace(/tch/g, 'ch')
+		.replace(/can't/g, "can not").replace(/le /g, 'l ').replace(/cious/g, h.sh+end.ous)
+		.replace(/ci/g, cn.s+lo.i).replace(/ kn/g, ' '+cn.n).replace(/cq/g, lo.q)
+		.replace(/'d/g, ' would').replace(/i'm/g, 'I A'+cn.m).replace(/'ll/g, ' will')
+		.replace(/'re/g, ' are').replace(/n't/g, ' not').replace(/'ve/g, ' have')
+		.replace(/ces /g, 'cez ').replace(/ded /g, 'de'+end.ed+' ').replace(/ses /g, 'sez ');
 }
 
 
 function formatStrCommonWords(engStr) {
 	return engStr
-		.replace(/ a /g, ' '+String.fromCharCode(951)+' ')
-		.replace(/ i /g, ' '+String.fromCharCode(0x0049)+' ')
-		.replace(/ an /g, ' '+String.fromCharCode(951)+' ')
-		.replace(/ by /g, ' '+String.fromCharCode(946,0x0049)+' ')
-		.replace(/ as /g, ' '+String.fromCharCode(950)+' ')
-		.replace(/ be /g, ' '+String.fromCharCode(0x0042)+' ')
-		.replace(/ do /g, ' '+String.fromCharCode(916)+' ')
-		.replace(/ go /g, ' '+String.fromCharCode(915)+' ')
-		.replace(/ he /g, ' '+String.fromCharCode(951,0x0045)+' ') 
-		.replace(/ in /g, ' '+String.fromCharCode(957)+' ')
-		.replace(/ is /g, ' '+String.fromCharCode(931)+' ')
-		.replace(/ it /g, ' '+String.fromCharCode(953)+' ')
-		.replace(/ its /g, ' '+String.fromCharCode(0x00DF)+' ')
-		.replace(/ me /g, ' '+String.fromCharCode(956)+'E ')
-		.replace(/ my /g, ' '+String.fromCharCode(956)+' ')
-		.replace(/ no /g, ' '+String.fromCharCode(957,937)+' ')
-		.replace(/ not /g, ' '+String.fromCharCode(0x5201)+' ')
-		.replace(/ of /g, ' '+String.fromCharCode(965)+' ')
-		.replace(/ on /g, ' '+String.fromCharCode(968,957)+' ')
-		.replace(/ so /g, ' '+String.fromCharCode(0x2234)+' ')
-		.replace(/ to /g, ' '+String.fromCharCode(932)+' ')
-		.replace(/ we /g, ' '+String.fromCharCode(948,0x0045)+' ')
-		.replace(/ who /g, ' '+String.fromCharCode(951,960)+' ')
-		.replace(/ why /g, ' '+String.fromCharCode(948,0x0049)+' ')
-		.replace(/ air /g, ' '+String.fromCharCode(228)+' ')
-		.replace(/ are /g, ' '+String.fromCharCode(0x0052)+' ')
-		.replace(/ but /g, ' '+String.fromCharCode(946)+' ')
-		.replace(/ can /g, ' '+String.fromCharCode(0x30B9)+' ')
-		.replace(/ did /g, ' '+String.fromCharCode(916,953,916)+' ')
-		.replace(/ ear /g, ' '+String.fromCharCode(0x260B)+' ')
-		.replace(/ end /g, ' '+String.fromCharCode(0x2207)+' ')
-		.replace(/ for /g, ' '+String.fromCharCode(934)+' ')
-		.replace(/ how /g, ' '+String.fromCharCode(969)+' ')
-		.replace(/ put /g, ' '+String.fromCharCode(928)+' ')
-		.replace(/ she /g, ' '+String.fromCharCode(936)+' ')
-		.replace(/ sy/g, ' '+String.fromCharCode(931,953))
-		.replace(/ the /g, ' '+String.fromCharCode(920)+' ')
-		.replace(/ use /g, ' '+String.fromCharCode(0x0059,950)+' ')
-		.replace(/ you /g, ' '+String.fromCharCode(933)+' ')
-		.replace(/ been /g, ' '+String.fromCharCode(946,957)+' ')
-		.replace(/ does /g, ' '+String.fromCharCode(916,0x0427,950)+' ')
-		.replace(/ good /g, ' '+String.fromCharCode(0x00A7)+' ')
-		.replace(/ have /g, ' '+String.fromCharCode(951,965)+' ')
-		.replace(/ left /g, ' '+String.fromCharCode(0x226A)+' ')
-		.replace(/ less /g, ' '+String.fromCharCode(0x003C)+' ')
-		.replace(/ more /g, ' '+String.fromCharCode(0x003E)+' ')
-		.replace(/ once /g, ' '+String.fromCharCode(948,0x0427,957,931)+' ')
-		.replace(/ into /g, ' '+String.fromCharCode(0x5201,960)+' ')
-		.replace(/ this /g, ' '+String.fromCharCode(920,931)+' ')
-		.replace(/ well /g, ' '+String.fromCharCode(0x1430)+' ')
-		.replace(/ will /g, ' '+String.fromCharCode(923)+' ')
-		.replace(/ with /g, ' '+String.fromCharCode(948,953)+' ')
-		.replace(/ yeah /g, ' '+String.fromCharCode(955)+' ')
-		.replace(/ your /g, ' '+String.fromCharCode(955,937)+' ')
-		.replace(/ right /g, ' '+String.fromCharCode(0x226B)+' ')
-		.replace(/ could /g, ' '+String.fromCharCode(0x30B9)+' ')
-		.replace(/ would /g, ' '+String.fromCharCode(948)+' ')
-		.replace(/ were /g, ' '+String.fromCharCode(948,0x10B4)+' ')
-		.replace(/ where /g, ' '+String.fromCharCode(948,228)+' ')
-		.replace(/ whol /g, ' '+String.fromCharCode(951,937,923)+' ')
-		.replace(/ hello /g, ' '+String.fromCharCode(951,0x1430,937)+' ')
-		.replace(/ peopl /g, ' '+String.fromCharCode(0x1E8A)+' ')
-		.replace(/ because /g, ' '+String.fromCharCode(0x0CEC)+' ')
-		.replace(/ therefore /g, ' '+String.fromCharCode(0x2234)+' ')
-		.replace(/ through /g, ' '+String.fromCharCode(920,929,960)+' ')
-		.replace(/ throughout /g, ' '+String.fromCharCode(920,929,960,969,932)+' ')
-		.replace(/ there /g, ' '+String.fromCharCode(920,228)+' ')
-		.replace(/ their /g, ' '+String.fromCharCode(920,228)+' ')
-		.replace(/ they're /g, ' '+String.fromCharCode(920,228)+' ')
+		.replace(/ a /g, ' '+w.a+' ').replace(/ i /g, ' '+w.i+' ').replace(/ an /g, ' '+w.an+' ')
+		.replace(/ by /g, ' '+cn.b+vi.ai+' ').replace(/ as /g, ' '+w.as+' ').replace(/ be /g, ' '+w.be+' ')
+		.replace(/ do /g, ' '+w.do+' ').replace(/ go /g, ' '+w.go+' ').replace(/ he /g, ' '+w.he+' ') 
+		.replace(/ in /g, ' '+w.in+' ').replace(/ is /g, ' '+w.is+' ').replace(/ it /g, ' '+w.it+' ')
+		.replace(/ its /g, ' '+w.its+' ').replace(/ me /g, ' '+cn.m+'E ').replace(/ my /g, ' '+w.my+' ')
+		.replace(/ no /g, ' '+cn.n+vo.oh+' ').replace(/ not /g, ' '+w.not+' ').replace(/ of /g, ' '+w.of+' ')
+		.replace(/ on /g, ' '+va.aw+cn.n+' ').replace(/ so /g, ' '+w.so+' ').replace(/ to /g, ' '+w.to+' ')
+		.replace(/ we /g, ' '+cn.w+ve.ee+' ').replace(/ who /g, ' '+cn.h+vu.ou+' ').replace(/ why /g, ' '+cn.w+vi.ai+' ')
+		.replace(/ air /g, ' '+rc.air+' ').replace(/ are /g, ' '+rc.ar+' ').replace(/ but /g, ' '+cn.b+' ')
+		.replace(/ can /g, ' '+w.can+' ').replace(/ did /g, ' '+cn.d+vi.i+cn.d+' ').replace(/ ear /g, ' '+rc.eer+' ')
+		.replace(/ end /g, ' '+end.nd+' ').replace(/ for /g, ' '+w.for+' ').replace(/ how /g, ' '+w.how+' ')
+		.replace(/ put /g, ' '+w.put+' ').replace(/ she /g, ' '+w.she+' ').replace(/ sy/g, ' '+cn.s+vi.i)
+		.replace(/ the /g, ' '+w.the+' ').replace(/ use /g, ' '+vu.yu+cn.z+' ').replace(/ you /g, ' '+w.you+' ')
+		.replace(/ been /g, ' '+cn.b+cn.n+' ').replace(/ does /g, ' '+cn.d+vu.uh+cn.z+' ').replace(/ good /g, ' '+w.good+' ')
+		.replace(/ have /g, ' '+cn.h+cn.v+' ').replace(/ left /g, ' '+w.left+' ').replace(/ less /g, ' '+w.less+' ')
+		.replace(/ more /g, ' '+w.more+' ').replace(/ once /g, ' '+cn.w+vu.uh+cn.n+cn.s+' ').replace(/ into /g, ' '+tc.nt+vu.ou+' ')
+		.replace(/ this /g, ' '+h.th+cn.s+' ').replace(/ well /g, ' '+w.well+' ').replace(/ will /g, ' '+w.will+' ')
+		.replace(/ with /g, ' '+cn.w+vi.i+' ').replace(/ yeah /g, ' '+w.yeah+' ').replace(/ your /g, ' '+cn.y+vo.oh+' ')
+		.replace(/ right /g, ' '+w.right+' ').replace(/ could /g, ' '+w.could+' ').replace(/ would /g, ' '+w.would+' ')
+		.replace(/ were /g, ' '+cn.w+rc.er+' ').replace(/ where /g, ' '+cn.w+rc.air+' ').replace(/ whol /g, ' '+cn.h+vo.oh+cn.l+' ')
+		.replace(/ hello /g, ' '+cn.h+sp.el+vo.oh+' ').replace(/ peopl /g, ' '+w.person+' ').replace(/ because /g, ' '+w.bc+' ')
+		.replace(/ therefore /g, ' '+w.so+' ').replace(/ through /g, ' '+h.th+rc.r+vu.ou+' ')
+		.replace(/ throughout /g, ' '+h.th+rc.r+vu.ou+vo.ow+cn.t+' ').replace(/ there /g, ' '+h.th+rc.air+' ')
+		.replace(/ their /g, ' '+h.th+rc.air+' ').replace(/ they're /g, ' '+h.th+rc.air+' ')
 		/* -:- SINGLE-NUMBERS TO WORDS SPACED -:- */
-		.replace(/ 1 /g, ' '+String.fromCharCode(948,0x0427,957)+' ')
-		.replace(/ 2 /g, ' '+String.fromCharCode(932,960)+' ')
-		.replace(/ 3 /g, ' '+String.fromCharCode(920,929,0x0045)+' ')
-		.replace(/ 4 /g, ' '+String.fromCharCode(934,0x004F)+' ')
-		.replace(/ 5 /g, ' '+String.fromCharCode(934,0x0049,965)+' ')
-		.replace(/ 6 /g, ' '+String.fromCharCode(931,953,926)+' ')
-		.replace(/ 7 /g, ' '+String.fromCharCode(931,949,965,949,957)+' ')
-		.replace(/ 9 /g, ' '+String.fromCharCode(957,0x0049,957)+' ')
-		.replace(/ 0 /g, ' '+String.fromCharCode(950,0x260B,937)+' ');
+		.replace(/ 1 /g, ' '+cn.w+vu.uh+cn.n+' ').replace(/ 2 /g, ' '+cn.t+vu.ou+' ').replace(/ 3 /g, ' '+h.th+rc.r+ve.ee+' ')
+		.replace(/ 4 /g, ' '+cn.f+rc.or+' ').replace(/ 5 /g, ' '+cn.f+vi.ai+cn.v+' ').replace(/ 6 /g, ' '+cn.s+vi.i+cn.x+' ')
+		.replace(/ 7 /g, ' '+cn.s+ve.eh+cn.v+ve.eh+cn.n+' ').replace(/ 9 /g, ' '+cn.n+vi.ai+cn.n+' ').replace(/ 0 /g, ' '+cn.z+rc.eer+vo.oh+' ');
 }
 
 
 function formatStrGeneralPhonetic(engStr) {
 	return engStr
-		.replace(/acco/g, String.fromCharCode(0x0041,0x30B9,0x006F))
-		.replace(/aught/g, String.fromCharCode(968,932))
-		.replace(/cess/g, String.fromCharCode(931,949,931))
-		.replace(/chill/g, String.fromCharCode(0x1210))
-		.replace(/tious/g, String.fromCharCode(936,0x14D0))
-		.replace(/randleman/g, String.fromCharCode(929,0x0026,0x1430,0x2642))
-		.replace(/behind/g, String.fromCharCode(0x0042,951,0x0049,0x2207))
-		.replace(/blind/g, String.fromCharCode(946,923,0x0049,0x2207))
-		.replace(/c&ide/g, String.fromCharCode(0x30B9,0x0026,0x0045,916))
-		.replace(/difference/g, String.fromCharCode(0x2260))
-		.replace(/different/g, String.fromCharCode(0x2260))
-		.replace(/ engi/g, String.fromCharCode(0x0020,949,957,967,0x0069))
-		.replace(/human/g, String.fromCharCode(0x1E8A))
-		.replace(/inged/g, String.fromCharCode(957,967,0x2661))
-		.replace(/inger/g, String.fromCharCode(0x04A8,0x10B4))
-		.replace(/inges/g, String.fromCharCode(957,967,950))
-		.replace(/iously/g, String.fromCharCode(0x0045,0x14D0,0x01338))
-		.replace(/ourse/g, String.fromCharCode(0x004F,931)) 
-		.replace(/ously/g, String.fromCharCode(0x14D0,0x01338))
-		.replace(/ought/g, String.fromCharCode(968,932))
-        .replace(/tough/g, String.fromCharCode(932,0x0427,934))
-		.replace(/rough/g, String.fromCharCode(929,0x0427,934))
-		.replace(/peace/g, String.fromCharCode(0x1210))
-		.replace(/people/g, String.fromCharCode(0x1E8A))
-		.replace(/person/g, String.fromCharCode(0x1E8A))
-		.replace(/ary /g, String.fromCharCode(228,0x0045,0x0020))
-		.replace(/ery /g, String.fromCharCode(0x10B4,0x0045,0x0020))
-		.replace(/ory /g, String.fromCharCode(0x004F,0x0045,0x0020))
-		.replace(/ toge/g, String.fromCharCode(0x0020,932,960,915,949))
-		.replace(/ture/g, String.fromCharCode(935,0x10B4))
-		.replace(/type/g, String.fromCharCode(932,0x0049,928))
-		.replace(/angs/g, String.fromCharCode(0x0041,0x0AEA,950))
-		.replace(/bear/g, String.fromCharCode(946,228))
-		.replace(/bind/g, String.fromCharCode(946,0x0049,0x2207))
-		.replace(/come/g, String.fromCharCode(0x30B9,0x0427,956))
-		.replace(/eige/g, String.fromCharCode(0x0048,0x04FE))
-		.replace(/eigh/g, String.fromCharCode(0x0048))
-		.replace(/eate/g, String.fromCharCode(0x0CEE))
-		.replace(/find/g, String.fromCharCode(934,0x0049,0x2207))
-		.replace(/ighs/g, String.fromCharCode(0x0049,950))
-		.replace(/ight/g, String.fromCharCode(0x0049,932))
-		.replace(/inge/g, String.fromCharCode(957,967))
-		.replace(/ious/g, String.fromCharCode(0x0045,0x14D0))
-		.replace(/ings/g, String.fromCharCode(0x04A8,950))
-		.replace(/itch/g, String.fromCharCode(0x22C9))
-		.replace(/kind/g, String.fromCharCode(0x30B9,0x0049,0x2207))
-		.replace(/oate/g, String.fromCharCode(937,932))
-		.replace(/mind/g, String.fromCharCode(956,0x0049,0x2207))
-		.replace(/ngma/g, String.fromCharCode(957,915,956,0x0041))
-		.replace(/oose/g, String.fromCharCode(960,931))
-		.replace(/pear/g, String.fromCharCode(928,228))
-		.replace(/psych/g, String.fromCharCode(931,0x0049,0x30B9))
-		.replace(/rind/g, String.fromCharCode(929,0x0049,0x2207))
-		.replace(/sion/g, String.fromCharCode(0x04FE,0x0427,957))
-		.replace(/sure/g, String.fromCharCode(0x04FE,0x10B4))
-		.replace(/than/g, String.fromCharCode(920,0x0041,957))
-		.replace(/then/g, String.fromCharCode(0x0D24))
-		.replace(/udgm/g, String.fromCharCode(0x0427,967,956))
-		.replace(/ungs/g, String.fromCharCode(0x0427,0x0AEA,950))
-		.replace(/wear/g, String.fromCharCode(948,228))
-		.replace(/well/g, String.fromCharCode(948,0x1430))
-		.replace(/xury/g, String.fromCharCode(0x04FE,0x10B4,0x0045))
-		.replace(/acc/g, String.fromCharCode(0x0041,926))
-		.replace(/ack/g, String.fromCharCode(0x0041,0x30B9))
-		.replace(/ang/g, String.fromCharCode(0x0041,0x0AEA))
-		.replace(/dee/g, String.fromCharCode(0x1402))
-		.replace(/eat/g, String.fromCharCode(0x0CEE))
-		.replace(/eck/g, String.fromCharCode(949,0x30B9))
-		.replace(/eek/g, String.fromCharCode(0x0045,0x30B9))
-		.replace(/eet/g, String.fromCharCode(0x0CEE))
-		.replace(/ess/g, String.fromCharCode(949,931))
-		.replace(/ete/g, String.fromCharCode(0x0CEE))
-		.replace(/iar/g, String.fromCharCode(0x0049,0x0052))
-		.replace(/ick/g, String.fromCharCode(953,0x30B9))
-		.replace(/ign/g, String.fromCharCode(0x0049,957))
-		.replace(/ire/g, String.fromCharCode(0x0049,0x0052))
-		.replace(/ism/g, String.fromCharCode(953,950,956))
-		.replace(/key/g, String.fromCharCode(0x30B9,0x0045))
-		.replace(/man/g, String.fromCharCode(0x2642))
-		.replace(/nce/g, String.fromCharCode(957,931))
-		.replace(/oat/g, String.fromCharCode(937,932))
-		.replace(/ock/g, String.fromCharCode(968,0x30B9))
-		.replace(/out/g, String.fromCharCode(969,932))
-		.replace(/psy/g, String.fromCharCode(931,0x0049))
-		.replace(/sch/g, String.fromCharCode(931,0x30B9))
-		.replace(/uck/g, String.fromCharCode(0x0427,0x30B9))
-		.replace(/ung/g, String.fromCharCode(0x0427,0x0AEA))
-		.replace(/wel/g, String.fromCharCode(948,0x1430))
-		.replace(/wh/g, 'w')
+		.replace(/acco/g, va.ah+cn.k+lo.o).replace(/aught/g, va.aw+cn.t).replace(/cess/g, cn.s+ve.eh+cn.s)
+		.replace(/chill/g, w.peace).replace(/tious/g, h.sh+end.ous).replace(/randleman/g, rc.r+w.and+sp.el+w.man)
+		.replace(/behind/g, sp.bee+cn.h+vi.ai+end.nd).replace(/blind/g, cn.b+cn.l+vi.ai+end.nd).replace(/c&ide/g, cn.k+w.and+hi.e+cn.d)
+		.replace(/difference/g, w.diff).replace(/different/g, w.diff).replace(/ engi/g, s+ve.eh+cn.n+cn.j+lo.i)
+		.replace(/human/g, w.person).replace(/inged/g, cn.n+cn.j+end.ed).replace(/inger/g, end.ing+rc.er)
+		.replace(/inges/g, cn.n+cn.j+cn.z).replace(/iously/g, hi.e+end.ous+end.ly).replace(/ourse/g, rc.or+cn.s)
+		.replace(/ously/g, end.ous+end.ly).replace(/ought/g, va.aw+cn.t).replace(/tough/g, cn.t+vu.uh+cn.f)
+		.replace(/rough/g, rc.r+vu.uh+cn.f).replace(/peace/g, w.peace).replace(/people/g, w.person)
+		.replace(/person/g, w.person).replace(/ary /g, rc.air+hi.e+s).replace(/ery /g, rc.er+hi.e+s)
+		.replace(/ory /g, rc.or+hi.e+s).replace(/ toge/g, s+cn.t+vu.ou+cn.g+ve.eh).replace(/ture/g, h.ch+rc.er)
+		.replace(/type/g, cn.t+vi.ai+cn.p).replace(/angs/g, va.ah+end.ng+cn.z).replace(/bear/g, cn.b+rc.air)
+		.replace(/bind/g, cn.b+vi.ai+end.nd).replace(/come/g, cn.k+vu.uh+cn.m).replace(/eige/g, va.ae+sp.j)
+		.replace(/eigh/g, va.ae).replace(/eate/g, tc.eet).replace(/find/g, cn.f+vi.ai+end.nd)
+		.replace(/ighs/g, vi.ai+cn.z).replace(/ight/g, vi.ai+cn.t).replace(/inge/g, cn.n+cn.j)
+		.replace(/ious/g, ve.ee+end.ous).replace(/ings/g, end.ing+cn.z).replace(/itch/g, w.itch)
+		.replace(/kind/g, cn.k+vi.ai+end.nd).replace(/oate/g, vo.oh+cn.t).replace(/mind/g, cn.m+vi.ai+end.nd)
+		.replace(/ngma/g, cn.n+cn.g+cn.m+va.ah).replace(/oose/g, vu.ou+cn.s).replace(/pear/g, cn.p+rc.air)
+		.replace(/psych/g, cn.s+vi.ai+cn.k).replace(/rind/g, rc.r+vi.ai+end.nd).replace(/sion/g, sp.j+vu.uh+cn.n)
+		.replace(/sure/g, sp.j+rc.er).replace(/than/g, h.th+va.ah+cn.n).replace(/then/g, w.then)
+		.replace(/udgm/g, vu.uh+cn.j+cn.m).replace(/ungs/g, vu.uh+end.ng+cn.z).replace(/wear/g, cn.w+rc.air)
+		.replace(/well/g, cn.w+sp.el).replace(/xury/g, sp.j+rc.er+ve.ee).replace(/acc/g, va.ah+cn.x)
+		.replace(/ack/g, va.ah+cn.k).replace(/ang/g, va.ah+end.ng).replace(/dee/g, sp.dee)
+		.replace(/eat/g, tc.eet).replace(/eck/g, ve.eh+cn.k).replace(/eek/g, ve.ee+cn.k)
+		.replace(/eet/g, tc.eet).replace(/ess/g, ve.eh+cn.s).replace(/ete/g, tc.eet)
+		.replace(/iar/g, vi.ai+rc.ar).replace(/ick/g, vi.i+cn.k).replace(/ign/g, vi.ai+cn.n)
+		.replace(/ire/g, vi.ai+rc.ar).replace(/ism/g, vi.i+cn.z+cn.m).replace(/key/g, cn.k+ve.ee)
+		.replace(/man/g, w.man).replace(/nce/g, cn.n+cn.s).replace(/oat/g, vo.oh+cn.t)
+		.replace(/ock/g, va.aw+cn.k).replace(/out/g, vo.ow+cn.t).replace(/psy/g, cn.s+vi.ai)
+		.replace(/sch/g, cn.s+cn.k).replace(/uck/g, vu.uh+cn.k).replace(/ung/g, vu.uh+end.ng)
+		.replace(/wel/g, cn.w+sp.el).replace(/wh/g, 'w')
 		/* -:- 'CE' COMBINATIONS -:- */
-		.replace(/ace/g, String.fromCharCode(0x0048,931))
-		.replace(/ece/g, String.fromCharCode(0x0045,931))
-		.replace(/ice/g, String.fromCharCode(0x0049,931))
-		.replace(/oce/g, String.fromCharCode(937,931))
-		.replace(/uce/g, String.fromCharCode(960,931))
-		.replace(/ce /g, 's ')
+		.replace(/ace/g, va.ae+cn.s).replace(/ece/g, ve.ee+cn.s).replace(/ice/g, vi.ai+cn.s)
+		.replace(/oce/g, vo.oh+cn.s).replace(/uce/g, vu.ou+cn.s).replace(/ce /g, 's ')
 		/* -:- '-RE' COMBINATIONS -:- */
-		.replace(/ bare /g, ' '+String.fromCharCode(946,228)+' ').replace(/ dare /g, ' '+String.fromCharCode(916,228)+' ')
-		.replace(/ fare /g, ' '+String.fromCharCode(934,228)+' ').replace(/ hare /g, ' '+String.fromCharCode(951,228)+' ')
-		.replace(/ mare /g, ' '+String.fromCharCode(956,228)+' ').replace(/ rare /g, ' '+String.fromCharCode(929,228)+' ')
-		.replace(/ care /g, ' '+String.fromCharCode(0x30B9,228)+' ').replace(/ pure /g, ' '+String.fromCharCode(928,955,0x10B4)+' ')
-		.replace(/ cure /g, ' '+String.fromCharCode(0x30B9,955,0x10B4)+' ');
+		.replace(/ bare /g, ' '+cn.b+rc.air+' ').replace(/ dare /g, ' '+cn.d+rc.air+' ')
+		.replace(/ fare /g, ' '+cn.f+rc.air+' ').replace(/ hare /g, ' '+cn.h+rc.air+' ')
+		.replace(/ mare /g, ' '+cn.m+rc.air+' ').replace(/ rare /g, ' '+rc.r+rc.air+' ')
+		.replace(/ care /g, ' '+cn.k+rc.air+' ').replace(/ pure /g, ' '+cn.p+cn.y+rc.er+' ')
+		.replace(/ cure /g, ' '+cn.k+cn.y+rc.er+' ');
 }
 
 
 function formatStrVowelConE(engStr) { 
 	return engStr
 		/* -:- VOWEL + CONSONANT + 'E' -:- */
-		.replace(/abe/g, String.fromCharCode(0x0048,946))
-		.replace(/afe/g, String.fromCharCode(0x0048,934))
-		.replace(/ade/g, String.fromCharCode(0x0048,916))
-		.replace(/age/g, String.fromCharCode(0x0048,967))
-		.replace(/ake/g, String.fromCharCode(0x0048,0x30B9))
-		.replace(/ale/g, String.fromCharCode(0x0048,923))
-		.replace(/ame/g, String.fromCharCode(0x0048,956))
-		.replace(/ape/g, String.fromCharCode(0x0048,928))
-		.replace(/ane/g, String.fromCharCode(0x0048,957))
-		.replace(/ase/g, String.fromCharCode(0x0048,931))
-		.replace(/are/g, String.fromCharCode(0x0052))
-		.replace(/ave/g, String.fromCharCode(0x0048,965))
-		.replace(/ate/g, String.fromCharCode(0x0038))
-		.replace(/aze/g, String.fromCharCode(0x0048,950))
-		.replace(/aye/g, String.fromCharCode(0x0048))
+		.replace(/abe/g, va.ae+cn.b).replace(/afe/g, va.ae+cn.f).replace(/ade/g, va.ae+cn.d)
+		.replace(/age/g, va.ae+cn.j).replace(/ake/g, va.ae+cn.k).replace(/ale/g, va.ae+cn.l)
+		.replace(/ame/g, va.ae+cn.m).replace(/ape/g, va.ae+cn.p).replace(/ane/g, va.ae+cn.n)
+		.replace(/ase/g, va.ae+cn.s).replace(/are/g, rc.ar).replace(/ave/g, va.ae+cn.v)
+		.replace(/ate/g, tc.ate).replace(/aze/g, va.ae+cn.z).replace(/aye/g, va.ae)
 		/* -:- */
-		.replace(/ebe/g, String.fromCharCode(0x0045,946))
-		.replace(/efe/g, String.fromCharCode(0x0045,934))
-		.replace(/ede/g, String.fromCharCode(0x0045,916))
-		.replace(/ege/g, String.fromCharCode(0x0045,967))
-		.replace(/eke/g, String.fromCharCode(0x0045,0x30B9))
-		.replace(/ele/g, String.fromCharCode(0x0045,923))
-		.replace(/eme/g, String.fromCharCode(0x0045,956))
-		.replace(/epe/g, String.fromCharCode(0x0045,928))
-		.replace(/ene/g, String.fromCharCode(0x0045,957))
-		.replace(/ere/g, String.fromCharCode(0x0045,929))
-		.replace(/ese/g, String.fromCharCode(0x0045,931))
-		.replace(/ete/g, String.fromCharCode(0x0CEE))
-		.replace(/eve/g, String.fromCharCode(0x0045,965))
-		.replace(/eye/g, String.fromCharCode(0x0049))
-		.replace(/eze/g, String.fromCharCode(0x0045,950))
+		.replace(/ebe/g, ve.ee+cn.b).replace(/efe/g, ve.ee+cn.f).replace(/ede/g, ve.ee+cn.d)
+		.replace(/ege/g, ve.ee+cn.j).replace(/eke/g, ve.ee+cn.k).replace(/ele/g, ve.ee+cn.l)
+		.replace(/eme/g, ve.ee+cn.m).replace(/epe/g, ve.ee+cn.p).replace(/ene/g, ve.ee+cn.n)
+		.replace(/ere/g, ve.ee+rc.r).replace(/ese/g, ve.ee+cn.s).replace(/ete/g, tc.eet)
+		.replace(/eve/g, ve.ee+cn.v).replace(/eye/g, vi.ai).replace(/eze/g, ve.ee+cn.z)
 		/* -:-  */
-		.replace(/ibe/g, String.fromCharCode(0x0049,946))
-		.replace(/ide/g, String.fromCharCode(0x0049,916))
-		.replace(/ife/g, String.fromCharCode(0x0049,934))
-		.replace(/ige/g, String.fromCharCode(0x0049,967))
-		.replace(/ike/g, String.fromCharCode(0x0049,0x30B9))
-		.replace(/ile/g, String.fromCharCode(0x0049,923))
-		.replace(/ime/g, String.fromCharCode(0x0049,956))
-		.replace(/ine/g, String.fromCharCode(0x0049,957))
-		.replace(/ipe/g, String.fromCharCode(0x0049,928))
-		.replace(/ire/g, String.fromCharCode(0x0049,929))
-		.replace(/ise/g, String.fromCharCode(0x0049,931))
-		.replace(/ive/g, String.fromCharCode(0x0049,965))
-		.replace(/ite/g, String.fromCharCode(0x0049,932))
-		.replace(/ize/g, String.fromCharCode(0x0049,950))
+		.replace(/ibe/g, vi.ai+cn.b).replace(/ide/g, vi.ai+cn.d).replace(/ife/g, vi.ai+cn.f)
+		.replace(/ige/g, vi.ai+cn.j).replace(/ike/g, vi.ai+cn.k).replace(/ile/g, vi.ai+cn.l)
+		.replace(/ime/g, vi.ai+cn.m).replace(/ine/g, vi.ai+cn.n).replace(/ipe/g, vi.ai+cn.p)
+		.replace(/ire/g, vi.ai+rc.r).replace(/ise/g, vi.ai+cn.s).replace(/ive/g, vi.ai+cn.v)
+		.replace(/ite/g, vi.ai+cn.t).replace(/ize/g, vi.ai+cn.z)
 		/* -:- */
-		.replace(/obe/g, String.fromCharCode(937,946))
-		.replace(/ode/g, String.fromCharCode(937,916))
-		.replace(/ofe/g, String.fromCharCode(937,934))
-		.replace(/oge/g, String.fromCharCode(937,967))
-		.replace(/oke/g, String.fromCharCode(937,0x30B9))
-		.replace(/ole/g, String.fromCharCode(937,923))
-		.replace(/ome/g, String.fromCharCode(937,956))
-		.replace(/one/g, String.fromCharCode(937,957))
-		.replace(/ope/g, String.fromCharCode(937,928))
-		.replace(/ose/g, String.fromCharCode(937,950))
-		.replace(/ore/g, String.fromCharCode(0x004F))
-		.replace(/ove/g, String.fromCharCode(937,965))
-		.replace(/ote/g, String.fromCharCode(937,932))
-		.replace(/oze/g, String.fromCharCode(937,950))
-		.replace(/oye/g, String.fromCharCode(0x155F))
+		.replace(/obe/g, vo.oh+cn.b).replace(/ode/g, vo.oh+cn.d).replace(/ofe/g, vo.oh+cn.f)
+		.replace(/oge/g, vo.oh+cn.j).replace(/oke/g, vo.oh+cn.k).replace(/ole/g, vo.oh+cn.l)
+		.replace(/ome/g, vo.oh+cn.m).replace(/one/g, vo.oh+cn.n).replace(/ope/g, vo.oh+cn.p)
+		.replace(/ose/g, vo.oh+cn.z).replace(/ore/g, rc.or).replace(/ove/g, vo.oh+cn.v)
+		.replace(/ote/g, vo.oh+cn.t).replace(/oze/g, vo.oh+cn.z).replace(/oye/g, vo.oi)
 		/* -:- */
-		.replace(/ube/g, String.fromCharCode(960,946))
-		.replace(/ude/g, String.fromCharCode(960,916))
-		.replace(/ufe/g, String.fromCharCode(960,934))
-		.replace(/uge/g, String.fromCharCode(960,967))
-		.replace(/uke/g, String.fromCharCode(960,0x30B9))
-		.replace(/ule/g, String.fromCharCode(960,923))
-		.replace(/ume/g, String.fromCharCode(960,956))
-		.replace(/une/g, String.fromCharCode(960,957))
-		.replace(/upe/g, String.fromCharCode(960,928))
-		.replace(/use/g, String.fromCharCode(933,950))
-		.replace(/ure/g, String.fromCharCode(0x10B4))
-		.replace(/uve/g, String.fromCharCode(960,965))
-		.replace(/ute/g, String.fromCharCode(960,932))
-		.replace(/uze/g, String.fromCharCode(960,950))
-		.replace(/uye/g, String.fromCharCode(960))
+		.replace(/ube/g, vu.ou+cn.b).replace(/ude/g, vu.ou+cn.d).replace(/ufe/g, vu.ou+cn.f)
+		.replace(/uge/g, vu.ou+cn.j).replace(/uke/g, vu.ou+cn.k).replace(/ule/g, vu.ou+cn.l)
+		.replace(/ume/g, vu.ou+cn.m).replace(/une/g, vu.ou+cn.n).replace(/upe/g, vu.ou+cn.p)
+		.replace(/use/g, vu.yu+cn.z).replace(/ure/g, rc.er).replace(/uve/g, vu.ou+cn.v)
+		.replace(/ute/g, vu.ou+cn.t).replace(/uze/g, vu.ou+cn.z).replace(/uye/g, vu.ou)
 		/* -:- 'oo' + CONSONANT -:- */
-		.replace(/ood/g, String.fromCharCode(0x144E,916))
-		.replace(/oof/g, String.fromCharCode(0x144E,934))
-		.replace(/ooh/g, String.fromCharCode(960))
-		.replace(/ook/g, String.fromCharCode(0x144E,0x30B9))
-		.replace(/oom/g, String.fromCharCode(960,956))
-		.replace(/ool/g, String.fromCharCode(0x144E,923))
-		.replace(/oon/g, String.fromCharCode(960,957))
-		.replace(/oop/g, String.fromCharCode(960,928))
-		.replace(/roo/g, String.fromCharCode(929,960))
-		.replace(/oot/g, String.fromCharCode(960,0x0074))
+		.replace(/ood/g, vo.oo+cn.d).replace(/oof/g, vo.oo+cn.f).replace(/ooh/g, vu.ou)
+		.replace(/ook/g, vo.oo+cn.k).replace(/oom/g, vu.ou+cn.m).replace(/ool/g, vo.oo+cn.l)
+		.replace(/oon/g, vu.ou+cn.n).replace(/oop/g, vu.ou+cn.p).replace(/roo/g, rc.r+vu.ou)
+		.replace(/oot/g, vu.ou+lo.t)
 		/* -:- CONSONANT + 'oo' -:- */
-		.replace(/boo/g, String.fromCharCode(946,960))
-		.replace(/coo/g, String.fromCharCode(0x30B9,960))
-		.replace(/doo/g, String.fromCharCode(916,960))
-		.replace(/foo/g, String.fromCharCode(934,960))
-		.replace(/goo/g, String.fromCharCode(915,960))
-		.replace(/hoo/g, String.fromCharCode(951,960))
-		.replace(/loo/g, String.fromCharCode(923,960))
-		.replace(/moo/g, String.fromCharCode(956,960))
-		.replace(/noo/g, String.fromCharCode(957,960))
-		.replace(/poo/g, String.fromCharCode(928,960))
-		.replace(/oor/g, String.fromCharCode(960,929))
-		.replace(/too/g, String.fromCharCode(932,960))
-		.replace(/and/g, String.fromCharCode(0x0026))
-		.replace(/air/g, String.fromCharCode(228))
-		.replace(/bee/g, String.fromCharCode(0x0042))
-		.replace(/igh/g, String.fromCharCode(0x0049))
-		.replace(/ing/g, String.fromCharCode(0x04A8))
-		.replace(/oar/g, String.fromCharCode(0x004F))
-		.replace(/ous/g, String.fromCharCode(0x14D0))
-		.replace(/rui/g, String.fromCharCode(929,960))
-		.replace(/you/g, String.fromCharCode(933));
+		.replace(/boo/g, cn.b+vu.ou).replace(/coo/g, cn.k+vu.ou).replace(/doo/g, cn.d+vu.ou)
+		.replace(/foo/g, cn.f+vu.ou).replace(/goo/g, cn.g+vu.ou).replace(/hoo/g, cn.h+vu.ou)
+		.replace(/loo/g, cn.l+vu.ou).replace(/moo/g, cn.m+vu.ou).replace(/noo/g, cn.n+vu.ou)
+		.replace(/poo/g, cn.p+vu.ou).replace(/oor/g, vu.ou+rc.r).replace(/too/g, cn.t+vu.ou)
+		.replace(/and/g, w.and).replace(/air/g, rc.air).replace(/bee/g, sp.bee)
+		.replace(/igh/g, vi.ai).replace(/ing/g, end.ing).replace(/oar/g, rc.or)
+		.replace(/ous/g, end.ous).replace(/rui/g, rc.r+vu.ou).replace(/you/g, vu.yu);
 }
 
 
 function formatStrVowelPairs1(engStr) { 
 	return engStr
-		/* o: Î© */
-		.replace(/ough/g, String.fromCharCode(937))
-		/* o: á‚¶ */
-		.replace(/ould/g, String.fromCharCode(0x144E,916))
-		/* u: Ð§ */
-		.replace(/oung/g, String.fromCharCode(0x0427,0x0AEA))
-		/* y: Î¥ */
-		.replace(/unif/g, String.fromCharCode(0x0059,957,953,934))
-		.replace(/unil/g, String.fromCharCode(0x0059,957,953,923))
-		.replace(/unit/g, String.fromCharCode(0x0059,957,0x0074))
-		.replace(/unique/g, String.fromCharCode(0x0059,957,0x0045,0x30B9));
+		.replace(/ough/g, vo.oh).replace(/ould/g, vo.oo+cn.d).replace(/oung/g, vu.uh+end.ng)
+		.replace(/unif/g, vu.yu+cn.n+vi.i+cn.f).replace(/unil/g, vu.yu+cn.n+vi.i+cn.l)
+		.replace(/unit/g, vu.yu+cn.n+lo.t).replace(/unique/g, vu.yu+cn.n+ve.ee+cn.k);
 }
 
 
 function formatStrVowelPairs2(engStr) { 
 	return engStr
 		/* -:- ENGLISH/ENGLISH SINGLE-SYMBOL VOWEL PAIRS -:- */
-		/* a: H */
-		.replace(/ae/g, String.fromCharCode(0x0048))
-		.replace(/ai/g, String.fromCharCode(0x0048))
-		.replace(/ay/g, String.fromCharCode(0x0048))
-		.replace(/ey/g, String.fromCharCode(0x0048))
-		/* a: A */
-		.replace(/aa/g, String.fromCharCode(0x0041))
-		/* e: E */
-		.replace(/ea/g, String.fromCharCode(0x0045))
-		.replace(/ee/g, String.fromCharCode(0x0045))
-		.replace(/ie/g, String.fromCharCode(0x0045))
-		.replace(/yy/g, String.fromCharCode(0x0045))
-		/* i: I */
-		.replace(/ei/g, String.fromCharCode(0x0049))
-		.replace(/ii/g, String.fromCharCode(0x0049))
-		.replace(/uy/g, String.fromCharCode(0x0049))
-		/* i: Î¹ */
-		.replace(/ui/g, String.fromCharCode(953))
-		/* o: Î© */
-		.replace(/oa/g, String.fromCharCode(937))
-		.replace(/oe/g, String.fromCharCode(937))
-		/* o: Ïˆ */
-		.replace(/au/g, String.fromCharCode(968))
-		.replace(/aw/g, String.fromCharCode(968))
-		/* u: Ï€ */
-		.replace(/oo/g, String.fromCharCode(960))
-		.replace(/ue/g, String.fromCharCode(960))
-		.replace(/uu/g, String.fromCharCode(960))
-		.replace(/ew/g, String.fromCharCode(960))
-		/* u: Ï‰ */
-		.replace(/ou/g, String.fromCharCode(969))
-		.replace(/ow/g, String.fromCharCode(969))
-		/* y: Î¥ */
-		.replace(/eu/g, String.fromCharCode(933))
-		.replace(/yu/g, String.fromCharCode(933))
-		/* y: á•Ÿ */
-		.replace(/oi/g, String.fromCharCode(0x155F))
-		.replace(/oy/g, String.fromCharCode(0x155F))
+		.replace(/ae/g, va.ae).replace(/ai/g, va.ae).replace(/ay/g, va.ae).replace(/ey/g, va.ae) /* b(ay) */
+		.replace(/aa/g, va.ah) /* b(a)d */
+		.replace(/ea/g, ve.ee).replace(/ee/g, ve.ee).replace(/ie/g, ve.ee).replace(/yy/g, ve.ee) /* b(ee) */
+		.replace(/ei/g, vi.ai).replace(/ii/g, vi.ai).replace(/uy/g, vi.ai) /* b(ye) */
+		.replace(/ui/g, vi.i) /* b(i)d */
+		.replace(/oa/g, vo.oh).replace(/oe/g, vo.oh) /* b(oa)t */
+		.replace(/au/g, va.aw).replace(/aw/g, va.aw) /* b(aw)l */
+		.replace(/oo/g, vu.ou).replace(/ue/g, vu.ou).replace(/uu/g, vu.ou).replace(/ew/g, vu.ou) /* b(oo) */
+		.replace(/ou/g, vo.ow).replace(/ow/g, vo.ow) /* b(ou)t */
+		.replace(/eu/g, vu.yu).replace(/yu/g, vu.yu) /* (you) */
+		.replace(/oi/g, vo.oi).replace(/oy/g, vo.oi) /* b(oy) */
 		/* -:- ENGLISH/ENGLISH DOUBLE-SYMBOL VOWEL PAIRS -:- */
-		.replace(/ao/g, String.fromCharCode(0x0048,937))
-		.replace(/ia/g, String.fromCharCode(0x0045,0x0041))
-		.replace(/eo/g, String.fromCharCode(0x0045,937))
-		.replace(/io/g, String.fromCharCode(0x0049,937))
-		.replace(/iu/g, String.fromCharCode(0x0049,0x0427))
-		.replace(/iy/g, String.fromCharCode(0x0049,955))
-		.replace(/ua/g, String.fromCharCode(960,0x0041))
-		.replace(/uo/g, String.fromCharCode(960,937))
-		.replace(/ya/g, String.fromCharCode(955,0x0041))
-		.replace(/ye/g, String.fromCharCode(955,949))
-		.replace(/yi/g, String.fromCharCode(955,0x0049))
-		.replace(/yo/g, String.fromCharCode(955,937))
+		.replace(/ao/g, va.ae+vo.oh).replace(/ia/g, ve.ee+va.ah).replace(/eo/g, ve.ee+vo.oh)
+		.replace(/io/g, vi.ai+vo.oh).replace(/iu/g, vi.ai+vu.uh).replace(/iy/g, vi.ai+cn.y)
+		.replace(/ua/g, vu.ou+va.ah).replace(/uo/g, vu.ou+vo.oh).replace(/ya/g, cn.y+va.ah)
+		.replace(/ye/g, cn.y+ve.eh).replace(/yi/g, cn.y+vi.ai).replace(/yo/g, cn.y+vo.oh)
 		/* -:- ENGLISH/NGMA SINGLE/DOUBLE-SYMBOL VOWEL PAIRS -:- */
 		/* a */
-		.replace(/aH/g, String.fromCharCode(0x0041,0x0048))
-		.replace(/aA/g, String.fromCharCode(0x0041))
-		.replace(/aE/g, String.fromCharCode(0x0041,0x0045))
-		.replace(/aI/g, String.fromCharCode(0x0049))
+		.replace(/aH/g, va.ah+va.ae).replace(/aA/g, va.ah)
+		.replace(/aE/g, va.ah+ve.ee).replace(/aI/g, vi.ai)
 		/* e */
-		.replace(/eH/g, String.fromCharCode(949,0x0048))
-		.replace(/eA/g, String.fromCharCode(949,0x0041))
-		.replace(/eE/g, String.fromCharCode(0x0045))
-		.replace(/eI/g, String.fromCharCode(0x0049))
+		.replace(/eH/g, ve.eh+va.ae).replace(/eA/g, ve.eh+va.ah)
+		.replace(/eE/g, ve.ee).replace(/eI/g, vi.ai)
 		/* i */
-		.replace(/iH/g, String.fromCharCode(0x0045,0x0048))
-		.replace(/iA/g, String.fromCharCode(0x0049,0x0041))
-		.replace(/iE/g, String.fromCharCode(953,0x0045))
-		.replace(/iI/g, String.fromCharCode(0x0049))
+		.replace(/iH/g, ve.ee+va.ae).replace(/iA/g, vi.ai+va.ah)
+		.replace(/iE/g, vi.i+ve.ee).replace(/iI/g, vi.ai)
 		/* o */
-		.replace(/oH/g, String.fromCharCode(937,0x0048))
-		.replace(/oA/g, String.fromCharCode(937,0x0041))
-		.replace(/oE/g, String.fromCharCode(937))
-		.replace(/oI/g, String.fromCharCode(937,0x0049))
+		.replace(/oH/g, vo.oh+va.ae).replace(/oA/g, vo.oh+va.ah)
+		.replace(/oE/g, vo.oh).replace(/oI/g, vo.oh+vi.ai)
 		/* u */
-		.replace(/uH/g, String.fromCharCode(960,0x0048))
-		.replace(/uA/g, String.fromCharCode(960,0x0041))
-		.replace(/uE/g, String.fromCharCode(960,0x0045))
-		.replace(/uI/g, String.fromCharCode(960,0x0049));
+		.replace(/uH/g, vu.ou+va.ae).replace(/uA/g, vu.ou+va.ah)
+		.replace(/uE/g, vu.ou+ve.ee).replace(/uI/g, vu.ou+vi.ai);
 }
 
 
 function formatStrConsonants(engStr) { 
 	return engStr
-		.replace(/cc/g, String.fromCharCode(926))
-		.replace(/ch/g, String.fromCharCode(935))
-		.replace(/ck/g, String.fromCharCode(0x30B9))
-		.replace(/ct/g, String.fromCharCode(0x0043))
-		.replace(/ft/g, String.fromCharCode(964))
-		.replace(/ly/g, String.fromCharCode(0x01338))
-		.replace(/nd/g, String.fromCharCode(0x2207))
-		.replace(/ng/g, String.fromCharCode(0x0AEA))
-		.replace(/nk/g, String.fromCharCode(0x004E))
-		.replace(/nt/g, String.fromCharCode(0x5201))
-		.replace(/ph/g, String.fromCharCode(934))
-		.replace(/qu/g, String.fromCharCode(0x30B9,948))
-		.replace(/sh/g, String.fromCharCode(936))
-		.replace(/st/g, String.fromCharCode(0x1560))
-		.replace(/th/g, String.fromCharCode(920))
-		.replace(/ts/g, String.fromCharCode(0x00DF))
-		.replace(/dj/g, String.fromCharCode(967))
-		.replace(/dge/g, String.fromCharCode(967));
+		.replace(/cc/g, cn.x).replace(/ch/g, h.ch).replace(/ck/g, cn.k).replace(/ct/g, tc.ct)
+		.replace(/ft/g, tc.ft).replace(/ly/g, end.ly).replace(/nd/g, end.nd).replace(/ng/g, end.ng)
+		.replace(/nk/g, end.nk).replace(/nt/g, tc.nt).replace(/ph/g, cn.f).replace(/qu/g, cn.k+cn.w)
+		.replace(/sh/g, h.sh).replace(/st/g, tc.st).replace(/th/g, h.th).replace(/ts/g, tc.ts)
+		.replace(/dj/g, cn.j).replace(/dge/g, cn.j);
 }
 
 
@@ -994,237 +770,56 @@ function formatStrVowelConPairs1(engStr) {
 	return engStr
 		/* -:- VOWEL(& "W") PAIRS -:- */
 		/* a: A */
-		.replace(/ab/g, String.fromCharCode(0x0041,946))
-		.replace(/ac/g, String.fromCharCode(0x0041,0x30B9))
-		.replace(/aC/g, String.fromCharCode(0x0041,0x0043))
-		.replace(/ad/g, String.fromCharCode(0x0041,916))
-		.replace(/af/g, String.fromCharCode(0x0041,934))
-		.replace(/ag/g, String.fromCharCode(0x0041,915))
-		.replace(/ah/g, String.fromCharCode(0x0041))
-		.replace(/aj/g, String.fromCharCode(0x0041,967))
-		.replace(/al/g, String.fromCharCode(0x0041,923))
-		.replace(/ak/g, String.fromCharCode(0x0041,0x30B9))
-		.replace(/am/g, String.fromCharCode(0x0041,956))
-		.replace(/an/g, String.fromCharCode(0x0041,957))
-		.replace(/aN/g, String.fromCharCode(0x0041,0x004E))
-		.replace(/ap/g, String.fromCharCode(0x0041,928))
-		.replace(/ar/g, String.fromCharCode(0x0052))
-		.replace(/as/g, String.fromCharCode(0x0041,931))
-		.replace(/at/g, String.fromCharCode(0x0466))
-		.replace(/av/g, String.fromCharCode(0x0041,965))
-		.replace(/ax/g, String.fromCharCode(0x0041,926))
-		.replace(/az/g, String.fromCharCode(0X0041,950))
+		.replace(/ab/g, va.ah+cn.b).replace(/ac/g, va.ah+cn.k).replace(/aC/g, va.ah+tc.ct).replace(/ad/g, va.ah+cn.d)
+		.replace(/af/g, va.ah+cn.f).replace(/ag/g, va.ah+cn.g).replace(/ah/g, va.ah).replace(/aj/g, va.ah+cn.j)
+		.replace(/al/g, va.ah+cn.l).replace(/ak/g, va.ah+cn.k).replace(/am/g, va.ah+cn.m).replace(/an/g, va.ah+cn.n)
+		.replace(/aN/g, va.ah+end.nk).replace(/ap/g, va.ah+cn.p).replace(/ar/g, rc.ar).replace(/as/g, va.ah+cn.s)
+		.replace(/at/g, tc.at).replace(/av/g, va.ah+cn.v).replace(/ax/g, va.ah+cn.x).replace(/az/g, va.ah+cn.z)
 		/* e: E */
-		.replace(/by/g, String.fromCharCode(946,0x0045))
-		.replace(/cy/g, String.fromCharCode(931,0x0045))
-		.replace(/dy/g, String.fromCharCode(916,0x0045))
-		.replace(/gy/g, String.fromCharCode(915,0x0045))
-		.replace(/ky/g, String.fromCharCode(0x30B9,0x0045))
-		.replace(/my/g, String.fromCharCode(956,0x0045))
-		.replace(/py/g, String.fromCharCode(928,0x0045))
-		.replace(/ny/g, String.fromCharCode(957,0x0045))
-		.replace(/ty/g, String.fromCharCode(932,0x0045))
-		.replace(/zy/g, String.fromCharCode(950,0X0045))
+		.replace(/by/g, cn.b+ve.ee).replace(/cy/g, cn.s+ve.ee).replace(/dy/g, cn.d+ve.ee).replace(/gy/g, cn.g+ve.ee)
+		.replace(/ky/g, cn.k+ve.ee).replace(/my/g, cn.m+ve.ee).replace(/py/g, cn.p+ve.ee).replace(/ny/g, cn.n+ve.ee)
+		.replace(/ty/g, cn.t+ve.ee).replace(/zy/g, cn.z+ve.ee)
 		/* e: Îµ */
-		.replace(/eb/g, String.fromCharCode(949,946))
-		.replace(/ec/g, String.fromCharCode(949,0x30B9))
-		.replace(/eC/g, String.fromCharCode(949,0x0043))
-		.replace(/ed/g, String.fromCharCode(0x2661))
-		.replace(/ef/g, String.fromCharCode(949,934))
-		.replace(/eg/g, String.fromCharCode(949,915))
-		.replace(/ej/g, String.fromCharCode(949,967))
-		.replace(/eh/g, String.fromCharCode(949))
-		.replace(/ek/g, String.fromCharCode(949,0x30B9))
-		.replace(/el/g, String.fromCharCode(0x1430))
-		.replace(/em/g, String.fromCharCode(949,956))
-		.replace(/en/g, String.fromCharCode(949,957))
-		.replace(/eN/g, String.fromCharCode(949,0x004E))
-		.replace(/ep/g, String.fromCharCode(949,928))
-		.replace(/er/g, String.fromCharCode(0x10B4))
-		.replace(/es/g, String.fromCharCode(949,931))
-		.replace(/et/g, String.fromCharCode(949,932))
-		.replace(/ev/g, String.fromCharCode(949,965))
-		.replace(/ex/g, String.fromCharCode(949,926))
-		.replace(/ez/g, String.fromCharCode(949,950))
+		.replace(/eb/g, ve.eh+cn.b).replace(/ec/g, ve.eh+cn.k).replace(/eC/g, ve.eh+tc.ct).replace(/ed/g, end.ed)
+		.replace(/ef/g, ve.eh+cn.f).replace(/eg/g, ve.eh+cn.g).replace(/ej/g, ve.eh+cn.j).replace(/eh/g, ve.eh)
+		.replace(/ek/g, ve.eh+cn.k).replace(/el/g, sp.el).replace(/em/g, ve.eh+cn.m).replace(/en/g, ve.eh+cn.n)
+		.replace(/eN/g, ve.eh+end.nk).replace(/ep/g, ve.eh+cn.p).replace(/er/g, rc.er).replace(/es/g, ve.eh+cn.s)
+		.replace(/et/g, ve.eh+cn.t).replace(/ev/g, ve.eh+cn.v).replace(/ex/g, ve.eh+cn.x).replace(/ez/g, ve.eh+cn.z)
 		/* i: Î¹ / I */
-		.replace(/ib/g, String.fromCharCode(953,946))
-		.replace(/ic/g, String.fromCharCode(953,0x30B9))
-		.replace(/iC/g, String.fromCharCode(953,0x0043))
-		.replace(/id/g, String.fromCharCode(953,916))
-		.replace(/if/g, String.fromCharCode(953,934))
-		.replace(/ig/g, String.fromCharCode(953,915))
-		.replace(/ih/g, String.fromCharCode(953))
-		.replace(/ij/g, String.fromCharCode(953,967))
-		.replace(/ik/g, String.fromCharCode(953,0x30B9))
-		.replace(/il/g, String.fromCharCode(953,923))
-		.replace(/im/g, String.fromCharCode(953,956))
-		.replace(/in/g, String.fromCharCode(953,957))
-		.replace(/iN/g, String.fromCharCode(953,0x004E))
-		.replace(/ip/g, String.fromCharCode(953,928))
-		.replace(/ir/g, String.fromCharCode(0x10B4))
-		.replace(/is/g, String.fromCharCode(953,931))
-		.replace(/it/g, String.fromCharCode(0x0074))
-		.replace(/iv/g, String.fromCharCode(953,965))
-		.replace(/ix/g, String.fromCharCode(953,926))
-		.replace(/iz/g, String.fromCharCode(953,950))
-		.replace(/cI/g, String.fromCharCode(931,0x0049))
+		.replace(/ib/g, vi.i+cn.b).replace(/ic/g, vi.i+cn.k).replace(/iC/g, vi.i+tc.ct).replace(/id/g, vi.i+cn.d)
+		.replace(/if/g, vi.i+cn.f).replace(/ig/g, vi.i+cn.g).replace(/ih/g, vi.i).replace(/ij/g, vi.i+cn.j)
+		.replace(/ik/g, vi.i+cn.k).replace(/il/g, vi.i+cn.l).replace(/im/g, vi.i+cn.m).replace(/in/g, vi.i+cn.n)
+		.replace(/iN/g, vi.i+end.nk).replace(/ip/g, vi.i+cn.p).replace(/ir/g, rc.er).replace(/is/g, vi.i+cn.s)
+		.replace(/it/g, lo.t).replace(/iv/g, vi.i+cn.v).replace(/ix/g, vi.i+cn.x).replace(/iz/g, vi.i+cn.z)
+		.replace(/cI/g, cn.s+vi.ai)
 		/* o: Ïˆ / Î© */
-		.replace(/ob/g, String.fromCharCode(968,946))
-		.replace(/oc/g, String.fromCharCode(968,0x30B9))
-		.replace(/oC/g, String.fromCharCode(968,0x0043))
-		.replace(/of/g, String.fromCharCode(968,934))
-		.replace(/oh/g, String.fromCharCode(937))
-		.replace(/od/g, String.fromCharCode(968,916))
-		.replace(/oj/g, String.fromCharCode(968,967))
-		.replace(/og/g, String.fromCharCode(968,915))
-		.replace(/ol/g, String.fromCharCode(937,923))
-		.replace(/ok/g, String.fromCharCode(968,0x30B9))
-		.replace(/op/g, String.fromCharCode(968,928))
-		.replace(/om/g, String.fromCharCode(968,956))
-		.replace(/oN/g, String.fromCharCode(968,0x004E))
-		.replace(/on/g, String.fromCharCode(968,957))
-		.replace(/or/g, String.fromCharCode(0x004F))
-		.replace(/os/g, String.fromCharCode(968,931))
-		.replace(/ot/g, String.fromCharCode(968,932))
-		.replace(/ov/g, String.fromCharCode(937,965))
-		.replace(/ox/g, String.fromCharCode(968,926))
-		.replace(/oz/g, String.fromCharCode(968,950))
+		.replace(/ob/g, va.aw+cn.b).replace(/oc/g, va.aw+cn.k).replace(/oC/g, va.aw+tc.ct).replace(/of/g, va.aw+cn.f)
+		.replace(/oh/g, vo.oh).replace(/od/g, va.aw+cn.d).replace(/oj/g, va.aw+cn.j).replace(/og/g, va.aw+cn.g)
+		.replace(/ol/g, vo.oh+cn.l).replace(/ok/g, va.aw+cn.k).replace(/op/g, va.aw+cn.p).replace(/om/g, va.aw+cn.m)
+		.replace(/oN/g, va.aw+end.nk).replace(/on/g, va.aw+cn.n).replace(/or/g, rc.or).replace(/os/g, va.aw+cn.s)
+		.replace(/ot/g, va.aw+cn.t).replace(/ov/g, vo.oh+cn.v).replace(/ox/g, va.aw+cn.x).replace(/oz/g, va.aw+cn.z)
 		/* u: Ð§ */ 
-		.replace(/ub/g, String.fromCharCode(0x0427,946))
-		.replace(/uc/g, String.fromCharCode(0x0427,0x30B9))
-		.replace(/uC/g, String.fromCharCode(0x0427,0x0043))
-		.replace(/ud/g, String.fromCharCode(0x0427,916))
-		.replace(/uf/g, String.fromCharCode(0x0427,934))
-		.replace(/ug/g, String.fromCharCode(0x0427,915))
-		.replace(/uh/g, String.fromCharCode(0x0427))
-		.replace(/uj/g, String.fromCharCode(0x0427,967))
-		.replace(/ul/g, String.fromCharCode(0x0427,923))
-		.replace(/uk/g, String.fromCharCode(0x0427,0x30B9))
-		.replace(/up/g, String.fromCharCode(0x0427,928))
-		.replace(/um/g, String.fromCharCode(0x0427,956))
-		.replace(/uN/g, String.fromCharCode(0x0427,0x004E))
-		.replace(/un/g, String.fromCharCode(0x0427,957))
-		.replace(/ut/g, String.fromCharCode(0x0427,932))
-		.replace(/us/g, String.fromCharCode(0x0427,931))
-		.replace(/ux/g, String.fromCharCode(0x0427,926))
-		.replace(/uv/g, String.fromCharCode(0x0427,965))
-		.replace(/uz/g, String.fromCharCode(0x0427,950));
+		.replace(/ub/g, vu.uh+cn.b).replace(/uc/g, vu.uh+cn.k).replace(/uC/g, vu.uh+tc.ct).replace(/ud/g, vu.uh+cn.d)
+		.replace(/uf/g, vu.uh+cn.f).replace(/ug/g, vu.uh+cn.g).replace(/uh/g, vu.uh).replace(/uj/g, vu.uh+cn.j)
+		.replace(/ul/g, vu.uh+cn.l).replace(/uk/g, vu.uh+cn.k).replace(/up/g, vu.uh+cn.p).replace(/um/g, vu.uh+cn.m)
+		.replace(/uN/g, vu.uh+end.nk).replace(/un/g, vu.uh+cn.n).replace(/ut/g, vu.uh+cn.t).replace(/us/g, vu.uh+cn.s)
+		.replace(/ux/g, vu.uh+cn.x).replace(/uv/g, vu.uh+cn.v).replace(/uz/g, vu.uh+cn.z);
 }
 
 
 function formatStrVowelConPairs2(engStr) { 
-	var findPairs = [String.fromCharCode(0x0061),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x0061),String.fromCharCode(934),
-	String.fromCharCode(0x0061),String.fromCharCode(964),
-	String.fromCharCode(0x0061),String.fromCharCode(920),
-	String.fromCharCode(0x0061),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0061),String.fromCharCode(936),
-	String.fromCharCode(0x0061),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0061),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x0061),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0061),String.fromCharCode(967),
-	String.fromCharCode(0x0043),String.fromCharCode(949),
-	String.fromCharCode(0x0065),String.fromCharCode(920),
-	String.fromCharCode(0x0065),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0065),String.fromCharCode(936),
-	String.fromCharCode(0x0065),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0065),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x0065),String.fromCharCode(0x2207),
-	String.fromCharCode(0x0065),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0065),String.fromCharCode(967),
-	String.fromCharCode(0x0065),String.fromCharCode(934),
-	String.fromCharCode(0x0065),String.fromCharCode(964),
-	String.fromCharCode(0x0065),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x0069),String.fromCharCode(920),
-	String.fromCharCode(0x0069),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0069),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0069),String.fromCharCode(936),
-	String.fromCharCode(0x0069),String.fromCharCode(0x2207),
-	String.fromCharCode(0x0069),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0069),String.fromCharCode(967),
-	String.fromCharCode(0x0069),String.fromCharCode(934),
-	String.fromCharCode(0x0069),String.fromCharCode(964),
-	String.fromCharCode(0x0069),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x006F),String.fromCharCode(967),
-	String.fromCharCode(0x006F),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x006F),String.fromCharCode(920),
-	String.fromCharCode(0x006F),String.fromCharCode(936),
-	String.fromCharCode(0x006F),String.fromCharCode(0x1560),
-	String.fromCharCode(0x006F),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x006F),String.fromCharCode(0x2207),
-	String.fromCharCode(0x006F),String.fromCharCode(0x01338),
-	String.fromCharCode(0x006F),String.fromCharCode(967),
-	String.fromCharCode(0x006F),String.fromCharCode(934),
-	String.fromCharCode(0x006F),String.fromCharCode(964),
-	String.fromCharCode(0x006F),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x0075),String.fromCharCode(967),
-	String.fromCharCode(0x0075),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0075),String.fromCharCode(920),
-	String.fromCharCode(0x0075),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0075),String.fromCharCode(936),
-	String.fromCharCode(0x0075),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x0075),String.fromCharCode(0x2207),
-	String.fromCharCode(0x0075),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0075),String.fromCharCode(967),
-	String.fromCharCode(0x0075),String.fromCharCode(934),
-	String.fromCharCode(0x0075),String.fromCharCode(964),
-	String.fromCharCode(0x0075),String.fromCharCode(0x30B9)];
-	var replacePairs = [String.fromCharCode(0x0041),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x0041),String.fromCharCode(934),
-	String.fromCharCode(0x0041),String.fromCharCode(964),
-	String.fromCharCode(0x0041),String.fromCharCode(920),
-	String.fromCharCode(0x0041),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0041),String.fromCharCode(936),
-	String.fromCharCode(0x0041),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0041),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x0041),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0041),String.fromCharCode(967),
-	String.fromCharCode(931),String.fromCharCode(949),
-	String.fromCharCode(949),String.fromCharCode(920),
-	String.fromCharCode(949),String.fromCharCode(0x00DF),
-	String.fromCharCode(949),String.fromCharCode(936),
-	String.fromCharCode(949),String.fromCharCode(0x1560),
-	String.fromCharCode(949),String.fromCharCode(0x0AEA),
-	String.fromCharCode(949),String.fromCharCode(0x2207),
-	String.fromCharCode(949),String.fromCharCode(0x01338),
-	String.fromCharCode(949),String.fromCharCode(967),
-	String.fromCharCode(949),String.fromCharCode(934),
-	String.fromCharCode(949),String.fromCharCode(964),
-	String.fromCharCode(949),String.fromCharCode(0x30B9),
-	String.fromCharCode(953),String.fromCharCode(920),
-	String.fromCharCode(953),String.fromCharCode(0x00DF),
-	String.fromCharCode(953),String.fromCharCode(0x1560),
-	String.fromCharCode(953),String.fromCharCode(936),
-	String.fromCharCode(953),String.fromCharCode(0x2207),
-	String.fromCharCode(953),String.fromCharCode(0x01338),
-	String.fromCharCode(953),String.fromCharCode(967),
-	String.fromCharCode(953),String.fromCharCode(934),
-	String.fromCharCode(953),String.fromCharCode(964),
-	String.fromCharCode(953),String.fromCharCode(0x30B9),
-	String.fromCharCode(936),String.fromCharCode(0x30B9),
-	String.fromCharCode(936),String.fromCharCode(0x00DF),
-	String.fromCharCode(936),String.fromCharCode(920),
-	String.fromCharCode(936),String.fromCharCode(936),
-	String.fromCharCode(936),String.fromCharCode(0x1560),
-	String.fromCharCode(936),String.fromCharCode(0x0AEA),
-	String.fromCharCode(936),String.fromCharCode(0x2207),
-	String.fromCharCode(936),String.fromCharCode(0x01338),
-	String.fromCharCode(936),String.fromCharCode(967),
-	String.fromCharCode(936),String.fromCharCode(934),
-	String.fromCharCode(936),String.fromCharCode(964),
-	String.fromCharCode(936),String.fromCharCode(0x30B9),
-	String.fromCharCode(0x0427),String.fromCharCode(967),
-	String.fromCharCode(0x0427),String.fromCharCode(0x00DF),
-	String.fromCharCode(0x0427),String.fromCharCode(920),
-	String.fromCharCode(0x0427),String.fromCharCode(0x1560),
-	String.fromCharCode(0x0427),String.fromCharCode(936),
-	String.fromCharCode(0x0427),String.fromCharCode(0x0AEA),
-	String.fromCharCode(0x0427),String.fromCharCode(0x2207),
-	String.fromCharCode(0x0427),String.fromCharCode(0x01338),
-	String.fromCharCode(0x0427),String.fromCharCode(967),
-	String.fromCharCode(0x0427),String.fromCharCode(934),
-	String.fromCharCode(0x0427),String.fromCharCode(964),
-	String.fromCharCode(0x0427),String.fromCharCode(0x30B9)];
+	var findPairs = [lo.a,cn.k,lo.a,cn.f,lo.a,tc.ft,lo.a,h.th,lo.a,tc.ts,lo.a,h.sh,lo.a,tc.st,lo.a,end.ng,
+	lo.a,end.ly,lo.a,cn.j,hi.c,ve.eh,lo.e,h.th,lo.e,tc.ts,lo.e,h.sh,lo.e,tc.st,lo.e,end.ng,lo.e,end.nd,lo.e,
+	end.ly,lo.e,cn.j,lo.e,cn.f,lo.e,tc.ft,lo.e,cn.k,lo.i,h.th,lo.i,tc.ts,lo.i,tc.st,lo.i,h.sh,lo.i,end.nd,
+	lo.i,end.ly,lo.i,cn.j,lo.i,cn.f,lo.i,tc.ft,lo.i,cn.k,lo.o,cn.j,lo.o,tc.ts,lo.o,h.th,lo.o,h.sh,lo.o,tc.st,
+	lo.o,end.ng,lo.o,end.nd,lo.o,end.ly,lo.o,cn.j,lo.o,cn.f,lo.o,tc.ft,lo.o,cn.k,lo.u,cn.j,lo.u,tc.ts,lo.u,
+	h.th,lo.u,tc.st,lo.u,h.sh,lo.u,end.ng,lo.u,end.nd,lo.u,end.ly,lo.u,cn.j,lo.u,cn.f,lo.u,tc.ft,lo.u,cn.k];
+	var replacePairs = [va.ah,cn.k,va.ah,cn.f,va.ah,tc.ft,va.ah,h.th,va.ah,tc.ts,va.ah,h.sh,va.ah,tc.st,va.ah,end.ng,
+	va.ah,end.ly,va.ah,cn.j,cn.s,ve.eh,ve.eh,h.th,ve.eh,tc.ts,ve.eh,h.sh,ve.eh,tc.st,ve.eh,end.ng,ve.eh,end.nd,
+	ve.eh,end.ly,ve.eh,cn.j,ve.eh,cn.f,ve.eh,tc.ft,ve.eh,cn.k,vi.i,h.th,vi.i,tc.ts,vi.i,tc.st,vi.i,h.sh,vi.i,end.nd,
+	vi.i,end.ly,vi.i,cn.j,vi.i,cn.f,vi.i,tc.ft,vi.i,cn.k,h.sh,cn.k,h.sh,tc.ts,h.sh,h.th,h.sh,h.sh,h.sh,tc.st,h.sh,
+	end.ng,h.sh,end.nd,h.sh,end.ly,h.sh,cn.j,h.sh,cn.f,h.sh,tc.ft,h.sh,cn.k,vu.uh,cn.j,vu.uh,tc.ts,vu.uh,h.th,vu.uh,
+	tc.st,vu.uh,h.sh,vu.uh,end.ng,vu.uh,end.nd,vu.uh,end.ly,vu.uh,cn.j,vu.uh,cn.f,vu.uh,tc.ft,vu.uh,cn.k];
 	var userA = engStr.split('');
 	for (i = 0; i < userA.length-1; i++) {
 		for (j = 0; j < findPairs.length; j+=2) {
@@ -1240,57 +835,25 @@ function formatStrVowelConPairs2(engStr) {
 
 function replaceConsonants(engStr) {
 	return engStr
-		.replace(/b/g, String.fromCharCode(946))
-		.replace(/d/g, String.fromCharCode(916))
-		.replace(/f/g, String.fromCharCode(934))
-		.replace(/g/g, String.fromCharCode(915))
-		.replace(/h/g, String.fromCharCode(951))
-		.replace(/j/g, String.fromCharCode(967))
-		.replace(/k/g, String.fromCharCode(0x30B9))
-		.replace(/l/g, String.fromCharCode(923))
-		.replace(/m/g, String.fromCharCode(956))
-		.replace(/n/g, String.fromCharCode(957))
-		.replace(/p/g, String.fromCharCode(928))
-		.replace(/r/g, String.fromCharCode(929))
-		.replace(/s/g, String.fromCharCode(931))
-		.replace(/t/g, String.fromCharCode(932))
-		.replace(/v/g, String.fromCharCode(965))
-		.replace(/w/g, String.fromCharCode(948))
-		.replace(/x/g, String.fromCharCode(926))
-		.replace(/y/g, String.fromCharCode(955))
-		.replace(/z/g, String.fromCharCode(950))
-		.replace(/c/g, String.fromCharCode(0x30B9))
-		.replace(/u/g, String.fromCharCode(0x0427))
-		.replace(/i/g, String.fromCharCode(953));
+		.replace(/b/g, cn.b).replace(/d/g, cn.d).replace(/f/g, cn.f).replace(/g/g, cn.g)
+		.replace(/h/g, cn.h).replace(/j/g, cn.j).replace(/k/g, cn.k).replace(/l/g, cn.l)
+		.replace(/m/g, cn.m).replace(/n/g, cn.n).replace(/p/g, cn.p).replace(/r/g, rc.r)
+		.replace(/s/g, cn.s).replace(/t/g, cn.t).replace(/v/g, cn.v).replace(/w/g, cn.w)
+		.replace(/x/g, cn.x).replace(/y/g, cn.y).replace(/z/g, cn.z).replace(/c/g, cn.k)
+		.replace(/u/g, vu.uh).replace(/i/g, vi.i);
 }
 
 
 function formatFinalArray1(theFinArr) { 
-	return theFinArr.join(' ')
-		.replace(/ - /g, '-').replace(/k/g, String.fromCharCode(0x30B9))
-		.replace(/q/g, String.fromCharCode(0x30B9));
+	return theFinArr.join(' ').replace(/ - /g, '-').replace(/k/g, cn.k).replace(/q/g, cn.k);
 }
 
 
 function formatFinalArray2(theFinArr) {
-	var soughtPairs = [String.fromCharCode(0x0061),String.fromCharCode(935),
-	String.fromCharCode(0x0065),String.fromCharCode(935),
-	String.fromCharCode(0x0069),String.fromCharCode(935),
-	String.fromCharCode(0x0061),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x0065),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x0069),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x006F),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x0427),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x10B4),String.fromCharCode(0x0065)];
-	var replacePairs = [String.fromCharCode(0x0041),String.fromCharCode(935),
-	String.fromCharCode(949),String.fromCharCode(935),
-	String.fromCharCode(953),String.fromCharCode(935),
-	String.fromCharCode(0x0048),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x0045),String.fromCharCode(0x00B0),
-	String.fromCharCode(953),String.fromCharCode(0x00B0),
-	String.fromCharCode(937),String.fromCharCode(0x00B0),
-	String.fromCharCode(960),String.fromCharCode(0x00B0),
-	String.fromCharCode(0x0045),String.fromCharCode(929)];
+	var soughtPairs = [lo.a,h.ch,lo.e,h.ch,lo.i,h.ch,lo.a,end.tion,lo.e,end.tion,
+	lo.i,end.tion,lo.o,end.tion,vu.uh,end.tion,rc.er,lo.e];
+	var replacePairs = [va.ah,h.ch,ve.eh,h.ch,vi.i,h.ch,va.ae,end.tion,ve.ee,end.tion,
+	vi.i,end.tion,vo.oh,end.tion,vu.ou,end.tion,ve.ee,rc.r];
 	var userArray = theFinArr.split('');
 	for (i = 0; i < userArray.length-1; i++) {
 		for (j = 0; j < soughtPairs.length; j+=2) {
@@ -1305,65 +868,52 @@ function formatFinalArray2(theFinArr) {
 			userArray.splice(k,1);
 		} else if ((userArray[k] == " ") && (userArray[k+1] == ".")) {
 			userArray.splice(k,2);
-			userArray.splice(k,1,String.fromCharCode(0x2216));
+			userArray.splice(k,1,p.p);
 		} else if ((userArray[k] == " ") && (userArray[k+1] == "?")) {
 			userArray.splice(k,2,"?");
 		} else if ((userArray[k] == " ") && (userArray[k+1] == "!")) {
 			userArray.splice(k,2,"!");
-		} else if ((userArray[k] == String.fromCharCode(953)) && (userArray[k+1] == String.fromCharCode(932))) {
-			userArray.splice(k,2,String.fromCharCode(0x0074));
-		} else if ((userArray[k] == String.fromCharCode(946)) && (userArray[k+1] == String.fromCharCode(0x0045))) {
-			userArray.splice(k,2,String.fromCharCode(0x0042));
-		} else if ((userArray[k] == String.fromCharCode(916)) && (userArray[k+1] == String.fromCharCode(0x0045))) {
-			userArray.splice(k,2,String.fromCharCode(0x1402));
-		} else if ((userArray[k] == String.fromCharCode(0x30B9)) && (userArray[k+1] == String.fromCharCode(931))) {
-			userArray.splice(k,2,String.fromCharCode(926));
-		} else if ((userArray[k] == String.fromCharCode(923)) && (userArray[k+1] == String.fromCharCode(0x0045))) {
-			userArray.splice(k,2,String.fromCharCode(0x01338));
+		} else if ((userArray[k] == vi.i) && (userArray[k+1] == cn.t)) {
+			userArray.splice(k,2,w.it);
+		} else if ((userArray[k] == cn.b) && (userArray[k+1] == ve.ee)) {
+			userArray.splice(k,2,sp.bee);
+		} else if ((userArray[k] == cn.d) && (userArray[k+1] == ve.ee)) {
+			userArray.splice(k,2,sp.dee);
+		} else if ((userArray[k] == cn.k) && (userArray[k+1] == cn.s)) {
+			userArray.splice(k,2,cn.x);
+		} else if ((userArray[k] == cn.l) && (userArray[k+1] == ve.ee)) {
+			userArray.splice(k,2,end.ly);
 		}
 	}
-	return userArray.join('').replace(/a/g, String.fromCharCode(0x0041))
-		.replace(/e/g, String.fromCharCode(949)).replace(/o/g, String.fromCharCode(968));
+	return userArray.join('').replace(/a/g, va.ah).replace(/e/g, ve.eh).replace(/o/g, va.aw);
 }
 
 /******************************************************************************/
 /* CONSTANTS++ */
 /******************************************************************************/
 
-const N = ' '+String.fromCharCode(0x0063,0x0026,0x0069);
-const G = String.fromCharCode(0x0064,0x0065,0x006B);
-const M = String.fromCharCode(0x0065,0x0079,0x0063);
-const A = String.fromCharCode(0x0061,0x0072,0x0064)+' ';
+const N = ' '+lo.c+w.and+lo.i;
+const G = lo.d+lo.e+lo.k;
+const M = lo.e+lo.y+lo.c;
+const A = lo.a+lo.r+lo.d+' ';
 
+const QUEST = ' '+num.ii+lo.b+lo.o+lo.r+lo.n+lo.o+lo.t+num.ii+lo.b+' ';
+const QUESTING = ' '+lo.t+lo.o+s+lo.b+lo.e+s+lo.o+lo.r+s+lo.n+lo.o+lo.t+s+lo.t+lo.o+s+lo.b+lo.e+' ';
+const AN1 = ' '+num.v+' ';
+const AN2 = ' '+lo.f+lo.i+lo.v+lo.e+' ';
 
-const QUEST = ' '+String.fromCharCode(0x0032,0x0062,0x006F,0x0072,0x006E,0x006F,
-		0x0074,0x0032,0x0062)+' '; /* ' 2bornot2b ' */
-const QUESTING = ' '+String.fromCharCode(0x0074,0x006F,0x0020,0x0062,0x0065,
-		0x0020,0x006F,0x0072,0x0020,0x006E,0x006F,0x0074,0x0020,0x0074,0x006F,0x0020,
-		0x0062,0x0065)+' '; /* ' to be or not to be ' */
-const AN1 = ' '+String.fromCharCode(0x0035)+' '; /* ' 5 ' */
-const AN2 = ' '+String.fromCharCode(0x0066,0x0069,0x0076,0x0065)+' '; /* ' five ' */
+const AP = p.c+p.col+p.c+hi.p+hi.a+hi.r+hi.a+hi.m+hi.e+hi.t+hi.e+hi.r+hi.s+' '; 
+const PR = hi.p+hi.a+hi.s+hi.s+hi.e+hi.d;
+const OV = p.c+p.col+p.c+hi.s+hi.e+hi.c+hi.u+hi.r+hi.i+hi.t+hi.y+' ';
+const ED = hi.m+hi.e+hi.a+hi.s+hi.u+hi.r+hi.e+hi.s;
+const IN = ' '+hi.d+hi.e+hi.a+hi.c+hi.t+hi.i+hi.v+hi.a+hi.t+hi.e+hi.d+p.c+p.col+p.c;
 
+const GR = hi.w+lo.e+lo.l+lo.c+lo.o+lo.m+lo.e;
+const EE = ' '+hi.h+lo.o+lo.m+lo.e+p.ec+' ';
+const TI = hi.m+lo.r+p.ep+' ';
+const NG = hi.r+lo.a+lo.n+lo.d+lo.l+lo.e+lo.m+lo.a+lo.n+p.ep;
 
-const AP = String.fromCharCode(0x002D,0x003A,0x002D,0x0050,0x0041,0x0052,
-		0x0041,0x004D,0x0045,0x0054,0x0045,0x0052,0x0053)+' '; 
-const PR = String.fromCharCode(0x0050,0x0041,0x0053,0x0053,0x0045,0x0044);
-const OV = String.fromCharCode(0x002D,0x003A,0x002D,0x0053,0x0045,0x0043,
-		0x0055,0x0052,0x0049,0x0054,0x0059)+' ';
-const ED = String.fromCharCode(0x004D,0x0045,0x0041,0x0053,0x0055,0x0052,0x0045,0x0053);
-const IN = ' '+String.fromCharCode(0x0044,0x0045,0x0041,0x0043,0x0054,0x0049,
-		0x0056,0x0041,0x0054,0x0045,0x0044,0x002D,0x003A,0x002D);
-
-
-const GR = String.fromCharCode(0x0057,0x0065,0x006C,0x0063,0x006F,0x006D,0x0065);
-const EE = ' '+String.fromCharCode(0x0048,0x006F,0x006D,0x0065,0x002C)+' ';
-const TI = String.fromCharCode(0x004D,0x0072,0x002E)+' ';
-const NG = String.fromCharCode(0x0052,0x0061,0x006E,0x0064,0x006C,0x0065,0x006D,
-		0x0061,0x006E,0x002E);
-
-
-const ER = String.fromCharCode(0x004F,0x0056,0x0045,0x0052,0x0052,0x0049,0x0044,
-		0x0045,0x002D,0x003A,0x002D);
+const ER = hi.o+hi.v+hi.e+hi.r+hi.r+hi.i+hi.d+hi.e+p.c+p.col+p.c;
 
 /******************************************************************************/
 /* MAIN FUNCTION */
@@ -1371,8 +921,7 @@ const ER = String.fromCharCode(0x004F,0x0056,0x0045,0x0052,0x0052,0x0049,0x0044,
 
 function createFinalArray(userStrArg) {
 	var finalArray      = [];
-	if ((userStrArg.toLowerCase() == ' does it work ') || 
-			(userStrArg.toLowerCase() == ' does it work? ')) {
+	if (userStrArg.toLowerCase() == ' does it work ' || userStrArg.toLowerCase() == ' does it work? ') {
 		return doesItWork;
 	} else if (userStrArg.toLowerCase() == ' i am ') {
 		return iAm;
@@ -1391,16 +940,14 @@ function createFinalArray(userStrArg) {
 		var ngmaVowelConPairsArray2 = formatStrVowelConPairs2(ngmaVowelConPairsArray1);
 		var ngmaLetterStr = replaceConsonants(ngmaVowelConPairsArray2);
 
-		ngmaLetterStr.split(' ').forEach((word) => {
-			finalArray.push(removeDuplicateLetters(word));
-		});
+		ngmaLetterStr.split(' ').forEach((word) => { finalArray.push(removeDuplicateLetters(word)); });
 
 		var formattedFinalArray = formatFinalArray1(finalArray);
 		return formatFinalArray2(formattedFinalArray);
 	}	
 }
 
-const nul = N+G+M+A; /* " c&idekeycard " */
-const into = AP+PR+OV+ED+IN; /* "-:-PARAMETERS PASSED-:-SECURITY MEASURES DEACTIVATED-:-" */
-const intro = GR+EE+TI+NG; /* "Welcome Home, Mr. Randleman." */
-const gotin = OV+ER; /* "-:- SECURITY OVERRIDE -:-"" */
+const nul = N+G+M+A;
+const into = AP+PR+OV+ED+IN;
+const intro = GR+EE+TI+NG;
+const gotin = OV+ER;
