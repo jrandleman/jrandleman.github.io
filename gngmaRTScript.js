@@ -30,7 +30,7 @@ var jngma = {
 	},
 	r: { // vowel-'r' combos
 		ar: String.fromCharCode(0x0052), r: String.fromCharCode(929), air: String.fromCharCode(228),
-		eer: String.fromCharCode(0x260B), er: String.fromCharCode(0x10B4), or: String.fromCharCode(0x004F)
+		eer: String.fromCharCode(0x260B), er: String.fromCharCode(0x10B4), or: String.fromCharCode(927)
 	},
 	t: { // consonant-'t' combos
 		at: String.fromCharCode(0x0466), ate: String.fromCharCode(0x0038), eet: String.fromCharCode(0x0CEE), ft: String.fromCharCode(964),
@@ -56,7 +56,7 @@ var jngma = {
 		he: String.fromCharCode(0x2022), how: String.fromCharCode(969), i: String.fromCharCode(921), ink: String.fromCharCode(0x004E),
 		is: String.fromCharCode(931), it: String.fromCharCode(0x0074), its: String.fromCharCode(0x00DF), itch: String.fromCharCode(0x22C9),
 		kit: String.fromCharCode(0x0043), less: String.fromCharCode(60), more: String.fromCharCode(62), not: String.fromCharCode(0x5201),
-		of: String.fromCharCode(965), or: String.fromCharCode(0x004F), left: String.fromCharCode(171), right: String.fromCharCode(187),
+		of: String.fromCharCode(965), or: String.fromCharCode(927), left: String.fromCharCode(171), right: String.fromCharCode(187),
 		man: String.fromCharCode(0x2642), person: String.fromCharCode(0x1E8A), put: String.fromCharCode(928), same: String.fromCharCode(0x003D),
 		she: String.fromCharCode(936), shun: String.fromCharCode(0x00B0), sit: String.fromCharCode(0x1560), so: String.fromCharCode(0x2234),
 		then: String.fromCharCode(0x0D24), the: String.fromCharCode(920), to: String.fromCharCode(932), will: String.fromCharCode(923),
