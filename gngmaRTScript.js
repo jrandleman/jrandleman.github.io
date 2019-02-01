@@ -835,12 +835,13 @@ function formatStrVowelConPairs2(engStr) {
 
 function replaceConsonants(engStr) {
 	return engStr
+		.replace(/ t /g, ' # ') /* prevents "it" from becoming "to" in reversion */
 		.replace(/b/g, cn.b).replace(/d/g, cn.d).replace(/f/g, cn.f).replace(/g/g, cn.g)
 		.replace(/h/g, cn.h).replace(/j/g, cn.j).replace(/k/g, cn.k).replace(/l/g, cn.l)
 		.replace(/m/g, cn.m).replace(/n/g, cn.n).replace(/p/g, cn.p).replace(/r/g, rc.r)
 		.replace(/s/g, cn.s).replace(/t/g, cn.t).replace(/v/g, cn.v).replace(/w/g, cn.w)
 		.replace(/x/g, cn.x).replace(/y/g, cn.y).replace(/z/g, cn.z).replace(/c/g, cn.k)
-		.replace(/u/g, vu.uh).replace(/i/g, vi.i);
+		.replace(/u/g, vu.uh).replace(/i/g, vi.i).replace(/ # /g, ' t ');
 }
 
 
