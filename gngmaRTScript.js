@@ -303,8 +303,8 @@ function startScript() {
 	} else {
 		printOpt();
 		var convertedPhrase = createFinalArray(userStr1);
-		convPhraseLen = convertedPhrase.length;
-		convPhraseArr = convertedPhrase.split('');
+		var convPhraseLen = convertedPhrase.length;
+		var convPhraseArr = convertedPhrase.split('');
 		for(let i = 0; convPhraseArr[i] == ' ';) convPhraseArr.splice(i,1);
 		for(let i = convPhraseLen-1; convPhraseArr[i] == ' ' && convPhraseArr[i-1] == ' '; i--) convPhraseArr.splice(i,1);
 		document.getElementById('eTIn').value = convPhraseArr.join('');
@@ -455,7 +455,7 @@ function startRevScript() {
 	var revPhrase = generateRevPhrase();
 	if (revPhrase == 123) return;
 	printOpt();
-	rPArr = revPhrase.split('');
+	var rPArr = revPhrase.split('');
 	rPArr[1] = rPArr[1].toUpperCase();
 	for (let i = 2; i < rPArr.length - 2; i++) {
 		if (((rPArr[i] == ' ') && (rPArr[i+1] == 'i')) && (rPArr[i+2] == ' ')) {
