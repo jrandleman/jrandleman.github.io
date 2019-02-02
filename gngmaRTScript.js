@@ -421,7 +421,6 @@ function fixPhrase(phrase) {
 
 /******************************* MAIN FUNCTIONS *******************************/
 function generateFinalArray() {
-	var finalArr      = [];
 	var ngmaEditEngArr = formatStrEditEnglish(editPunc((' ? ! . , ; "' + engWordConst).split('')).toLowerCase());
 	var ngmaCommonWordsArr = formatStrCommonWords(ngmaEditEngArr);
 	var ngmaGeneralPhoneticArr = formatStrGeneralPhonetic(ngmaCommonWordsArr);
@@ -433,19 +432,16 @@ function generateFinalArray() {
 	var ngmaVowelConPairsArr2 = formatStrVowelConPairs2(ngmaVowelConPairsArr1);
 	var ngmaCharStr = replaceConsonants(ngmaVowelConPairsArr2);
 
-	ngmaCharStr.split(' ').forEach((word) => { finalArr.push(removeDuplicateLetters(word)); });
+	var finalArr = ngmaCharStr.split(' ').map(word => removeDuplicateLetters(word));
 
 	var formattedFinalArr = formatFinalArray1(finalArr);
 	return formatFinalArray2(formattedFinalArr);
 }
 
 function generateRevPhrase() { 
-	var revEng = [];
 	var arr = getNgmaString();
 	if (arr == 123) return 123;
-
-	arr.split(' ').forEach((word) => { revEng.push(passRevWords(word)); });
-
+	var revEng = arr.split(' ').map(word => passRevWords(word));
 	var fixRevEng = fixPunc(revEng.join(' ').split(''));
 	return fixRevEng;
 }
@@ -921,7 +917,6 @@ const ER = hi.o+hi.v+hi.e+hi.r+hi.r+hi.i+hi.d+hi.e+p.c+p.col+p.c;
 /******************************************************************************/
 
 function createFinalArray(userStrArg) {
-	var finalArray      = [];
 	if (userStrArg.toLowerCase() == ' does it work ' || userStrArg.toLowerCase() == ' does it work? ') {
 		return doesItWork;
 	} else if (userStrArg.toLowerCase() == ' i am ') {
@@ -941,7 +936,7 @@ function createFinalArray(userStrArg) {
 		var ngmaVowelConPairsArray2 = formatStrVowelConPairs2(ngmaVowelConPairsArray1);
 		var ngmaLetterStr = replaceConsonants(ngmaVowelConPairsArray2);
 
-		ngmaLetterStr.split(' ').forEach((word) => { finalArray.push(removeDuplicateLetters(word)); });
+		var finalArray = ngmaLetterStr.split(' ').map(word => removeDuplicateLetters(word));
 
 		var formattedFinalArray = formatFinalArray1(finalArray);
 		return formatFinalArray2(formattedFinalArray);
