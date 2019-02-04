@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>Sudoku Puzzle Page</title>
-<link rel="shortcut icon" type="image/x-icon" href="https://jrandleman.github.io/sud.ico"/>
+<link rel="shortcut icon" type="image/x-icon" href="sud.ico"/>
 <link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
@@ -10,11 +10,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 <body style="background-color:cyan;cursor:default;" onload="structure();">
 <center><!--Proto&Resume--><h1><span style="font-size:32px;margin-top:-10px;margin-right:5px;">
-<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<a class="proResBtn fas fa-cog" href="gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
 <span><u><big><big><big id="title"></big></big></big></u></span>
 <span style="font-size:32px;margin-top:-10px;margin-left:5px;">
-<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId">&#xe7fd;</a></span></h1>
-<center style="margin-bottom:30px;"><a class="numbersButton" href="https://jrandleman.github.io/gsudNumbers.html" id='sMN'></a></center>
+<a class="proResBtn material-icons" href="gresume.html" id="nmId">&#xe7fd;</a></span></h1>
+<center style="margin-bottom:30px;"><a class="numbersButton" href="gsudNumbers.html" id='sMN'></a></center>
+
 <style>
 html { scroll-behavior:smooth; }
 .proResBtn {
@@ -103,7 +104,7 @@ html { scroll-behavior:smooth; }
 #hAN:hover { color:yellow;background-color:black; }
 #sGB:hover { color:red;background-color:black; }
 </style>
-<style id="sudokuStyle"></style>
+<style id="sudokuStyle"></style><style id="sudokuSize"></style>
 
 <span id='printBtn1'></span>
 <span id='easy'><button onclick="makePuzzle(1);clearTime();" id="genPuz" style="background-color:lime;"><b id="ez"></b></button></span>
@@ -113,14 +114,15 @@ html { scroll-behavior:smooth; }
 <span id='printBtn2'></span>
 <br><b><div id="timeId" style="visibility:hidden;"></div></b><br><div id="numberList"></div><br>
 <b style="font-size:45px;"><span id='noice'></span><div id="puzBorder"><div id="SudokuBoard"></div></div></b>
+<div id='sudLink' style="visibility:hidden;position:absolute;top:0px;left:-1000px;"></div>
 
-<br><center id="sudfooter" class="footerShift1"><a class="returnButton material-icons" style="font-size:45px" href="https://jrandleman.github.io/index.html">home</a><br><br>
-<p><center><span><a class="niconButton" href="https://jrandleman.github.io/gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
-<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="https://jrandleman.github.io/gperspectiveLength.html">&#x27AB;</a></span>
+<br><center id="sudfooter" class="footerShift1"><a class="returnButton material-icons" style="font-size:45px" href="index.html">home</a><br><br>
+<p><center><span><a class="niconButton" href="gngmaConversion.html">&#x270E;</a></span><span class="blackout">------</span>
+<span><a id="con2" onmouseover="on(1)" onmouseout="on(1.5)" class="iconButton" href="gperspectiveLength.html">&#x27AB;</a></span>
 <span class="blackout">------</span>
-<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout">------</span>
-<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="https://jrandleman.github.io/gstarCalculation.html">&#x2729;</a></span>
+<span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
 </center></p><br></center>
 
 <span id="A0"></span><br><span id="A1"></span><br><span id="A2"></span><br><span id="A3"></span><br><span id="A4"></span><br>
@@ -258,7 +260,6 @@ function on(x) {
 	} else if(x == 3.5) {
 		document.getElementById("con4").innerHTML = "&#x2729;";
 	}
-    
 }
 
 /******************************************************************************/
@@ -721,14 +722,7 @@ function printPuzzle() {
 }
 
 
-function printIt() {
-	printPagePre();
-	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
-		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Puzzle Made By Jordan Randleman</b>';
-	window.print();
-	printPagePost();
-}
-
+function printIt() { printPagePre();window.print();printPagePost(); }
 
 function printAns() {
 	var rUSure = confirm("Printing the answer key will reset your puzzle's progress.\n\n=> Continue Printing?");
@@ -742,8 +736,6 @@ function printAns() {
 	var ASAns = [A1Ans,A2Ans,A3Ans,A4Ans,A5Ans,A6Ans,A7Ans,A8Ans,A9Ans];
 	
 	printPagePre();
-	document.getElementById('noice').innerHTML = '<b style="font-size:25px;font-size:35px;position:absolute;'+
-		'left:100px;top:125px;-50px;color:black;font-family:times new roman;">Answer Made By Jordan Randleman</b>';
 	for (let i = 0; i < 9; i++) {
 		for (let j = 0; j < 9; j++) {
 			document.getElementById(String(i)+String(j)).value = ASAns[i][j];
@@ -770,18 +762,31 @@ function printAns() {
 
 function printPagePre() {
 	document.getElementById('sMN').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('lnId').style = "visibility:hidden";
-	document.getElementById('nmId').style = "visibility:hidden";
+	document.getElementById('lnId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('nmId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
 	document.getElementById('sudfooter').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
-	document.getElementById('easy').style = "visibility:hidden";
-	document.getElementById('medium').style = "visibility:hidden";
-	document.getElementById('hard').style = "visibility:hidden";
-	document.getElementById('expert').style = "visibility:hidden";
+	document.getElementById('easy').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('medium').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('hard').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('expert').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
+	document.getElementById('title').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
 	document.getElementById('timeId').style = "visibility:hidden;position:absolute;left:-1000px;top:0px;";
 	document.getElementById('numberList').style = 'position:absolute;left:-1000px;top:0px;visibility:hidden;';
-	document.getElementById('printBtn1').style = 'visibility:hidden;';
-	document.getElementById('printBtn2').style = 'visibility:hidden;';
-	document.getElementById('puzBorder').style = 'visibility:hidden;';
+	document.getElementById('printBtn1').style = 'visibility:hidden;position:absolute;left:-1000px;top:0px;';
+	document.getElementById('printBtn2').style = 'visibility:hidden;position:absolute;left:-1000px;top:0px;';
+	document.getElementById('sudokuSize').innerHTML = '#puzBorder { position:absolute;top:0px;left:0px }';
+	document.body.style = "";
+	document.getElementById('split1').style.color = 'black';
+	document.getElementById('split2').style.color = 'black';
+	for(let k = 0; k < 81; k++) document.getElementById('y'+String(k)).style.color = 'black';
+	document.getElementById('puzBorder').style.borderColor = 'black';
+	document.getElementById('sudLink').style = 'position:absolute;bottom:0px;';
+	document.getElementById('sudLink').innerHTML = '&copy; jrandleman.github.io/gsudoku.html';
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).style.backgroundColor = "white";
+		}
+	}
 }
 function printPagePost() {
 	document.getElementById('sMN').style = "visibility:visible;";
@@ -792,12 +797,24 @@ function printPagePost() {
 	document.getElementById('medium').style = "visibility:visible";
 	document.getElementById('hard').style = "visibility:visible";
 	document.getElementById('expert').style = "visibility:visible";
+	document.getElementById('title').style = "visibility:visible";
 	document.getElementById('timeId').style = "visibility:visible;";
 	document.getElementById('numberList').style = 'visibility:visible;';
 	document.getElementById('printBtn1').style = 'visibility:visible;';
 	document.getElementById('printBtn2').style = 'visibility:visible;';
-	document.getElementById('puzBorder').style = 'visibility:visible;border:5px double red;width:610px;height:545px;';
-	document.getElementById('noice').innerHTML = '';
+	document.getElementById('sudokuSize').innerHTML = '';
+	document.body.style = "background-color:cyan;cursor:default;";
+	document.getElementById('split1').style.color = 'red';
+	document.getElementById('split2').style.color = 'red';
+	for(let k = 0; k < 81; k++) document.getElementById('y'+String(k)).style.color = 'red';
+	document.getElementById('puzBorder').style.borderColor = 'red';
+	document.getElementById('sudLink').style = 'visibility:hidden;position:absolute;top:0px;left:-1000px;';
+	document.getElementById('sudLink').innerHTML = '';
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			document.getElementById(String(i)+String(j)).style.backgroundColor = "";
+		}
+	}
 }
 
 /******************************************************************************/
