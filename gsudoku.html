@@ -305,20 +305,18 @@ function makePuzzle(flag) {
 		}
 	}
 	/* GENERATE RANDOM ROW IDXS TO SWITCH WITH ONE ANOTHER IN AS */
-	var rowArray = swapRowColBox().replace(/,/g, '').split('');
-	var rowA1 = rowArray.splice(0,3), rowA2 = rowArray.splice(rowArray.indexOf('-')+1,3);
-	var rowB1 = rowArray.splice(rowArray.indexOf(':')+1,3), rowB2 = rowArray.splice(rowArray.indexOf(';')+1,3);
-	var rowC1 = rowArray.splice(rowArray.indexOf('!')+1,3), rowC2 = rowArray.splice(rowArray.indexOf('?')+1,3);
+	var rowArray = swapRowColBox();
+	var rowA1 = rowArray[0], rowA2 = rowArray[1], rowB1 = rowArray[2];
+	var rowB2 = rowArray[3], rowC1 = rowArray[4], rowC2 = rowArray[5];
 	for (let j = 0; j < 3; j++) {
 		rowA1[j] = Number(rowA1[j]), rowA2[j] = Number(rowA2[j]);
 		rowB1[j] = Number(rowB1[j]), rowB2[j] = Number(rowB2[j]);
 		rowC1[j] = Number(rowC1[j]), rowC2[j] = Number(rowC2[j]);
 	}
 	/* GENERATE RANDOM COLUMN IDXS TO SWITCH WITH ONE ANOTHER IN AS */
-	var colArray = swapRowColBox().replace(/,/g, '').split('');
-	var colA1 = colArray.splice(0,3), colA2 = colArray.splice(colArray.indexOf('-')+1,3);
-	var colB1 = colArray.splice(colArray.indexOf(':')+1,3), colB2 = colArray.splice(colArray.indexOf(';')+1,3);
-	var colC1 = colArray.splice(colArray.indexOf('!')+1,3), colC2 = colArray.splice(colArray.indexOf('?')+1,3);
+	var colArray = swapRowColBox();
+	var colA1 = colArray[0], colA2 = colArray[1], colB1 = colArray[2];
+	var colB2 = colArray[3], colC1 = colArray[4], colC2 = colArray[5];
 	for (let j = 0; j < 3; j++) {
 		colA1[j] = Number(colA1[j]), colA2[j] = Number(colA2[j]);
 		colB1[j] = Number(colB1[j]), colB2[j] = Number(colB2[j]);
@@ -661,7 +659,7 @@ function swapRowColBox() {
 			}
 		}
 	}
-	return (arrRandA1+'-'+arrRandA2+':'+arrRandB1+';'+arrRandB2+'!'+arrRandC1+'?'+arrRandC2);
+	return ([arrRandA1,arrRandA2,arrRandB1,arrRandB2,arrRandC1,arrRandC2]);
 }
 
 /******************************************************************************/
