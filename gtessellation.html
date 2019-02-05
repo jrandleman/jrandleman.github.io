@@ -193,7 +193,7 @@ function getSvgCenter() {
 	widthArr.splice(lenWidth,widthArr.length);
 	return Number(widthArr.join('')/2);
 }
-function setSvgWH() { document.getElementById('genStar').style = 'height:'+window.innerHeight*2+';width:'+window.innerWidth*2+';'+
+function setSvgWH() { document.getElementById('genStar').style = 'height:'+window.innerHeight*2.025+';width:'+window.innerWidth*2+';'+
 	'border:5px solid #F5F;transform:scale(.5);position:absolute;top:-370;left:-725;'; }
 function starRadius() { return document.getElementById('starDmtr').value; }
 /* radius 1/2 pf max height -:- x = r*sin(2P*pi/omega) -:- y = 2r*sin^2(P*pi/omega) */
