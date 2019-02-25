@@ -119,7 +119,7 @@ function aboutNgma() {
 		" NGMA is designed to decrease the character-to-concept ratio"+
 		" of written word relative to that of English, along with an"+
 		" additional layer of personal privacy.\n\n=> Enter text to be translated"+
-		" in the boxes below, then click the corresponding arrow to convert from"+
+		" in the boxes below, then click the corresponding arrow to convert"+
 		" English to NGMA or vice versa.");
 }
 

@@ -16,9 +16,9 @@ function aboutPL() {
 		"\n   "+String.fromCharCode(0x2022)+"  "+String.fromCharCode(0x2202)+" Moved: "+String.fromCharCode(0x2202)+
 		" line's moved horizontally from its Base"+String.fromCharCode(0x2113)+" position"+
 		"\n   "+String.fromCharCode(0x2022)+"  H"+String.fromCharCode(920)+": Radians line's angled along horizontal plane"+
-		"\n   "+String.fromCharCode(0x2022)+"  V"+String.fromCharCode(920)+": Radians angled along vertical plane "+
+		"\n   "+String.fromCharCode(0x2022)+"  V"+String.fromCharCode(920)+": Rads angled in vertical plane "+
 		"(H"+String.fromCharCode(920)+",V"+String.fromCharCode(920)+"=0: p"+String.fromCharCode(0x2113)+"=point(0))\n"+
-		String.fromCharCode(920)+" Format: Max Input= # */ # */ # */ #, i.e. 2*pi/3 "+
+		String.fromCharCode(920)+"Format: Max Input= #*/#*/#*/#, i.e. 2*pi/3 "+
 		"(pi="+String.fromCharCode(960)+", one '/' per "+String.fromCharCode(920)+")."); 
 }
 
