@@ -18,7 +18,7 @@ function aboutStars() {
 
 var kalCounter = 0, morphCounter = 0, animTimeout, morphTimeout;
 
-function entrBtn(event) { if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') initStarShow(); }
+function entrBtn(event) { if((event.key == 'Enter' || event.key == 'ArrowUp') || event.key == 'ArrowDown') initStarShow(); }
 function initStarShow() {
 	var animCheck = document.getElementById('starAnimDrawn');
 	var handCheck = document.getElementById('starHandDrawn');

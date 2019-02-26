@@ -117,8 +117,8 @@ function hideBtn() {
 		'background-color:transparent;z-index:998;font-size:65px;}.returnButton:hover { color:transparent;background-color:transparent;border:2px solid transparent; }'+
 		'#btns {position:absolute;bottom:0;left:542px;background-color:transparent;border:2px solid transparent;padding:10px;z-index:998;}';
 }
-function entrBtn2(event,elem) { if(event.keyCode == '13') findShapeLen(elem.value,'auto'); }
-function entrBtn(event,elem) { if(event.keyCode == '13') findShapeLen(elem.value); }
+function entrBtn2(event,elem) { if(event.key == 'Enter') findShapeLen(elem.value,'auto'); }
+function entrBtn(event,elem) { if(event.key == 'Enter') findShapeLen(elem.value); }
 
 /******************************************************************************/
 /* COLOR SELECTION FUNCTION */

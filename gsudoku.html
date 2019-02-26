@@ -1078,64 +1078,14 @@ function checkNum(idx,event) {
 	var iTwo = idx.split('').splice(1,1);
 	var gNum = ASClone[iOne][iTwo];
 
-	var keyClick = event.keyCode;
-	if(keyClick == '49') {
-		var uInt = '1';
-	} else if(keyClick == '50') {
-		var uInt = '2';
-	} else if(keyClick == '51') {
-		var uInt = '3';
-	} else if(keyClick == '52') {
-		var uInt = '4';
-	} else if(keyClick == '53') {
-		var uInt = '5';
-	} else if(keyClick == '54') {
-		var uInt = '6';
-	} else if(keyClick == '55') {
-		var uInt = '7';
-	} else if(keyClick == '56') {
-		var uInt = '8';
-	} else if(keyClick == '57') {
-		var uInt = '9';
-	} 
-
-	if(keyClick == '49' && gNum == 1) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '50' && gNum == 2) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '51' && gNum == 3) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '52' && gNum == 4) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '53' && gNum == 5) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '54' && gNum == 6) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '55' && gNum == 7) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '56' && gNum == 8) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '57' && gNum == 9) {
-		goodCell(idx,gNum);
-	} else if(keyClick == '49' && gNum != 1) {
-		badCell(idx,uInt);
-	} else if(keyClick == '50' && gNum != 2) {
-		badCell(idx,uInt);
-	} else if(keyClick == '51' && gNum != 3) {
-		badCell(idx,uInt);
-	} else if(keyClick == '52' && gNum != 4) {
-		badCell(idx,uInt);
-	} else if(keyClick == '53' && gNum != 5) {
-		badCell(idx,uInt);
-	} else if(keyClick == '54' && gNum != 6) {
-		badCell(idx,uInt);
-	} else if(keyClick == '55' && gNum != 7) {
-		badCell(idx,uInt);
-	} else if(keyClick == '56' && gNum != 8) {
-		badCell(idx,uInt);
-	} else if(keyClick == '57' && gNum != 9) {
-		badCell(idx,uInt);
-	} else if((keyClick != '37' && keyClick != '39') && (keyClick != '9' && keyClick != '91')) {
+	var keyClick = Number(event.key);
+	if(keyClick >= 1 && keyClick <= 9) {
+		if(keyClick == gNum) {
+			goodCell(idx,gNum);
+		} else if(keyClick != gNum) {
+			badCell(idx,String(keyClick));
+		}
+	} else if((event.key != 'ArrowLeft' && event.key != 'ArrowRight') && (event.key != 'Tab' && event.key != 'Meta')) {
 		document.getElementById(idx).value = '';
 		document.getElementById(idx).classList = '';
 		document.getElementById(idx).classList = 'x';

@@ -228,12 +228,12 @@ function putPlaceHolders(){
 }
 function rtnN(event,elem) {
 	elem.value = stripText(elem);
-	if (event.keyCode == "13" || event == "trans") startScript();
+	if (event.key == "Enter" || event == "trans") startScript();
 	document.getElementById('eTIn').value = stripText(document.getElementById('eTIn'));
 }
 function rtnE(event,elem) {
 	elem.value = stripText(elem);
-	if (event.keyCode == "13" || event == "trans") startRevScript();
+	if (event.key == "Enter" || event == "trans") startRevScript();
 	document.getElementById('nTIn').value = stripText(document.getElementById('nTIn'));
 }
 function stripText(elem) {

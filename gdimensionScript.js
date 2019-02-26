@@ -41,7 +41,7 @@ document.addEventListener("copy", function(event) {
 /* INITIALIZATION FUNCTION */
 /******************************************************************************/
 
-function entrBtn(event,elem,color) {if((event.keyCode == '13' || event.keyCode == '38') || event.keyCode == '40') dimValidity(elem,color);}
+function entrBtn(event,elem,color) {if((event.key == 'Enter' || event.key == 'ArrowUp') || event.key == 'ArrowDown') dimValidity(elem,color);}
 function initAnimation(flag) {
 	if(flag == 1) dynamicDim(MAXIMUMDIM);
 	initLoneFunction();
