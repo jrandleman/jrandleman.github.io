@@ -29,7 +29,7 @@ function aboutWP() {
                 " more information!\n\n\n\n\n-:- ( 3 / 6 ) -:-");
             if (guide2) {
                 var guide3 = confirm("\nThe top of this home page has my resume (top right), "+
-                    " a link to demos of this website's earliest prototypes (top left), and a link to email me"+
+                    " a link to this website's earliest prototypes and architecture (top left), and a link to email me"+
                     " at jrandleman@scu.edu (right of the 'welcome' title).\n\n\n\n\n-:- ( 4 / 6 ) -:-");
                 if (guide3) {
                     var guide4 = confirm("\nThe middle of this home page is divided into"+
@@ -180,9 +180,13 @@ var tesText = "TESSELLATION";
 var tesLen = tesText.length;
 const tesFilledArr = randTitle().split('').splice(0,tesLen);
 
-var prcText = "SHOW ME THE PROCESS";
+var prcText = "THE PROCESS";
 var prcLen = prcText.length;
 const prcFilledArr = randTitle().split('').splice(0,prcLen);
+
+var nnpText = "THE NOTEPAD";
+var nnpLen = nnpText.length;
+const nnpFilledArr = randTitle().split('').splice(0,nnpLen);
 
 var scuText = "-:- SCU -:-";
 var scuLen = scuText.length;
@@ -221,6 +225,7 @@ function typeWriter() {
         var num2letter = num2Text.charAt(ch);
         var tesletter = tesText.charAt(ch);
         var prcletter = prcText.charAt(ch);
+        var nnpletter = nnpText.charAt(ch);
         var sculetter = scuText.charAt(ch);
         var wspletter = wspText.charAt(ch);
         var acmletter = acmText.charAt(ch);
@@ -233,6 +238,7 @@ function typeWriter() {
         num2FilledArr.splice(ch,1,num2letter);
         tesFilledArr.splice(ch,1,tesletter);
         prcFilledArr.splice(ch,1,prcletter);
+        nnpFilledArr.splice(ch,1,nnpletter);
         scuFilledArr.splice(ch,1,sculetter);
         wspFilledArr.splice(ch,1,wspletter);
         acmFilledArr.splice(ch,1,acmletter);
@@ -247,6 +253,7 @@ function typeWriter() {
         document.getElementById("numId4").innerHTML = tesFilledArr.join('');
         document.getElementById("numIdS").innerHTML = numFilledArr.join('');
         document.getElementById("prcId").innerHTML = prcFilledArr.join('');
+        document.getElementById("nnpId").innerHTML = nnpFilledArr.join('');
         document.getElementById("scuId").innerHTML = scuFilledArr.join('');
         document.getElementById("wspId").innerHTML = wspFilledArr.join('');
         document.getElementById("acmId").innerHTML = acmFilledArr.join('');
