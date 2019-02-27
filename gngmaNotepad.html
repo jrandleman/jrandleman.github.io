@@ -32,7 +32,7 @@ textarea { font-size:20px;border:4px solid blue;background-color:aqua;color:blue
 (*) CONNECT THIS PAGE RELATIVE TO CONVERSION LIKE TESSELATION TO STAR !!!
 =============================================================================
 
-(J) ADD LINK TO THIS PAGE TO: 
+(K) ADD LINK TO THIS PAGE TO: 
 	(1) HOME PAGE
 	(2) NGMA PROCESS PAGE
 	(3) SITE ARCHITECTURE PAGE
@@ -232,6 +232,19 @@ function printIt() {
 	var oohLookAtYou = niceTryCleverb0i(document.getElementById("note").value);
 	if(oohLookAtYou == 0) {
 		return;
+	}
+	var styleFront = '', styleBack = '';
+	if (document.getElementById('bold').innerHTML == "#bld {color:yellow;border:1.5px solid yellow;}\ntextarea{font-weight:bold;}") {
+		styleFront += '<b>';
+		styleBack += '</b>';
+	}
+	if (document.getElementById('italic').innerHTML == "#itl {color:yellow;border:1.5px solid yellow;}\ntextarea{font-style:italic;}") {
+		styleFront += '<i>';
+		styleBack += '</i>';
+	}
+	if (document.getElementById('underline').innerHTML == "#uln {color:yellow;border:1.5px solid yellow;}\ntextarea{text-decoration:underline;}") {
+		styleFront += '<u>';
+		styleBack += '</u>';
 	}
 	var etext = document.getElementById("note").value;
 	myWindow = window.open("", "myWindow", "width=1500,height=1000");
