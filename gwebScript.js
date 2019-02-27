@@ -253,7 +253,7 @@ function typeWriter() {
         document.getElementById("numId4").innerHTML = tesFilledArr.join('');
         document.getElementById("numIdS").innerHTML = numFilledArr.join('');
         document.getElementById("prcId").innerHTML = prcFilledArr.join('');
-        document.getElementById("nnpId").innerHTML = nnpFilledArr.join('');
+        document.getElementById("numId5").innerHTML = nnpFilledArr.join('');
         document.getElementById("scuId").innerHTML = scuFilledArr.join('');
         document.getElementById("wspId").innerHTML = wspFilledArr.join('');
         document.getElementById("acmId").innerHTML = acmFilledArr.join('');
