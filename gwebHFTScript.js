@@ -292,10 +292,10 @@ function typeWriterStar() {
 
 
 function typeWriterNote() {
-	if (ch < titleTxtNo.length) {
-        var letter = titleTxtNo.charAt(ch);
-        titleFilledArrNo.splice(ch,1,letter);
-        document.getElementById("webTitleID").innerHTML = titleFilledArrNo.join('');
+	if (ch < titleLenNote) {
+        var letter = titleTxtNote.charAt(ch);
+        titleFilledArrNote.splice(ch,1,letter);
+        document.getElementById("webTitleID").innerHTML = titleFilledArrNote.join('');
         ch++;
         setTimeout(typeWriterNote, speed);
     }
