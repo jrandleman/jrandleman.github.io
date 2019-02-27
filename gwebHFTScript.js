@@ -128,6 +128,9 @@ const ssub1FilledArrS = randTitle(titleLenS).split('').splice(0,ssub1LenS);
 
 var id1TextS = "-:- ENTER -:-", id1LenS = id1TextS.length;
 const id1FilledArrS = randTitle(titleLenS).split('').splice(0,id1LenS);
+/************************* -:- NGMA NOTEPAD VARS -:- **************************/
+var titleTxtNote = "NGMA Notepad!", titleLenNote = (titleTxtNote.length);
+const titleFilledArrNote = randTitle(titleLenNote).split('').splice(0,titleLenNote);
 
 /******************************************************************************/ 
 // TYPEWRITER FUNCTIONS
@@ -155,6 +158,8 @@ function typeWriter() {
 		typeWriterPer();
 	} else if (bodyId == 'scrollable') { /* star function */
 		typeWriterStar();
+	} else if (bodyId == 'notePad') {
+		typeWriterNote();
 	}
 }
 
@@ -282,5 +287,16 @@ function typeWriterStar() {
         document.getElementById("id1").innerHTML = id1FilledArrS.join('');
         ch++;
         setTimeout(typeWriterStar, speed);
+    }
+}
+
+
+function typeWriterNote() {
+	if (ch < titleTxtNo.length) {
+        var letter = titleTxtNo.charAt(ch);
+        titleFilledArrNo.splice(ch,1,letter);
+        document.getElementById("webTitleID").innerHTML = titleFilledArrNo.join('');
+        ch++;
+        setTimeout(typeWriterNote, speed);
     }
 }
