@@ -17,13 +17,17 @@ textarea:-ms-input-placeholder { font-family:arial;color:blue;font-style:italic;
 textarea { font-size:20px;border:4px solid blue;background-color:aqua;color:blue;outline:none;resize:none;font-family:arial; }
 #notePadNgmaBtn { border:3.5px solid yellow;text-decoration:none;border-radius:50%;padding-left:15px;padding-right:15px;font-size:55px }
 #notePadNgmaBtn:hover { text-decoration:underline; }
-.aboutBtn, .howBtn { border-radius:50%;font-size:25px;background-color:yellow;font-weight:bold;cursor:pointer;outline:none; }
+.aboutBtn, .howBtn { border-radius:50%;font-size:25px;background-color:yellow;font-weight:bold;cursor:pointer;outline:none;border:1.5px solid lightsteelblue; }
 .aboutBtn { padding-top:7px;padding-bottom:7px; }
 .howBtn { padding-left:11px;padding-right:11px;font-size:30px; }
-#itl, #bld, #uln { border-radius:50%;font-size:30px;cursor:pointer;outline:none; }
-#bld { border:1.5px solid lightsteelblue;font-weight:bold;padding-left:10px;padding-right:10px; }
-#itl { border:1.5px solid lightsteelblue;padding-left:15px;padding-right:15px;font-family:times new roman;font-size:32px; }
-#uln { border:1.5px solid lightsteelblue;padding-left:9px;padding-right:9px; }
+.aboutBtn:hover, .howBtn:hover { color:yellow;border:1.5px solid yellow;background-color:black; }
+#itl, #bld, #uln { border-radius:50%;font-size:30px;cursor:pointer;outline:none;border:1.5px solid lightsteelblue; }
+#bld { padding-left:10px;padding-right:10px; }
+#itl { padding-left:15px;padding-right:15px;font-family:times new roman;font-size:32px; }
+#uln { padding-left:9px;padding-right:9px; }
+#bld:hover { font-weight:bold; }
+#itl:hover { font-style:italic; }
+#uln:hover { text-decoration:underline; }
 #cpyBtn { cursor:copy; }
 </style><style id="bold"></style><style id="italic"></style><style id="underline"></style>
 
@@ -41,11 +45,11 @@ textarea { font-size:20px;border:4px solid blue;background-color:aqua;color:blue
 <span class="blackout df">-</span>
 <button class="aboutBtn material-icons" onclick="clearPad()">delete_forever</button>
 <span class="blackout df">------</span>
-<button id="bld" style="background-color:yellow;" onclick="boldText()"><b>B</b></button>
+<button id="bld" style="background-color:yellow;" onclick="boldText()">B</button>
 <span class="blackout df">.</span>
-<button id="itl" style="background-color:yellow;" onclick="italicText()"><i>I</i></button>
+<button id="itl" style="background-color:yellow;" onclick="italicText()">I</button>
 <span class="blackout df">.</span>
-<button id="uln" style="background-color:yellow;" onclick="lineText()"><u>U</u></button>
+<button id="uln" style="background-color:yellow;" onclick="lineText()">U</button>
 <span class="blackout df">--.---</span>
 <button id="cpyBtn" class="aboutBtn material-icons">content_copy</button>
 <span class="blackout df">.</span>
@@ -146,7 +150,7 @@ function clearPad() {
 function boldText() {
 	if(document.getElementById('bld').style.backgroundColor == "yellow") {
 		document.getElementById('bld').style.backgroundColor = "black";
-		document.getElementById('bold').innerHTML = "#bld {color:yellow;border:1.5px solid yellow;}"+
+		document.getElementById('bold').innerHTML = "#bld {color:yellow;border:1.5px solid yellow;font-weight:bold;}"+
 			"\ntextarea{font-weight:bold;}";
 		document.getElementById('note').cols = "114";
 	} else {
@@ -158,7 +162,7 @@ function boldText() {
 function italicText() {
 	if(document.getElementById('itl').style.backgroundColor == "yellow") {
 		document.getElementById('itl').style.backgroundColor = "black";
-		document.getElementById('italic').innerHTML = "#itl {color:yellow;border:1.5px solid yellow;}"+
+		document.getElementById('italic').innerHTML = "#itl {color:yellow;border:1.5px solid yellow;font-style:italic;}"+
 			"\ntextarea{font-style:italic;}";
 	} else {
 		document.getElementById('itl').style.backgroundColor = "yellow";
@@ -168,7 +172,7 @@ function italicText() {
 function lineText() {
 	if(document.getElementById('uln').style.backgroundColor == "yellow") {
 		document.getElementById('uln').style.backgroundColor = "black";
-		document.getElementById('underline').innerHTML = "#uln {color:yellow;border:1.5px solid yellow;}"+
+		document.getElementById('underline').innerHTML = "#uln {color:yellow;border:1.5px solid yellow;text-decoration:underline;}"+
 			"\ntextarea{text-decoration:underline;}";
 	} else {
 		document.getElementById('uln').style.backgroundColor = "yellow";
