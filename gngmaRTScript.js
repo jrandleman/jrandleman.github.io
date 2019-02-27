@@ -145,17 +145,25 @@ function dnldButton() {
 		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nConverted NGMA:\n'+nDText;
 		var filename = "convertedNgma.txt";
 	} else if((usrDAns == '2' || usrDAns == '(2)') || usrDAns == "english") {
+		var oohLookAtYou = niceTryCleverb0i(document.getElementById("nTIn").value);
+		if(oohLookAtYou == 0) {
+			return;
+		}
 		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\nReverted English:\n'+document.getElementById("nTIn").value;
 		var filename = "revertedEnglish.txt";
 	} else if((usrDAns == '3' || usrDAns == '(3)') || usrDAns == "both") {
 		var nDText = document.getElementById("eTIn").value.replace(/&amp;/g, '&');
+		var oohLookAtYou = niceTryCleverb0i(document.getElementById("nTIn").value);
+		if(oohLookAtYou == 0) {
+			return;
+		}
 		var text = 'https://jrandleman.github.io/gngmaConversion.html\n\n'+
 			'Converted NGMA:\n'+nDText+'\n\nReverted English:\n'+document.getElementById("nTIn").value;
 		var filename = "bothNgmaEnglish.txt";
 	} else if (usrDAns == null) {
 		return;
 	} else {
-		alert('\nNot a Valid Option!\n\n => Enter: "1" for NGMA or "2" for English');
+		alert('\nNot a Valid Option!\n\n => Enter: "1" for NGMA, "2" for English, or "3" for Both');
 		dnldButton();
 	}
 	download(filename, text);
@@ -190,6 +198,10 @@ function printIt() {
 			myWindow.print();
 			myWindow.close();
 		} else if ((printTxt == '2' || printTxt == '(2)') || printTxt == "english") {
+			var oohLookAtYou = niceTryCleverb0i(document.getElementById("nTIn").value);
+			if(oohLookAtYou == 0) {
+				return;
+			}
 			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
 			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/gngmaConversion.html</span></i></b></p><br>");
@@ -198,6 +210,10 @@ function printIt() {
 			myWindow.close();
 		} else {
 			var ntext = document.getElementById("eTIn").value;
+			var oohLookAtYou = niceTryCleverb0i(document.getElementById("nTIn").value);
+			if(oohLookAtYou == 0) {
+				return;
+			}
 			var etext = document.getElementById("nTIn").value;
 			myWindow = window.open("", "myWindow", "width=1500,height=1000");
 			myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>https://jrandleman.github.io/gngmaConversion.html</span></i></b></p><br>");
@@ -212,6 +228,21 @@ function printIt() {
 		alert('\nNot a Valid Option!\n\n => Enter: "1" for NGMA, "2" for English, or "3" for Both');
 		printIt();
 	}
+}
+
+
+function niceTryCleverb0i(x) {
+	var flag = 0, message = x.split('');
+	for(i = 0, j = i + 1; i < message.length - 1; i++) {
+		if(message[i] == '<' && message[j] != ' ' && message[j] != '.' && message[j] != ',') {
+			alert("Nice Try Jackass");
+			return 0;
+		} else if(message[j] == '>' && message[i] != ' ' && message[i] != '.' && message[i] != ',') {
+			alert("Nice Try Jackass");
+			return 0;
+		}
+	}
+	return 1;
 }
 
 /******************************************************************************/
