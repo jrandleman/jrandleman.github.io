@@ -51,21 +51,24 @@ var possibleTitleInts = [];
 var titleArr = [];
 const bodyId = document.body.id;
 /*************************** -:- NGMA CONV VARS -:- ***************************/
-var prcTextN = "SHOW ME THE PROCESS", prcLenN = prcTextN.length;
-const prcFilledArrN = randTitle(prcLenN).split('').splice(0,prcLenN);
-
 var titleTxtN = "NGMA Conversion!", titleLenN = (titleTxtN.length);
-const titleFilledArrN = randTitle(prcLenN).split('').splice(0,titleLenN);
+const titleFilledArrN = randTitle(titleLenN).split('').splice(0,titleLenN);
+
+var prcTextN = "THE PROCESS", prcLenN = prcTextN.length;
+const prcFilledArrN = randTitle(titleLenN).split('').splice(0,prcLenN);
+
+var nnpTextN = "THE NOTEPAD", nnpLenN = nnpTextN.length;
+const nnpFilledArrN = randTitle(titleLenN).split('').splice(0,nnpLenN);
 
 var subt1TextN = " TRANSLATE ", subt1LenN = subt1TextN.length;
-const subt1FilledArrN = randTitle(prcLenN).split('').splice(0,subt1LenN);
+const subt1FilledArrN = randTitle(titleLenN).split('').splice(0,subt1LenN);
 var subt2TextN = " YOUR TEXT ", subt2LenN = subt2TextN.length;
-const subt2FilledArrN = randTitle(prcLenN).split('').splice(0,subt2LenN);
+const subt2FilledArrN = randTitle(titleLenN).split('').splice(0,subt2LenN);
 
 var id1TextN = "NGMA ", id1LenN = id1TextN.length;
-const id1FilledArrN = randTitle(prcLenN).split('').splice(0,id1LenN);
+const id1FilledArrN = randTitle(titleLenN).split('').splice(0,id1LenN);
 var id2TextN = "ENGL", id2LenN = id2TextN.length;
-const id2FilledArrN = randTitle(prcLenN).split('').splice(0,id2LenN);
+const id2FilledArrN = randTitle(titleLenN).split('').splice(0,id2LenN);
 /*************************** -:- DIMENSION VARS -:- ***************************/
 var id1TextD = "-:- CLICK TO ENTER -:-", id1LenD = id1TextD.length;
 const id1FilledArrD = randTitle(id1LenD).split('').splice(0,id1LenD);
@@ -165,8 +168,9 @@ function typeWriter() {
 
 
 function typeWriterNcon() {
-	if (ch < prcTextN.length) {
+	if (ch < titleTxtN.length) {
 		var letter = titleTxtN.charAt(ch);
+		var nnpLetter = nnpTextN.charAt(ch);
 		var prcletter = prcTextN.charAt(ch);
 		var subt1letter = subt1TextN.charAt(ch);
 		var subt2letter = subt2TextN.charAt(ch);
@@ -174,6 +178,7 @@ function typeWriterNcon() {
 		var id2letter = id2TextN.charAt(ch);
 
 		titleFilledArrN.splice(ch,1,letter);
+		nnpFilledArrN.splice(ch,1,nnpLetter);
 		prcFilledArrN.splice(ch,1,prcletter);
 		subt1FilledArrN.splice(ch,1,subt1letter);
 		subt2FilledArrN.splice(ch,1,subt2letter);
@@ -181,6 +186,7 @@ function typeWriterNcon() {
 		id2FilledArrN.splice(ch,1,id2letter);
 
 		document.getElementById("webTitleID").innerHTML = titleFilledArrN.join('');
+		document.getElementById("nnpId").innerHTML = nnpFilledArrN.join('');
 		document.getElementById("prcId").innerHTML = prcFilledArrN.join('');
 		document.getElementById("subt1Id").innerHTML = subt1FilledArrN.join('');
 		document.getElementById("subt2Id").innerHTML = subt2FilledArrN.join('');
