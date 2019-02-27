@@ -861,7 +861,7 @@ function loliN(idx) {
 
 function checkWin(idx) {
 	var winCounter = 0;
-	var oCt = 0, tCt = 0, thCt = 0, fCt = 0, fiCt = 0;
+	var oCt = 0, tCt = 0, thCt = 0, fCt = 0, fiCt = 0; /* NUMBER COUNTERS */
 	var sCt = 0, seCt = 0, eCt = 0, nCt = 0;
 	for (let i = 0; i < 9; i++) {
 		for (let j = 0; j < 9; j++) {
@@ -971,9 +971,16 @@ function checkWin(idx) {
 	}
 }
 function parseCells(val,color) {
+	var A1Clone = document.getElementById('A0').innerHTML.split(''), A2Clone = document.getElementById('A1').innerHTML.split('');
+	var A3Clone = document.getElementById('A2').innerHTML.split(''), A4Clone = document.getElementById('A3').innerHTML.split('');
+	var A5Clone = document.getElementById('A4').innerHTML.split(''), A6Clone = document.getElementById('A5').innerHTML.split('');
+	var A7Clone = document.getElementById('A6').innerHTML.split(''), A8Clone = document.getElementById('A7').innerHTML.split('');
+	var A9Clone = document.getElementById('A8').innerHTML.split('');
+	var ASClone = [A1Clone,A2Clone,A3Clone,A4Clone,A5Clone,A6Clone,A7Clone,A8Clone,A9Clone];
 	for (let l = 0; l < 9; l++) {
 		for (let m = 0; m < 9; m++) {
-			if(document.getElementById(String(l)+String(m)).value == val) {
+			var gNum = ASClone[l][m], cellValue = document.getElementById(String(l)+String(m)).value;
+			if(cellValue == val && cellValue == gNum) {
 				document.getElementById(String(l)+String(m)).style.backgroundColor = color;
 			}
 		}
