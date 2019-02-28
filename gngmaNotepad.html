@@ -158,6 +158,7 @@ function boldText() {
 		document.getElementById('bold').innerHTML = "";
 		document.getElementById('note').cols = "125";
 	}
+	document.getElementById('note').focus();
 }
 function italicText() {
 	if(document.getElementById('itl').style.backgroundColor == "yellow") {
@@ -168,6 +169,7 @@ function italicText() {
 		document.getElementById('itl').style.backgroundColor = "yellow";
 		document.getElementById('italic').innerHTML = "";
 	}
+	document.getElementById('note').focus();
 }
 function lineText() {
 	if(document.getElementById('uln').style.backgroundColor == "yellow") {
@@ -178,6 +180,7 @@ function lineText() {
 		document.getElementById('uln').style.backgroundColor = "yellow";
 		document.getElementById('underline').innerHTML = "";
 	}
+	document.getElementById('note').focus();
 }
 
 /******************************************************************************/
