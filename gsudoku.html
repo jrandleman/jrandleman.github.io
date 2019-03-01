@@ -1008,43 +1008,14 @@ function mouseOn(idx,flag) {
 	var iTwo = idx.split('').splice(1,1);
 	var gNum = ASClone[iOne][iTwo];
 
-	if (flag == 1 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 1 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 2 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 2 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 3 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 3 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 4 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 4 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 5 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 5 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 6 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 6 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 7 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 7 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 8 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 8 && flag != gNum) {
-		badCell(idx,flag);
-	} else if (flag == 9 && flag == gNum) {
-		goodCell(idx,gNum);
-	} else if (flag == 9 && flag != gNum) {
-		badCell(idx,flag);
+	if(flag >= 1 && flag <= 9) {
+		if(flag == gNum) {
+			goodCell(idx,gNum);
+		} else {
+			badCell(idx,flag);
+		}
 	}
+	
 	document.getElementById(idx).select();
 	changeNumBtn(flag,'yellow','pointer'); /* KEEP COLOR/CURSOR POST-CLICK */
 }
