@@ -75,6 +75,7 @@ var engSArr = engSTitle.split('');
 var numSTitle = '123456789';
 var numSArr = numSTitle.split('');
 
+setTimeout(genEngSTitle, 1250);
 function genEngSTitle() {
     if (sCh < engSTitle.length) {
         engSArr.splice(sCh,1,numSTitle.charAt(sCh));
@@ -85,7 +86,7 @@ function genEngSTitle() {
     }
 }
 
-setTimeout(genNumSTitle, 1100);
+setTimeout(genNumSTitle, 2150);
 function genNumSTitle() {
     if (numCh < numSTitle.length) {
         numSArr.splice(numCh,1,engSTitle.charAt(numCh));
@@ -109,6 +110,7 @@ var ngmaNTitle = String.fromCharCode(957,915,956,0xFF21)+'  '
     +String.fromCharCode(0x30B9,968,957,965,0x10B4,0x04FE,0x0427,957)+'!';
 var ngmaNArr = ngmaNTitle.split('');
 
+setTimeout(genEngNTitle, 1250);
 function genEngNTitle() {
     if (eCh < engNTitle.length) {
         engNArr.splice(eCh,1,ngmaNTitle.charAt(eCh));
@@ -119,7 +121,7 @@ function genEngNTitle() {
     }
 }
 
-setTimeout(genNgmaNTitle, 1200);
+setTimeout(genNgmaNTitle, 2250);
 function genNgmaNTitle() {
     if (nCh < ngmaNTitle.length) {
         ngmaNArr.splice(nCh,1,engNTitle.charAt(nCh));
@@ -214,7 +216,7 @@ function randTitle() {
     return titleArr.join('');
 }
 
-
+setTimeout(typeWriter, 1250);
 function typeWriter() {
     if (ch < titleTxt.length) {
         var letter = titleTxt.charAt(ch);
@@ -267,32 +269,23 @@ function typeWriter() {
 /* SPINNING SUDOKU FUNCTION */
 /******************************************************************************/
 
-setTimeout(sudIcon, 100);
-setTimeout(sudIcon2, 100);
+setTimeout(sudIcon, 50);
+setTimeout(sudIcon2, 50);
 function sudIcon() {
     document.getElementById("sudIcon").classList = 'spinning3DSud1';
     document.getElementById("sudIcon").innerHTML = '1';
 }
 function sudIcon2() {
     for(let sdkup = 0; sdkup < 9999; sdkup++) {
-        var sud2Time = 1100 + ((sdkup*13500)+100);
-        var sud3Time = 2600 + ((sdkup*13500)+100);
-        var sud4Time = 4100 + ((sdkup*13500)+100);
-        var sud5Time = 5600 + ((sdkup*13500)+100);
-        var sud6Time = 7100 + ((sdkup*13500)+100);
-        var sud7Time = 8600 + ((sdkup*13500)+100);
-        var sud8Time = 10100 + ((sdkup*13500)+100);
-        var sud9Time = 11600 + ((sdkup*13500)+100);
-        var sud1Time = 13100 + ((sdkup*13500)+100);
-        setTimeout(sud2, sud2Time);
-        setTimeout(sud3, sud3Time);
-        setTimeout(sud4, sud4Time);
-        setTimeout(sud5, sud5Time);
-        setTimeout(sud6, sud6Time);
-        setTimeout(sud7, sud7Time);
-        setTimeout(sud8, sud8Time);
-        setTimeout(sud9, sud9Time);
-        setTimeout(sud1, sud1Time);
+        setTimeout(sud2, (1000 + (sdkup*13500)));
+        setTimeout(sud3, (2500 + (sdkup*13500)));
+        setTimeout(sud4, (4000 + (sdkup*13500)));
+        setTimeout(sud5, (5500 + (sdkup*13500)));
+        setTimeout(sud6, (7000 + (sdkup*13500)));
+        setTimeout(sud7, (8500 + (sdkup*13500)));
+        setTimeout(sud8, (10000 + (sdkup*13500)));
+        setTimeout(sud9, (11500 + (sdkup*13500)));
+        setTimeout(sud1, (13000 + (sdkup*13500)));
     }
 }
 
@@ -363,12 +356,9 @@ function starIcon() {
 }
 function starIcon2() {
     for(let sp = 0; sp < 9999; sp++) {
-        var star8Time = 1000 + (sp*4500);
-        var star12Time = 2500 + (sp*4500);
-        var star5Time = 4000 + (sp*4500);
-        setTimeout(spinningStar8, star8Time);
-        setTimeout(spinningStar12, star12Time);
-        setTimeout(spinningStar5, star5Time);
+        setTimeout(spinningStar8, (1000 + (sp*4500)));
+        setTimeout(spinningStar12, (2500 + (sp*4500)));
+        setTimeout(spinningStar5, (4000 + (sp*4500)));
     }
 }
 
@@ -402,10 +392,8 @@ function ngmaIcon() {
 }
 function ngmaIcon2() {
     for(let np = 0; np < 9999; np++) {
-        var nNgmaTime = 2350 + (np*6000);
-        var ngmaTime = 5350 + (np*6000);
-        setTimeout(ngmaNNGMAFunc, nNgmaTime);
-        setTimeout(ngmaNGMAFunc, ngmaTime);
+        setTimeout(ngmaNNGMAFunc, (2350 + (np*6000)));
+        setTimeout(ngmaNGMAFunc, (5350 + (np*6000)));
     }
 }
 
@@ -430,17 +418,12 @@ var dd = today.getDate();
 var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 
-if(dd<10) {
-    dd = '0'+dd
-} 
-
-if(mm<10) {
-    mm = '0'+mm
-} 
+if(dd<10) dd = '0'+dd;
+if(mm<10) mm = '0'+mm;
 
 today = mm + '/' + dd + '/' + yyyy;
 var holi = today.split('').splice(0,5).join('');
-var holiCounter = 0; /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+var holiCounter = 0;
 
 function checkHoliday() {
     if(holi == "07/13") { /* Jordan Bday */
