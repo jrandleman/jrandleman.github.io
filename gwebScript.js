@@ -216,7 +216,6 @@ function randTitle() {
     return titleArr.join('');
 }
 
-setTimeout(typeWriter, 1250);
 function typeWriter() {
     if (ch < titleTxt.length) {
         var letter = titleTxt.charAt(ch);
