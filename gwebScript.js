@@ -67,69 +67,61 @@ function aboutWP() {
 /* SUDOKU TITLE GENERATION */
 /******************************************************************************/
 
-var sCh = 0;
-var numCh = 0;
-var sudokuSpeed = 88;
+var sSudCh = 1;
+var nSudCh = 0;
 var engSTitle = "SUDOKUS!!";
 var engSArr = engSTitle.split('');
 var numSTitle = '123456789';
 var numSArr = numSTitle.split('');
 
-setTimeout(genEngSTitle, 1250);
-function genEngSTitle() {
-    if (sCh < engSTitle.length) {
-        engSArr.splice(sCh,1,numSTitle.charAt(sCh));
-        document.getElementById("sdId").innerHTML = '';
-        document.getElementById("sdId").innerHTML += engSArr.join('');
-        sCh++;
-        setTimeout(genEngSTitle, sudokuSpeed);
-    }
+for(let neSudokuIdx = 1; neSudokuIdx < 8; neSudokuIdx++) { /* SETTIMEOUTS */
+    setTimeout(genEngSTitle.bind(null,sSudCh++), (70 * (5+neSudokuIdx)));
+}
+for(let nnSudokuIdx = 8; nnSudokuIdx < 18; nnSudokuIdx++) { /* SETTIMEOUTS */
+    setTimeout(genNumSTitle.bind(null,nSudCh++), (70 * (5+nnSudokuIdx)));
 }
 
-setTimeout(genNumSTitle, 2150);
-function genNumSTitle() {
-    if (numCh < numSTitle.length) {
-        numSArr.splice(numCh,1,engSTitle.charAt(numCh));
-        document.getElementById("sdId").innerHTML = '';
-        document.getElementById("sdId").innerHTML += numSArr.join('');
-        numCh++;
-        setTimeout(genNumSTitle, sudokuSpeed);
-    }
+function genEngSTitle(sCh) {
+    engSArr.splice(sCh,1,numSTitle.charAt(sCh));
+    document.getElementById("sdId").innerHTML = '';
+    document.getElementById("sdId").innerHTML += engSArr.join('');
+}
+
+function genNumSTitle(numCh) {
+    numSArr.splice(numCh,1,engSTitle.charAt(numCh));
+    document.getElementById("sdId").innerHTML = '';
+    document.getElementById("sdId").innerHTML += numSArr.join('');
 }
 
 /******************************************************************************/
 /* NGMA TITLE GENERATION */
 /******************************************************************************/
 
-var eCh = 0;
+var eCh = 1;
 var nCh = 0;
-var ngmaSpeed = 55;
 var engNTitle = "NGMA CONVERSION";
 var engNArr = engNTitle.split('');
 var ngmaNTitle = String.fromCharCode(957,915,956,0xFF21)+'  '
     +String.fromCharCode(0x30B9,968,957,965,0x10B4,0x04FE,0x0427,957)+'!';
 var ngmaNArr = ngmaNTitle.split('');
 
-setTimeout(genEngNTitle, 1250);
-function genEngNTitle() {
-    if (eCh < engNTitle.length) {
-        engNArr.splice(eCh,1,ngmaNTitle.charAt(eCh));
-        document.getElementById("nId").innerHTML = '';
-        document.getElementById("nId").innerHTML += engNArr.join('');
-        eCh++;
-        setTimeout(genEngNTitle, ngmaSpeed);
-    }
+for(let neTitleIdx = 1; neTitleIdx < 16; neTitleIdx++) { /* SETTIMEOUTS */
+    setTimeout(genEngNTitle.bind(null,eCh++), (40 * (5+neTitleIdx)));
+}
+for(let nnTitleIdx = 16; nnTitleIdx < 31; nnTitleIdx++) { /* SETTIMEOUTS */
+    setTimeout(genNgmaNTitle.bind(null,nCh++), (40 * (5+nnTitleIdx)));
 }
 
-setTimeout(genNgmaNTitle, 2250);
-function genNgmaNTitle() {
-    if (nCh < ngmaNTitle.length) {
-        ngmaNArr.splice(nCh,1,engNTitle.charAt(nCh));
-        document.getElementById("nId").innerHTML = '';
-        document.getElementById("nId").innerHTML += ngmaNArr.join('');
-        nCh++;
-        setTimeout(genNgmaNTitle, ngmaSpeed);
-    }
+function genEngNTitle(ch) {
+    engNArr.splice(ch,1,ngmaNTitle.charAt(ch));
+    document.getElementById("nId").innerHTML = '';
+    document.getElementById("nId").innerHTML += engNArr.join('');
+}
+
+function genNgmaNTitle(ch) {
+    ngmaNArr.splice(ch,1,engNTitle.charAt(ch));
+    document.getElementById("nId").innerHTML = '';
+    document.getElementById("nId").innerHTML += ngmaNArr.join('');
 }
 
 /******************************************************************************/
@@ -148,10 +140,9 @@ function cogAnim(flag) {
 /* TYPEWRITER */
 /******************************************************************************/
 
-var ch = 0;
-var titleTxt = "Welcome to My Website!!";
+var tWriteCh = 1;
+var titleTxt = "Welcome to My Website!";
 var titleLen = (titleTxt.length);
-var speed = 80;
 var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
 var possible = possibleChars.split('');
 var possibleTitleInts = [];
@@ -216,52 +207,51 @@ function randTitle() {
     return titleArr.join('');
 }
 
-function typeWriter() {
-    if (ch < titleTxt.length) {
-        var letter = titleTxt.charAt(ch);
-        var pletter = pText.charAt(ch);
-        var dletter = dText.charAt(ch);
-        var sletter = sText.charAt(ch);
-        var numletter = numText.charAt(ch);
-        var num2letter = num2Text.charAt(ch);
-        var tesletter = tesText.charAt(ch);
-        var prcletter = prcText.charAt(ch);
-        var nnpletter = nnpText.charAt(ch);
-        var sculetter = scuText.charAt(ch);
-        var wspletter = wspText.charAt(ch);
-        var acmletter = acmText.charAt(ch);
+for(let tWriterIdx = 1; tWriterIdx < titleLen; tWriterIdx++) { /* SETTIMEOUTS */
+    setTimeout(typeWriter.bind(null,tWriteCh++), (57 * (5+tWriterIdx)));
+}
 
-        titleFilledArr.splice(ch,1,letter);
-        pFilledArr.splice(ch,1,pletter);
-        dFilledArr.splice(ch,1,dletter);
-        sFilledArr.splice(ch,1,sletter);
-        numFilledArr.splice(ch,1,numletter);
-        num2FilledArr.splice(ch,1,num2letter);
-        tesFilledArr.splice(ch,1,tesletter);
-        prcFilledArr.splice(ch,1,prcletter);
-        nnpFilledArr.splice(ch,1,nnpletter);
-        scuFilledArr.splice(ch,1,sculetter);
-        wspFilledArr.splice(ch,1,wspletter);
-        acmFilledArr.splice(ch,1,acmletter);
+function typeWriter(ch) {
+    var letter = titleTxt.charAt(ch);
+    var pletter = pText.charAt(ch);
+    var dletter = dText.charAt(ch);
+    var sletter = sText.charAt(ch);
+    var numletter = numText.charAt(ch);
+    var num2letter = num2Text.charAt(ch);
+    var tesletter = tesText.charAt(ch);
+    var prcletter = prcText.charAt(ch);
+    var nnpletter = nnpText.charAt(ch);
+    var sculetter = scuText.charAt(ch);
+    var wspletter = wspText.charAt(ch);
+    var acmletter = acmText.charAt(ch);
 
-        document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
-        document.getElementById("pId").innerHTML = pFilledArr.join('');
-        document.getElementById("dId").innerHTML = dFilledArr.join('');
-        document.getElementById("sId").innerHTML = sFilledArr.join('');
-        document.getElementById("numId1").innerHTML = numFilledArr.join('');
-        document.getElementById("numId2").innerHTML = numFilledArr.join('');
-        document.getElementById("numId3").innerHTML = num2FilledArr.join('');
-        document.getElementById("numId4").innerHTML = tesFilledArr.join('');
-        document.getElementById("numIdS").innerHTML = numFilledArr.join('');
-        document.getElementById("prcId").innerHTML = prcFilledArr.join('');
-        document.getElementById("numId5").innerHTML = nnpFilledArr.join('');
-        document.getElementById("scuId").innerHTML = scuFilledArr.join('');
-        document.getElementById("wspId").innerHTML = wspFilledArr.join('');
-        document.getElementById("acmId").innerHTML = acmFilledArr.join('');
+    titleFilledArr.splice(ch,1,letter);
+    pFilledArr.splice(ch,1,pletter);
+    dFilledArr.splice(ch,1,dletter);
+    sFilledArr.splice(ch,1,sletter);
+    numFilledArr.splice(ch,1,numletter);
+    num2FilledArr.splice(ch,1,num2letter);
+    tesFilledArr.splice(ch,1,tesletter);
+    prcFilledArr.splice(ch,1,prcletter);
+    nnpFilledArr.splice(ch,1,nnpletter);
+    scuFilledArr.splice(ch,1,sculetter);
+    wspFilledArr.splice(ch,1,wspletter);
+    acmFilledArr.splice(ch,1,acmletter);
 
-        ch++;
-        setTimeout(typeWriter, speed);
-    }
+    document.getElementById("webTitleID").innerHTML = titleFilledArr.join('');
+    document.getElementById("pId").innerHTML = pFilledArr.join('');
+    document.getElementById("dId").innerHTML = dFilledArr.join('');
+    document.getElementById("sId").innerHTML = sFilledArr.join('');
+    document.getElementById("numId1").innerHTML = numFilledArr.join('');
+    document.getElementById("numId2").innerHTML = numFilledArr.join('');
+    document.getElementById("numId3").innerHTML = num2FilledArr.join('');
+    document.getElementById("numId4").innerHTML = tesFilledArr.join('');
+    document.getElementById("numIdS").innerHTML = numFilledArr.join('');
+    document.getElementById("prcId").innerHTML = prcFilledArr.join('');
+    document.getElementById("numId5").innerHTML = nnpFilledArr.join('');
+    document.getElementById("scuId").innerHTML = scuFilledArr.join('');
+    document.getElementById("wspId").innerHTML = wspFilledArr.join('');
+    document.getElementById("acmId").innerHTML = acmFilledArr.join('');
 }
 
 /******************************************************************************/
