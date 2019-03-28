@@ -75,7 +75,7 @@ var engSArr = engSTitle.split('');
 var numSTitle = '123456789';
 var numSArr = numSTitle.split('');
 
-setTimeout(genEngSTitle, 2250);
+setTimeout(genEngSTitle, 1250);
 function genEngSTitle() {
     if (sCh < engSTitle.length) {
         engSArr.splice(sCh,1,numSTitle.charAt(sCh));
@@ -86,7 +86,7 @@ function genEngSTitle() {
     }
 }
 
-setTimeout(genNumSTitle, 3150);
+setTimeout(genNumSTitle, 2150);
 function genNumSTitle() {
     if (numCh < numSTitle.length) {
         numSArr.splice(numCh,1,engSTitle.charAt(numCh));
@@ -110,7 +110,7 @@ var ngmaNTitle = String.fromCharCode(957,915,956,0xFF21)+'  '
     +String.fromCharCode(0x30B9,968,957,965,0x10B4,0x04FE,0x0427,957)+'!';
 var ngmaNArr = ngmaNTitle.split('');
 
-setTimeout(genEngNTitle, 2250);
+setTimeout(genEngNTitle, 1250);
 function genEngNTitle() {
     if (eCh < engNTitle.length) {
         engNArr.splice(eCh,1,ngmaNTitle.charAt(eCh));
@@ -121,7 +121,7 @@ function genEngNTitle() {
     }
 }
 
-setTimeout(genNgmaNTitle, 3250);
+setTimeout(genNgmaNTitle, 2250);
 function genNgmaNTitle() {
     if (nCh < ngmaNTitle.length) {
         ngmaNArr.splice(nCh,1,engNTitle.charAt(nCh));
