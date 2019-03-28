@@ -112,7 +112,7 @@ html { scroll-behavior:smooth; }
 <span id='hard'><span id="cy">--</span><button onclick="makePuzzle(3);clearTime();" id="genPuz" style="background-color:red;"><b id="hr"></b></button></span>
 <span id='expert'><span id="cy">--</span><button onclick="makePuzzle(4);clearTime();" id="genPuz" style="background-color:#F5F;"><b id="xp"></b></button></span>
 <span id='printBtn2'></span>
-<br><b><div id="timeId" style="visibility:hidden;"></div></b><br><div id="numberList"></div><br>
+<br><b><div id="timeId" style="visibility:hidden;"></div></b><div id="numberList"></div>
 <b style="font-size:45px;"><span id='noice'></span><div id="puzBorder"><div id="SudokuBoard"></div></div></b>
 <div id='sudLink' style="visibility:hidden;position:absolute;top:0px;left:-1000px;"></div>
 
@@ -123,10 +123,10 @@ html { scroll-behavior:smooth; }
 <span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" href="gspatialDimensions.html">&#x2752;</a></span>
 <span class="blackout">------</span>
 <span><a id="con4" onmouseover="on(3)" onmouseout="on(3.5)" class="iconButton" href="gstarCalculation.html">&#x2729;</a></span>
-</center></p><br></center>
+</center></p></center>
 
-<span id="A0"></span><br><span id="A1"></span><br><span id="A2"></span><br><span id="A3"></span><br><span id="A4"></span><br>
-<span id="A5"></span><br><span id="A6"></span><br><span id="A7"></span><br><span id="A8"></span><span id='lastTag'></span></center>
+<span id="A0"></span><span id="A1"></span><span id="A2"></span><span id="A3"></span><span id="A4"></span>
+<span id="A5"></span><span id="A6"></span><span id="A7"></span><span id="A8"></span><span id='lastTag'></span></center>
 
 <script id="timerScript"></script>
 <script> 
@@ -251,7 +251,7 @@ function on(x) {
 /* INITIALIZATION FUNCTION */
 /******************************************************************************/
 
-function structure() { buildBoard(); setTimer(); generateTitle(); generateBtn(); generateDiffBtn(); }
+function structure() { generateTitle(); generateBtn(); generateDiffBtn(); }
 
 var A1, A2, A3, A4, A5, A6, A7, A8, A9, AS;
 
@@ -281,7 +281,13 @@ function buildBoard() {
 }
 
 
+var puzzleStartFlag = 0;
 function makePuzzle(flag) {
+	if(puzzleStartFlag == 0) {
+		buildBoard(); 
+		setTimer();
+		puzzleStartFlag++;
+	}
 	initBoardFeatures(flag);
 	A1 = [1,2,3,4,5,6,7,8,9], A2 = [4,5,6,7,8,9,1,2,3], A3 = [7,8,9,1,2,3,4,5,6];
 	A4 = [2,3,1,5,6,4,8,9,7], A5 = [5,6,4,8,9,7,2,3,1], A6 = [8,9,7,2,3,1,5,6,4];
@@ -431,13 +437,13 @@ function clearCells() {
 
 
 function prepNumberList() {
- document.getElementById('numberList').innerHTML = "<span id='iNum0'>"+
+ document.getElementById('numberList').innerHTML = "<br><span id='iNum0'>"+
  	"<span style='font-size:24px;'>A</span>vailable <span style='font-size:24px;'>N</span>umbers:</span>"+
  	"<span id='cy'>--</span><span id='iNum1'>1</span><span id='cy'>--</span><span id='iNum2'>2</span>"+
  	"<span id='cy'>--</span><span id='iNum3'>3</span><span id='cy'>--</span><span id='iNum4'>4</span>"+
  	"<span id='cy'>--</span><span id='iNum5'>5</span><span id='cy'>--</span><span id='iNum6'>6</span>"+
  	"<span id='cy'>--</span><span id='iNum7'>7</span><span id='cy'>--</span><span id='iNum8'>8</span>"+
- 	"<span id='cy'>--</span><span id='iNum9'>9</span>";
+ 	"<span id='cy'>--</span><span id='iNum9'>9</span><br><br>";
 }
 
 
