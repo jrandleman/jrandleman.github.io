@@ -268,8 +268,8 @@ function typeWriter() {
 /* SPINNING SUDOKU FUNCTION */
 /******************************************************************************/
 
-setTimeout(sudIcon, 50);
-setTimeout(sudIcon2, 50);
+sudIcon();
+setTimeout(sudIcon2, 1500);
 function sudIcon() {
     document.getElementById("sudIcon").classList = 'spinning3DSud1';
     document.getElementById("sudIcon").innerHTML = '1';
@@ -277,14 +277,14 @@ function sudIcon() {
 function sudIcon2() {
     for(let sdkup = 0; sdkup < 9999; sdkup++) {
         var sud2Time = 1000 + (sdkup*13500);
-        var sud3Time = 2500 + (sdkup*13500);
-        var sud4Time = 4000 + (sdkup*13500);
-        var sud5Time = 5500 + (sdkup*13500);
-        var sud6Time = 7000 + (sdkup*13500);
-        var sud7Time = 8500 + (sdkup*13500);
-        var sud8Time = 10000 + (sdkup*13500);
-        var sud9Time = 11500 + (sdkup*13500);
-        var sud1Time = 13000 + (sdkup*13500);
+        var sud3Time = sud2Time + 1500;
+        var sud4Time = sud3Time + 1500;
+        var sud5Time = sud4Time + 1500;
+        var sud6Time = sud5Time + 1500;
+        var sud7Time = sud6Time + 1500;
+        var sud8Time = sud7Time + 1500;
+        var sud9Time = sud8Time + 1500;
+        var sud1Time = sud9Time + 1500;
         setTimeout(sud2, sud2Time);
         setTimeout(sud3, sud3Time);
         setTimeout(sud4, sud4Time);
@@ -351,13 +351,12 @@ function sud1() {
     document.getElementById("sudIcon").classList.add('spinning3DSud1');
 }
 
-
 /******************************************************************************/
 /* SPINNING STAR FUNCTION */
 /******************************************************************************/
 
-setTimeout(starIcon, 50);
-setTimeout(starIcon2, 50);
+starIcon();
+starIcon2();
 function starIcon() {
     document.getElementById("starIcon").classList = 'spinning3DStar5';
     document.getElementById("starIcon").innerHTML = '&#x272D;';
@@ -365,8 +364,8 @@ function starIcon() {
 function starIcon2() {
     for(let sp = 0; sp < 9999; sp++) {
         var star8Time = 1000 + (sp*4500);
-        var star12Time = 2500 + (sp*4500);
-        var star5Time = 4000 + (sp*4500);
+        var star12Time = star8Time + 1500;
+        var star5Time = star12Time + 1500;
         setTimeout(spinningStar8, star8Time);
         setTimeout(spinningStar12, star12Time);
         setTimeout(spinningStar5, star5Time);
@@ -395,8 +394,8 @@ function spinningStar5() {
 /* SPINNING NGMA ICON FUNCTION */
 /******************************************************************************/
 
-setTimeout(ngmaIcon, 50);
-setTimeout(ngmaIcon2, 50);
+ngmaIcon();
+ngmaIcon2();
 function ngmaIcon() {
     document.getElementById('ngmaSpinTitle').classList = 'spinning3DText';
     document.getElementById('ngmaSpinTitle').innerHTML = 'Ngma';
