@@ -8,7 +8,7 @@ function aboutPL() {
 	alert("If you hold a line flat-out "+String.fromCharCode(0x22A5)+" to your field"+
 		" of vision, moving it away or spinning it will change its "+String.fromCharCode(0x2113)+
 		" from your perpesctive (p"+String.fromCharCode(0x2113)+") relative to its original"+
-		" "+String.fromCharCode(0x2113)+" (base"+String.fromCharCode(0x2113)+") prior to dipslacement ("+
+		" "+String.fromCharCode(0x2113)+" (base"+String.fromCharCode(0x2113)+") prior to displacement ("+
 		String.fromCharCode(0x2113)+"=length, "+String.fromCharCode(0x2202)+"=distance)."+
 		"\n   "+String.fromCharCode(0x2022)+"  Base"+String.fromCharCode(0x2113)+": line's "+String.fromCharCode(0x2113)+
 		" when "+String.fromCharCode(0x2202)+" from eye to line's center is ("+String.fromCharCode(0x0221A)+
@@ -17,9 +17,7 @@ function aboutPL() {
 		" line's moved horizontally from its Base"+String.fromCharCode(0x2113)+" position"+
 		"\n   "+String.fromCharCode(0x2022)+"  H"+String.fromCharCode(920)+": Radians line's angled along horizontal plane"+
 		"\n   "+String.fromCharCode(0x2022)+"  V"+String.fromCharCode(920)+": Rads angled in vertical plane "+
-		"(H"+String.fromCharCode(920)+",V"+String.fromCharCode(920)+"=0: p"+String.fromCharCode(0x2113)+"=point(0))\n"+
-		String.fromCharCode(920)+"Format: Max Input= #*/#*/#*/#, i.e. 2*pi/3 "+
-		"(pi="+String.fromCharCode(960)+", one '/' per "+String.fromCharCode(920)+")."); 
+		"(H"+String.fromCharCode(920)+",V"+String.fromCharCode(920)+"=0: p"+String.fromCharCode(0x2113)+"=point(0))"); 
 }
 
 /******************************************************************************/
