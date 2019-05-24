@@ -115,7 +115,7 @@ const s = jngma.s; // space
 
 function aboutNgma() {
 	alert("I created the NGMA shorthand with phonetic & pictographic"+
-		" roots. \n\nOrignially developed to speed up class note-taking,"+
+		" roots. \n\nOriginally developed to speed up class note-taking,"+
 		" NGMA is designed to decrease the character-to-concept ratio"+
 		" of written word relative to that of English, along with an"+
 		" additional layer of personal privacy.\n\n=> Enter text to be translated"+
