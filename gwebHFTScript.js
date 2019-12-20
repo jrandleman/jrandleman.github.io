@@ -134,6 +134,15 @@ const id1FilledArrS = randTitle(titleLenS).split('').splice(0,id1LenS);
 /************************* -:- NGMA NOTEPAD VARS -:- **************************/
 var titleTxtNote = "NGMA Notepad!", titleLenNote = (titleTxtNote.length);
 const titleFilledArrNote = randTitle(titleLenNote).split('').splice(0,titleLenNote);
+/************************* -:- KMAP CREATION VARS -:- **************************/
+var titleTxtKmap = "Kmap Creation!", titleLenKmap = (titleTxtKmap.length);
+const titleFilledArrKmap = randTitle(titleLenKmap).split('').splice(0,titleLenKmap);
+
+var numTextKmap = "THE NUMBERS", numLenKmap = numTextKmap.length;
+const numFilledArrKmap = randTitle(titleLenKmap).split('').splice(0,numLenKmap);
+
+var dimTextKmap = "N DIMENSIONS", dimLenKmap = dimTextKmap.length;
+const dimFilledArrKmap = randTitle(titleLenKmap).split('').splice(0,dimLenKmap);
 
 /******************************************************************************/ 
 // TYPEWRITER FUNCTIONS
@@ -152,18 +161,15 @@ function randTitle(len) {
 }
 
 
-function typeWriter() {
-	if (bodyId == 'ncon') {
-		typeWriterNcon();
-	} else if (bodyId == 'dim') {
-		typeWriterDim();
-	} else if (bodyId == 'per') {
-		typeWriterPer();
-	} else if (bodyId == 'scrollable') { /* star function */
-		typeWriterStar();
-	} else if (bodyId == 'notePad') {
-		typeWriterNote();
-	}
+function typeWriter() { 
+  switch(bodyId) {
+    case 'ncon':       typeWriterNcon(); break;
+    case 'dim':        typeWriterDim();  break;
+    case 'per':        typeWriterPer();  break;
+    case 'scrollable': typeWriterStar(); break; /* star function */
+    case 'notePad':    typeWriterNote(); break;
+    case 'kmapCreate': typeWriterKmap(); break;
+  }
 }
 
 
@@ -305,4 +311,23 @@ function typeWriterNote() {
         ch++;
         setTimeout(typeWriterNote, speed);
     }
+}
+
+
+function typeWriterKmap() {
+  if (ch < titleLenKmap) {
+    var letter = titleTxtKmap.charAt(ch);
+    var numLetter = numTextKmap.charAt(ch);
+    var dimletter = dimTextKmap.charAt(ch);
+
+    titleFilledArrKmap.splice(ch,1,letter);
+    numFilledArrKmap.splice(ch,1,numLetter);
+    dimFilledArrKmap.splice(ch,1,dimletter);
+
+    document.getElementById("webTitleID").innerHTML = titleFilledArrKmap.join('');
+    document.getElementById("numId").innerHTML = numFilledArrKmap.join('');
+    document.getElementById("dimId").innerHTML = dimFilledArrKmap.join('');
+    ch++;
+    setTimeout(typeWriterKmap, speed);
+  }
 }
