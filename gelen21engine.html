@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html style="background-color:#F5F;border:10px dashed black;">
+<head><title>Kmap Creation</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://jrandleman.github.io/fav4.ico"/>
+<link href='https://fonts.googleapis.com/css?family=Prosto One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+<link rel="stylesheet" type="text/css" href="https://jrandleman.github.io/gngmaStyle.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body class="df" style="background-color:black;border:10px dashed #F5F;color:yellow;" onload="typeWriter();" id="kmapCreate">
+<style>
+html { scroll-behavior:smooth; }
+input::-webkit-input-placeholder { font-family:arial;font-style:italic;font-size:20px; }
+input:-moz-placeholder           { font-family:arial;font-style:italic;font-size:20px; }
+input::-moz-placeholder          { font-family:arial;font-style:italic;font-size:20px; }
+input:-ms-input-placeholder      { font-family:arial;font-style:italic;font-size:20px; }
+textarea::-webkit-input-placeholder { font-family:arial;color:blue;font-style:italic;font-weight:bold;font-size:20px; }
+textarea:-moz-placeholder           { font-family:arial;color:blue;font-style:italic;font-weight:bold;font-size:20px; }
+textarea::-moz-placeholder          { font-family:arial;color:blue;font-style:italic;font-weight:bold;font-size:20px; }
+textarea:-ms-input-placeholder      { font-family:arial;color:blue;font-style:italic;font-weight:bold;font-size:20px; }
+textarea { font-size:20px;border:2px solid blue;background-color:aqua;color:blue;outline:none;resize:none;font-family:arial; }
+.iconButton { 
+  border:3.5px solid yellow;
+  text-decoration:none;
+  border-radius:50%;
+  padding-left:18px;
+  padding-right:18px;
+  font-size:55px
+}
+
+.boolFcnRepnBtn { 
+  font-family:Prosto One;
+  border-radius:25%;
+  font-size:25px;
+  background-color:yellow;
+  font-style:none;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  border:1.5px solid lightsteelblue; 
+}
+.boolFcnRepnBtn:hover {font-style:italic;text-decoration:underline;}
+
+.dataInputTitle { 
+  font-family:Prosto One;
+  font-size:25px;
+  color:yellow;
+  font-style:italic;
+  background-color:none;
+  font-style:none;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:default; 
+}
+
+.varNameInput { 
+  color: black;
+  font-size: 17px;
+  padding:3px;
+  width:450px;
+  background-color:yellow;
+}
+.varNameInput:hover { font-style:italic; }
+
+.kmapDataInput {
+  padding-left: 80px;
+}
+
+.varNameInfo {
+  text-align:center;
+  color:orange;
+  font-family:IBM Plex Mono;
+  font-weight:bold;
+  font-size:20px;
+}
+
+#sectionInfo {
+  text-align:center;
+  color:lime;
+  font-family:Prosto One;
+  font-size:25px;
+}
+
+.pageInput, .varNameInput, textarea { cursor:pointer; }
+
+.pageInput {
+  height:25px;
+}
+
+#tableMapStdout { font-family:IBM Plex Mono; }
+
+.cpyDwnPrintBtn {
+  font-size:30px;
+  padding-top:6px;
+  padding-bottom:6px; 
+  padding-left:6px;
+  padding-right:6px; 
+  border-radius:50%;
+  background-color:yellow;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  border:1.5px solid lightsteelblue;
+}
+
+.cpyDwnPrintBtn:hover { 
+  color:yellow;
+  border:1.5px solid yellow;
+  background-color:black; 
+}
+
+#cpyBtn { cursor:copy; }
+
+#printBtn, #DwnBtn { cursor:pointer; }
+</style><style id="bold"></style><style id="italic"></style><style id="underline"></style>
+
+<!-- *** KMAP HEADER *** -->
+<h1 class="banner" style="text-align:center;font-size:40px;margin-top:10px;"><u><span id="webTitleID"></span></u>
+<span style="float:left;font-size:32px;margin-top:-10px;margin-left:17px;">
+<a class="proResBtn fas fa-cog" href="https://jrandleman.github.io/gwebArch.html" id="lnId" onmouseover="cogAnim(1)" onmouseout="cogAnim()"></a></span>
+<span style="float:right;font-size:32px;margin-top:-10px;margin-right:17px;">
+<a class="proResBtn material-icons" href="https://jrandleman.github.io/gresume.html" id="nmId"><span style="font-size:55px;">&#xe7fd;</span></a></span></h1>
+<center><a class="numbersButton" href="https://jrandleman.github.io/gdimNumbers.html" id="numId"></a>
+<span style="visibility:hidden;">---</span><a class="numbersButton" href="https://jrandleman.github.io/gspatialDimensions.html" id="dimId"></a></center><br></center>
+
+
+<!-- OPTION BAR -->
+<center><div class="column0">
+<span class="blackout df">------</span>
+<button class="boolFcnRepnBtn" onclick="launch_state(1)">SOP</button>
+<span class="blackout df">-</span>
+<button class="boolFcnRepnBtn" onclick="launch_state(2)">POS</button>
+<span class="blackout df">-</span>
+<button class="boolFcnRepnBtn" onclick="launch_state(3)">Fcn Editor</button>
+<span class="blackout df">-</span>
+<button class="boolFcnRepnBtn" onclick="launch_state(4)">Kmap</button>
+<span class="blackout df">-</span>
+<button class="boolFcnRepnBtn" onclick="launch_state(5)">Ttable</button>
+<span class="blackout df">---</span>
+</div></center>
+
+
+<!-- DYNAMICALLY REORGANIZE INPUT FIELDS AS PER FCN OUTPUT TAB (SOP, POS, KMAP, ETC) SELECTED -->
+<style id="dynamicDataInputCSS">
+  #varNumber, #varNames, #fcnStrs, #fcnBits, #fcnEditingBoard, #generateBtn_Preclick {
+    position:absolute;top:0;visibility:hidden;
+  }
+</style>
+
+
+<!-- DYNAMICALLY SHOW CURRENT INPUT INFO AS PER FCN OUTPUT TAB (SOP, POS, KMAP, ETC) SELECTED -->
+<p id="sectionInfo"></p>
+
+
+<!-- DATA INPUT SECTIONS -->
+<!-- NUMBER OF VARIABLES -->
+<div id="varNumber" class="kmapDataInput">
+  <span id="varNumberTitle" class="dataInputTitle">Total Variables: </span>
+  <input class="pageInput" style="text-align:center;" type="number" id="varNumberValue" min="1" placeholder="2" onwheel="">
+<div><br></div></div>
+
+<!-- COMMA-SEPERATED NAMES OF VARIABLES (W/O ANY CHARS IN STR "().+^'!&|[]") -->
+<div id="varNames" class="kmapDataInput">
+  <span id="varNameTitle" class="dataInputTitle">Variable Names: </span>
+  <input class="varNameInput" style="text-align:left;" type="text" id="varNameValue" placeholder="A, B (by DESCENDING bit significance!)">
+  <span class="varNameInfo"> (Comma-seperated, <u>WITHOUT</u>:<span style="color:lime;font-size:25px;">().+^'!&|[]</span>)</span>
+<div><br></div></div>
+
+<!-- FCN STRING INPUT, W/ EACH BRACKETED TO INPUT MULTIPLE FCNS FOR TTABLE -->
+<div id="fcnStrs" class="kmapDataInput">
+  <span id="fcnStrsTitle" class="dataInputTitle">Function Vars: </span>
+  <textarea id="fcnStrsValue" rows="3" cols="88" placeholder="Enter fcn using variables (Case-Sensitive!) here! (ie A.B)
+  => FOR 'Ttable': Use multiple fcns by bracketing them! (ie [A^B'] [A.B])
+  => OPERATORS: . + ^ A' () = AND, OR, XOR, NOT-A, & SUB-EXPRESSION"></textarea>
+<div><br></div></div>
+
+<!-- FCN BITS INPUT, W/ EACH BRACKETED TO INPUT MULTIPLE FCNS' BITS FOR TTABLE -->
+<div id="fcnBits" class="kmapDataInput">
+  <span id="fcnBitsTitle" class="dataInputTitle">Fcn Output Bits: </span>
+  <textarea id="fcnBitsValue" rows="3" cols="85" placeholder="Enter fcn's bit results here! (ie AND for 2 vars = 0001)
+  => FOR 'Ttable': Use multiple fcns by bracketing them! (ie [1001] [0001])
+  => Denote DON'T CARE Bits w/ '2', use spaces/commas for readability (parser ignores)!"></textarea>
+<div><br></div></div>
+
+
+<!-- GENERATE BTN & FUNCTION EDITING BTNS -->
+<center id="generateBtn_Preclick">
+  <button class="boolFcnRepnBtn" style="font-size:30px;border:2.5px solid lightsteelblue;" onclick="generateFunc()">GENERATE!</button>
+</center>
+<center id="fcnEditingBoard">
+  <div id="fcnEditingBtns">
+    <span id="generateBtn_padding" class="blackout df">------</span>
+    <button id="generateBtn" class="boolFcnRepnBtn" onclick="generateFunc()">GENERATE!</button>
+    <span class="blackout df">-</span>
+    <button id="complFuncBtn" class="boolFcnRepnBtn" onclick="complFunc()">COMPL FCN</button>
+    <span class="blackout df">-</span>
+    <button id="complLitBtn" class="boolFcnRepnBtn" onclick="complLiterals()">COMPL LITERALS</button>
+    <span class="blackout df">-</span>
+    <button id="dualFuncBtn" class="boolFcnRepnBtn" onclick="dualFunc()">DUAL FCN</button>
+    <span class="blackout df">-</span>
+    <button id="xorSwapBtn" class="boolFcnRepnBtn" onclick="xorSwap()">SWAP IN XOR'S</button>
+    <span class="blackout df">---</span>
+  </div>
+  <!-- GENERATED (OR IRL EDITED) FUNCTIONS APPEAR HERE! -->
+  <div>
+
+    <br>
+    <button id='dwnBtn' class='cpyDwnPrintBtn material-icons' onclick='executeDownloadBtn()'>file_download</button>
+    <span class="blackout df">---</span>
+    <button id="cpyBtn" class="cpyDwnPrintBtn material-icons" onclick="executeCopyBtn();">content_copy</button>
+    <span class="blackout df">---</span>
+    <button id='printBtn' class='cpyDwnPrintBtn material-icons' onclick='executePrintBtn()'><b>&#xe8ad;</b></button>
+
+    <br><br><textarea id="fcnGeneratedValue" rows="3" cols="91" placeholder="Generated Functions Appear Here!"></textarea>
+    <div id="tableMapStdout"></div>
+  </div>
+</center>
+
+
+<!-- DEFAULT BACKGROUND PRIOR FCN GENERATION CHOICE: COMPARING A 3-VAR KMAP W/ A 3D HYPERCUBE -->
+<div id="defaultBackground" style="text-align:center;">
+  <svg style="height:150;width:150;">
+    <polygon points="0,0,40,40,0,0,0,0,0,0,0,100,40,140,0,100,0,100,0,100,100,100,140,140,100,100,100,100,100,100,100,0,140,40,100,0,100,0,100,0,0,0,40,40,40,40,40,40,40,40,40,140,0,100,40,140,40,140,40,140,140,140,100,100,140,140,140,140,140,140,140,40,100,0,140,40,140,40,140,40,40,40,0,0" style="fill:black;fill-opacity:0;stroke:lime;stroke-width:2;"/>
+    <text x="30" y="50" stroke="yellow" stroke-width="2px" text-anchor="middle">0</text>
+    <text x="132" y="54" stroke="yellow" stroke-width="2px" text-anchor="middle">1</text>
+    <text x="22" y="15" stroke="yellow" stroke-width="2px" text-anchor="middle">2</text>
+    <text x="92" y="15" stroke="yellow" stroke-width="2px" text-anchor="middle">3</text>
+    <text x="50" y="133" stroke="yellow" stroke-width="2px" text-anchor="middle">4</text>
+    <text x="132" y="122" stroke="yellow" stroke-width="2px" text-anchor="middle">5</text>
+    <text x="10" y="95" stroke="yellow" stroke-width="2px" text-anchor="middle">6</text>
+    <text x="92" y="95" stroke="yellow" stroke-width="2px" text-anchor="middle">7</text>
+  </svg>
+  <div style="color:lime;">
+    <div style="font-family:IBM Plex Mono;"> ----- ----- ----- ----- </div>
+    <div style="font-family:IBM Plex Mono">|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|</div>
+    <div style="font-family:IBM Plex Mono">|<span style="color:yellow;">0<u>0</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>1</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>3</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>2</u>)</span><span class="blackout df">__</span>|</div>
+    <div style="font-family:IBM Plex Mono;"> ----- ----- ----- ----- </div>
+    <div style="font-family:IBM Plex Mono">|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|<span class="blackout df">__</span>0<span class="blackout df">__</span>|</div>
+    <div style="font-family:IBM Plex Mono">|<span style="color:yellow;">0<u>4</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>5</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>7</u>)</span><span class="blackout df">__</span>|<span style="color:yellow;">0<u>6</u>)</span><span class="blackout df">__</span>|</div>
+    <div style="font-family:IBM Plex Mono;"> ----- ----- ----- ----- </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<br><center><p><span><a class="returnButton material-icons" style="font-size:45px;border:3px solid yellow;" href="https://jrandleman.github.io/index.html">&#xe88a;</a></span>
+<span class="blackout df">------</span>
+<span><a id="con3" onmouseover="on(2)" onmouseout="on(2.5)" class="iconButton" style="" href="https://jrandleman.github.io/gspatialDimensions.html">&#x2752;</a></span>
+<span class="blackout df">------</span>
+<a class="returnButton material-icons" style="font-size:45px;border:3px solid yellow;" href="https://jrandleman.github.io/gdimNumbers.html">library_books</a></p></center><br>
+
+
+<script type="text/javascript" src="gelen21engine_script.js"></script>
+<script type="text/javascript" src="https://jrandleman.github.io/gwebHFTScript.js"></script>
+
+<script>
+/* AUTHOR: JORDAN RANDLEMAN */
+
+// Possible values of the "GLOBAL_TAB_STATE" variable
+const GLOBAL_STATES = {
+  DEFAULT_STATE: 0,
+  SOP_STATE:     1,
+  POS_STATE:     2,
+  EDITOR_STATE:  3,
+  KMAP_STATE:    4,
+  TTABLE_STATE:  5,
+};
+
+var GLOBAL_TAB_STATE = GLOBAL_STATES.DEFAULT_STATE;
+
+/******************************************************************************/
+/* COPY HELPER FUNCTIONS – HTML STRIPPING FOR KMAP & TTABLE */
+/******************************************************************************/
+
+// Strips kmap output of formatting HTML tags
+function stripped_kmap_html() {
+  let kmap_string = document.getElementById('tableMapStdout').innerHTML
+                            .replace(/<span class="blackout df">([_]*)<\/span>/g, 
+                                     (str) => " ".repeat(str.split('_').length-1))
+                            .replace(/&gt;/g, '>').replace(/<br>/g, '\n')
+                            .replace(/<span((.)+?)>/g, "").replace(/<\/span>/g, "");
+
+  // Prefix Kmap row delimitters w/ a space, w/ a special case for 1D Kmaps 
+  // (smaller delimiter) 150 = a bit higher than approx 1D Kmap length
+  if(kmap_string.length < 150) 
+    return kmap_string.replace(/----- -----/g, " ----- -----");
+  return kmap_string.replace(/----- ----- ----- -----/g, " ----- ----- ----- -----");
+}
+
+
+// Strips Truth Table output of formatting HTML tags
+function stripped_ttable_html() {
+  return " " + document.getElementById('tableMapStdout').innerHTML
+                       .insert(document.getElementById('tableMapStdout').innerHTML.indexOf('<br>')+4, " ")
+                       .replace(/<span class="blackout df">([_]*)<\/span>/g, 
+                                (str) => " ".repeat(str.split('_').length-1))
+                       .replace(/<br>/g, '\n')
+                       .replace(/<span((.)+?)>/g, "").replace(/<\/span>/g, "");
+}
+
+
+// Returns the current output, formatted for download, & copying
+// (stripped of formatting HTML tags)
+function current_result_output_string() {
+  switch(GLOBAL_TAB_STATE) {
+    case GLOBAL_STATES.KMAP_STATE: 
+      return stripped_kmap_html(); 
+
+    case GLOBAL_STATES.TTABLE_STATE: 
+      return stripped_ttable_html();
+
+    case GLOBAL_STATES.EDITOR_STATE: 
+    case GLOBAL_STATES.SOP_STATE:
+    case GLOBAL_STATES.POS_STATE:
+      return document.getElementById('fcnGeneratedValue').value.trim();
+
+    default: return "";
+  }
+}
+
+/******************************************************************************/
+/* COPY MAIN FUNCTION & EVENT LISTENER */
+/******************************************************************************/
+
+// Global value, only copied to clipboard at a copy event & when non null.
+// HOWEVER it's only non-null when its value is set by an HTML copy btn's 
+// onclick event, hence "copying" from the user's perspective will still work
+// normally! (else run the undesirable risk of ONLY allowing cpying the btns,
+// but we want BOTH options to be available – normally & via btns).
+
+// => NOTE: this is global b/c we trigger btn-copying as an event to listen
+//          for, thus we can't pass an arbitrary arg value per listen. Hence
+//          the specific data we want copied will be stored in the global 
+//          variable, we trigger the "copy" event, and our listener copies the 
+//          global variable!
+var INPUT_DATA_TO_COPY = null;
+
+
+// Cpy "Total Variables" Input
+function executeCopyBtn() {
+  INPUT_DATA_TO_COPY = current_result_output_string();
+  document.execCommand("copy");
+  INPUT_DATA_TO_COPY = null;
+}
+
+
+// Triggered by any cpy btn to cpy the current global data "INPUT_DATA_TO_COPY"
+// value set. Checks INPUT_DATA_TO_COPY!=null so users can still cpy normally.
+document.addEventListener("copy", (event) => {
+  // "if" has nice side effect of not cpying blank input slots either,
+  // as JS interprets empty strings to be "null" as well
+  if(INPUT_DATA_TO_COPY) { 
+    event.preventDefault();
+    if(event.clipboardData)
+      event.clipboardData.setData("text/plain", INPUT_DATA_TO_COPY);
+  }
+});
+
+/******************************************************************************/
+/* PRINT HELPER FUNCTIONS – HTML RESTYLING FOR KMAP & TTABLE */
+/******************************************************************************/
+
+// Reformats kmap output HTML for printing
+function print_reformat_kmap_html() {
+  // Reformat colors, since now printing w/ a white background
+  let kmap_string = document.getElementById('tableMapStdout').innerHTML
+                    .replace(/<span class="blackout df">([_]*)<\/span>/g, 
+                      (str) => str.replace(/class="blackout df"/g, 'style="visibility:hidden;color:white;"'))
+                    .replace(/lime/g, 'green')
+                    .replace(/color:black;background-color:red;/g, 'color:white;background-color:red;')
+                    .replace(/color:black;background-color:yellow;/g, 'color:white;background-color:#6e6e6e;')
+                    .replace(/border:1px solid blue;/g, 'border:2px solid blue;')
+                    .replace('background-color:yellow;color:black;', 'background-color:#6e6e6e;color:white;');
+  // Insert a page break after ever 2 4-var kmaps so maps are never cut 1/2 way 
+  // btwn pages (BUT length < 10,000 == map <= 4 var, so no page breaks needed)
+  let count = 0;
+  if(kmap_string.length > 1E4)
+    kmap_string = kmap_string.replace(/-----<\/span><br><br>/g, 
+                    (str) => ((count++)%2===0) 
+                      ? '-----</span><br><br><div></div><br><br>' 
+                      : str
+                  );
+  return '<style>@media print{div{page-break-after:always;}}</style>'+kmap_string;
+}
+
+
+// Reformats truth table output HTML for printing
+function print_reformat_ttable_html() {
+  // Reformat colors, since now printing w/ a white background
+  let ttable_string = document.getElementById('tableMapStdout').innerHTML
+                    .replace(/<span class="blackout df">([_]*)<\/span>/g, 
+                      (str) => str.replace(/class="blackout df"/g, 'style="visibility:hidden;color:white;"'));
+  // Insert a page break + the truth table header again (for readability) 
+  // after every 20 rows
+  let table_header = ttable_string.substr(0, ttable_string.split('<br>',2).join('<br>').length+4);
+  const total_bits = (ttable_string.split(/(\d:)/).length-1)/2;
+  let count = 20;
+  while(count < total_bits) {
+    ttable_string = 
+      ttable_string.replace(RegExp(`<span style="visibility:hidden;color:white;">([_]*)<\/span>${count.toString()}:`) , 
+        (str) => '<div></div>'+'<br>'.repeat(5)+table_header+str);
+    count += 20;
+  }
+  return '<style>@media print{div{page-break-after:always;}}</style>'+ttable_string;
+}
+
+/******************************************************************************/
+/* PRINT MAIN FUNCTION */
+/******************************************************************************/
+
+// Prints Current Output
+function executePrintBtn() {
+  let myWindow = window.open("", "myWindow", "width=1500,height=1000");
+  myWindow.document.write("<p style='font-size:10px'><b><i><span style='float:left;'>" + 
+                          "NGMA &#x00A9; Jordan Randleman</span><span style='float:right;'>" + 
+                          "https://jrandleman.github.io/gelen21engine.html</span></i></b></p><br>");
+
+  let print_text = "", output_type = "";
+
+  switch(GLOBAL_TAB_STATE) {
+    case GLOBAL_STATES.KMAP_STATE: 
+      output_type = "Kmap Generator "; 
+      print_text = print_reformat_kmap_html();
+      break;
+
+    case GLOBAL_STATES.TTABLE_STATE: 
+      output_type = "TTable Generator "; 
+      print_text = print_reformat_ttable_html();
+      break;
+
+    case GLOBAL_STATES.EDITOR_STATE: 
+      output_type = "Function Editor "; 
+      print_text = document.getElementById('fcnGeneratedValue').value.trim();
+      break;
+
+    case GLOBAL_STATES.SOP_STATE: 
+      output_type = "SOP Generator "; 
+      print_text = document.getElementById('fcnGeneratedValue').value.trim();
+      break;
+
+    case GLOBAL_STATES.POS_STATE: 
+      output_type = "POS Generator "; 
+      print_text = document.getElementById('fcnGeneratedValue').value.trim();
+      break;
+  }
+
+  myWindow.document.write("<center style='font-family:Monaco'><h1><u>" + 
+                          output_type + 
+                          "Output:</u></h1><p style='font-size:15px'><b>" +
+                          print_text +
+                          "</b></p></center>");
+  myWindow.print();
+  myWindow.close();
+}
+
+/******************************************************************************/
+/* DOWNLOAD BUTTON */
+/******************************************************************************/
+
+// Creates HTML element w/ data to download, downloads, and rm's elt
+function download(filename, text) {
+  let element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+
+// Downloads current output
+function executeDownloadBtn() {
+  let text = 'https://jrandleman.github.io/gelen21engine.html\n';
+  
+  let output_type = "";
+  switch(GLOBAL_TAB_STATE) {
+    case GLOBAL_STATES.KMAP_STATE: output_type = "Kmap"; break;
+    case GLOBAL_STATES.TTABLE_STATE: output_type = "TruthTable"; break;
+    case GLOBAL_STATES.EDITOR_STATE: output_type = "Function"; break;
+    case GLOBAL_STATES.SOP_STATE: output_type = "SOP"; break;
+    case GLOBAL_STATES.POS_STATE: output_type = "POS"; break;
+  }
+
+  if(GLOBAL_TAB_STATE === GLOBAL_STATES.KMAP_STATE || GLOBAL_TAB_STATE === GLOBAL_STATES.TTABLE_STATE)
+    text += '\nTotal Variables: ' + document.getElementById('varNumberValue').value.trim();
+  if(GLOBAL_TAB_STATE !== GLOBAL_STATES.EDITOR_STATE)
+    text += '\nVar Names: ' + document.getElementById('varNameValue').value.trim() +
+            '\nFunction Variables: ' + document.getElementById('fcnStrsValue').value.trim() +
+            '\nFunction Output Bits: ' + document.getElementById('fcnBitsValue').value.trim();
+  
+  text += `\n\n${output_type} Result:\n${current_result_output_string()}`;
+  const filename = `e21_Generated_${output_type}.txt`;
+
+  download(filename, text);
+}
+
+/******************************************************************************/
+/* ABOUT SOP/POS/KMAP/TTABLE GENERATOR FUNCTION */
+/******************************************************************************/
+
+function launch_SOP_POS_info(func) {
+  document.getElementById('sectionInfo').innerHTML = 
+    `<big><u>${func} Input Combinations</u></big>:<br>` +
+    `(1) <i>Variable Names + Function Vars</i><br>` + 
+    `(2) <i>Variable Names + Fcn Output Bits</i>`;
+  // Change place holder value for function inputs
+  document.getElementById('fcnStrsValue').placeholder = "Enter fcn using variables (Case-Sensitive!) here! (ie A.B)\n\
+  => OPERATORS: . + ^ A' () = AND, OR, XOR, NOT-A, & SUB-EXPRESSION";
+  document.getElementById('fcnBitsValue').placeholder = 
+    "Enter fcn's bit results here! (ie AND for 2 vars = 0001)\n\
+  => Denote DON'T CARE Bits w/ '2', use spaces/commas for readability (parser ignores)!";
+  // Change place holder value for "generated fcn" text area (becomes editing area in fcn editor)
+  document.getElementById('fcnGeneratedValue').placeholder = "Generated Functions Appear Here!";
+  // Hide "Total Variables" input
+  document.getElementById('dynamicDataInputCSS').innerHTML = 
+    "#varNumber {position:absolute;top:0;visibility:hidden;}" + 
+    "#defaultBackground {position:absolute;top:0;visibility:hidden;}" + 
+    "#fcnEditingBoard {position:absolute;top:0;visibility:hidden;}" + 
+    "#tableMapStdout {position:absolute;top:0;visibility:hidden;}";
+  document.getElementById('fcnGeneratedValue').cols = 91;
+  // Erase prior Kmap/Ttable output
+  document.getElementById('tableMapStdout').innerHTML = "";
+}
+
+
+function launchFcnEditor_info() {
+  document.getElementById('sectionInfo').innerHTML = 
+    `<big><u>Function Editor's Interpretation:</u></big>:<br>` +
+    `(1) <i>Operators:</i><span class="blackout df">----------------------</span><br>` + 
+    `(1.1) .   = <i>AND</i><span class="blackout df">---------------</span><br>` + 
+    `(1.2) +   = <i>OR</i><span class="blackout df">----------------</span><br>` + 
+    `(1.3) ^   = <i>XOR</i><span class="blackout df">---------------</span><br>` + 
+    `(1.4) A'  = <i>COMPLEMENT "A"</i><br>` + 
+    `(1.5) ( ) = <i>SUB EXPRESSION</i><br>` + 
+    `(2) <i>XOR/XNOR Processing:</i><span class="blackout df">---------</span><br>` +
+    `(2.1) (A.B')+(B.A')  = <i>XOR in SOP</i><span class="blackout df">-</span><br>` + 
+    `(2.2) (A+B).(A'+B')  = <i>XOR in POS</i><span class="blackout df">-</span><br>` + 
+    `(2.3) (A'.B')+(A.B)  = <i>XNOR in SOP</i><br>` + 
+    `(2.4) (A'+B).(B'+A)  = <i>XNOR in POS</i><br>`;
+  // Change place holder value for function inputs
+  document.getElementById('fcnStrsValue').placeholder = "Enter fcn using variables (Case-Sensitive!) here! (ie A.B)\n\
+  => OPERATORS: . + ^ A' () = AND, OR, XOR, NOT-A, & SUB-EXPRESSION";
+  document.getElementById('fcnBitsValue').placeholder = 
+    "Enter fcn's bit results here! (ie AND for 2 vars = 0001)\n\
+  => Denote DON'T CARE Bits w/ '2', use spaces/commas for readability (parser ignores)!";
+  // Change place holder value for "generated fcn" text area (becomes editing area in fcn editor)
+  document.getElementById('fcnGeneratedValue').placeholder = "Edit Functions Here!";
+  // Hide "Total Variables", "Fcn Output Bits", & "Variable Names" inputs
+  document.getElementById('dynamicDataInputCSS').innerHTML = 
+    "#varNumber {position:absolute;top:0;visibility:hidden;}" +
+    "#fcnBits {position:absolute;top:0;visibility:hidden;}" + 
+    "#varNames {position:absolute;top:0;visibility:hidden;}" + 
+    "#fcnStrs {position:absolute;top:0;visibility:hidden;}" + 
+    "#defaultBackground {position:absolute;top:0;visibility:hidden;}" + 
+    "#generateBtn_Preclick {position:absolute;top:0;visibility:hidden;}" + 
+    "#generateBtn, #generateBtn_padding {position:absolute;top:0;visibility:hidden;}" + 
+    "#tableMapStdout, #generateBtn_padding {position:absolute;top:0;visibility:hidden;}";
+  document.getElementById('fcnGeneratedValue').cols = 91;
+  // Erase prior Kmap/Ttable output
+  document.getElementById('tableMapStdout').innerHTML = "";
+}
+
+
+function launchKmap_info() {
+  document.getElementById('sectionInfo').innerHTML = 
+    `<big><u>Kmap Input Combinations</u></big>:<br>` +
+    `(1) <i>Total Variables (Blank Kmap)</i><br>` + 
+    `(2) <i>Variable Names + Function Vars</i><br>` + 
+    `(3) <i>Fcn Output Bits</i><span class="blackout df">------------.</span>`;
+  // Change place holder value for function inputs
+  document.getElementById('fcnStrsValue').placeholder = "Enter fcn using variables (Case-Sensitive!) here! (ie A.B)\n\
+  => OPERATORS: . + ^ A' () = AND, OR, XOR, NOT-A, & SUB-EXPRESSION";
+  document.getElementById('fcnBitsValue').placeholder = 
+    "Enter fcn's bit results here! (ie AND for 2 vars = 0001)\n\
+  => Denote DON'T CARE Bits w/ '2', use spaces/commas for readability (parser ignores)!";
+  // Show "Total Variables" input
+  document.getElementById('dynamicDataInputCSS').innerHTML = 
+    "#fcnGeneratedValue {position:absolute;top:0;visibility:hidden;}" + 
+    "#defaultBackground {position:absolute;top:0;visibility:hidden;}" + 
+    "#fcnEditingBoard {position:absolute;top:0;visibility:hidden;}";
+  document.getElementById('fcnGeneratedValue').cols = 1;
+  // Erase prior Kmap/Ttable output
+  document.getElementById('tableMapStdout').innerHTML = "";
+}
+
+
+function launchTtable_info() {
+  document.getElementById('sectionInfo').innerHTML = 
+    `<big><u>Truth Table Input Combinations</u></big>:<br>` +
+    `(1) <i>Total Variables (Blank Table)</i><br>` + 
+    `(2) <i>Variable Names + Function(s') Vars</i><br>` + 
+    `(3) <i>Fcn(s') Output Bits</i><span class="blackout df">----------</span>`;
+  // Change place holder value for function inputs
+  document.getElementById('fcnStrsValue').placeholder = "Enter fcn using variables (Case-Sensitive!) here! (ie A.B)\n\
+  => Denote multiple fcns by bracketing them! (ie [A^B'] [A.B])\n\
+  => OPERATORS: . + ^ A' () = AND, OR, XOR, NOT-A, & SUB-EXPRESSION";
+  document.getElementById('fcnBitsValue').placeholder = 
+    "Enter fcn's bit results here! (ie AND for 2 vars = 0001)\n\
+  => Denote multiple fcns by bracketing them! (ie [1001] [0001])\n\
+  => Denote DON'T CARE Bits w/ '2', use spaces/commas for readability (parser ignores)!";
+  // Show "Total Variables" input
+  document.getElementById('dynamicDataInputCSS').innerHTML = 
+    "#fcnGeneratedValue {position:absolute;top:0;visibility:hidden;}" + 
+    "#defaultBackground {position:absolute;top:0;visibility:hidden;}" + 
+    "#fcnEditingBoard {position:absolute;top:0;visibility:hidden;}";
+  document.getElementById('fcnGeneratedValue').cols = 1;
+  // Erase prior Kmap/Ttable output
+  document.getElementById('tableMapStdout').innerHTML = "";
+}
+
+/******************************************************************************/
+/* MAIN SECTION (TAB) EXECUTION FUNCTION */
+/******************************************************************************/
+
+function launch_state(state) {
+  GLOBAL_TAB_STATE = state;
+  switch(state) {
+    case GLOBAL_STATES.SOP_STATE: launch_SOP_POS_info("SOP"); return;
+    case GLOBAL_STATES.POS_STATE: launch_SOP_POS_info("POS"); return;
+    case GLOBAL_STATES.EDITOR_STATE: launchFcnEditor_info(); return;
+    case GLOBAL_STATES.KMAP_STATE: launchKmap_info(); return;
+    case GLOBAL_STATES.TTABLE_STATE: launchTtable_info(); return;
+  }
+}
+
+/******************************************************************************/
+/* FUNCTION EDITING BUTTON EXECUTION */
+/******************************************************************************/
+
+function complFunc() {
+  document.getElementById('fcnGeneratedValue').value = 
+    compl_fcn(document.getElementById('fcnGeneratedValue').value);
+}
+
+
+function complLiterals() {
+  document.getElementById('fcnGeneratedValue').value = 
+    compl_literals(document.getElementById('fcnGeneratedValue').value);
+}
+
+
+function dualFunc() {
+  document.getElementById('fcnGeneratedValue').value = 
+    dual_fcn(document.getElementById('fcnGeneratedValue').value);
+}
+
+
+function xorSwap() {
+  document.getElementById('fcnGeneratedValue').value = 
+    xor_replace(document.getElementById('fcnGeneratedValue').value);
+}
+
+/******************************************************************************/
+/* GENERATE VARIABLE-BASED FCN HELPER FUNCTIONS & ENUMERATIONS */
+/******************************************************************************/
+
+// Generation Error Enumeration
+const GEN_ERR = {
+  RESERVED_CHAR: -1,
+  DUPLICATE_NAME: -2,
+  FRONT_OF_STR_NEGATION: -3,
+  OPERATOR_NEGATION: -4,
+  MIS_MATCHED_PARENS: -5,
+  NON_RECT_BIT_MATRIX: -6,
+  NON_POW_2_BIT_LENGTH: -7,
+};
+
+
+// Generation Success Enumeration
+const GEN_BUILD = {
+  SUCCESS: 1,
+  FAILURE: 2,
+};
+
+
+// Confirms valid user-fcn-str variable names given
+function validate_user_fcn_variable_names(var_names) {
+  const reserved = "()+.^'!&|[]";
+  for(let i = 0; i < var_names.length; ++i) {
+    
+    // Check for reserved characters
+    for(let ch of reserved) 
+      if(var_names[i].indexOf(ch) > -1) 
+        return GEN_ERR.RESERVED_CHAR;
+    
+    // Check for duplicate names
+    for(let j = i+1; j < var_names.length; ++j)
+      if(var_names[i] === var_names[j])
+        return GEN_ERR.DUPLICATE_NAME;
+  }
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Confirms only var names & reserved chars are in given fcn str
+function confirm_fcn_only_has_known_tokens(fcn, var_names) {
+  let fcn_temp = fcn;
+  const reserved = "()+.^'!&|[]";
+  for(let name of var_names)
+    fcn_temp = fcn_temp.replace(RegExp(name, 'g'), '');
+  fcn_temp = fcn_temp.split('').filter(ch => !reserved.includes(ch)).join('');
+  return (fcn_temp.length === 0); // if is balanced
+}
+
+
+// Confirm each open paren has matching a close paren
+function confirm_matching_open_close_parens(fcn, openParen, closeParen) {
+  let paren_scope = 0, i = 0;
+  while(i < fcn.length) {
+    switch(fcn[i]) {
+      case openParen:  ++paren_scope; break;
+      case closeParen: --paren_scope; break;
+    }
+    if(paren_scope < 0) return false; // if such that: ")(", rather than: "()"
+    ++i;
+  }
+  return (paren_scope === 0); // if is balanced
+}
+
+
+// Map var_names:idx, sort by name length, & replace them in fcn str w/
+// array subscripts (to access each as a bit in the bit array given to the fcn)
+function replace_vars_with_subscripts_in_fcn(fcn, var_names) {
+  // enum names with their idx
+  let ordered_names = [];
+  for(let i = 0; i < var_names.length; ++i)
+    ordered_names.push({'name': var_names[i], 'order': i});
+  
+  // order by name length, preserving original enum'd idx
+  ordered_names.sort((var1, var2) => (var1.name.length > var2.name.length) ? var1 : var2);
+  
+  // replace name instances as array subscripts
+  for(user_var of ordered_names)
+    fcn = fcn.replace(RegExp(user_var.name, 'g'), `__[${user_var.order}]`);
+  return fcn;
+}
+
+
+// Replaces post-negations via apostrophe (in fcn str) 
+// w/ pre-negation of '!' (to become a valid JS fcn)
+function replace_negations_with_NotEq_in_fcn(fcn) {
+  // Return Error if negation at front of string
+  if(fcn[0] == '\'') 
+    return GEN_ERR.FRONT_OF_STR_NEGATION;
+  
+  // Properly negate variables & sub-expressions
+  for(let i = 0; i < fcn.length; ++i) {
+    // Skip if not at negation
+    if(fcn[i] != '\'') continue;
+
+    // Return Error if negated an operator
+    if("(+.^'!&|[]".includes(fcn[i-1])) 
+      return GEN_ERR.OPERATOR_NEGATION;
+    
+    // Negate either sub-expression (ie parens) or a literal
+    let j = i-2; // Behind possible ')'
+    switch(fcn[i-1]) {
+      case ')': // Negating a sub-expression
+        let paren_count = 1;
+        while(j >= 0) {
+          switch(fcn[j]) {
+            case ')': ++paren_count; break;
+            case '(': --paren_count; break;
+          }
+          if(paren_count === 0) {
+            fcn = fcn.erase(i).insert(j,'!');
+            break;
+          }
+          --j;
+        }
+        break;
+
+      default: // Negating a variable
+        ++j; // Move ahead of prior possible (now disproven) ')'
+        while(j >= 0 && "(+.^'!&|[]".includes(fcn[j])) --j;
+        fcn = (j < 0) ? ('!'+fcn.erase(i)) : fcn.erase(i).insert(j,'!');
+        break;
+    }
+  }
+  return fcn;
+}
+
+
+// Create a JS function from the user-defined function string
+function convert_fcn_str_to_JS(fcn, var_names) {
+  // confirm each open paren has a close paren
+  if(!confirm_matching_open_close_parens(fcn,'(',')')) 
+    return GEN_ERR.MIS_MATCHED_PARENS;
+
+  // replace '.' w/ '&', as well as '+' w/ '|':
+  fcn = fcn.replace(/\./g, '&').replace(/\+/g, '|');
+
+  // replace ' negations w/ ! negations
+  fcn = replace_negations_with_NotEq_in_fcn(fcn);
+
+  // replace variable names with array subscripts
+  return (fcn === GEN_ERR.FRONT_OF_STR_NEGATION || fcn === GEN_ERR.OPERATOR_NEGATION)
+          ? fcn 
+          : replace_vars_with_subscripts_in_fcn(fcn, var_names);
+}
+
+/******************************************************************************/
+/* GENERATE VARIABLE-BASED FCN MAIN FUNCTIONS */
+/******************************************************************************/
+
+// Returns user's custom-defn'd var-based fcn str from "Function Vars:" input:
+// (replacing back-ticks w/ apostrophes for negation too)
+function users_var_fcn_str() {
+  return document.getElementById('fcnStrsValue').value
+                 .replace(/`/g, "'").replace(/\s/g, ""); 
+}
+
+
+// Returns array of user-defined variable names
+function users_var_names() {
+  return document.getElementById('varNameValue').value.replace(/\s/g, '')
+                 .split(',').filter(e => e);
+}
+
+
+// Returns array of bits from user-defined bit-based fcn input
+function users_fcn_bit_array() {
+  return document.getElementById('fcnBitsValue').value.replace(/[\s|,]/g, '')
+                 .split('').filter(e => e);
+}
+
+
+// Proper Input fields contain data: now confirm data is correct & either:
+// 1) generate var-based function (if data checks out)
+// 2) log error if data is invalid
+function generate_users_var_fcn(fcn) {
+  // Array of comma-split names
+  let var_names = users_var_names();
+  
+  // Confirm valid variable names
+  switch(validate_user_fcn_variable_names(var_names)) {
+    case GEN_ERR.RESERVED_CHAR: 
+      alert("-:- ERROR: RESERVED CHAR IN VARIABLE NAME -:-" + 
+        "\n => \"Variable Names\" input uses a reserved character!" + 
+        "\n => Variable names MAY NEVER contain:" +
+        "\n    => ().+^'!&|[]");
+      return GEN_BUILD.FAILURE;
+    case GEN_ERR.DUPLICATE_NAME: 
+      alert("-:- ERROR: DUPLICATE VARIABLE NAME  -:-" + 
+        "\n => Name appeared twice in comma-seperated \"Variable Names\"!" + 
+        "\n => Variable names MUST be unique!");
+      return GEN_BUILD.FAILURE;
+  }
+
+  // Confirm function only has known tokens
+  if(!confirm_fcn_only_has_known_tokens(fcn, var_names)) {
+    alert(`-:- ERROR: UNKOWN TOKENS IN FCN "${fcn}" -:-` + 
+      "\n => \"Function Vars\" uses non-reserved & non-var-name token!" +
+      "\n => Only reserved chars & defined variable names make Fcns!");
+    return GEN_BUILD.FAILURE;
+  }
+
+  // Convert function from shorthand notation to JS notation, 
+  // confirming no errors were thrown in the process
+  let result = convert_fcn_str_to_JS(fcn, var_names);
+  switch(result) {
+    case GEN_ERR.MIS_MATCHED_PARENS: 
+      alert(`-:- ERROR: MIS-MATCHED PARENTHESIS IN FCN "${fcn}" -:-` + 
+        "\n => Not every Open Paren '(' had a matching Close Paren ')'!" + 
+        "\n => Parenthesis MUST be balanced in a Fcn!");
+      return GEN_BUILD.FAILURE;
+    case GEN_ERR.FRONT_OF_STR_NEGATION: 
+      alert(`-:- ERROR: FRONT-OF-FCN NEGATION IN "${fcn}" -:-` + 
+        "\n => A negating \" ' \" MUST follow a literal or sub-expression!" + 
+        "\n => As a POSTFIX operator, fcns thus never BEGIN w/ negation!");
+      return GEN_BUILD.FAILURE;
+    case GEN_ERR.OPERATOR_NEGATION: 
+      alert(`-:- ERROR: INVALID TOKEN NEGATION IN FCN "${fcn}" -:-` + 
+        "\n => A negating \" ' \" followed neither literal nor sub-expression!" + 
+        "\n => ONLY literals & sub-expressions may be postfix negated!");
+      return GEN_BUILD.FAILURE;
+  }
+
+  return result;
+}
+
+/******************************************************************************/
+/* GENERATE SOP/POS FROM USER FCNS MAIN FUNCTIONS */
+/******************************************************************************/
+
+// Given fcn str & variable names, generate SOP/POS Form
+function generate_SOP_POS_var_fcn(state) {
+  // Confirm no brackets present for multiple fcns in var-based fcn user input
+  const var_fcn = users_var_fcn_str();
+  if(var_fcn.includes('[') || var_fcn.includes(']')) {
+    alert(`-:- ERROR: BRACKETS IN VAR-BASED FCN INPUT! -:-` + 
+        "\n => ONLY TTable's generator can process multiple fcns!" + 
+        `\n => Input 1 fcn w/o brackets for a ${state}!`);
+    return GEN_BUILD.FAILURE;
+  }
+  // Return if unsuccessful, having logged an error in process
+  const result = generate_users_var_fcn(var_fcn);
+  if(result === GEN_BUILD.FAILURE) return GEN_BUILD.FAILURE;
+
+  // Generate SOP/POS String if successfully made fcn!
+  const var_names = users_var_names();
+  const str = `\nlet var_names = [${var_names.map(e => `"${e}"`)}];` +
+              `\nlet fcn_form = ${(state === "SOP") 
+                  ? `SOP_str(var_names, (__) => ${result})`
+                  : `POS_str(var_names, (__) => ${result})`};` +
+              `\ndocument.getElementById('fcnGeneratedValue').value = fcn_form;`;
+  console.log(`Function Parsed From User Fcn for ${state} Generation: ${result}`);
+
+  // Dynamically evaluate the string as JavaScript code 
+  // => (NOTE: eval is evil, but w/o a server nor sensitive 
+  //     info to target, I'm not losing sleep over this.)
+  eval(str); 
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Given fcn result bits & variable names, generate SOP/POS Form
+function generate_SOP_POS_bit_fcn(state) {
+  let bits = users_fcn_bit_array();
+  if(bits.includes('[') || bits.includes(']')) {
+    alert(`-:- ERROR: BRACKETS IN BIT SEQUENCE! -:-` + 
+        "\n => ONLY TTable's generator can process multiple fcns!" + 
+        `\n => Input 1 bit sequence w/o brackets for a ${state}!`);
+    return GEN_BUILD.FAILURE;
+  }
+  bits = bits.map(e => Number(e));
+  const var_names = users_var_names();
+  if(log2(bits.length) !== var_names.length) {
+    alert(`-:- ERROR: MIS-MATCHING VARIABLE-TO-BITS RATIO! -:-` + 
+        "\n => # of var-names != log2(# of bits)!" + 
+        "\n => Thus each var combo DOES NOT correspond to a given bit!" +
+        "\n => Adjust this for a result (ie bits 0110 & vars A,B match)!");
+      return GEN_BUILD.FAILURE;
+  }
+
+  document.getElementById('fcnGeneratedValue').value = (state === "SOP") ? 
+                                                      SOP_str(var_names,bits) : 
+                                                      POS_str(var_names,bits);
+  return GEN_BUILD.SUCCESS;
+}
+
+/******************************************************************************/
+/* GENERATE KMAP/TTABLE FROM USER FCNS MAIN FUNCTIONS */
+/******************************************************************************/
+
+// Outputs a Kmap or Ttable to the screen & scrolls it into view
+function output_kmap_ttable(data) {
+  document.getElementById('tableMapStdout').innerHTML = data.replace(/\n/g, "<br>");
+}
+
+
+// Returns a string containing an array of user-defined var fcns
+function generate_var_fcn_array_str(fcn) {
+  // Mk array of bracketed functions
+  let fcn_arr = fcn.replace(/\[/g,'').split(']').map(f=>f.trim()).filter(f=>f);
+  let meta_fcn_arr = "[";
+  // Mk str of array of each user-defn'd var fcn in lambda notation
+  for(let f of fcn_arr) {
+    let result = generate_users_var_fcn(f);
+    if(result === GEN_BUILD.FAILURE) return GEN_BUILD.FAILURE;
+    meta_fcn_arr += `(__) => ${result},`;
+  }
+  // Return str w/ last comma replaced w/ a closing bracket
+  return meta_fcn_arr.substr(0, meta_fcn_arr.length-1) + "]";
+}
+
+
+// Returns str w/ a matrix of user-defined bit-outputs for multiple fcns
+function generate_bit_fcn_matrix(bit_str) {
+  // Mk array of bracketed bit outputs
+  const bit_array = bit_str.replace(/\[/g,'').split(']').map(f=>f.trim()).filter(f=>f);
+  // Mk matrix by converting each bracketed output str to an array of bits
+  const bit_matrix = bit_array.map(bits=>bits.split('').filter(e=>e).map(e=>Number(e)));
+  // Confirm bit matrix is rectangular (all bit sequences are of same length)
+  const bit_base_length = bit_matrix[0].length;
+  for(bits of bit_matrix) {
+    if(bits.length !== bit_base_length) {
+      alert(`-:- ERROR: DIFFERENT #'S OF BITS PER BRACKET GROUP! -:-` + 
+          `\n => # of bits in [${bit_matrix[0]}] != [${bits}]` + 
+          "\n => Hence Truth Table can NOT be derived (ambiguous length)!" +
+          "\n => ALL BRACKETS must have same power-of-2 # of bits!");
+      return GEN_ERR.NON_RECT_BIT_MATRIX;
+    }
+    if(log2(bits.length) === BAD_LOG2_ARG) {
+      alert(`-:- ERROR: NON-POWER-OF-2 # OF BITS! -:-` + 
+          `\n => # of bits in [${bits}] != a power of 2!` + 
+          "\n => Hence is NOT a valid Truth Table fcn output!" +
+          "\n => # of bits MUST be a power-of-2 for a Truth Table!");
+      return GEN_ERR.NON_POW_2_BIT_LENGTH;
+    }
+  }
+  return bit_matrix;
+}
+
+
+// Generates either a blank Kmap or Truth Table, as per the state
+function generate_blank_KMAP_TTABLE(state) {
+  const totalVars = Number(document.getElementById('varNumberValue').value);
+  let result = (state === "Kmap") ? Kmap_str(totalVars) : TruthTable_str(totalVars);
+  output_kmap_ttable(result);
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Generates a Kmap from a variable-based fcn
+function generate_KMAP_var_fcn() {
+  // Confirm no brackets present for multiple fcns in var-based fcn user input
+  const total_vars = users_var_names().length;
+  const var_fcn = users_var_fcn_str();
+  if(var_fcn.includes('[') || var_fcn.includes(']')) {
+    alert(`-:- ERROR: BRACKETS IN VAR-BASED FCN INPUT! -:-` + 
+        "\n => ONLY TTable's generator can process multiple fcns!" + 
+        `\n => Input 1 fcn w/o brackets for a Kmap!`);
+    return GEN_BUILD.FAILURE;
+  }
+  // Return if unsuccessful, having logged an error in process
+  const result = generate_users_var_fcn(var_fcn);
+  if(result === GEN_BUILD.FAILURE) return GEN_BUILD.FAILURE;
+  // Create string invoking "Kmap_str" w/ dynamically created (& var-based) fcn
+  const str = `\ndocument.getElementById('tableMapStdout').innerHTML` + 
+              ` = Kmap_str(${total_vars}, (__) => ${result}).replace(/\\n/g, "<br>");` +
+              `\ndocument.getElementById('tableMapStdout').scrollIntoView();`;
+  console.log(`Function Parsed From User Fcn for Kmap Generation: ${result}`);
+  // Dynamically evaluate the string as JavaScript code 
+  // => (NOTE: eval is evil, but w/o a server nor sensitive 
+  //     info to target, I'm not losing sleep over this.)
+  eval(str); 
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Generates a Kmap from desired bit outputs of a fcn
+function generate_KMAP_bit_fcn() {
+  let bits = users_fcn_bit_array();
+  if(bits.includes('[') || bits.includes(']')) {
+    alert(`-:- ERROR: BRACKETS IN BIT SEQUENCE! -:-` + 
+        "\n => ONLY TTable's generator can process multiple fcns!" + 
+        `\n => Input 1 bit sequence w/o brackets for a Kmap!`);
+    return GEN_BUILD.FAILURE;
+  }
+  bits = bits.map(e => Number(e));
+  if(log2(bits.length) === BAD_LOG2_ARG) {
+    alert(`-:- ERROR: NON-POWER-OF-2 # OF BITS! -:-` + 
+          `\n => # of bits in [${bits}] != a power of 2!` + 
+          "\n => Hence is NOT a graphable Kmap fcn output!" +
+          "\n => # of bits MUST be a power-of-2 for a Kmap!");
+    return GEN_BUILD.FAILURE;
+  }
+  output_kmap_ttable(Kmap_str(bits));
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Generates a Truth Table from a variable-based fcn(s)
+function generate_TTABLE_var_fcn() {
+  let fcn = users_var_fcn_str();
+  if(!confirm_matching_open_close_parens(fcn,'[',']')) {
+    alert(`-:- ERROR: MIS-MATCHED BRACKETS IN FCN "${fcn}" -:-` + 
+        "\n => Not every Open Bracket '[' had matching Close Bracket ']'!" + 
+        "\n => Brackets MUST be balanced for multiple Fcns!");
+    return GEN_BUILD.FAILURE;
+  }
+  const total_vars = users_var_names().length;
+
+  // Mk Truth Table w/ array of fcns OR solo fcn
+  if(fcn.includes("[")) {
+    // Generate a function string array to run through a truth table
+    const meta_fcn_arr = generate_var_fcn_array_str(fcn);
+    if(meta_fcn_arr === GEN_BUILD.FAILURE) return GEN_BUILD.FAILURE;
+    // Create string invoking "TruthTable_str" w/ dynamically created (& var-based) fcn
+    const str = `\ndocument.getElementById('tableMapStdout').innerHTML` + 
+                ` = TruthTable_str(${total_vars}, ${meta_fcn_arr}).replace(/\\n/g, "<br>");` +
+                `\ndocument.getElementById('tableMapStdout').scrollIntoView();`;
+    console.log(`Function Array Parsed From User Fcn for Truth Table Generation: ${meta_fcn_arr}`);
+    // Dynamically evaluate the string as JavaScript code 
+    // => (NOTE: eval is evil, but w/o a server nor sensitive 
+    //     info to target, I'm not losing sleep over this.)
+    eval(str); 
+  } else {
+    // Generate a solo function string to run through a truth table
+    const result = generate_users_var_fcn(fcn);
+    if(result === GEN_BUILD.FAILURE) return GEN_BUILD.FAILURE;
+    // Create string invoking "TruthTable_str" w/ dynamically created (& var-based) fcn
+    const str = `\ndocument.getElementById('tableMapStdout').innerHTML` + 
+                ` = TruthTable_str(${total_vars}, (__) => ${result}).replace(/\\n/g, "<br>");` +
+                `\ndocument.getElementById('tableMapStdout').scrollIntoView();`;
+    console.log(`Function Parsed From User Fcn for  Truth Table Generation: ${result}`);
+    // Dynamically evaluate the string as JavaScript code 
+    // => (NOTE: eval is evil, but w/o a server nor sensitive 
+    //     info to target, I'm not losing sleep over this.)
+    eval(str); 
+  }
+  return GEN_BUILD.SUCCESS;
+}
+
+
+// Generates a Truth Table from desired bit outputs of 1 (or more) fcn(s)
+function generate_TTABLE_bit_fcn() {
+  let bit_str = document.getElementById('fcnBitsValue').value
+                        .replace(/[\s|,]/g, '');
+  if(!confirm_matching_open_close_parens(bit_str,'[',']')) {
+    alert(`-:- ERROR: MIS-MATCHED BRACKETS FOR BITS [${bit_str}] -:-` + 
+        "\n => Not every Open Bracket '[' had matching Close Bracket ']'!" + 
+        "\n => Brackets MUST be balanced for multiple Bit Sequences!");
+    return GEN_BUILD.FAILURE;
+  }
+  // Mk Truth Table w/ array of fcn bit outputs OR solo fcn bit output sequence
+  if(bit_str.includes("[")) {
+    const bits_matrix = generate_bit_fcn_matrix(bit_str);
+    if(bits_matrix === GEN_ERR.NON_RECT_BIT_MATRIX || 
+       bits_matrix === GEN_ERR.NON_POW_2_BIT_LENGTH) return GEN_BUILD.FAILURE;
+    output_kmap_ttable(TruthTable_str(bits_matrix));
+  } else {
+    const bits = bit_str.split('').filter(e => e).map(e => Number(e));
+    if(log2(bits.length) === BAD_LOG2_ARG) {
+      alert(`-:- ERROR: NON-POWER-OF-2 # OF BITS! -:-` + 
+          `\n => # of bits in [${bits}] != a power of 2!` + 
+          "\n => Hence is NOT a Truth Table fcn output!" +
+          "\n => # of bits MUST be a power-of-2 for a Truth Table!");
+        return GEN_BUILD.FAILURE;
+    }
+    output_kmap_ttable(TruthTable_str(bits));
+  }
+  return GEN_BUILD.SUCCESS;
+}
+
+/******************************************************************************/
+/* GENERAL GENERATION ENUMERATIONS & HELPER FUNCTION */
+/******************************************************************************/
+
+// Error Enumerations (missing/ambiguous inputs)
+const ERR = {
+  // SOP/POS GENERATION
+  NO_VAR_NAMES: -1,
+  NO_FCN_OR_FCN_RESULTS: -2,
+  AMBIGUOUS_SOP_POS_GENERATION: -3,
+  // KMAP/TTABLE GENERATION
+  NO_INPUTS: -4,
+  INCOMPLETE_VAR_FCN_GENERATION: -5,
+  AMBIGUOUS_ALL_PRESENT: -6,
+  AMBIGUOUS_BLANK_VAR_FCN: -7,
+  AMBIGUOUS_BLANK_BIT_FCN: -8,
+  AMBIGUOUS_VAR_BIT_FCN: -9,
+  AMBIGUOUS_ALL_PRESENT_INCOMPLETE_VAR_FCN: -10,
+  AMBIGUOUS_BLANK_VAR_FCN_INCOMPLETE_VAR_FCN: -11,
+  AMBIGUOUS_VAR_BIT_FCN_INCOMPLETE_VAR_FCN: -12,
+};
+
+
+// Build Enumerations (valid input sequence)
+const BUILD = {
+  SOP_POS_FCN_STR: 1,
+  SOP_POS_FCN_BITS: 2,
+  BLANK_MAP_TABLE: 3,
+  VAR_FCN_MAP_TABLE: 4,
+  BIT_FCN_MAP_TABLE: 5,
+};
+
+
+// Returns whether an HTML element's value length is 0 (unfilled)
+function empty_id(tag_id) {
+  return document.getElementById(tag_id).value.trim().length === 0;
+}
+
+/******************************************************************************/
+/* GENERATE SOP/POS HELPER FUNCTIONS */
+/******************************************************************************/
+
+// Checks whether SOP/POS tab has enough user-filled inputs to generate fcn
+function check_SOP_POS_data_inputs() {
+  // Confirm no missing variable names, fcn strs or bits, or ambiguous calls
+  if(empty_id('varNameValue'))
+    return ERR.NO_VAR_NAMES;
+  if(empty_id('fcnStrsValue') && empty_id('fcnBitsValue'))
+    return ERR.NO_FCN_OR_FCN_RESULTS;
+  if(!empty_id('fcnStrsValue') && !empty_id('fcnBitsValue'))
+    return ERR.AMBIGUOUS_SOP_POS_GENERATION;
+  
+  // Return which SOP/POS input combinations to use to generate SOP/POS
+  if(!empty_id('fcnStrsValue'))
+    return BUILD.SOP_POS_FCN_STR;
+  return BUILD.SOP_POS_FCN_BITS; // only possible remaining outcome
+}
+
+
+// handles SOP/POS state upon user's generation
+function handleSopPosState(state) {
+  switch(check_SOP_POS_data_inputs()) {
+    case ERR.NO_VAR_NAMES:
+      alert("-:- ERROR: NO VARIABLE NAMES -:-" +
+        `\n => Variable names are MANDATORY for a ${state}!` +
+        `\n => Needed to assign labels to literals in ${state} output!`);
+      return GEN_BUILD.FAILURE;
+    
+    case ERR.NO_FCN_OR_FCN_RESULTS:
+      alert("-:- ERROR: NO FUNCTION -:-" +
+        `\n => Can't generate ${state} of a non-existent fcn!` +
+        `\n => Either input \"Function Vars\" or \"Fcn Output Bits\"!`);
+      return GEN_BUILD.FAILURE;
+    
+    case ERR.AMBIGUOUS_SOP_POS_GENERATION:
+      switch(prompt(`-:- ERROR: AMBIGUOUS ${state} FCN GENERATION -:-` +
+        `\n => Make ${state} from \"Function Vars\" or \"Fcn Output Bits\"?` +
+        "\n => Enter 1 for Vars, 2 for Bits, & 3 for None:").trim()) {
+        case '1': return generate_SOP_POS_var_fcn(state);
+        case '2': return generate_SOP_POS_bit_fcn(state);
+        case '3': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating neither.'); return GEN_BUILD.FAILURE;
+      }
+    
+    case BUILD.SOP_POS_FCN_STR: return generate_SOP_POS_var_fcn(state);
+    
+    case BUILD.SOP_POS_FCN_BITS: return generate_SOP_POS_bit_fcn(state);
+  }
+}
+
+/******************************************************************************/
+/* GENERATE KMAP/TTABLE HELPER FUNCTIONS */
+/******************************************************************************/
+
+// Checks whether KMAP/TTABLE tab has enough user-filled inputs to generate fcn
+function check_KMAP_TTABLE_data_inputs() {
+  const empty_state = [
+    Number(empty_id('varNumberValue')), Number(empty_id('varNameValue')), 
+    Number(empty_id('fcnStrsValue')),   Number(empty_id('fcnBitsValue'))
+  ];
+  // Bit pack the 4 input states as the 4-bit idx of a error/success hash table
+  const input_state = (empty_state[0]<<3)|(empty_state[1]<<2)|
+                      (empty_state[2]<<1)|(empty_state[3]);
+  const input_status = 
+  [
+    ERR.AMBIGUOUS_ALL_PRESENT, 
+    ERR.AMBIGUOUS_BLANK_VAR_FCN, 
+    ERR.AMBIGUOUS_ALL_PRESENT_INCOMPLETE_VAR_FCN, 
+    ERR.AMBIGUOUS_BLANK_VAR_FCN_INCOMPLETE_VAR_FCN,
+    ERR.AMBIGUOUS_ALL_PRESENT_INCOMPLETE_VAR_FCN,
+    ERR.AMBIGUOUS_BLANK_VAR_FCN_INCOMPLETE_VAR_FCN,
+    ERR.AMBIGUOUS_BLANK_BIT_FCN,
+    BUILD.BLANK_MAP_TABLE,
+    ERR.AMBIGUOUS_VAR_BIT_FCN,
+    BUILD.VAR_FCN_MAP_TABLE,
+    ERR.AMBIGUOUS_VAR_BIT_FCN_INCOMPLETE_VAR_FCN,
+    ERR.INCOMPLETE_VAR_FCN_GENERATION,
+    ERR.AMBIGUOUS_VAR_BIT_FCN_INCOMPLETE_VAR_FCN,
+    ERR.INCOMPLETE_VAR_FCN_GENERATION,
+    BUILD.BIT_FCN_MAP_TABLE,
+    ERR.NO_INPUTS,
+  ];
+
+  return input_status[input_state];
+}
+
+
+// Handles KMAP/TTABLE state upon user's generation
+function handleKmapTtableState(state) {
+  const generate_vars  = (state === "Kmap") ? generate_KMAP_var_fcn : generate_TTABLE_var_fcn;
+  const generate_bits  = (state === "Kmap") ? generate_KMAP_bit_fcn : generate_TTABLE_bit_fcn;
+  switch(check_KMAP_TTABLE_data_inputs()) {
+    case ERR.NO_INPUTS:
+      alert("-:- ERROR: NO DATA -:-" +
+        `\n => No data given for a ${state}!` +
+        `\n => Input 1 of the 3 Green ways listed for a ${state}!`);
+      return GEN_BUILD.FAILURE;
+    
+    case ERR.INCOMPLETE_VAR_FCN_GENERATION:
+      alert("-:- ERROR: INCOMPLETE VARIABLE FCN GENERATION -:-" +
+        `\n => Missing either "Variable Names" or "Function Vars"!` +
+        `\n => Need BOTH for a ${state} from a variable-based fcn!`);
+      return GEN_BUILD.FAILURE;
+    
+    case ERR.AMBIGUOUS_ALL_PRESENT:
+      switch(prompt(`-:- ERROR: AMBIGUOUS ${state} GENERATION -:-` +
+        `\n => Make blank, \"Function Vars\", or \"Fcn Output Bits\" ${state}?` +
+        "\n => Enter 1 for blank, 2 for Vars, 3 for Bits, & 4 for None:").trim()) {
+        case '1': return generate_blank_KMAP_TTABLE(state);
+        case '2': return generate_vars();
+        case '3': return generate_bits();
+        case '4': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating none.'); return GEN_BUILD.FAILURE;
+      }
+
+    case ERR.AMBIGUOUS_ALL_PRESENT_INCOMPLETE_VAR_FCN:
+      switch(prompt("-:- ERROR: AMBIGUOUS BLANK/BITS GENERATION -:-" +
+        `\n => (insufficient data for generation w/ variable-based fcn)` +
+        `\n => Make a blank ${state}, or from \"Fcn Output Bits\"?` +
+        "\n => Enter 1 for blank, 2 for Bits, & 3 for None:").trim()) {
+        case '1': return generate_blank_KMAP_TTABLE(state);
+        case '2': return generate_bits();
+        case '3': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating neither.'); return GEN_BUILD.FAILURE;
+      }
+
+    case ERR.AMBIGUOUS_BLANK_VAR_FCN:
+      switch(prompt("-:- ERROR: AMBIGUOUS BLANK/VARS GENERATION -:-" +
+        `\n => Make a blank ${state}, or from \"Function Vars\"?` +
+        "\n => Enter 1 for blank, 2 for Vars, & 3 for None:").trim()) {
+        case '1': return generate_blank_KMAP_TTABLE(state);
+        case '2': return generate_vars();
+        case '3': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating neither.'); return GEN_BUILD.FAILURE;
+      }
+
+    case ERR.AMBIGUOUS_BLANK_VAR_FCN_INCOMPLETE_VAR_FCN:
+      alert(`-:- WARNING: MAKING BLANK ${state} W/ "Total Variables" -:-` +
+        `\n => (insufficient data for generation w/ variable-based fcn)`);
+      return generate_blank_KMAP_TTABLE(state);
+
+    case ERR.AMBIGUOUS_VAR_BIT_FCN:
+      switch(prompt("-:- ERROR: AMBIGUOUS VARS/BITS GENERATION -:-" +
+        `\n => Make ${state} from \"Function Vars\", or \"Fcn Output Bits\"?` +
+        "\n => Enter 1 for Vars, 2 for Bits, & 3 for None:").trim()) {
+        case '1': return generate_vars();
+        case '2': return generate_bits();
+        case '3': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating neither.'); return GEN_BUILD.FAILURE;
+      }
+
+    case ERR.AMBIGUOUS_VAR_BIT_FCN_INCOMPLETE_VAR_FCN:
+      // if # of var names filled === log2 of # of bits input, suppress error
+      // as practially 99% certain user is just giving inconsequential extra 
+      // data accidentally (happens when coming directly from SOP/POS input)
+      let bit_array = users_fcn_bit_array();
+      if(bit_array.includes('[') && bit_array.includes(']') && state!=="Kmap" && 
+        bit_array.indexOf('[') < bit_array.indexOf(']')) {
+          bit_array = bit_array.slice(bit_array.indexOf('[')+1, bit_array.indexOf(']'));
+          if(users_var_names().length === log2(bit_array.length)) 
+            return generate_bits();
+      } else if(!bit_array.includes('[') && !bit_array.includes(']') && 
+        users_var_names().length === log2(bit_array.length)){
+          return generate_bits();
+      }
+      // Ambiguous input warning: not an error b/c can still only generate 1
+      // kind of "state", YET 1/2 of var-fcn-based generation data WAS input,
+      // so warning user that the generator is ignoring the invalid var-fcn data
+      alert(`-:- WARNING: GENERATING ${state} FROM "Fcn Output Bits" -:-` +
+        `\n => (insufficient data for generation w/ variable-based fcn)`);
+      return generate_bits();
+
+    case ERR.AMBIGUOUS_BLANK_BIT_FCN:
+      switch(prompt("-:- ERROR: AMBIGUOUS BLANK/BITS GENERATION -:-" +
+        `\n => Make a blank ${state}, or from \"Fcn Output Bits\"?` +
+        "\n => Enter 1 for blank, 2 for Bits, & 3 for None:").trim()) {
+        case '1': return generate_blank_KMAP_TTABLE(state);
+        case '2': return generate_bits();
+        case '3': return GEN_BUILD.FAILURE;
+        default: alert('Invalid Entry! Generating neither.'); return GEN_BUILD.FAILURE;
+      }
+       
+    case BUILD.BLANK_MAP_TABLE: return generate_blank_KMAP_TTABLE(state);
+
+    case BUILD.VAR_FCN_MAP_TABLE: return generate_vars();
+    
+    case BUILD.BIT_FCN_MAP_TABLE: return generate_bits();
+  }
+}
+
+/******************************************************************************/
+/* GENERATE MAIN FUNCTION */
+/******************************************************************************/
+
+// Checks which data inputs have been filled by user & delegates which 
+// generation function to instantiate as per the current "GLOBAL_TAB_STATE"
+function generateFunc() {
+  let generation_build_status = GEN_BUILD.FAILURE;
+
+  switch(GLOBAL_TAB_STATE) {
+    case GLOBAL_STATES.SOP_STATE: 
+      generation_build_status = handleSopPosState("SOP"); 
+      break;
+    case GLOBAL_STATES.POS_STATE: 
+      generation_build_status = handleSopPosState("POS"); 
+      break;
+    case GLOBAL_STATES.KMAP_STATE: 
+      generation_build_status = handleKmapTtableState("Kmap"); 
+      break;
+    case GLOBAL_STATES.TTABLE_STATE: 
+      generation_build_status = handleKmapTtableState("Truth Table"); 
+      break;
+  }
+
+  if(generation_build_status === GEN_BUILD.SUCCESS) {
+    if(GLOBAL_TAB_STATE !== GLOBAL_STATES.KMAP_STATE && GLOBAL_TAB_STATE !== GLOBAL_STATES.TTABLE_STATE)
+      document.getElementById('dynamicDataInputCSS').innerHTML = 
+        document.getElementById('dynamicDataInputCSS').innerHTML.replace( 
+          "#fcnEditingBoard {position:absolute;top:0;visibility:hidden;}", 
+          "#generateBtn_Preclick {position:absolute;top:0;visibility:hidden;}" 
+        ), document.getElementById('fcnGeneratedValue').scrollIntoView();
+    else
+      document.getElementById('dynamicDataInputCSS').innerHTML = 
+        document.getElementById('dynamicDataInputCSS').innerHTML.replace( 
+          "#fcnEditingBoard {position:absolute;top:0;visibility:hidden;}", 
+          "#fcnEditingBtns {position:absolute;top:0;visibility:hidden;}" 
+        ), document.getElementById('tableMapStdout').scrollIntoView();
+  }
+}
+</script>
+
+</body>
+</html>
