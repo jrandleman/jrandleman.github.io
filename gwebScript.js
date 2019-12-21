@@ -169,6 +169,10 @@ var num2Text = "THE NUMBERS";
 var num2Len = num2Text.length;
 const num2FilledArr = randTitle().split('').splice(0,num2Len);
 
+var kCreateText = "KMAP CREATION";
+var kCreateLen = kCreateText.length;
+const kCreateFilledArr = randTitle().split('').splice(0,kCreateLen);
+
 var tesText = "TESSELLATION";
 var tesLen = tesText.length;
 const tesFilledArr = randTitle().split('').splice(0,tesLen);
@@ -218,6 +222,7 @@ function typeWriter(ch) {
     var sletter = sText.charAt(ch);
     var numletter = numText.charAt(ch);
     var num2letter = num2Text.charAt(ch);
+    var kCreateletter = kCreateText.charAt(ch);
     var tesletter = tesText.charAt(ch);
     var prcletter = prcText.charAt(ch);
     var nnpletter = nnpText.charAt(ch);
@@ -231,6 +236,7 @@ function typeWriter(ch) {
     sFilledArr.splice(ch,1,sletter);
     numFilledArr.splice(ch,1,numletter);
     num2FilledArr.splice(ch,1,num2letter);
+    kCreateFilledArr.splice(ch,1,kCreateletter);
     tesFilledArr.splice(ch,1,tesletter);
     prcFilledArr.splice(ch,1,prcletter);
     nnpFilledArr.splice(ch,1,nnpletter);
@@ -243,7 +249,8 @@ function typeWriter(ch) {
     document.getElementById("dId").innerHTML = dFilledArr.join('');
     document.getElementById("sId").innerHTML = sFilledArr.join('');
     document.getElementById("numId1").innerHTML = numFilledArr.join('');
-    document.getElementById("numId2").innerHTML = numFilledArr.join('');
+    document.getElementById("numId2").innerHTML = num2FilledArr.join('');
+    document.getElementById("numId6").innerHTML = kCreateFilledArr.join('');
     document.getElementById("numId3").innerHTML = num2FilledArr.join('');
     document.getElementById("numId4").innerHTML = tesFilledArr.join('');
     document.getElementById("numIdS").innerHTML = numFilledArr.join('');
