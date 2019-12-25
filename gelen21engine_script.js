@@ -5,10 +5,22 @@ const DONT_CARE_BIT = 2;
 const BLANK_BIT = 3;
 
 
-// Only push unique values, erase an elt, & "length == 0" abbreviation
-Array.prototype.insert = function(e) {if(!this.includes(e)) this.push(e);};
-Array.prototype.erase = function(e) {return this.filter(elt => elt !== e);};
+// Only push unique values, erase an elt, "length == 0" abbreviation,
+// and erase all elts WHILE RETAINING CURRENT REFERENCE.
+// => NOTE: .sort() default sorts LEXOGRAPHICALLY (as if data were strings)
+//          IE, sorting in ASCENDING order, 25 would be AFTER 100 since 2 > 1.
+//          Since Brendan Eich apparently was too cool to use HIS OWN TYPE
+//          CHECKING MECHANISM TO SORT ARRAYS BY TYPES APPROPRIATELY we have
+//          to pass our own function to sort contents numerically.
+Array.prototype.insert = function(e) {if(!this.includes(e)) this.push(e); this.sort((a,b)=>a-b); };
+Array.prototype.erase = function(e) {return this.filter(elt => elt !== e); };
 Array.prototype.empty = function() {return this.length === 0;};
+Array.prototype.clear = function() {this.length = 0;};
+
+// Enables multi-dimensional copy-by-value for arrays of arbitrary depth.
+Array.prototype.deepCopy = function() {
+  return this.map(e => Array.isArray(e) ? e.deepCopy() : e);
+};
 
 
 // Reverse string, insert/erase/replace at idx, & "length == 0" abbreviation
@@ -19,7 +31,7 @@ String.prototype.insert = function(idx,ch) { // INSERT BEFORE "idx"
 String.prototype.erase = function(idx,ch) {  // ERASE AT "idx"
   return this.slice(0,idx)+this.slice(idx+1);
 };
-String.prototype.replaceAt = function(idx,ch) { // INSERT AFTER "idx"
+String.prototype.replaceAt = function(idx,ch) { // INSERT AT "idx"
   return this.slice(0,idx)+ch+this.slice(idx+1);
 };
 String.prototype.empty = function() {return this.length === 0;};
@@ -30,7 +42,7 @@ String.prototype.empty = function() {return this.length === 0;};
 
 // returns log2(n), OR -1 if n != perfect power of 2
 function log2(num) {
-  let result = Math.log2(num);
+  const result = Math.log2(num);
   return (result<0 || result%1!==0) ? BAD_LOG2_ARG : result;
 }
 
@@ -64,21 +76,12 @@ function find_adjacent_hypercube_points(D, original_D, P, original_P, points_con
   if(D === 0 || P > (1 << original_D)) return;
   const half_of_dimension = (1 << (D-1));
   if(P >= half_of_dimension) {
-    points_connected_to_P.push(original_P-half_of_dimension);
+    points_connected_to_P.insert(original_P-half_of_dimension);
     find_adjacent_hypercube_points(D-1, original_D, P-half_of_dimension, original_P, points_connected_to_P);
   } else {
-    points_connected_to_P.push(original_P+half_of_dimension);
+    points_connected_to_P.insert(original_P+half_of_dimension);
     find_adjacent_hypercube_points(D-1, original_D, P, original_P, points_connected_to_P);
   }
-}
-
-
-// Returns array of points connected to point P in hypercube of dimension D
-// Time & Space Complexity: O(D)
-function adjacent_hypercube_points(D, P) {
-  let connected_points = [];
-  find_adjacent_hypercube_points(D, D, P, P, connected_points);
-  return connected_points;
 }
 
 
@@ -87,8 +90,11 @@ function adjacent_hypercube_points(D, P) {
 // Time & Space Complexity: O(D*2^D)
 function dimension_adjacency_matrix(D) {
   let adj_matrix = [];
-  for(let P = 0, total_P = (1 << D); P < total_P; ++P)
-    adj_matrix.push(adjacent_hypercube_points(D,P).sort());
+  for(let P = 0, total_P = (1 << D); P < total_P; ++P) {
+    let connected_points = [];
+    find_adjacent_hypercube_points(D, D, P, P, connected_points);
+    adj_matrix.push(connected_points);
+  }
   return adj_matrix;
 }
 
@@ -106,48 +112,6 @@ function points_are_within_D(D, points) {
   return true;
 }
 
-
-// Confirms array "points" forms a hypercube w/in another hypercube dimension's 
-//   adjacency matrix.
-//   => HYPERCUBE DEFN: 2^n points with n edges btwn one another.
-// Time  Complexity: O(points.length^2)
-// Space Complexity: O(1)
-function adj_matrix_contains_hypercube(adj_matrix, points) {
-  const edges_btwn_pts = log2(points.length); // sought subdimension
-  for(let pt of points) {
-    let edge_counter = 0;
-    for(let pt2 of points) if(adj_matrix[pt].includes(pt2)) ++edge_counter;
-    if(edge_counter !== edges_btwn_pts) return false;
-  }
-  return true;
-}
-
-/******************************************************************************
-* COMBINATIONS HELPER FUNCTIONS
-******************************************************************************/
-
-// Recursive fcn to mk a combinations array matrix for "combinations" fcn below
-function find_combinations(r, begin, end, group_n, seen, combo_matrix) {
-  for(let i = begin; i !== end; ++i) {
-    seen.insert(group_n[i]);
-    switch(r) {
-      case 1:  combo_matrix.insert(seen); break;
-      default: find_combinations(r-1, i+1, end, group_n, seen, combo_matrix);
-    } 
-    seen = seen.erase(group_n[i]);
-  }
-}
-
-
-// Returns a matrix of possible combinations length r w/in array group_n
-// NOTE: r == group length w/in set "group_n" we are finding combos for
-function combinations(r, group_n){
-  let combo_matrix = [], seen = [];
-  if(r > group_n.length) return [];
-  find_combinations(r, 0, group_n.length, group_n, seen, combo_matrix);
-  return combo_matrix;
-}
-
 /******************************************************************************
 * NESTED POINT-OVERLAPPING HYPERCUBES HELPER FUNCTIONS
 ******************************************************************************/
@@ -163,13 +127,6 @@ function convert_fcn_to_point_set(function_bit_values, sought_bit, need_to_cover
 }
 
 
-// Confirms given arrays are disjoint
-function sets_are_disjoint(set1, set2) {
-  for(let elt of set1) if(set2.includes(elt)) return false;
-  return true;
-}
-
-
 // Returns greatest hypercube possible w/ "total_vertices" # of vertices
 function max_formable_hypercube(max_inner_hypercube_vertices, total_vertices) {
   while(max_inner_hypercube_vertices > total_vertices) 
@@ -177,91 +134,327 @@ function max_formable_hypercube(max_inner_hypercube_vertices, total_vertices) {
   return log2(max_inner_hypercube_vertices);
 }
 
+/******************************************************************************
+* EPI PARSING FROM PI MATRIX (FIND FEWEST LARGEST PI'S TO COVER ALL NEEDED PTS)
+******************************************************************************/
 
-// Returns array of matrices w/ possible hypercube coordinate arrangements
-// for the given "points" set
-function possible_hypercube_combinations(max_inner_hypercube, points) {
-  let hypercube_combos = [];
-  for(let dim = max_inner_hypercube; dim >= 0; --dim) {
-    hypercube_combos.push(combinations((1 << dim), points));
-    if(dim === 0) return hypercube_combos;
+// Return whether NOT all rows in "PI_matrix" are empty
+function PI_matrix_is_not_empty(PI_matrix){
+  for(let PI_sets of PI_matrix) if(!PI_sets.empty()) return true;
+  return false;
+}
+
+
+// Find idx of smallest "values" list (ie the set of PI's containing the least 
+// frequent desired elt)
+function idx_of_row_with_least_values_in_PI_matrix(PI_matrix) {
+  let first_non_empty_row = true;
+  let shortest_row_idx = 0, count = 0;
+  for(let PI_set of PI_matrix) {
+    if(!PI_set.empty() && 
+    (first_non_empty_row || PI_set.length<PI_matrix[shortest_row_idx].length)){
+      shortest_row_idx = count;
+      first_non_empty_row = false;
+    }
+    ++count;
   }
-  return hypercube_combos;
+  return shortest_row_idx;
+}
+
+
+// Rm excess PI's w/ points in the current "epi" from the "PI_matrix"
+function rm_redundant_PIs_from_PI_matrix(epi, PI_matrix, desired_keys) {
+  // erase rows for epi's points
+  const total_desired = desired_keys.length;
+  for(let desired_point_key of epi) {
+    let i = 0;
+    while(i < total_desired && desired_keys[i] !== desired_point_key) ++i;
+    if(i < total_desired) PI_matrix[i].clear();
+  }
+  
+  // erase redundant rows for epi's points
+  const n = PI_matrix.length;
+  for(let i = 0; i < n; ++i) {
+    // no redundant sets if only 1 or 0 sets remaining in a list of sets 
+    // containing a desired point outside of the current "epi"
+    if(PI_matrix[i].length < 2) continue;
+
+    for(let PI of PI_matrix[i]) {
+      if(PI_matrix[i].length < 2) break; 
+      for(let point of epi)
+        if(PI.includes(point)) { 
+          PI_matrix[i] = PI_matrix[i].erase(PI);
+          break;
+        }
+    }
+  }
+}
+
+
+// Rm all non-EPIs from "cube_matrix" of cube-PI's
+function rm_non_EPIs_from_PI_cube_matrix(cube_matrix, need_to_cover) {
+  let desired_keys = [];
+
+  // Put intersection of "need_to_cover" & "cube_matrix" in "desired_keys".
+  // These are the elts the EPI set must contain.
+  for(let cube of cube_matrix)
+    for(let point of cube)
+      if(need_to_cover.includes(point))
+        desired_keys.insert(point);
+
+
+  const total_desired = desired_keys.length;
+
+  // Idxs = "keys", where "key" = elt in "desired_keys".
+  //   => IE: if desired_keys[0] = 7, 7 = key for PI_matrix[0]
+  // Matrices of sets (matrices of PI's) = "values" list, where each set 
+  //   (PI) in "values" contains its "key" as an elt.
+  let PI_matrix = [];
+
+  // Initialize PI_matrix according to the parameters above its definition
+  for(let i = 0; i < total_desired; ++i) {
+    PI_matrix.push([]);
+    for(let cube of cube_matrix)
+      if(cube.includes(desired_keys[i]))
+        PI_matrix[i].insert(cube.deepCopy());
+  }
+
+  cube_matrix.clear(); // will hold the set of EPI's
+
+  // Parse EPIs from w/in PI_matrix
+  while(PI_matrix_is_not_empty(PI_matrix)) {
+
+    // Find idx of smallest "values" list (ie the set of PI's 
+    // containing the least frequent desired elt)
+    let shortest_row_idx = idx_of_row_with_least_values_in_PI_matrix(PI_matrix);
+
+    // Selected an epi (could be any in "PI_matrix[shortest_row_idx]" set)
+    let epi = PI_matrix[shortest_row_idx][0].deepCopy();
+
+    // Eliminate sets of PI's containing any points from the current "epi" 
+    //   (given they're now covered), SO LONG as such a set is not the ONLY set
+    //   left in a row's "values" list (otherwise would lose all sets
+    //   containing the row's desired elt "key").
+    // Furthermore, also eliminate all rows w/ points in "epi" as their key:
+    //   since "epi" already covers the point, no need for a list of other sets 
+    //   containing it.
+    rm_redundant_PIs_from_PI_matrix(epi,PI_matrix,desired_keys);
+    cube_matrix.insert(epi.deepCopy());
+  }
 }
 
 /******************************************************************************
-* ESSENTIAL PRIME IMPLICANTS FROM PI'S PARSING FUNCTIONS
+* PI DERIVATION (FINDING INNER HYPERCUBES COVERING NEEDED POINTS)
 ******************************************************************************/
 
-// Returns array of all unique elts within the dimensionSet matrix
-function get_set_of_elts_in_dimension(dimensionSet) {
-  let uniqueElts = [];
-  for(let dim of dimensionSet)
-    for(let point of dim)
-      uniqueElts.insert(point);
-  return uniqueElts.sort();
+// Clears row at idx "rm" & erases all elt instances of "rm" from "adj_matrix"
+function erase_row_and_all_elt_instances_of(rm, adj_matrix) {
+  adj_matrix[rm].clear(); // erase row  
+  for(let i = 0, n = adj_matrix.length; i < n; ++i) // erase elts
+    adj_matrix[i] = adj_matrix[i].erase(rm);
 }
 
 
-// Return matrix of all possible combinations of start-to-end groups of
-// PI's w/in dimensionSet
-function get_all_EPI_candidate_combos(start, end, dimensionSet) {
-  let possible_EPI_3D_matrix = [];
-  for(let i = start; i <= end; ++i)
-    possible_EPI_3D_matrix.insert(combinations(i, dimensionSet));
-  return possible_EPI_3D_matrix;
+// Removes all references & rows of points NOT in "need_to_cover" set from "adj_matrix"
+function rm_dont_needToCovers_from_adj_matrix(MAX_VERTICES, need_to_cover, adj_matrix){
+  // rm "don't care bits" from the adjacency list matrix cpy
+  // once complete, we have an adj. list matrix ONLY w/ "need_to_cover" bits
+  for(let i = 0; i < MAX_VERTICES; ++i)
+    if(!need_to_cover.includes(i))
+      erase_row_and_all_elt_instances_of(i, adj_matrix);
 }
 
 
-// confirm whether point matrix (or epi set) contains all of needToCoverElts
-function set_contains_all_elts(subDimensionSet, needToCoverElts) {
-  for(let elt of needToCoverElts) {
-    let found = false;
-    for(let epiSet of subDimensionSet) {
-      for(let epi of epiSet)
-        if(epi === elt) {
-          found = true;
-          break;
-        }
-      if(found) break;
-    }
-    if(!found) return false;
+// Returns whether "adj_matrix" has enough points to form an "nth" sub-dimension w/in
+function has_dimension_n(adj_matrix, n) {
+  const minimum_points_in_dimension_n = (1<<n);
+  let total_points = 0;
+  for(let i = 0; i < adj_matrix.length; ++i) {
+    if(adj_matrix[i].length >= n)
+      ++total_points;
+    if(total_points >= minimum_points_in_dimension_n) 
+      return true;
   }
-  return true;
+  return false;
 }
 
 
-// Return EPIs from PIs given in dimensionSet 
-// (EPI = Essential Prime Implicant, PI = Prime Implicant)
-function EPIs_within_dimensionSet(dimensionSet, desiredCoveredBits) {
-  if(dimensionSet.empty()) return [];
-  const m = dimensionSet.length;    // number of sub dimensions
-  const n = dimensionSet[0].length; // number of points per sub dimension
-  const elts_in_dimension = get_set_of_elts_in_dimension(dimensionSet);
-
-  // Unique elts are those we seek to find EPI's covering -- the intersection
-  // of desired bits we ultimately seek to completely cover on the Kmap with 
-  // the derived set of bits that this current subdimension DOES cover (those 
-  // remaining the "desiredCoveredBits" will be covered by a lower dimension)
-  let uniqueElts = [];
-  for(let elt of elts_in_dimension)
-    if(desiredCoveredBits.includes(elt))
-      uniqueElts.insert(elt);
-
-  // minimum sets needed to cover all unique elts
-  const minimum_sets_to_cover_points = Math.ceil(uniqueElts.length/n); 
-
-  // All potential EPI combos, sorted in ascending length (hence the BEST 
-  // (fewer dependancies) epi set will be closer to the front)
-  const epi_3D_set_combinations = get_all_EPI_candidate_combos(minimum_sets_to_cover_points, m, dimensionSet); 
-
-  for(let epi_set_combination of epi_3D_set_combinations)
-    for(let epi_set of epi_set_combination)
-      if(set_contains_all_elts(epi_set, uniqueElts))
-        return epi_set;
-
-  return [];
+// Puts set matrix of combinations size "r" w/in range of [begin,end) idxs 
+// for container "group_n" into "combo_matrix"
+function get_n_combinations_in_range(r, begin, end, group_n, seen, combo_matrix) {
+  for(let i = begin; i !== end; ++i) {
+    seen.insert(group_n[i]);
+    switch(r) {
+      case 1:  combo_matrix.insert(seen.deepCopy()); break;
+      default: get_n_combinations_in_range(r-1, i+1, end, group_n, seen, combo_matrix);
+    } 
+    seen = seen.erase(group_n[i]);
+  }
 }
+
+
+// Remove all elts in "seen" set from set-matrix "val_list"
+function rm_seen_elts_from_valList(seen, val_list){
+  for(let i = 0; i < val_list.length; ++i)
+    for(let point of seen)
+      val_list[i] = val_list[i].erase(point);
+}
+
+
+// Refills "val_list" w/ adjacency lists from "adj_matrix" & push points from
+// "pt_rows" to "seen" set
+function refill_valList_and_push_to_seen(seen, val_list, pt_rows, adj_matrix) {
+  for(let point of pt_rows) {
+    val_list.push(adj_matrix[point].deepCopy());
+    seen.insert(point);
+  }
+}
+
+
+// If all rows in val_list share "edge" distinct elts w/ "n - edge" other rows,
+// return set of these shared elts - else, return empty set
+function shared_edges_set_forming_sub_dimension(n, edge, pt_rows, val_list) {
+  pt_rows.clear();
+
+  let this_row_idx = 0;
+  for(let this_row of val_list) {
+
+    let elt_count = 0;
+    for(let elt of this_row) {
+
+      let row_count = 0, row_idx = 0;
+      for(let row of val_list) {
+        if(row.includes(elt) && row_idx !== this_row_idx)
+          ++row_count;
+        ++row_idx;
+      }
+
+      if(row_count === (n - edge)) {
+        pt_rows.insert(elt);
+        ++elt_count;
+      }
+    }
+
+    if(elt_count !== edge) {
+      pt_rows.clear();
+      return;
+    }
+
+    ++this_row_idx;
+  }
+}
+
+
+// Get "nth" sub-dimensions w/ point "P" in "adj_matrix"
+function get_nth_sub_cubes_containing_point_P(P, n, cube_matrix, adj_matrix){
+  // Get "n"-length combinations of P's values to try and form cubes w/
+  let combos = [];
+  get_n_combinations_in_range(n, 0, adj_matrix[P].length, adj_matrix[P], [], combos);
+
+  // get all sub-dimensions of point P connected to different combinations of "edge" points in its adjacency list
+  for(let pt_rows of combos) { // "pt_rows" = the "idx" keys for "val_list"'s rows
+    let is_cube = true;
+    let seen = [P];
+    let val_list = [];
+    
+    // get initial series of point adj lists & save the to set of "seen" points
+    refill_valList_and_push_to_seen(seen,val_list,pt_rows,adj_matrix);
+    // check whether point & "edge" points combo in its adjacency list forms an actual sub-dimension or not
+    for(let edge = n-1; edge > 0; --edge) {
+      rm_seen_elts_from_valList(seen,val_list);
+
+      // if all rows in val_list share "edge" distinct elts w/ "n - edge" other rows, 
+      // put set of these shared elts into "pt_rows"
+      shared_edges_set_forming_sub_dimension(n, edge, pt_rows, val_list);
+
+      if(!pt_rows.empty()) {
+        val_list.clear();
+        refill_valList_and_push_to_seen(seen,val_list,pt_rows,adj_matrix);
+      } else {
+        is_cube = false;
+        break;
+      }
+    }
+
+    if(is_cube) 
+      cube_matrix.insert(seen.deepCopy());
+  }
+}
+
+
+// Confirms cube = subset of any higher-dimensional cubes in "cube_matrix"
+function cube_subset_of_larger_cubes(cube, cube_matrix) {
+  for(let hcube of cube_matrix) {
+    if(hcube.length <= cube.length) 
+      continue;
+    let hcube_contains_cube = true;
+    for(let point of cube)
+      if(!hcube.includes(point)) {
+        hcube_contains_cube = false;
+        break;
+      }
+    if(hcube_contains_cube) 
+      return true; // cube IS a subset of higher dimension in "cube_matrix"
+  }
+  return false; // cube is NOT a subset of higher dimension in "cube_matrix"
+}
+
+
+// FIRST parses out PI's for dimension (sub-dimensions spanning "need_to_cover"
+// points), THEN rms any non-essential PI's (thus only leaving EPIs)
+function get_EPI_sub_dimension_matrix_for_D(D, max_inner_hypercube, need_to_cover, full_adj_matrix, points) {
+  // rm all references & rows of points NOT in "need_to_cover" set from "adj_matrix"
+  let adj_matrix = full_adj_matrix.deepCopy();
+  rm_dont_needToCovers_from_adj_matrix((1<<D), points, adj_matrix);
+  let cube_matrix = [];
+
+  // For each possible sub-dimension in "adj_matrix" of "need_to_cover" points
+  for(let n = max_inner_hypercube; n >= 0 && !need_to_cover.empty(); --n) {
+
+    // if "full_adj_matrix" has a sub-dimension size n
+    if(has_dimension_n(adj_matrix,n)) {
+      let local_adj_matrix = adj_matrix.deepCopy();
+      let local_cube_matrix = [];
+
+      // Get sub-cubes for the current "nth" dimension in "adj_matrix"
+      for(let i = 0; i < local_adj_matrix.length; ++i)
+        if(local_adj_matrix[i].length >= n) {
+          // Add nth dimensional cubes that can be formed including point "i"
+          get_nth_sub_cubes_containing_point_P(i,n,local_cube_matrix,local_adj_matrix);
+          // Rm instances of point "i" in "local_adj_matrix", given
+          // we already have all the sub-hypercubes that can be formed w/ it
+          erase_row_and_all_elt_instances_of(i, local_adj_matrix);
+        }
+
+      // Rm all local cubes that are subsets of a pre-existing larger cube
+      for(let cube of local_cube_matrix)
+        if(cube_subset_of_larger_cubes(cube, cube_matrix)) 
+          local_cube_matrix = local_cube_matrix.erase(cube);
+
+      // Rm all non-essential PI's from "local_cube_matrix" 
+      //   => HENCEFORTH "local_cube_matrix" SHALL ONLY CONTAIN "EPI"'S !!!
+      rm_non_EPIs_from_PI_cube_matrix(local_cube_matrix,need_to_cover); 
+
+      // push "local_cube_matrix" cubes to "cube_matrix", 
+      // & rm their pts from "need_to_cover"
+      for(let cube of local_cube_matrix) {
+        cube_matrix.insert(cube.deepCopy());
+        for(let point of cube) 
+          need_to_cover = need_to_cover.erase(point);
+      }
+    }
+
+    // End of iteration: manual break since 'Bit' type is unsigned
+    if(n === 0) break;
+  }
+
+  // insert the remaining points left over in "need_to_cover" set, which
+  // (having no connections to other points in the adjacency list matrix)
+  // are their own 0th dimensional cubes
+  for(let point of need_to_cover) cube_matrix.insert([point]);
+  return cube_matrix;
+}
+
 
 /******************************************************************************
 * NESTED POINT-OVERLAPPING HYPERCUBES MAIN FUNCTION
@@ -282,41 +475,7 @@ function max_hypercube_overlap_matrix(D, function_bit_values, sought_bit) {
   //   => ie: logical adjacency matrix for cells in K-map of D vars
   const adj_matrix = dimension_adjacency_matrix(D);
 
-  // max overlaps (prime implicants), points (cells) not yet covered, & all 
-  //   possible hypercube combos made from "points"
-  let max_hypercube_overlaps = []; 
-  let hypercube_combos = possible_hypercube_combinations(max_inner_hypercube, points);
-
-  // get formable hypercubes from "points" (prime implicants)
-  for(let i = 0; i <= max_inner_hypercube && !need_to_cover.empty(); ++i) {
-
-    // track all hypercubes covering the locally critical points 
-    // (points not previously covered by any higher dimension)
-    // and parse out EPI's within from a seperate function 
-    // (this fcn only serves to ID Prime Implicants not the ESSENTIALS)
-    let LOCAL_DIM_NEED_TO_COVER = need_to_cover;
-    let local_dim_prime_implicants = [];
-    for(let cube_set of hypercube_combos[i]) {
-      if(!sets_are_disjoint(cube_set, LOCAL_DIM_NEED_TO_COVER) && adj_matrix_contains_hypercube(adj_matrix, cube_set)) {
-
-        // erase found cube's pts from array "need_to_cover"
-        for(let pt of cube_set) need_to_cover = need_to_cover.erase(pt);
-        // save dimension/hypercube formed
-        local_dim_prime_implicants.insert(cube_set);
-        // erase subset dimensions of the found dimension
-        for(let j = i+1; j <= max_inner_hypercube; ++j)
-          for(let sub_cube_set of hypercube_combos[j])
-            if(sets_are_disjoint(sub_cube_set, need_to_cover))
-              hypercube_combos[j] = hypercube_combos[j].erase(sub_cube_set);
-      }
-    }
-
-    // Parse & save essential prime implicants from the current dimension's PI's
-    let epi_set = EPIs_within_dimensionSet(local_dim_prime_implicants, LOCAL_DIM_NEED_TO_COVER);
-    for(let epi of epi_set)
-      max_hypercube_overlaps.insert(epi);
-  }
-  return max_hypercube_overlaps;
+  return get_EPI_sub_dimension_matrix_for_D(D, max_inner_hypercube, need_to_cover, adj_matrix, points);
 }
 
 /******************************************************************************
