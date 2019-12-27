@@ -254,7 +254,7 @@ textarea { font-size:20px;border:2px solid blue;background-color:aqua;color:blue
 <a class="returnButton material-icons" style="font-size:45px;border:3px solid yellow;" href="https://jrandleman.github.io/gdimNumbers.html">library_books</a></p></center><br>
 
 
-<script type="text/javascript" src="gelen21engine_script.js"></script>
+<script type="text/javascript" src="https://jrandleman.github.io/gelen21engine_script.js"></script>
 <script type="text/javascript" src="https://jrandleman.github.io/gwebHFTScript.js"></script>
 
 <script>
@@ -830,6 +830,21 @@ function users_fcn_bit_array() {
 }
 
 
+// Returns Bool as to whether bit sequence from "Fcn Output Bits" HAS invalid
+// chars (alerts ERROR if otherwise)
+function bit_fcn_includes_invalid_token(bits, state) {
+  const bad_token_string = bits.join('').replace(/[0|1|2|\[|\]]/g,'');
+  const plural_ch = (bad_token_string.length>1?"S":"");
+  if(bad_token_string.length > 0)
+    alert(`-:- ERROR: INVALID TOKEN${plural_ch} IN BIT SEQUENCE! -:-` +
+          `\n => INVALID TOKEN${plural_ch} FOUND IN "Fcn Output Bits":` +
+          `\n => ${bad_token_string}` +
+          `\n => Only 0, 1, 2, comma, & space are valid (+ brackets for Ttables)!` +
+          `\n => Remove invalid token${plural_ch.toLowerCase()} for a ${state}!`);
+  return (bad_token_string.length !== 0);
+}
+
+
 // Proper Input fields contain data: now confirm data is correct & either:
 // 1) generate var-based function (if data checks out)
 // 2) log error if data is invalid
@@ -928,6 +943,8 @@ function generate_SOP_POS_bit_fcn(state) {
         `\n => Input 1 bit sequence w/o brackets for a ${state}!`);
     return GEN_BUILD.FAILURE;
   }
+  if(bit_fcn_includes_invalid_token(bits, state)) 
+    return GEN_BUILD.FAILURE;
   bits = bits.map(e => Number(e));
   const var_names = users_var_names();
   if(log2(bits.length) !== var_names.length) {
@@ -1043,6 +1060,8 @@ function generate_KMAP_bit_fcn() {
         `\n => Input 1 bit sequence w/o brackets for a Kmap!`);
     return GEN_BUILD.FAILURE;
   }
+  if(bit_fcn_includes_invalid_token(bits, "Kmap")) 
+    return GEN_BUILD.FAILURE;
   bits = bits.map(e => Number(e));
   if(log2(bits.length) === BAD_LOG2_ARG) {
     alert(`-:- ERROR: NON-POWER-OF-2 # OF BITS! -:-` + 
@@ -1109,6 +1128,8 @@ function generate_TTABLE_bit_fcn() {
         "\n => Brackets MUST be balanced for multiple Bit Sequences!");
     return GEN_BUILD.FAILURE;
   }
+  if(bit_fcn_includes_invalid_token(bit_str.split('').filter(e=>e), "Ttable")) 
+    return GEN_BUILD.FAILURE;
   // Mk Truth Table w/ array of fcn bit outputs OR solo fcn bit output sequence
   if(bit_str.includes("[")) {
     const bits_matrix = generate_bit_fcn_matrix(bit_str);
