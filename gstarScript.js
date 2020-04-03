@@ -340,7 +340,7 @@ function shapeSequence(flag) {
 	/* fill-rule:nonzero; */
 	/*'<circle cx="225" cy="210" r="200" stroke="#F5F" stroke-width="3" />'+
 	'<polygon points="'+pointArr.join('')+'" style="stroke:#F5F;stroke-width:3;"/>'+*/
-	document.getElementById('genStar').innerHTML = '<polygon id="drawing" class="poly" points="'+svgArray.join('')+'" style="stroke:#F5F;stroke-width:1.5;"/>';
+	document.getElementById('genStar').innerHTML = '<polygon id="drawing" class="poly" points="'+svgArray.join('')+'" style="fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;"/>';
 	document.getElementById('starStyle').innerHTML = '.poly {stroke-dasharray:'+drawing.getTotalLength()+';stroke-dashoffset:'+drawing.getTotalLength()+';'+
 		'animation:dash 2.5s linear forwards;}@keyframes dash {to {stroke-dashoffset:0;}}';
 	animTimeout = setTimeout(function() {
@@ -366,7 +366,7 @@ function genShapes(max) {
 function morphShape() { 
 	clearTimeout(morphTimeout);
 	document.getElementById("anim-to-"+document.getElementById("starInput").value+"S").beginElement();
-	document.getElementById('drawing').style = 'stroke:#F5F;stroke-width:1.5;';
+	document.getElementById('drawing').style = 'fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;';
 	morphTimeout = setTimeout(function() { document.getElementById('drawing').style = 'fill:lime;fill-rule:evenodd;stroke:#F5F;stroke-width:1.5;'; }, 850); 
 }
 
