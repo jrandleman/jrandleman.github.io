@@ -8,7 +8,10 @@
 <style>.noline{text-decoration:none;}.noline:hover{text-decoration:underline;}</style>
 
 <!-- 	Generate raw HTML unicode for any string w/ special chars using this helper fcn:
-			const deriveHtmlUnicode = str => str.split('').map(ch => `&#x${ch.charCodeAt(0).toString(16)};`).join(''); -->
+			const deriveHtmlUnicode = str => str.split('').map(ch => {
+			  if(" (),.'-:+&0123456789/".includes(ch)) return ch;
+			  return `&#x${ch.charCodeAt(0).toString(16)};`;
+			}).join(''); -->
 
 <!-- NAME -->
 <br><center><h1><big>&chi;&#x004F;&Delta;&Alpha;&nu; &Rho;&#x0026;&#x1430;&#x2642;</big></h1>
@@ -26,7 +29,7 @@
 <span class="blackout">---------.</span><span>&#x30B9;&#x10B4;&epsilon;&#x5201;</b></span><br>
 <span>&beta;&Alpha;&Chi;&#x1430;&#x004F; &upsilon; &Sigma;&#x0049;&epsilon;&nu;&Sigma; &nu; <b>&#x30B9;&psi;&mu;&Pi;&Upsilon;&Tau;&#x10B4; &Sigma;&#x0049;&epsilon;&nu;&Sigma; &#x0026; &epsilon;&nu;&chi;&nu;&#x0045;&Rho;&#x04A8;</b>&#x002D;&epsilon;&Xi;&Pi;&epsilon;&#x0043;&Delta; &chi;&pi;&nu; <b>2022</b></span>
 <span class="blackout">------------------------------</span><br>
-<span>&#x30B9;&Upsilon;&mu;&#x0427;&Lambda;&#x0466;&upsilon; <b>&Gamma;&Pi;&Alpha;: 3.9/4.0</b>, &#x1402;&nu;&zeta; &Lambda;&#x1560; &Phi;&Rho;&epsilon;&Psi;&#x2642; &lambda;&#x260B; (<b>&Tau;&psi;&Pi; 10% &#x30B9;&Lambda;&Alpha;&Sigma; &Gamma;&Pi;&Alpha;</b>)</span><span class="blackout">----------------------------.</span><br><br>
+<span>&#x30B9;&Upsilon;&mu;&#x0427;&Lambda;&#x0466;&upsilon; <b>&Gamma;&Pi;&Alpha;: 3.938/4.0</b>, &#x1402;&nu;&zeta; &Lambda;&#x1560; &Phi;&Rho;&epsilon;&Psi;&#x2642; &lambda;&#x260B; (<b>&Tau;&psi;&Pi; 10% &#x30B9;&Lambda;&Alpha;&Sigma; &Gamma;&Pi;&Alpha;</b>)</span><span class="blackout">-------------------------</span><br><br>
 <!-- WALDORF -->
 <b><span><a class="linkIt" href="http://waldorfpeninsula.org/curriculum/high-school/" target="_blank">&delta;&Alpha;&Lambda;&Delta;&#x004F;&Phi; &eta;&#x0049; &Sigma;&#x30B9;&pi;&Lambda; &upsilon; &Theta; &Pi;&epsilon;&nu;&iota;&nu;&Sigma;&pi;&Lambda;&Alpha;</a>
 <span> (&mu;&omega;&#x5201;&#x0048;&nu; &upsilon;&Upsilon;&#x002D;&#x30B9;&Alpha;&Lambda;&iota;&Phi;&#x004F;&nu;&#x0045;&Alpha;)</span>
@@ -37,21 +40,22 @@
 <!-- SKILLS -->
 <br><h2>&Sigma;&#x30B9;&iota;&Lambda;&zeta;<span class="blackout">------------------------------------------------------------------------</span></h2>
 <span><b>&Lambda;&Alpha;&#x0AEA;&pi;&#x0048;&chi;&zeta;: C/C++&#x002D;&chi;&Alpha;&upsilon;&Alpha;&Sigma;&#x30B9;&Rho;&iota;&Pi;&Tau;&#x002D;&Sigma;&#x30B9;&Epsilon;&mu;&#x002D;&Pi;&#x0049;&Theta;&psi;&nu;</b>&#x002D; & &eta;&Tau;&mu;&#x1430;/&#x0063;&Sigma;&Sigma;</span><span class="blackout">-------------------------------------...</span><br>
-<span><b>&Alpha;&Pi;&Lambda;&iota;&#x30B9;&#x0048;&#x00B0;&zeta;: &Gamma;&Tau;&eta;&#x0427;&beta;&#x002D;&Sigma;&#x004F;&Sigma; &Tau;&Rho;&#x0045;&#x002D;&nu;&Omega;&Delta;.&chi;&Sigma;</b>- & &Pi;&#x0427;&Pi;&epsilon;&Tau;&#x260B;/&Chi;&#x260B;&Epsilon;&Omega; &Lambda;&Iota;&beta;&Rho;&#x00E4;&Epsilon;&zeta;</span>
-<span class="blackout">-------------------------------..</span>
+<span><b>&Alpha;&Pi;&Lambda;&iota;&#x30B9;&#x0048;&#x00B0;&zeta;: &nu;&Omega;&Delta;.&chi;&Sigma;-&mu;&psi;&#x0AEA;&Omega;&Delta;&Beta;-</b>&Gamma;&Tau;&eta;&#x0427;&beta;&#x002D;&Sigma;&#x004F;&Sigma; &Tau;&Rho;&#x0045;-& &Pi;&#x0427;&Pi;&epsilon;&Tau;&#x260B;/&Chi;&#x260B;&Epsilon;&Omega; &Lambda;&Iota;&beta;&Rho;&#x00E4;&Epsilon;&zeta;</span>
+<span class="blackout">-----------------....</span>
 <br><br>
 
 <!-- WORK EXPERIENCE -->
 <br><h2>&delta;&#x004F;&#x30B9; &epsilon;&Xi;&Pi;&#x10B4;&#x0045;&nu;&Sigma;<span class="blackout">------------------------------------------------------------.</span></h2>
 <span><b><a class="linkIt" href="https://shop.hellowynd.com/?utm_source=google&utm_medium=cpc&utm_campaign=wynd&utm_content=homepage&gclid=Cj0KCQiAoJrfBRC0ARIsANqkS_4KJX0ZGXWxVRMlMbfrUXnuXe_-caO48-DBpxuxkQYGDpjrwYxeNHYaAsJUEALw_wcB" target="_blank">&delta;&#x2207; &Tau;&epsilon;&#x30B9;&nu;&psi;&Lambda;&psi;&chi;&#x0045;&zeta;</a>&#x002D;&Rho;&#x2661;&delta;&#x144E;&Delta; &Sigma;t&#x0045;&#x002D;&#x30B9;&Alpha;&#x01338;</span>
-<span class="blackout">-------------------------...</span><span>&Sigma;&#x0427;&mu;&#x10B4;&zeta; &upsilon; 2015-'2017 & 2019-'20</b></span><br>
+<span class="blackout">-------------------------..</span><span>5 &Sigma;&#x0427;&mu;&#x10B4;&zeta;, 2015-'2017 & 2019-'20</b></span><br>
 &#x00E4; &Pi;&lambda;&#x10B4;&iota;&Phi;&iota;&#x30B9;&#x0048;&#x00B0; &#x1560;&#x0052;&Tau;&#x0427;&Pi; &Phi; &#x1E8A;&#x1430; &#x00E4; &Pi;&lambda;&#x10B4;&iota;&Phi;&#x0049;&#x10B4;&zeta;: &Pi;&Omega;&Lambda;&pi;&Tau;&#x5201; &Sigma;&epsilon;&nu;&Sigma;&Omicron;&zeta; &Rho;&Epsilon;&Pi;&Omicron;&Tau; &Rho;&Epsilon;&Lambda; &Tau;&#x0049;&mu; &Alpha;&nu;&#x1430;&#x0074;&Xi;&#x2216;
 <span class="blackout">-----.</span><br>
 <span><i>&Sigma;&psi;&tau;&delta;&#x00E4; &Delta;&epsilon;&upsilon;&#x1430;&Omega;&Pi;&#x2642;&Tau; &#x5201;&#x10B4;&nu;</i></span>
 <span class="blackout">-----------------------------------------------------------------------------------------</span><br><span class="blackout">--</span>
-<span class="blackout">----</span><span>  &#x2022;</span><span class="blackout">--</span><b>&Delta;&#x0466;&Alpha; &Alpha;&nu;&Alpha;&#x01338;&Tau;&iota;&Xi; &Omega;&upsilon;&#x10B4;&eta;&psi;&Lambda;: 62 &#x30B9;&psi;&#x004E;&#x10B4;&epsilon;&#x5201; &nu;&Omega;&Delta;.&chi;&Sigma;</b> &Sigma;&#x30B9;&Rho;&Pi;&#x00DF; (<b>25 &nu;&pi;</b>, <b>37 &#x0427;&Pi;&Delta;8&#x2661;</b>) &Phi; &mu;&Omega;&beta;&Iota;&Lambda; &Alpha;&Pi;<br>
+<span class="blackout">----</span><span>  &#x2022;</span><span class="blackout">--</span><b>&Delta;&#x0466;&Alpha; &Alpha;&nu;&Alpha;&#x01338;&Tau;&iota;&Xi; &Omega;&upsilon;&#x10B4;&eta;&psi;&Lambda;: 77 &#x30B9;&psi;&#x004E;&#x10B4;&epsilon;&#x5201; &nu;&Omega;&Delta;.&chi;&Sigma;</b> &Sigma;&#x30B9;&Rho;&Pi;&#x00DF; (<b>25 &nu;&pi;</b>, <b>52 &#x0427;&Pi;&Delta;8&#x2661;</b>) &Phi; &mu;&Omega;&beta;&Iota;&Lambda; &Alpha;&Pi;<br>
+<span class="blackout">----..</span><span>  &#x2022;</span><span class="blackout">--</span><b>&#x3a3;&#x3b9;&#x1560;&#x3b5;&#x3bc; &#x3b7;&#x395;&#x39b;&#x398;: &#x3bc;&#x3a8;&#xaea;&#x3a9;&#x394;&#x42;/&#x45;&#x43;2 &#x3b4;&#x3b5;&#x3b2;&#x3a0;&#x397;&#x3c7; &#x3a9;&#x3c5;&#x3a1;&#x3a3;&#x395;&#x3a3;</b> &#x3a0;&#x3a1;&#x3c8;&#x3a3;&#x3b5;&#x3a3;&#x4a8; <b>40,000+ &#x1560;&#x397;&#xb0;&#x3a3; (&#x3b9;&#x5201;&#x10b4;&#x3bd;&#x391;&#x39b; &#x3a4;&#x3c0;&#x39b;)</b><br>
 <span class="blackout">----</span><span>  &#x2022;</span><span class="blackout">--</span><b>&Iota;&Omega;&Tau; &Eta;&Pi;&Iota; &#x5201;&Gamma;&Rho;&Eta;&#x00B0;</b>: EC2 <b>&Sigma;&#x10B4;&upsilon;&#x10B4; &#x30B9;&#x0427;&#x5201;&Rho;&Omega;&Lambda;&Sigma; 5</b> &eta;&#x0427;&nu;&Epsilon;&delta;&#x1430; <b>&Sigma;&mu;&#x0052;&Tau; &Theta;&#x10B4;&mu;&psi;&#x1560;&#x0466; &Sigma;&epsilon;&Tau;&#x04A8;&zeta;</b> &Phi; <b>&Pi;&Upsilon;&Rho;&iota;&Phi;&Iota;&#x10B4;</b><br>
-<span class="blackout">..</span><span>  &#x2022;</span><span class="blackout">--</span><b>&Sigma;&delta;&Epsilon; &Tau;&Epsilon;&mu; &#x30B9;&Omega;&Lambda;&Alpha;&beta;&Omicron;&Eta;&#x00B0;</b> (<b>&Gamma;&#x0074;&eta;&#x0427;&beta;</b>/<b>&Sigma;&Omicron;&Sigma;&Tau;&Rho;&Epsilon;</b>) &Phi; <b>&mu;&Omega;&beta;&Iota;&Lambda; &Alpha;&Pi;</b> &Pi;&Omega;&Lambda;&pi;&Tau;&Alpha;&#x5201; <b>&Delta;&#x0466;&Alpha; &Alpha;&nu;&Alpha;&#x01338;&Tau;&iota;&Xi; 1.0</b><span class="blackout">...</span>
+<span class="blackout">..</span><span>  &#x2022;</span><span class="blackout">--</span><b>&#x3a3;&#x3b4;&#x45; &#x30b9;&#x3a9;&#x39b;&#x391;&#x3b2;&#x39f;&#x397;&#xb0;: &#x3a1;&#x3b5;&#x30b9;&#x3a1;&#x3c0;&#x3a4;&#x394; & &#x3bc;&#x3b5;&#x5201;&#x39f;&#x394;</b> &#x3a6;&#x1430;&#x39b;&#x3c9; &#x3b9;&#x5201;&#x10b4;&#x3bd; &#x3a4; <b>&#x3b2;&#x3c0;&#x1560; &#x3a4;&#x395;&#x3bc;&#x2019;&#x3a3; &#x3a0;&#x3a1;&#x3a9;&#x394;&#x427;&#x43;&#x3b9;&#x3c5;&#x74;&#x395;</b><span class="blackout">--...</span>
 <br><br>
 
 <!-- PROJECTS -->
@@ -74,20 +78,6 @@
 <!-- JS Nth Dimensional Hypercube: Animation & Analysis -->
 <span>  &#x2022;</span><span class="blackout">--</span>
 <a class="linkIt noline" href="https://jrandleman.github.io/gspatialDimensions.html" target="_blank"><b>&#x3c7;&#x3a3;&#x20;&#x3bd;<sup>&#x398;</sup>&#x20;&#x394;&#x399;&#x3bc;&#x3bd;&#x4fe;&#x427;&#x3bd;&#x391;&#x39b;&#x20;&#x3b7;&#x3bb;&#x3a0;&#x10b4;&#x30b9;&#x3c0;&#x3b2;&#x3a;&#x20;&#x391;&#x3bd;&#x3b9;&#x3bc;&#x397;&#xb0;</b>&#x20;&#x26;&#x20;<b>&#x391;&#x3bd;&#x391;&#x1338;&#x3a3;&#x3b9;&#x3a3;</b></a><span class="blackout">--------------------------------------------</span>
-<br><br>
-
-<!-- EXTRA-CURRICULARS -->
-<br><h2>&epsilon;&Xi;&Tau;&Rho;&Alpha;-&#x30B9;&#x10B4;&iota;&#x30B9;&Upsilon;&Lambda;&#x0052;&zeta;<span class="blackout">--------------------------------------------------------</span></h2>
-<!-- WALDORF -->
-<span><b><a class="linkIt" href="http://waldorfpeninsula.org/curriculum/high-school/" target="_blank">&delta;&Alpha;&Lambda;&Delta;&#x004F;&Phi; &eta;&#x0049; &Sigma;&#x30B9;&pi;&Lambda; &upsilon; &Theta; &Pi;&epsilon;&nu;&iota;&nu;&Sigma;&pi;&Lambda;&Alpha;</a></span>
-<span> (&mu;&omega;&#x5201;&#x0048;&nu; &upsilon;&Upsilon;&#x002D;&#x30B9;&Alpha;&Lambda;&iota;&Phi;&#x004F;&nu;&#x0045;&Alpha;)</b></span>
-<span class="blackout">--------------------------------...</span><br>
-<span>  &#x2022;</span><span class="blackout">--</span><b>&#x1560;&pi;&Delta;&#x5201; &Alpha;&mu;&beta;&Alpha;&Sigma;&Alpha;&Delta;&#x004F;</b>: &Sigma;&#x1430;&#x0043;&#x2661; &beta;&#x0049; &Alpha;&Delta;&mu;&nu;&iota;&#x1560;&Rho;&#x0048;&#x00B0; &Tau; &Pi;&#x0052;&Tau;&iota;&Sigma;&iota;&Pi;8 &nu; &nu;&pi; &#x1560;&pi;&Delta;&#x5201; &Rho;&epsilon;&#x30B9;&Rho;&pi;&Tau;&#x04A8;<span class="blackout">---...</span><br>
-<span>  &#x2022;</span><span class="blackout">-</span>
-<b>&#x30B9;&Lambda;&#x0427;&beta;&zeta;</b>: &Rho;&Omega;&beta;&psi;&Tau;&Xi; &#x30B9;&Lambda;&#x0427;&beta; &Pi;&Rho;&Omega;&Gamma;&Rho;&Alpha;&mu;&#x10B4;&#x002D;&#x30B9;&Omega;&Phi;&omega;&#x2207;&#x2661; &Delta;&beta;8 &#x30B9;&Lambda;&#x0427;&beta;
-<span class="blackout">---------------------------.....</span><br>
-<span>  &#x2022;</span><span class="blackout">--</span><b>&Sigma;&Pi;&#x004F;&#x00DF;</b>: &beta;&Alpha;&Sigma;&#x30B9;&epsilon;&Tau;&beta;&psi;&Lambda;&#x002D;&Sigma;&psi;&#x30B9;&#x10B4;&#x002D;&#x0026; &#x30B9;&Rho;&psi;&Sigma;-&#x30B9;&omega;&#x5201;&Rho;&#x0045;
-<span class="blackout">-------------------------------------------------</span>
 <br><br><br><br>
 
 <!-- FOOTER -->
