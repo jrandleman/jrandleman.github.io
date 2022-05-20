@@ -211,7 +211,7 @@ function shuffleArray(array) {
 }
 
 function randTitle() {
-    return shuffleArray(possible.slice(0,pdfLen));
+    return shuffleArray(possible.slice(0,pdfLen)).join('');
 
     // var possibleTitleInts = [];
     // var titleArr = [];
