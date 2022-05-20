@@ -142,7 +142,7 @@ function cogAnim(flag) {
 
 var tWriteCh = 1;
 var titleTxt = "Welcome to My Website!";
-var titleLen = (titleTxt.length);
+var titleLen = titleTxt.length;
 var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
 var possible = possibleChars.split('');
 var possibleTitleInts = [];
@@ -202,8 +202,8 @@ var acmLen = acmText.length;
 const acmFilledArr = randTitle().split('').splice(0,acmLen);
 
 function randTitle() {
-    while (possibleTitleInts.length < titleLen) {
-        var ranNum =  Math.floor(Math.random() * (titleLen));
+    while (possibleTitleInts.length < pdfLen) {
+        var ranNum =  Math.floor(Math.random() * (pdfLen));
         if (possibleTitleInts.indexOf(ranNum) == -1) {
             possibleTitleInts.push(ranNum);
         }
@@ -215,7 +215,7 @@ function randTitle() {
     return titleArr.join('');
 }
 
-for(let tWriterIdx = 1; tWriterIdx < titleLen; tWriterIdx++) { /* SETTIMEOUTS */
+for(let tWriterIdx = 1; tWriterIdx < pdfLen; tWriterIdx++) { /* SETTIMEOUTS */
     setTimeout(typeWriter.bind(null,tWriteCh++), (57 * (5+tWriterIdx)));
 }
 
