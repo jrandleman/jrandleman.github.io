@@ -145,8 +145,6 @@ var titleTxt = "Welcome to My Website!";
 var titleLen = titleTxt.length;
 var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
 var possible = possibleChars.split('');
-var possibleTitleInts = [];
-var titleArr = [];
 const titleFilledArr = randTitle().split('');
 
 var pText = "PERSPECTIVE LENGTH";
@@ -202,8 +200,10 @@ var acmLen = acmText.length;
 const acmFilledArr = randTitle().split('').splice(0,acmLen);
 
 function randTitle() {
+    var possibleTitleInts = [];
+    var titleArr = [];
     while (possibleTitleInts.length < pdfLen) {
-        var ranNum =  Math.floor(Math.random() * (pdfLen));
+        var ranNum =  Math.floor(Math.random() * pdfLen);
         if (possibleTitleInts.indexOf(ranNum) == -1) {
             possibleTitleInts.push(ranNum);
         }
