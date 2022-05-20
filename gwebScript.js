@@ -185,6 +185,10 @@ var nnpText = "THE NOTEPAD";
 var nnpLen = nnpText.length;
 const nnpFilledArr = randTitle().split('').splice(0,nnpLen);
 
+var pdfText = "(COEN) Advice for (Incoming) Students";
+var pdfLen = pdfText.length;
+const pdfFilledArr = randTitle().split('').splice(0,pdfLen);
+
 var scuText = "-:- SCU -:-";
 var scuLen = scuText.length;
 const scuFilledArr = randTitle().split('').splice(0,scuLen);
@@ -226,6 +230,7 @@ function typeWriter(ch) {
     var tesletter = tesText.charAt(ch);
     var prcletter = prcText.charAt(ch);
     var nnpletter = nnpText.charAt(ch);
+    var pdfletter = pdfText.charAt(ch);
     var sculetter = scuText.charAt(ch);
     var wspletter = wspText.charAt(ch);
     var acmletter = acmText.charAt(ch);
@@ -240,6 +245,7 @@ function typeWriter(ch) {
     tesFilledArr.splice(ch,1,tesletter);
     prcFilledArr.splice(ch,1,prcletter);
     nnpFilledArr.splice(ch,1,nnpletter);
+    pdfFilledArr.splice(ch,1,pdfletter);
     scuFilledArr.splice(ch,1,sculetter);
     wspFilledArr.splice(ch,1,wspletter);
     acmFilledArr.splice(ch,1,acmletter);
@@ -256,6 +262,7 @@ function typeWriter(ch) {
     document.getElementById("numIdS").innerHTML = numFilledArr.join('');
     document.getElementById("prcId").innerHTML = prcFilledArr.join('');
     document.getElementById("numId5").innerHTML = nnpFilledArr.join('');
+    document.getElementById("pdfBtnId").innerHTML = pdfFilledArr.join('');
     document.getElementById("scuId").innerHTML = scuFilledArr.join('');
     document.getElementById("wspId").innerHTML = wspFilledArr.join('');
     document.getElementById("acmId").innerHTML = acmFilledArr.join('');

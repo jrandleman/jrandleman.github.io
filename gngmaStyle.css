@@ -679,6 +679,15 @@
 	font-family:arial;
 }
 .resButton:hover { font-style:italic;font-weight:bold; }
+.pdfButton {
+	border-radius: 20px;
+	color: black;
+	font-size: 12.5px;
+	font-weight:bold;
+	background-color:orange;
+	padding:5px;
+	font-family:Prosto One;
+}
 .numbersButton1 {
 	border-radius: 20px;
 	color: black;
