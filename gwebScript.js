@@ -140,65 +140,6 @@ function cogAnim(flag) {
 /* TYPEWRITER */
 /******************************************************************************/
 
-var tWriteCh = 1;
-var titleTxt = "Welcome to My Website!";
-var titleLen = titleTxt.length;
-var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
-var possible = possibleChars.split('');
-const titleFilledArr = randTitle().split('');
-
-var pText = "PERSPECTIVE LENGTH";
-var pLen = pText.length;
-const pFilledArr = randTitle().split('').splice(0,pLen);
-
-var dText = "SPATIAL DIMENSIONS";
-var dLen = dText.length;
-const dFilledArr = randTitle().split('').splice(0,dLen);
-
-var sText = "STAR CALCULATION";
-var sLen = sText.length;
-const sFilledArr = randTitle().split('').splice(0,sLen);
-
-var numText = "SHOW ME THE NUMBERS";
-var numLen = numText.length;
-const numFilledArr = randTitle().split('').splice(0,numLen);
-
-var num2Text = "THE NUMBERS";
-var num2Len = num2Text.length;
-const num2FilledArr = randTitle().split('').splice(0,num2Len);
-
-var kCreateText = "KMAP CREATION";
-var kCreateLen = kCreateText.length;
-const kCreateFilledArr = randTitle().split('').splice(0,kCreateLen);
-
-var tesText = "TESSELLATION";
-var tesLen = tesText.length;
-const tesFilledArr = randTitle().split('').splice(0,tesLen);
-
-var prcText = "THE PROCESS";
-var prcLen = prcText.length;
-const prcFilledArr = randTitle().split('').splice(0,prcLen);
-
-var nnpText = "THE NOTEPAD";
-var nnpLen = nnpText.length;
-const nnpFilledArr = randTitle().split('').splice(0,nnpLen);
-
-var pdfText = "(COEN) Advice for (Incoming) Students";
-var pdfLen = pdfText.length;
-const pdfFilledArr = randTitle().split('').splice(0,pdfLen);
-
-var scuText = "-:- SCU -:-";
-var scuLen = scuText.length;
-const scuFilledArr = randTitle().split('').splice(0,scuLen);
-
-var wspText = "-:- WSP -:-";
-var wspLen = wspText.length;
-const wspFilledArr = randTitle().split('').splice(0,wspLen);
-
-var acmText = "-:- ACM -:-";
-var acmLen = acmText.length;
-const acmFilledArr = randTitle().split('').splice(0,acmLen);
-
 // /* Randomize array in-place using Durstenfeld shuffle algorithm */
 // /* FROM: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array */
 // function shuffleArray(array) {
@@ -281,6 +222,65 @@ function typeWriter(ch) {
     document.getElementById("wspId").innerHTML = wspFilledArr.join('');
     document.getElementById("acmId").innerHTML = acmFilledArr.join('');
 }
+
+var tWriteCh = 1;
+var titleTxt = "Welcome to My Website!";
+var titleLen = titleTxt.length;
+var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
+var possible = possibleChars.split('');
+const titleFilledArr = randTitle().split('');
+
+var pText = "PERSPECTIVE LENGTH";
+var pLen = pText.length;
+const pFilledArr = randTitle().split('').splice(0,pLen);
+
+var dText = "SPATIAL DIMENSIONS";
+var dLen = dText.length;
+const dFilledArr = randTitle().split('').splice(0,dLen);
+
+var sText = "STAR CALCULATION";
+var sLen = sText.length;
+const sFilledArr = randTitle().split('').splice(0,sLen);
+
+var numText = "SHOW ME THE NUMBERS";
+var numLen = numText.length;
+const numFilledArr = randTitle().split('').splice(0,numLen);
+
+var num2Text = "THE NUMBERS";
+var num2Len = num2Text.length;
+const num2FilledArr = randTitle().split('').splice(0,num2Len);
+
+var kCreateText = "KMAP CREATION";
+var kCreateLen = kCreateText.length;
+const kCreateFilledArr = randTitle().split('').splice(0,kCreateLen);
+
+var tesText = "TESSELLATION";
+var tesLen = tesText.length;
+const tesFilledArr = randTitle().split('').splice(0,tesLen);
+
+var prcText = "THE PROCESS";
+var prcLen = prcText.length;
+const prcFilledArr = randTitle().split('').splice(0,prcLen);
+
+var nnpText = "THE NOTEPAD";
+var nnpLen = nnpText.length;
+const nnpFilledArr = randTitle().split('').splice(0,nnpLen);
+
+var pdfText = "(COEN) Advice for (Incoming) Students";
+var pdfLen = pdfText.length;
+const pdfFilledArr = randTitle().split('').splice(0,pdfLen);
+
+var scuText = "-:- SCU -:-";
+var scuLen = scuText.length;
+const scuFilledArr = randTitle().split('').splice(0,scuLen);
+
+var wspText = "-:- WSP -:-";
+var wspLen = wspText.length;
+const wspFilledArr = randTitle().split('').splice(0,wspLen);
+
+var acmText = "-:- ACM -:-";
+var acmLen = acmText.length;
+const acmFilledArr = randTitle().split('').splice(0,acmLen);
 
 /******************************************************************************/
 /* SPINNING SUDOKU FUNCTION */
