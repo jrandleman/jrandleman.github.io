@@ -726,7 +726,7 @@
 	padding:4px;
 }
 .pageInput:hover, .pageButton:hover, .button:hover, 
-.numbersButton1:hover, .numbersButton:hover, .starLinkButton:hover  { font-style:italic; }
+.pdfButton:hover, .numbersButton1:hover, .numbersButton:hover, .starLinkButton:hover  { font-style:italic; }
 .returnButton {
 	border-radius: 50%;
 	border: 2px solid #F9ED4B;
