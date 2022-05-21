@@ -169,10 +169,6 @@ function randTitle() {
     return titleArr.join('');
 }
 
-for(let tWriterIdx = 1; tWriterIdx < pdfLen; tWriterIdx++) { /* SETTIMEOUTS */
-    setTimeout(typeWriter.bind(null,tWriteCh++), (57 * (5+tWriterIdx)));
-}
-
 function typeWriter(ch) {
     var letter = titleTxt.charAt(ch);
     var pletter = pText.charAt(ch);
@@ -280,6 +276,11 @@ const wspFilledArr = randTitle().split('').splice(0,wspLen);
 var acmText = "-:- ACM -:-";
 var acmLen = acmText.length;
 const acmFilledArr = randTitle().split('').splice(0,acmLen);
+
+
+for(let tWriterIdx = 1; tWriterIdx < pdfLen; tWriterIdx++) { /* SETTIMEOUTS */
+    setTimeout(typeWriter.bind(null,tWriteCh++), (57 * (5+tWriterIdx)));
+}
 
 /******************************************************************************/
 /* SPINNING SUDOKU FUNCTION */
