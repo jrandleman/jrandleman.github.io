@@ -154,20 +154,6 @@ function shuffleArray(array) {
 
 function randTitle() {
     return shuffleArray(possible.slice(0,pdfLen)).join('');
-
-    // var possibleTitleInts = [];
-    // var titleArr = [];
-    // while (possibleTitleInts.length < pdfLen) {
-    //     var ranNum =  Math.floor(Math.random() * pdfLen);
-    //     if (possibleTitleInts.indexOf(ranNum) == -1) {
-    //         possibleTitleInts.push(ranNum);
-    //     }
-    // }
-    // for (let i = 0; i < possibleTitleInts.length; i++) {
-    //     var num = possibleTitleInts[i];
-    //     titleArr.push(possible[num]);
-    // }
-    // return titleArr.join('');
 }
 
 function typeWriter(ch) {
@@ -219,12 +205,12 @@ function typeWriter(ch) {
     document.getElementById("acmId").innerHTML = acmFilledArr.join('');
 }
 
-var tWriteCh = 1;
-var titleTxt = "Welcome to My Website!";
-var titleLen = titleTxt.length;
 var possibleChars = '-+*/|}{[]~":;?/.><=+-_)(*&^%$#@!)}';
 var possible = possibleChars.split('');
-const titleFilledArr = randTitle().split('');
+
+var titleTxt = "Welcome to My Website!";
+var titleLen = titleTxt.length;
+const titleFilledArr = randTitle().split('').splice(0,titleLen);
 
 var pText = "PERSPECTIVE LENGTH";
 var pLen = pText.length;
@@ -279,6 +265,7 @@ var acmLen = acmText.length;
 const acmFilledArr = randTitle().split('').splice(0,acmLen);
 
 
+var tWriteCh = 1;
 for(let tWriterIdx = 1; tWriterIdx < pdfLen; tWriterIdx++) { /* SETTIMEOUTS */
     setTimeout(typeWriter.bind(null,tWriteCh++), (57 * (5+tWriterIdx)));
 }
