@@ -140,33 +140,34 @@ function cogAnim(flag) {
 /* TYPEWRITER */
 /******************************************************************************/
 
-// /* Randomize array in-place using Durstenfeld shuffle algorithm */
-// /* FROM: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array */
-// function shuffleArray(array) {
-//     for (var i = array.length - 1; i > 0; i--) {
-//         var j = Math.floor(Math.random() * (i + 1));
-//         var temp = array[i];
-//         array[i] = array[j];
-//         array[j] = temp;
-//     }
-// }
+/* Randomize array in-place using Durstenfeld shuffle algorithm */
+/* FROM: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
 
 function randTitle() {
-    // return shuffleArray(possible.slice(0,pdfLen)).join('');
+    return shuffleArray(possible.slice(0,pdfLen)).join('');
 
-    var possibleTitleInts = [];
-    var titleArr = [];
-    while (possibleTitleInts.length < pdfLen) {
-        var ranNum =  Math.floor(Math.random() * pdfLen);
-        if (possibleTitleInts.indexOf(ranNum) == -1) {
-            possibleTitleInts.push(ranNum);
-        }
-    }
-    for (let i = 0; i < possibleTitleInts.length; i++) {
-        var num = possibleTitleInts[i];
-        titleArr.push(possible[num]);
-    }
-    return titleArr.join('');
+    // var possibleTitleInts = [];
+    // var titleArr = [];
+    // while (possibleTitleInts.length < pdfLen) {
+    //     var ranNum =  Math.floor(Math.random() * pdfLen);
+    //     if (possibleTitleInts.indexOf(ranNum) == -1) {
+    //         possibleTitleInts.push(ranNum);
+    //     }
+    // }
+    // for (let i = 0; i < possibleTitleInts.length; i++) {
+    //     var num = possibleTitleInts[i];
+    //     titleArr.push(possible[num]);
+    // }
+    // return titleArr.join('');
 }
 
 function typeWriter(ch) {
