@@ -156,7 +156,6 @@ function randTitle() {
 
     var possibleTitleInts = [];
     var titleArr = [];
-    for(let i = 0; )
     while (possibleTitleInts.length < pdfLen) {
         var ranNum =  Math.floor(Math.random() * pdfLen);
         if (possibleTitleInts.indexOf(ranNum) == -1) {
