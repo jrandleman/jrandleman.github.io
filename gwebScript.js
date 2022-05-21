@@ -74,13 +74,6 @@ var engSArr = engSTitle.split('');
 var numSTitle = '123456789';
 var numSArr = numSTitle.split('');
 
-for(let neSudokuIdx = 1; neSudokuIdx < 8; neSudokuIdx++) { /* SETTIMEOUTS */
-    setTimeout(genEngSTitle.bind(null,sSudCh++), (70 * (5+neSudokuIdx)));
-}
-for(let nnSudokuIdx = 8; nnSudokuIdx < 18; nnSudokuIdx++) { /* SETTIMEOUTS */
-    setTimeout(genNumSTitle.bind(null,nSudCh++), (70 * (5+nnSudokuIdx)));
-}
-
 function genEngSTitle(sCh) {
     engSArr.splice(sCh,1,numSTitle.charAt(sCh));
     document.getElementById("sdId").innerHTML = '';
@@ -91,6 +84,13 @@ function genNumSTitle(numCh) {
     numSArr.splice(numCh,1,engSTitle.charAt(numCh));
     document.getElementById("sdId").innerHTML = '';
     document.getElementById("sdId").innerHTML += numSArr.join('');
+}
+
+for(let neSudokuIdx = 1; neSudokuIdx < 8; neSudokuIdx++) { /* SETTIMEOUTS */
+    setTimeout(genEngSTitle.bind(null,sSudCh++), (70 * (5+neSudokuIdx)));
+}
+for(let nnSudokuIdx = 8; nnSudokuIdx < 18; nnSudokuIdx++) { /* SETTIMEOUTS */
+    setTimeout(genNumSTitle.bind(null,nSudCh++), (70 * (5+nnSudokuIdx)));
 }
 
 /******************************************************************************/
